@@ -161,22 +161,22 @@ There are also other Docker registries, such as [guay](https://quay.io/) that co
 
 So by default if the host (here: `quay.io`) is omitted, it will pull from Docker Hub. 
 
-## A detailed look into an image 
+## A detailed look into an image
 
-Let's move on to inspect something more relevant than 'hello-world', for example Ubuntu from [Docker Hub](https://hub.docker.com/r/library/ubuntu/) - that is one of the most common Docker images to use as a base for your own image. 
+Let's move on to something more relevant than 'hello-world', for example to [Ubuntu from Docker Hub](https://hub.docker.com/r/library/ubuntu/). It is one of the most common Docker images to use as a base for your own image. 
 
-Anyway, let's pull ubuntu! `docker pull ubuntu`
+Anyway, let's pull Ubuntu! `docker pull ubuntu`
 
-Let's look at the first lines
+Let's look at the first lines:
 
       Using default tag: latest
       latest: Pulling from library/ubuntu
 
-Since we didn't specify a tag, we got `latest` that is usually the last build and pushed image to the registry, **but** in this case the repo readme says that the ubuntu:latest tag points to the "latest LTS", since that's the version recommended for general use.
+Since we didn't specify a tag, Docker defaulted to `latest` which is usually the latest image built and pushed to the registry. **However**, in this case the repository's README says that the `ubuntu:latest` tag points to the "latest LTS" instead, since that's the version recommended for general use.
 
-Images can be tagged to save different versions of the same image. You define image tag by adding :tag after image name.
+Images can be tagged to save different versions of the same image. You define an image's tag by adding `:<tag>` after the image's name.
 
-From [Docker Hub](https://hub.docker.com/r/library/ubuntu/tags/) we can see that there are tags like 16.04 which promises us that the image is based on Ubuntu 16.04. Let's pull that aswell: 
+Ubuntu's [Docker Hub page](https://hub.docker.com/r/library/ubuntu/tags/) reveals that there's a tag named 16.04 which promises us that the image is based on Ubuntu 16.04. Let's pull that as well:
 
     $ docker pull ubuntu:16.04 
 
@@ -187,23 +187,21 @@ From [Docker Hub](https://hub.docker.com/r/library/ubuntu/tags/) we can see that
       6b1bb01b3a3b: Download complete 
       43a98c187399: Download complete 
 
-Images are composed of different layers that are downloaded in parallel to speed up the download. 
+Images are composed of different layers that are downloaded in parallel to speed up the download.
 
-We can tag images locally if we wish, for example `docker tag ubuntu:16.04 ubuntu:xenial`
+We can also tag images locally for convenience, for example `docker tag ubuntu:16.04 ubuntu:xenial` creates the tag `ubuntu:xenial` which refers to `ubuntu:16.04`.
 
-But actually tagging is also a way to "rename" the image: `docker tag ubuntu:16.04 fav_distro:xenial`
+Tagging is also a way to "rename" images. Run `docker tag ubuntu:16.04 fav_distro:xenial` and check `docker images` to see what effects the command had.
 
-Check `docker images` to see what has happened.
-
-Now we can create a new container with `uptime` as the command by saying `docker run fav_distro:xenial uptime`
+We can now create a new Ubuntu container and execute the `uptime` command by running `docker run fav_distro:xenial uptime`
 
 > Mac/win only: Notice how the uptime is the uptime of your moby virtual machine. 
 
-We'll look more into the ubuntu image in part 3.
+We'll look more into the Ubuntu image in part 3.
 
 ### Running and stopping containers 
 
-Let's run a container in the background 
+Let's run a container in the background
 
 `docker run -d --name looper ubuntu:16.04 sh -c 'while true; do date; sleep 1; done'`
 
