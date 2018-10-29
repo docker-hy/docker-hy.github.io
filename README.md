@@ -20,4 +20,18 @@ However:
 
 - Exercises done in beta will count towards your final exercise score if you decide to stop beta testing (You can submit an exercise done in beta as your actual submission during winter)
 
+# Beta testing timeline:
+
+Has started already.
+
+Part 2 available: before end of 17.11.
+
+Part 3 available: before end of 8.12.
+
+Submissions for beta testers will be allowed until 22.12. but if you can't make it we can transfer the exercises to the official course.
+
+Something to gamify the beta testing is being developed. Exercise submissions will be available as soon as possible, link will be on exercises page.
+
+Official course starts 18.12.18 and ends 13.1.19
+
 Thank you for your help. If you have any questions send email jami.kousa@helsinki.fi or send message in course telegram group.
