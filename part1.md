@@ -7,12 +7,12 @@ permalink: /part1/
 
 ## What is Docker? 
 
-Often an application is developed and tested on a certain machine. This leads to problem more commonly referred as "works on my machine" where developer does not know why or how the application does not work on a certain machine. In addition over time the different parts of a system changes possibly leading to the application not working. This might be anything: a new operating system update, hardware change or changes in other dependencies.
+Applications are often developed and tested on one machine. This leads to a problem more commonly known as "works on my machine" where the developer does not know why or how the application does not work on a different machine. In addition, different parts of a system may change over time, possibly leading to the application not working. These changes may be anything from an operating system update to changes in dependencies, or even hardware changes.
 
-Docker combines the application and its dependencies into a **image** that can then be ran on any machine provided it can run Docker.
+Docker combines the application and its dependencies into an **image** that can then be run on any machine, provided it can run Docker.
 ![]({{ "/images/1/container.png" | absolute_url }})
 
-Isn't there already a solution for this? Virtual Machines are not the same as Docker Engine and they solve different problems. We won't look into Virtual Machines on this course.
+Isn't there already a solution for this? Virtual Machines are not the same as the Docker Engine and they solve different problems. We will not be looking into Virtual Machines on this course.
 
 ![]({{ "/images/1/docker-explained-3.png" | absolute_url }})
 
@@ -45,9 +45,9 @@ Hello from Docker!
 --application output--
 ```
 
-Checks if you already have the image 'hello-world', connects to dockerhub, pulls image 'hello-world' and runs it creating a container.  
+The command checks if you already have the image 'hello-world', connects to Docker Hub, pulls the 'hello-world' image and runs it, creating a container.  
 
-Congratulations, now you've ran your first dockerized application. Let's get used to the commands before going forward.
+Congratulations, you've now ran your first dockerized application. Let's get used to the commands before going forward.
 
 ## Docker CLI basics
 
