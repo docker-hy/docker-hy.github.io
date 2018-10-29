@@ -34,11 +34,11 @@ Completing part 1 gives you 1 credit. Completing parts 1 and 2 is worth 2 credit
 
 Starting lecture is not mandatory. It will be held ??:?? ??.12.2018 in ???? Exactum
 
-Slides for starting lecture can be found [here]()
+Slides for starting lecture can be found [here](https://docs.google.com/presentation/d/1op-PxjIoCZ1k-o1JO1h9UhqZFYVMTcYHAQD-XrzwoIo/edit?usp=sharing)
 
 #### Telegram
 
-Join our telegram [here](). Where we discuss everything about the course and support is available almost 24/7. Discussion is in both english and finnish.
+Join our telegram [here](https://t.me/joinchat/HIg2vhI6xgyrWhVvJ7eiiA). Where we discuss everything about the course and support is available almost 24/7. Discussion is in both english and finnish.
 
 **All** inappropriate, degrading or discriminating comments on the channel are prohibited and will lead to action taken against the commenter.
 
@@ -72,4 +72,4 @@ Open terminal and run `docker-compose -v` to see your installed docker-compose v
 
 ### Mistakes:
 
-If you find anything missing, issues, typos or mistakes with the material. You can add an [issue](https://github.com/Jakousa/jakousa.github.io/issues) and if you want to commit to the project you can do so by creating a [pull request](https://github.com/Jakousa/jakousa.github.io/pulls) with your proposed fixes.
+If you find anything missing, issues, typos or mistakes with the material. You can add an [issue](https://github.com/docker-hy/docker-hy.github.io/issues) and if you want to commit to the project you can do so by creating a [pull request](https://github.com/docker-hy/docker-hy.github.io/pulls) with your proposed fixes.
