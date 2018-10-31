@@ -3,6 +3,7 @@ layout: page
 title: part 1
 inheader: yes
 permalink: /part1/
+order: 0
 ---
 
 ## What is Docker? 

@@ -3,8 +3,8 @@ layout: page
 title: exercises
 inheader: yes
 permalink: /exercises/
+order: 1
 ---
-
 
 # How to return exercises
 
@@ -41,7 +41,7 @@ Please note that curl is NOT installed in the container yet.
 
 **1.3** This exercise is mandatory
 
-Clone, fork or download a project from <https://github.com/Jakousa/frontend-example-docker>. 
+Clone, fork or download a project from <https://github.com/docker-hy/frontend-example-docker>. 
 
 Create a Dockerfile for the project and give a command so that the project runs in a docker container with port 5000 exposed and published so when you start the container and navigate to <http://localhost:5000> you will see message if you're successful.
 
@@ -52,7 +52,7 @@ Create a Dockerfile for the project and give a command so that the project runs 
 
 **1.4** This exercise is mandatory
 
-Clone, fork or download a project from <https://github.com/Jakousa/backend-example-docker>. 
+Clone, fork or download a project from <https://github.com/docker-hy/backend-example-docker>. 
 
 Create a Dockerfile for the project and give a command so that the project runs in a docker container with port 8000 exposed and published so when you start the container and navigate to <http://localhost:8000> you will generate a message in logs.txt in the root.
 
