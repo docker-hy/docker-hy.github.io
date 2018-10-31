@@ -7,12 +7,12 @@ permalink: /part1/
 
 ## What is Docker? 
 
-Often an application is developed and tested on a certain machine. This leads to problem more commonly referred as "works on my machine" where developer does not know why or how the application does not work on a certain machine. In addition over time the different parts of a system changes possibly leading to the application not working. This might be anything: a new operating system update, hardware change or changes in other dependencies.
+Applications are often developed and tested on one machine. This leads to a problem more commonly known as "works on my machine" where the developer does not know why or how the application does not work on a different machine. In addition, different parts of a system may change over time, possibly leading to the application not working. These changes may be anything from an operating system update to changes in dependencies, or even hardware changes.
 
-Docker combines the application and its dependencies into a **image** that can then be ran on any machine provided it can run Docker.
+Docker combines the application and its dependencies into an **image** that can then be run on any machine, provided it can run Docker.
 ![]({{ "/images/1/container.png" | absolute_url }})
 
-Isn't there already a solution for this? Virtual Machines are not the same as Docker Engine and they solve different problems. We won't look into Virtual Machines on this course.
+Isn't there already a solution for this? Virtual Machines are not the same as the Docker Engine and they solve different problems. We will not be looking into Virtual Machines on this course.
 
 ![]({{ "/images/1/docker-explained-3.png" | absolute_url }})
 
@@ -45,63 +45,61 @@ Hello from Docker!
 --application output--
 ```
 
-Checks if you already have the image 'hello-world', connects to dockerhub, pulls image 'hello-world' and runs it creating a container.  
+The command checks if you already have the image 'hello-world', connects to Docker Hub, pulls the 'hello-world' image and runs it, creating a container.  
 
-Congratulations, now you've ran your first dockerized application. Let's get used to the commands before going forward.
+Congratulations, you've now ran your first dockerized application. Let's get used to the commands before going forward.
 
 ## Docker CLI basics
 
 The Docker CLI is usually referenced as the "docker engine", see [docs for more information](https://docs.docker.com/engine/reference/commandline/cli/)
 
-Even though you will find over 50 commands in the documentation for general usage we are only going to need handful of the commands. At the end of this section you'll find a list of most used basic commands.
+Even though you will find over 50 commands in the documentation, for general usage we are only going to need handful of commands. You'll find a list of most commonly used basic commands at the end of this section.
 
-To list images you currently have downloaded run: `docker images` 
+To list images you currently have downloaded, run: `docker images` 
 
-As you can see the *hello-world* we recently ran is still lingering in the images. Let's run it a couple more times: 
+As you can see, the *hello-world* we recently ran is still lingering in the images. Let's run it a couple more times: 
 
 `docker run hello-world`  
 
-As we already had previously downloaded *hello-world* Docker noticed you already had the image and ran it straight away. Look at the list of images again should reveal that there is still only one image *hello-world*.
+As we already had previously downloaded *hello-world*, Docker noticed that you already have the image and ran it straight away. Look at the list of images again. It should reveal that there is still only one *hello-world* image.
 
-Lets remove the image since we don't need it anymore. Command `docker rmi hello-world` will remove image *hello-world*. This should fail with the following error: 
+Let's remove the image since we don't need it anymore. The command `docker rmi hello-world` can be used to remove the *hello-world* image. However, this should fail with the following error: 
 
       Error response from daemon: conflict: unable to remove repository reference "hello-world" (must force) - container <container ID> is using its referenced image <image ID>
 
-Forcing usually is a bad idea especially as we are still learning.
+This means that a container currently exists which was created from the image *hello-world* and that removing *hello-world* could have consequences. So before removing images, you should have the referencing container removed first. Forcing is usually a bad idea, especially as we are still learning.
 
-This means that there exists a container that was created from the image *hello-world* and removing *hello-world* could have consequences. So before removing images you should have the referencing container removed first.
+To list containers that are running, run: `docker ps` 
 
-To list containers that are running: `docker ps` 
+Since *hello-world* has already exited, it is not listed. Run `docker ps -a` to list all containers.
 
-Since *hello-world* has already exited it is not listed. Run command `docker ps -a` to list all containers.
+Notice that containers have a *container ID* and *name*. The name is autogenerated to be something like "objective_austin".
 
-Notice that containers have a *container ID* and *container name* that is autogenerated to be something like "objective_austin" 
-
-When we have a lot different of containers, we can filter the list naturally with grep or such 
+When we have a lot of different containers, we can use grep (or another similar utility) to filter the list:
 
 `docker ps -a | grep hello-world` 
 
-Lets remove the container with command 'rm'. You can use either the container name or container id as arguments. In addition if the id is 3d4bab29dd67 you can write the beginning of the id, for example `docker rm 3d`, to delete it. Using shorthand for the id will not delete multiple containers so if you have two ids starting with 3d neither will be deleted. You can use multiple arguments with 'rm' however: `docker rm id1 id2 id3` and use shorthands for those ids. 
+Let's remove the container with the `rm` command. It accepts a container's name or ID as its arguments. Notice that the command also works with the first few characters of an ID. For example, if a container's ID is 3d4bab29dd67, you can use `docker rm 3d` to delete it. Using the shorthand for the ID will not delete multiple containers, so if you have two IDs starting with 3d, a warning will be printed and neither will be deleted. You can also use multiple arguments: `docker rm id1 id2 id3`
 
 If you have hundreds of stopped containers and you wish to delete them all you should use `docker container prune` 
  
 > TIP: prune was introduced in 1.13 and in previous versions you can use `docker rm $(docker ps -q -f status=exited)` where -q prints just container ids and -f filters the list of containers to only those where status is exited 
 
-After removing all of the *hello-world* containers run `docker rmi hello-world` to delete the image. You can use `docker images` to confirm that the image is not listed. 
+After removing all of the *hello-world* containers, run `docker rmi hello-world` to delete the image. You can use `docker images` to confirm that the image is not listed. 
 
-You can also use command 'pull' to pull images without running them: `docker pull hello-world`
+You can also use `pull` command to download images without running them: `docker pull hello-world`
 
 **MAYBE INSERT FUN LITTLE EXERCISE HERE**
 
-Let's start a container that doesn't exit:
+Let's try starting a new container:
 
 `docker run nginx`
 
-This however will block us from using the CLI! Lets exit by pressing control+c and run it with '-d'
+Notice how the command line appears to freeze after pulling and starting the container. This is because nginx is now running in the current terminal, blocking the input. Let's exit by pressing `control + c` and try again with the `-d` flag.
 
 `docker run -d nginx`
 
-This start a container from it detached to the background. This can be seen with `docker ps`
+The `-d` flag starts a container *detached*, meaning that it runs in the background. The container can be seen with `docker ps`
 
 Now if we try to remove it, it will fail: 
 
@@ -110,11 +108,11 @@ Now if we try to remove it, it will fail:
       Error response from daemon: You cannot remove a running container f72c583c982ca686b0826fdc447f04710e78ff6c25dc1ddc7c427cc35eadf5f0. Stop the container before attempting removal or force remove 
 
  
-We should first stop the container using `docker stop <container id or name>` and then using 'rm'.
+We should first stop the container using `docker stop <container id or name>` and then use `rm`.
 
 Forcing is also a possibility and we can this time safely use `docker rm --force <container id or name>`.
 
-It's common that over time the docker daemon is clogged with images and containers laying around. 
+It's common that, over time, the docker daemon becomes clogged with old images and containers.
  
 
 ### MOST USED COMMANDS 
@@ -163,22 +161,22 @@ There are also other Docker registries, such as [guay](https://quay.io/) that co
 
 So by default if the host (here: `quay.io`) is omitted, it will pull from Docker Hub. 
 
-## A detailed look into an image 
+## A detailed look into an image
 
-Let's move on to inspect something more relevant than 'hello-world', for example Ubuntu from [Docker Hub](https://hub.docker.com/r/library/ubuntu/) - that is one of the most common Docker images to use as a base for your own image. 
+Let's move on to something more relevant than 'hello-world', for example to [Ubuntu from Docker Hub](https://hub.docker.com/r/library/ubuntu/). It is one of the most common Docker images to use as a base for your own image. 
 
-Anyway, let's pull ubuntu! `docker pull ubuntu`
+Anyway, let's pull Ubuntu! `docker pull ubuntu`
 
-Let's look at the first lines
+Let's look at the first lines:
 
       Using default tag: latest
       latest: Pulling from library/ubuntu
 
-Since we didn't specify a tag, we got `latest` that is usually the last build and pushed image to the registry, **but** in this case the repo readme says that the ubuntu:latest tag points to the "latest LTS", since that's the version recommended for general use.
+Since we didn't specify a tag, Docker defaulted to `latest` which is usually the latest image built and pushed to the registry. **However**, in this case the repository's README says that the `ubuntu:latest` tag points to the "latest LTS" instead, since that's the version recommended for general use.
 
-Images can be tagged to save different versions of the same image. You define image tag by adding :tag after image name.
+Images can be tagged to save different versions of the same image. You define an image's tag by adding `:<tag>` after the image's name.
 
-From [Docker Hub](https://hub.docker.com/r/library/ubuntu/tags/) we can see that there are tags like 16.04 which promises us that the image is based on Ubuntu 16.04. Let's pull that aswell: 
+Ubuntu's [Docker Hub page](https://hub.docker.com/r/library/ubuntu/tags/) reveals that there's a tag named 16.04 which promises us that the image is based on Ubuntu 16.04. Let's pull that as well:
 
     $ docker pull ubuntu:16.04 
 
@@ -189,23 +187,21 @@ From [Docker Hub](https://hub.docker.com/r/library/ubuntu/tags/) we can see that
       6b1bb01b3a3b: Download complete 
       43a98c187399: Download complete 
 
-Images are composed of different layers that are downloaded in parallel to speed up the download. 
+Images are composed of different layers that are downloaded in parallel to speed up the download.
 
-We can tag images locally if we wish, for example `docker tag ubuntu:16.04 ubuntu:xenial`
+We can also tag images locally for convenience, for example `docker tag ubuntu:16.04 ubuntu:xenial` creates the tag `ubuntu:xenial` which refers to `ubuntu:16.04`.
 
-But actually tagging is also a way to "rename" the image: `docker tag ubuntu:16.04 fav_distro:xenial`
+Tagging is also a way to "rename" images. Run `docker tag ubuntu:16.04 fav_distro:xenial` and check `docker images` to see what effects the command had.
 
-Check `docker images` to see what has happened.
-
-Now we can create a new container with `uptime` as the command by saying `docker run fav_distro:xenial uptime`
+We can now create a new Ubuntu container and execute the `uptime` command by running `docker run fav_distro:xenial uptime`
 
 > Mac/win only: Notice how the uptime is the uptime of your moby virtual machine. 
 
-We'll look more into the ubuntu image in part 3.
+We'll look more into the Ubuntu image in part 3.
 
 ### Running and stopping containers 
 
-Let's run a container in the background 
+Let's run a container in the background
 
 `docker run -d --name looper ubuntu:16.04 sh -c 'while true; do date; sleep 1; done'`
 
