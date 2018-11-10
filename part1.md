@@ -357,7 +357,7 @@ Now let's run our image.
       root@accf99660aeb:/mydir# ls 
       hello.txt  index.html  local.txt 
 
-Our `WORKDIR` was last set to `/mydir` so our inherited `bash` command is started in that directory.  Also note how our hostname `accf99660aeb` equals the container name.  Before exiting the container, let's create one file (in addition to the files created by our `Dockerfile`) 
+Our `WORKDIR` was last set to `/mydir` so our inherited `bash` command is started in that directory.  Also note how our hostname `accf99660aeb` equals the container id.  Before exiting the container, let's create one file (in addition to the files created by our `Dockerfile`) 
 
     $ touch manually.txt 
     $ exit 
