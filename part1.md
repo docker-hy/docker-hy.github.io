@@ -462,7 +462,7 @@ When we build this as `youtube-dl`
 
 And run it: 
 
-    $ docker run youtube-dl https://www.youtube.com/watch?v=UFLCdmfGs7E 
+    $ docker run youtube-dl 
 
       Usage: youtube-dl [OPTIONS] URL [URL...] 
 
