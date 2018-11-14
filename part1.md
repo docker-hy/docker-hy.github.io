@@ -129,7 +129,7 @@ It's common that, over time, the docker daemon becomes clogged with old images a
 | `docker run <image>` | Runs an image creating a container, you can use either image name or id | 
 
 
-Do exercises 1.1.1 and 1.1.2
+Do exercises 1.1 and 1.2
 
 ### Where do the images come from?
 
@@ -158,7 +158,7 @@ The third result, `tutum/hello-world`, is marked as "automated". This means that
 The second result, `kitematic/hello-world-nginx`, is neither an official nor automated image.
 We can't really know what the image is built from, since its [Docker Hub page](https://hub.docker.com/r/kitematic/hello-world-nginx/) has no links to any repos. The only thing its Docker Hub page reveals is that the image is 3 years old. Even if the image's "Full Description" had links to a repository, we would have no guarantees that the published image was actually built from that source.
 
-There are also other Docker registries competing with Docker Hub, such as [guay](https://quay.io/). However, `docker search` will only search Docker Hub, so we'll need to use the registry's web pages to search for images. Take a look at the page of [the `nordstrom/hello-world` image on guay](https://quay.io/repository/nordstrom/hello-world). The page shows the command to use to pull the image, which reveals that we can also pull images from other hosts than Docker Hub:
+There are also other Docker registries competing with Docker Hub, such as [quay](https://quay.io/). However, `docker search` will only search Docker Hub, so we'll need to use the registry's web pages to search for images. Take a look at the page of [the `nordstrom/hello-world` image on guay](https://quay.io/repository/nordstrom/hello-world). The page shows the command to use to pull the image, which reveals that we can also pull images from other hosts than Docker Hub:
 
 `docker pull quay.io/nordstrom/hello-world`
 
@@ -285,7 +285,7 @@ Now let's attach to the container and hit control+p, control+q that detaches us 
 
 Note that hitting `^C` would still kill (and remove due to `--rm`) the process because the `docker attach` was done without `--sig-proxy=false` 
 
-Do exercise 1.2.1
+Do exercise 1.3
 
 ## Creating your own dockerized project 
 
