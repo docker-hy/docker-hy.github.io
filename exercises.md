@@ -85,7 +85,7 @@ For this exercise to be complete you have to provide the link to the project in 
 
 Create an image that contains your favorite programming environment in it's entirety.
 
-This means that a computer that only has docker can use the image to start a container which contains all the tools from IDE / Editor to a way to test code. The environment can be partially used by running commands manually inside the container.
+This means that a computer that only has docker can use the image to start a container which contains all the tools and libraries. Excluding IDE / Editor. The environment can be partially used by running commands manually inside the container.
 
 Explain what you created and publish it to Docker Hub.
 
