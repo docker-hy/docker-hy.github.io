@@ -504,7 +504,7 @@ In the shell form the command is provided as a string without brackets. In the e
 |---|---|
 |ENTRYPOINT /bin/ping -c 3 <br> CMD localhost | /bin/sh -c '/bin/ping -c 3' /bin/sh -c localhost |
 |ENTRYPOINT ["/bin/ping","-c","3"] <br> CMD localhost | /bin/ping -c 3 /bin/sh -c localhost |
-|ENTRYPOINT /bin/ping -c 3 <br> CMD ["localhost"]" | /bin/sh -c '/bin/ping -c 3' localhost |
+|ENTRYPOINT /bin/ping -c 3 <br> CMD ["localhost"] | /bin/sh -c '/bin/ping -c 3' localhost |
 |ENTRYPOINT ["/bin/ping","-c","3"] <br> CMD ["localhost"] | /bin/ping -c 3 localhost | 
 
 
