@@ -90,8 +90,6 @@ After removing all of the *hello-world* containers, run `docker rmi hello-world`
 
 You can also use `pull` command to download images without running them: `docker pull hello-world`
 
-**MAYBE INSERT FUN LITTLE EXERCISE HERE**
-
 Let's try starting a new container:
 
 `docker run nginx`
@@ -551,6 +549,10 @@ By **bind mounting** a host (our machine) folder to the container we can get the
 > Note: the Docker for Mac/Win has some magic so that the directories from our host become available for the `moby` virtual machine allowing our command to work as it would on a Linux machine. 
 
 ### Allowing external connections into containers
+
+The details on how programs communicate are not detailed in this course. Courses on Operating Systems and Networking courses explain these. On this course you only need to know the following simplified basics:
+- Sending messages: Programs can send messages to [URL](https://en.wikipedia.org/wiki/URL) addresses such as this: http://127.0.0.1:3000 where http is the [_protocol_](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol), 127.0.0.1 is a ip address, and and 3000 is a [_port_](https://en.wikipedia.org/wiki/Port_(computer_networking)). Note the ip part could also be a [_hostname_](https://en.wikipedia.org/wiki/Hostname): 127.0.0.1 is always also named [_localhost_](https://en.wikipedia.org/wiki/Localhost) so instead you could use http://localhost:3000.
+- Receiving messages: Programs can be assigned to listen to any available port. If a program is listening for traffic on port 3000 and a message is sent to that port it will receive it (and depending on the message process it).
 
 Opening a connection from outside world to a docker container happens in two steps: 
 

@@ -43,7 +43,7 @@ Start a ubuntu image with the process "sh -c 'read website; sleep 3; curl http:/
 
 Please note that curl is NOT installed in the container yet.
 
-**For the exercises 1.4, 1.5, 1.6, return both Dockerfile(s) and the command you used to run the container(s)**
+**For the exercises 1.4, 1.5, 1.6, commit both Dockerfile(s) and the command you used to run the container(s)**
 
 **1.4** This exercise is mandatory
 
@@ -74,6 +74,8 @@ You know that the configuration is ready when the button for 1.6 of frontend-exa
 *Do not alter the code of either project*
 
 > TIP: When configuring web applications keep browser developer console ALWAYS open, F12 or cmd+shift+I when the browser window is open. Information about configuring cross origin requests is in README of the backend project. 
+
+> TIP: Developer console has multiple views, most important ones are Console and Network. Exploring the Network tab can give you a lot of information on where messages are being sent and what is received as response!
 
 ![]({{ "/images/exercises/back-and-front.png" | absolute_url }})
 
