@@ -33,7 +33,7 @@ RUN chmod a+x /usr/local/bin/youtube-dl
 
 ENV LC_ALL=C.UTF-8
 
-CMD ["/usr/local/bin/youtube-dl"]
+ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 ```
 
 we'll create a file called `docker-compose.yml`:
@@ -67,7 +67,7 @@ services:
       image: <username>/<repositoryname> 
       build: . 
       volumes: 
-        - .:/app 
+        - .:/mydir
       container_name: youtube-dl
 ```` 
 We can also gave the container a name it will use when running with container_name, now we can run it: 

@@ -73,6 +73,8 @@ You know that the configuration is ready when the button for 1.6 of frontend-exa
 
 *Do not alter the code of either project*
 
+> TIP: When configuring web applications keep browser developer console ALWAYS open, F12 or cmd+shift+I when the browser window is open. Information about configuring cross origin requests is in README of the backend project. 
+
 ![]({{ "/images/exercises/back-and-front.png" | absolute_url }})
 
 **1.7**
