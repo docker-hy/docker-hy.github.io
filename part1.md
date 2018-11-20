@@ -579,7 +579,7 @@ Now you could make connection to host port 4567 and it will be mapped to the app
 
 You can also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 1234/udp` and `-p 1234:4567/udp` respectively.
 
-Do exercises 1.3, 1.4 and 1.5
+Do exercises 1.4, 1.5 and 1.6
 
 ### Publishing projects in Docker Hub
 
@@ -603,4 +603,4 @@ Pushing should now work without problems:
 
 `docker push <username>/<repositoryname>`
 
-Do exercises 1.6 and 1.7
+Do exercises 1.7 and 1.8
