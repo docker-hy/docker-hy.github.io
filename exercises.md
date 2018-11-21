@@ -44,7 +44,7 @@ Prove that you have completed this part of exercise by delivering the output for
 
 Start a ubuntu image with the process "sh -c 'read website; sleep 3; curl http://$website'"
 
-Please note that curl is NOT installed in the container yet.
+Please note that curl is NOT installed in the container yet. You will have to install it from inside of the container.
 
 **For the exercises 1.4, 1.5, 1.6, commit both Dockerfile(s) and the command you used to run the container(s)**
 
