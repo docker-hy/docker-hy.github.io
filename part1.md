@@ -568,16 +568,16 @@ To expose a port, add line `EXPOSE <port>` in your Dockerfile
 
 To publish a port, run the container with `-p <host-port>:<container-port>`
 
-For example: A certain application uses port 1234 to accept udp connections.
+For example: A certain application uses port 4567 to accept udp connections.
 
-`EXPOSE 1234` in the Dockerfile will allow container created from the image to accept connections.
+`EXPOSE 4567` in the Dockerfile will allow container created from the image to accept connections.
 Lets say that the image name is "app-in-port"
 
 - `docker run -p 1234:4567 app-in-port`
 
-Now you could make connection to host port 4567 and it will be mapped to the application port.
+Now you could make connection to host port 1234 (for example http://localhost:1234) and it will be mapped to the application port.
 
-You can also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 1234/udp` and `-p 1234:4567/udp` respectively.
+You can also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 4567/udp` and `-p 1234:4567/udp` respectively.
 
 Do exercises 1.4, 1.5 and 1.6
 
