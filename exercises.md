@@ -20,9 +20,9 @@ Please note that at the moment of writing this (26.10) not all exercises have be
 
 Beta deadlines, please not that these are not "hard deadlines" as there might be major changes:
 
-Deadline for part 1 is 26.11. 
-Deadline for part 2 is 10.12. 
-Deadline for part 3 is 22.12.
+Deadline for part 1 is 26.11.  
+Deadline for part 2 is 10.12.  
+Deadline for part 3 is 22.12.  
 
 ## Part 1
 
@@ -103,7 +103,7 @@ Explain what you created and publish it to Docker Hub.
 
 **2.1**
 
-Configuring 1.3 to 1.5 in docker-compose.
+Configuring 1.4 to 1.5 in docker-compose.
 
 Since we already created working Dockerfiles for both frontend and backend we can go step further and simplify the usage into one docker-compose.yml.
 
