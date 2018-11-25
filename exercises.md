@@ -84,7 +84,7 @@ You know that the configuration is ready when the button for 1.6 of frontend-exa
 
 **1.7**
 
-Create Dockerfile for an application in any of your own repositeries and publish it to Docker Hub. This can be any project except clones / forks of backend-example or frontend-example.
+Create Dockerfile for an application in any of your own repositories and publish it to Docker Hub. This can be any project except clones / forks of backend-example or frontend-example.
 
 For this exercise to be complete you have to provide the link to the project in docker hub, make sure you have instructions in README.
 
