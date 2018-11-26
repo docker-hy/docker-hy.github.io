@@ -8,7 +8,7 @@ order: 0
 
 # Deeper understanding of Docker
 
-For now we've focused on using Docker as a tool to solve various types of problems, but meanwhile we have decided to push some of the issues until later and completely ignored others.
+Until now we've focused on using Docker as a tool to solve various types of problems, but meanwhile we have decided to push some of the issues until later and completely ignored others.
 
 Every Dockerfile we've used until now has been FROM ubuntu, which is inefficient, and the user has been root, which is potentially dangerous. In addition we're still restricting ourselves into one physical computer. Unfortunately the last problem is out of our reach for this course. But we get to look at alternative solutions.
 
@@ -42,7 +42,7 @@ This file should be the "..official rootfs tarballs provided by Canonical" menti
 
 Notice how the file is not extracted at any point, this is because the `ADD` documentation states in [Docker documentation](https://docs.docker.com/engine/reference/builder/#add) that "If src is a local tar archive in a recognized compression format (identity, gzip, bzip2 or xz) then it is unpacked as a directory. " 
 
-Before getting stressed by the potential security problems with this we have to remind ourselves of Ken Thomposons "You can't trust code that you did not totally create yourself." (1984, Reflections on Trusting Trust). However, we can be pretty sure that the `ubuntu:16.04` that we downloaded is this image, because 
+Before getting stressed by the potential security problems with this we have to remind ourselves of Ken Thompsons "You can't trust code that you did not totally create yourself." (1984, Reflections on Trusting Trust). However, we assume that the `ubuntu:16.04` that we downloaded is this image, because 
 
     $ docker history --no-trunc ubuntu:16.04 
 
