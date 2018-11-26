@@ -65,7 +65,7 @@ Clone, fork or download a project from <https://github.com/docker-hy/backend-exa
 
 Create a Dockerfile for the project and give a command so that the project runs in a docker container with port 8000 exposed and published so when you start the container and navigate to <http://localhost:8000> you will generate a message in logs.txt in the root.
 
-Save the logs.txt into a volume anywhere on host. So you can shut down the application you can see the same log message.
+Create a volume for the logs.txt so that when the application is shut down the logs are not destroyed.
 
 *Do not alter the code of the project*
 
