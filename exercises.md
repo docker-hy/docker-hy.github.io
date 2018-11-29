@@ -71,16 +71,16 @@ Create a volume for the logs.txt so that when the application is shut down the l
 
 **1.6** This exercise is mandatory 
 
-Start both frontend-example and backend-example with correct ports exposed and configure the CMD with information from README.
+Start both frontend-example and backend-example with correct ports exposed and configure the CMD with necessary information from README. 
 You know that the configuration is ready when the button for 1.6 of frontend-example responds.
 
 *Do not alter the code of either project*
 
+![]({{ "/images/exercises/back-and-front.png" | absolute_url }})
+
 > TIP: When configuring web applications keep browser developer console ALWAYS open, F12 or cmd+shift+I when the browser window is open. Information about configuring cross origin requests is in README of the backend project. 
 
 > TIP: Developer console has multiple views, most important ones are Console and Network. Exploring the Network tab can give you a lot of information on where messages are being sent and what is received as response!
-
-![]({{ "/images/exercises/back-and-front.png" | absolute_url }})
 
 **1.7**
 
