@@ -306,6 +306,8 @@ CMD ["/bin/bash"]
 
  - `COPY` adds a local file to the second argument. It's preferred to use `COPY` instead of `ADD` when you are just adding files (ADD has all kinds of magic behaviour attached to it) 
 
+ - `CMD` is the command that will be executed when using `docker run`
+
 Then we'll build it by running build with context argument `.` which means that we have to be in the same directory (we could run this build from another directory and then give the path here) 
 
     $ docker build . 
@@ -383,6 +385,8 @@ Let's try creating a new container from the new image, this time by setting the 
 
 And as expected, our `manually.txt` file is now in the image.  
 
+Do exercise 1.4
+
 ### Bigger and more complex image
 
 Now let's start moving towards a more meaningful image. `youtube-dl` a program that downloads youtube videos <https://rg3.github.io/youtube-dl/download.html> Let's add it to the image - but this time instead of doing it directly in `Dockerfile`, let's try another approach that is sometimes easier than our current process where we add things to it and try to see if it builds. This time we'll open up an interactive session and test stuff beforehand "storing" it in our Dockerfile. By following the youtube-dl install instructions blindly we'll see that... 
@@ -434,7 +438,7 @@ It works (we just need to give an URL), but we notice that it outputs a warning 
 And it works! Let's persist it for our session and try downloading a video: 
 
     $ export LC_ALL=C.UTF-8 
-    $ youtube-dl https://www.youtube.com/watch?v=UFLCdmfGs7E 
+    $ youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
 
 So now when we know what do, let's add these to the bottom of our `Dockerfile` - by adding the instructions to the bottom we preserve our cached layers - this is handy practise to speed up creating the initial version of a Dockerfile when it has time consuming operations like downloads. 
 
@@ -485,7 +489,7 @@ And now it works like it should:
 
     $ docker build -t youtube-dl . 
 
-    $ docker run youtube-dl https://www.youtube.com/watch\?v\=UFLCdmfGs7E 
+    $ docker run youtube-dl https://www.youtube.com/watch?v=420UIn01VVc 
 
       [youtube] UFLCdmfGs7E: Downloading webpage 
       [youtube] UFLCdmfGs7E: Downloading video info webpage 
@@ -544,7 +548,7 @@ And now we have our file locally. This doesn't really fix our issue, so let's co
 
 By **bind mounting** a host (our machine) folder to the container we can get the file directly to our machine. Let's start another run with `-v` option, that requires an absolute path. We mount our current folder as `/mydir` in our container, overwriting everything that we have put in that folder in our Dockerfile. 
 
-    $ docker run -v $(pwd):/mydir youtube-dl https://www.youtube.com/watch\?v\=UFLCdmfGs7E 
+    $ docker run -v $(pwd):/mydir youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
 
 > Note: the Docker for Mac/Win has some magic so that the directories from our host become available for the `moby` virtual machine allowing our command to work as it would on a Linux machine. 
 
@@ -581,7 +585,7 @@ Now you could make connection to host port 1234 (for example http://localhost:12
 
 You can also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 4567/udp` and `-p 1234:4567/udp` respectively.
 
-Do exercises 1.4, 1.5 and 1.6
+Do exercises 1.5 - 1.7
 
 ### Publishing projects in Docker Hub
 
@@ -605,4 +609,4 @@ Pushing should now work without problems:
 
 `docker push <username>/<repositoryname>`
 
-Do exercises 1.7 and 1.8
+Do exercises 1.8 and 1.9

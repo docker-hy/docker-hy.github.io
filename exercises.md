@@ -13,20 +13,21 @@ To get a passing grade you have to do every exercise, except you can skip one ex
 # How to return exercises
 
 Make a repository and publish your solutions there in clearly ordered files / folders.
+If you need help publishing using git you should refer to their [guide](https://guides.github.com/activities/hello-world/).
 
 When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/courses/#/docker-beta) to mark your exercises.
 
-Please note that at the moment of writing this (26.10) not all exercises have been made and if you wish to complete the course you may have to backtrack and complete exercises from material you've previously read.
+Beta deadlines, please note that these are not "hard deadlines" as there might be major changes:
+ 
+Deadline for parts 1 and 2 is 15.12. Please note that the numbering has changed for part 1 when submitting exercises.
 
-Beta deadlines, please not that these are not "hard deadlines" as there might be major changes:
-
-Deadline for part 1 is 26.11. 
-Deadline for part 2 is 10.12. 
-Deadline for part 3 is 22.12.
+Deadline for part 3 is 22.12, but this text should be removed by 18.12
 
 ## Part 1
 
 **1.1**
+
+Practice the commands.
 
 Start 3 containers from image that does not automatically exit, such as nginx, detached.
 
@@ -36,19 +37,43 @@ Prove that you have completed this part of exercise by delivering the output for
 
 **1.2**
 
+We've left containers and a image that won't be used anymore and are taking space, as `docker ps -a` and `docker images` will reveal.
 Clean the docker daemon from all images and containers.
 
-Prove that you have completed this part of exercise by delivering the output for docker ps -a and docker images
+Prove that you have completed this part of exercise by delivering the output for `docker ps -a` and `docker images`
 
 **1.3**
 
-Start a ubuntu image with the process "sh -c 'read website; sleep 3; curl http://$website'"
+Run a process with dependencies.
 
-Please note that curl is NOT installed in the container yet. You will have to install it from inside of the container.
+Start a ubuntu image with the process `sh -c "read website; sleep 3; curl http://$website:"`
 
-**For the exercises 1.4, 1.5, 1.6, commit both Dockerfile(s) and the command you used to run the container(s)**
+Test inputting helsinki.fi into the application. It should respond with something like
 
-**1.4** This exercise is mandatory
+```
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+</body></html>
+```
+
+> Please note that curl is NOT installed in the container yet. You will have to install it from inside of the container.
+
+**For the following exercises, return both Dockerfile(s) and the command you used to run the container(s)**
+
+**1.4**
+
+Last exercise solution was not practical. Now that we know how to create and build Dockerfiles we can fix that.
+Write Dockerfile for 1.3. Build the image with tag "curler".
+
+Run command `docker run curler` and input helsinki.fi into it. Output should match the 1.3 one.
+
+**1.5** This exercise is mandatory
+
+A good developer creates well written READMEs that can be used to create Dockerfiles with ease.
 
 Clone, fork or download a project from <https://github.com/docker-hy/frontend-example-docker>. 
 
@@ -59,20 +84,20 @@ Create a Dockerfile for the project and give a command so that the project runs 
 > TIP: The project has install instructions in README.
 > TIP: You do not have to install anything new outside containers.
 
-**1.5** This exercise is mandatory
+**1.6** This exercise is mandatory
 
 Clone, fork or download a project from <https://github.com/docker-hy/backend-example-docker>. 
 
 Create a Dockerfile for the project and give a command so that the project runs in a docker container with port 8000 exposed and published so when you start the container and navigate to <http://localhost:8000> you will generate a message in logs.txt in the root.
 
-Create a volume for the logs.txt so that when the application is shut down the logs are not destroyed.
+Create a volume for the logs.txt so that when the application is shut down the logs are not destroyed. And when restarted it continues to write into the same logs.txt.
 
 *Do not alter the code of the project*
 
-**1.6** This exercise is mandatory 
+**1.7** This exercise is mandatory 
 
 Start both frontend-example and backend-example with correct ports exposed and configure the CMD with necessary information from README. 
-You know that the configuration is ready when the button for 1.6 of frontend-example responds.
+You know that the configuration is ready when the button for 1.7 of frontend-example responds.
 
 *Do not alter the code of either project*
 
@@ -82,13 +107,13 @@ You know that the configuration is ready when the button for 1.6 of frontend-exa
 
 > TIP: Developer console has multiple views, most important ones are Console and Network. Exploring the Network tab can give you a lot of information on where messages are being sent and what is received as response!
 
-**1.7**
+**1.8**
 
 Create Dockerfile for an application in any of your own repositories and publish it to Docker Hub. This can be any project except clones / forks of backend-example or frontend-example.
 
 For this exercise to be complete you have to provide the link to the project in docker hub, make sure you have instructions in README.
 
-**1.8**
+**1.9**
 
 Create an image that contains your favorite programming environment in it's entirety.
 
@@ -102,11 +127,13 @@ Explain what you created and publish it to Docker Hub.
 *Do not alter the code of the projects*
 *Exercises in part 2 should be done using docker-compose*
 
-**2.1**
+**2.1** This exercise is mandatory
 
-Configure 1.4 and 1.5 to work in docker-compose.
+As we saw previously, starting an application with two programs was not trivial and the commands got a bit long.
 
 Since we already created working Dockerfiles for both frontend and backend we can go step further and simplify the usage into one docker-compose.yml.
+
+Configure the backend and frontend from part 1 to work in docker-compose.
 
 **2.2**
 
@@ -176,3 +203,48 @@ http {
 **2.6**
 
 Postgres image uses volume by default. Manually define volumes for redis and database in convenient locations. Use both image documentations to help you with the task.
+
+# Part 3
+
+**3.1**
+
+Return back to our frontend & backend Dockerfiles and you should see the some mistakes we now know to fix.
+
+Document both image sizes at this point, as was done in the material. Optimize the Dockerfiles of both programs, frontend and backend.
+
+After your improvements document the image sizes again.
+
+**3.2**
+
+We've used the youtube-dl a lot in the material but I believe that we should expand our horizons.
+
+Create a new Dockerfile for [yle-dl](https://aajanki.github.io/yle-dl/) and optimize it. 
+
+Use your application to download something without breaking the [YLE Terms of Service](https://ohjeet.areena.yle.fi/hc/fi/articles/115002969969-Yle-Areenan-k%C3%A4ytt%C3%B6ehdot)
+
+Exercise 3.2 was created by [Terho Uotila](https://github.com/qzuw)
+
+**3.3** This exercise is mandatory
+
+Return back to our frontend & backend Dockerfiles and you should see the some mistakes we now know to fix.
+
+Security issues with the user being a root are serious as the containers for web services are supposed to be accessible through the internet.
+
+**3.4**
+
+Document the image size before the changes.
+
+Rather than going alpine, go look into [docker-node](https://github.com/nodejs/docker-node) we realize there's more possibilities to improve to do in frontend & backend. Theres even a [best practices guide](https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md)
+
+Return back to our frontend & backend Dockerfiles and you should see the some mistakes we now know to fix.
+
+Document the size after this change.
+
+**3.5**
+
+Do all of the optimizations from security to size for any other Dockerfile you have access to, for example the ones used in exercises 1.8, 1.9, 2.4 or 3.2. Please document both before and after.
+
+**3.6**
+
+**3.7**
+

@@ -136,7 +136,7 @@ Now when we build, we'll see that the size of the layer is 45.6MB megabytes. We 
 
 Now our slimmed down container should work, but: 
 
-    $ docker run -v "$(pwd):/app" youtube-dl https://www.youtube.com/watch\?v\=EUHcNeg_e9g 
+    $ docker run -v "$(pwd):/app" youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
 
       [youtube] EUHcNeg_e9g: Downloading webpage 
 
@@ -210,7 +210,7 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 
 When we run this image without bind mounting our local directory: 
 
-    $ docker run youtube-dl https://www.youtube.com/watch\?v\=UFLCdmfGs7E 
+    $ docker run youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
 
       [youtube] UFLCdmfGs7E: Downloading webpage 
       [youtube] UFLCdmfGs7E: Downloading video info webpage 
@@ -219,7 +219,7 @@ When we run this image without bind mounting our local directory:
 
 We'll see that our `app` user can not write to `/app` - this can be fixed with `chown` or not fix it at all, if the intented usage is to always have a `/app` mounted from the host.  
 
-Do exercise 3.3 and 3.4
+Do exercise 3.3
 
 # Alpine Linux variant 
 
@@ -254,7 +254,7 @@ Now when we build this file with `:alpine-3.7` as the tag:
 
 It seems to run fine:  
 
-    $ docker run -v "$(pwd):/app" youtube-dl:alpine-3.7 https://www.youtube.com/watch\?v\=EUHcNeg_e9g 
+    $ docker run -v "$(pwd):/app" youtube-dl:alpine-3.7 https://www.youtube.com/watch?v=420UIn01VVc
 
 From the history we can see that the our single `RUN` layer size is 41.1MB 
 
@@ -284,7 +284,7 @@ OR, if we don't want to upkeep the ubuntu version anymore we can replace our Ubu
 
 Also remember that unless specified the `:latest` tag will always just refer to the latest image build & pushed - that can basically contain anything. 
 
-Do exercise 3.5 and 3.6
+Do exercises 3.4 and 3.5
 
 ## A peek into multi-host environment
 
@@ -294,4 +294,4 @@ Kubernetes
 
 Docker swarm
 
-Do exercise 3.7 and 3.8
+Do exercises 3.6 and 3.7
