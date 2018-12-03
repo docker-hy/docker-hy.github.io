@@ -49,7 +49,7 @@ services:
 
 ``` 
 
-The version setting is not very strict, it just needs to be above 2 because otherwise the syntax is significantly different. See https://docs.docker.com/compose/compose-file/ for more info. The key `build:` value can be set to a path (ubuntu) or have an object with `context` and `dockerfile` keys. 
+The version setting is not very strict, it just needs to be above 2 because otherwise the syntax is significantly different. See <https://docs.docker.com/compose/compose-file/> for more info. The key `build:` value can be set to a path (ubuntu) or have an object with `context` and `dockerfile` keys. 
 
 Now we can build and push both variants with just these commands: 
 
@@ -70,7 +70,7 @@ services:
         - .:/mydir
       container_name: youtube-dl
 ```` 
-We can also gave the container a name it will use when running with container_name, now we can run it: 
+We can also give the container a name it will use when running with container_name, now we can run it: 
 
     $ docker-compose run youtube-dl-ubuntu https://www.youtube.com/watch?v=420UIn01VVc
 
@@ -83,7 +83,7 @@ Compose is really meant for running web services, so let's move from simple bina
     $ docker run -d -p 8000:8000 jwilder/whoami 
       736ab83847bb12dddd8b09969433f3a02d64d5b0be48f7a5c59a594e3a6a3541 
 
-Open browser or curl localhost:8000 will answer with the id. 
+Navigate with browser or curl localhost:8000, they both will answer with the id. 
 
 Take down the container so that it's not blocking port 8000 
 
@@ -155,7 +155,7 @@ We can curl from these ports:
     $ curl 0.0.0.0:32768 
       I'm 1ae20cd990f7 
 
-In a server environment you'd often have a load balancer in-front of the service. For local environment (or a single server) one good solution is to use https://github.com/jwilder/nginx-proxy that configures nginx from docker daemon as containers are started and stopped.  
+In a server environment you'd often have a load balancer in-front of the service. For local environment (or a single server) one good solution is to use <https://github.com/jwilder/nginx-proxy> that configures nginx from docker daemon as containers are started and stopped.  
 
 Let's add the proxy to our compose file and remove the port bindings from the whoami service. We'll mount our `docker.sock` inside of the container in `:ro` read-only mode. 
 
@@ -185,7 +185,7 @@ When we start this and test
       </body> 
       </html> 
 
-It's "working", but the nginx just doesn't know which service we want. The `nginx-proxy` works with two environment variables: `VIRTUAL_HOST` and `VIRTUAL_PORT`. `VIRTUAL_PORT` is not needed if the service has `EXPOSE` in it's docker image. We can see that `jwilder/whoami` sets it: https://github.com/jwilder/whoami/blob/master/Dockerfile#L9 
+It's "working", but the nginx just doesn't know which service we want. The `nginx-proxy` works with two environment variables: `VIRTUAL_HOST` and `VIRTUAL_PORT`. `VIRTUAL_PORT` is not needed if the service has `EXPOSE` in it's docker image. We can see that `jwilder/whoami` sets it: <https://github.com/jwilder/whoami/blob/master/Dockerfile#L9>
 
 The domain `localtest.me` is configured so that all subdomains point to `127.0.0.1`  - let's use that: 
 
@@ -284,9 +284,9 @@ networks:
 
 Next we'll setup Wordpress that requires MySQL and persisted volume. 
  
-In https://hub.docker.com/_/wordpress/ there is a massive list of different variants in `Supported tags and respective Dockerfile links` - most likely for this testing we can use any of the images. From "How to use this image" we can see that all variants require `WORDPRESS_DB_HOST` that needs to be MySQL.So before moving forward, let's setup that. 
+In <https://hub.docker.com/_/wordpress/> there is a massive list of different variants in `Supported tags and respective Dockerfile links` - most likely for this testing we can use any of the images. From "How to use this image" we can see that all variants require `WORDPRESS_DB_HOST` that needs to be MySQL.So before moving forward, let's setup that. 
 
-In https://hub.docker.com/_/mysql/ there's a sample compose file under "via docker stack deploy or docker-compose" - Let's strip that down to 
+In <https://hub.docker.com/_/mysql/> there's a sample compose file under "via docker stack deploy or docker-compose" - Let's strip that down to 
 
 
 ``` 
@@ -374,7 +374,7 @@ Now when you run it:
       wordpress_1  | Complete! WordPress has been successfully copied to /var/www/html 
       ... 
 
-We see that Wordpress image creates files in startup at `/var/www/html` that also needs to be persisted. The Dockerfile has this line https://github.com/docker-library/wordpress/blob/6a085d90853b8baffadbd3f0a41d6814a2513c11/php7.1/apache/Dockerfile#L44 where it declares that a volume should be created. Docker will create the volume, but it will be handled as a anonymous volume that is not managed by compose, so it's better to be explicit about the volume. With that in mind our final file should look like this: 
+We see that Wordpress image creates files in startup at `/var/www/html` that also needs to be persisted. The Dockerfile has this line <https://github.com/docker-library/wordpress/blob/6a085d90853b8baffadbd3f0a41d6814a2513c11/php7.1/apache/Dockerfile#L44> where it declares that a volume should be created. Docker will create the volume, but it will be handled as a anonymous volume that is not managed by compose, so it's better to be explicit about the volume. With that in mind our final file should look like this: 
 
 ``` 
 version: '3.5' 
@@ -403,7 +403,7 @@ volumes:
     wordpress-data: 
 ``` 
 
-Now open and configure the installation at http://localhost:9999 
+Now open and configure the installation at <http://localhost:9999>  
 
 We can inspect the changes that happened in the image and ensure that no extra meaningful files got written to the container: 
  
@@ -435,7 +435,7 @@ Where we see that the first line is unexpected:
 
     mysqldump: [Warning] Using a password on the command line interface can be insecure. 
 
-This is because docker-compose's exec has a bug https://github.com/docker/compose/issues/5207 where STDERR gets printed to STDOUT.. As a workaround we can skip `docker-compose` 
+This is because docker-compose's exec has a bug <https://github.com/docker/compose/issues/5207> where STDERR gets printed to STDOUT.. As a workaround we can skip `docker-compose` 
 
     $ docker exec -i $(docker-compose ps -q mysql) mysqldump wordpress -uroot -pexample > dump.sql 
 
@@ -480,7 +480,7 @@ Since the dumping with `docker-compose exec` did not work, let's see if importin
 
       Failed to execute script docker-compose 
 
-...and no, because of another bug in https://github.com/docker/compose/issues/3352 - we'll bypass compose again with: 
+...and no, because of another bug in <https://github.com/docker/compose/issues/3352> - we'll bypass compose again with: 
 
     $ docker exec -i $(docker-compose ps -q mysql) mysql -uroot -pexample wordpress < dump.sql 
 
