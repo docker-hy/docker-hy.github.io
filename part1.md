@@ -12,10 +12,13 @@ Applications are often developed and tested on one machine. This leads to a prob
 
 Docker combines the application and its dependencies into an **image** that can then be run on any machine, provided it can run Docker.
 ![]({{ "/images/1/container.png" | absolute_url }})
+A container consists of only the dependencies of the Application A and Application A itself.
 
 Isn't there already a solution for this? Virtual Machines are not the same as the Docker Engine and they solve different problems. We will not be looking into Virtual Machines on this course.
 
 ![]({{ "/images/1/docker-explained-3.png" | absolute_url }})
+
+The image above illustrates the difference between the two solutions after moving Application A to an incompatible system "Operating System B".
 
 ### Image vs container
 
@@ -25,6 +28,11 @@ Cooking metaphor:
 Dockerfile is the shopping list.
 Image is the ingredients (& recipe).
 Container is the delicious treat.
+
+To get an image you have to build it with the Dockerfile.
+And then you run the image creating a container.
+
+So maybe even more fitting metaphor would be that the image is a frozen pre-cooked meal.
 
 ## Hello World docker 
 
