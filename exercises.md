@@ -46,7 +46,7 @@ Prove that you have completed this part of exercise by delivering the output for
 
 Run a process with dependencies.
 
-Start a ubuntu image with the process `sh -c "read website; sleep 3; curl http://$website:"`
+Start a ubuntu image with the process `sh -c "read website; sleep 3; curl http://$website;"`
 
 Test inputting helsinki.fi into the application. It should respond with something like
 
