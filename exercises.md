@@ -15,13 +15,7 @@ To get a passing grade you have to do every exercise, except you can skip one ex
 Make a repository and publish your solutions there in clearly ordered files / folders.
 If you need help publishing using git you should refer to their [guide](https://guides.github.com/activities/hello-world/).
 
-When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/courses/#/docker-beta) to mark your exercises.
-
-Beta deadlines, please note that these are not "hard deadlines" as there might be major changes:
- 
-Deadline for parts 1 and 2 is 15.12. Please note that the numbering has changed for part 1 when submitting exercises.
-
-Deadline for part 3 is 22.12, but this text should be removed by 18.12
+When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/courses/#/) to mark your exercises. Please choose the correct course.
 
 ## Part 1
 
