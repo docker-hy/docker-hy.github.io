@@ -41,7 +41,7 @@ Slides for the starting lecture can be found [here](https://docs.google.com/pres
 
 This course has a Telegram group where we discuss everything about the course. Support is available almost 24/7, with discussion being in both English and Finnish.
 
-Join our telegram group [here](https://t.me/joinchat/HIg2vhI6xgyrWhVvJ7eiiA).
+Join our telegram group [here](https://t.me/joinchat/HIg2vkuQ1T4QUPJDxIgshQ).
 
 **All** inappropriate, degrading or discriminating comments on the channel are prohibited and will lead to action taken against the commenter.
 
