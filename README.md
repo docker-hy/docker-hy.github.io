@@ -1,5 +1,7 @@
 # [Course material](https://docker-hy.github.io)
 
+# If you are NOT in beta, do not read any further. Just follow the link above.
+
 # Information about beta release:
 
 [Early access to sauna is a cold place](https://www.youtube.com/watch?v=ZzPdPYtqBt0)
@@ -22,17 +24,17 @@ However:
 
 # Beta testing timeline:
 
-Has started already.
+All parts are under testing. Final exercises for part 3 are available before 15.12.
 
-Has been released.
+Beta deadlines, please note that these are not "hard deadlines" as there might be major changes:
+ 
+Deadline for parts 1 and 2 is 15.12. Please note that the numbering has changed for part 1 when submitting exercises.
 
-Part 3 available: before end of 8.12.
-
-Suggested deadlines for completion are on the exercises page.
+Deadline for part 3 is 22.12, but this text should be removed by 18.12
 
 Submissions for beta testers will be allowed until 22.12. but if you can't make it we can transfer the exercises to the official course.
 
-Something to gamify the beta testing is being developed. Link for exercise submissions is on the exercises page.
+Link for exercise submissions is on the exercises page.
 
 Official course starts 18.12.18 and ends 13.1.19
 
