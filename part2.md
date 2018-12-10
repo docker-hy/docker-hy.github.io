@@ -10,7 +10,7 @@ order: 0
 
 Even with a simple image, we've already been dealing with plenty of command line options in both building, pushing and running the image.
  
-Now we'll switch to tool called docker-compose to manage these. 
+Now we'll switch to a tool called docker-compose to manage these. 
 
 docker-compose is designed to simplify running multi-container applications to using a single command.
 
@@ -76,16 +76,16 @@ We can also give the container a name it will use when running with container_na
 
 ### web services 
 
-Compose is really meant for running web services, so let's move from simple binary wrappers to running a HTTP services. 
+Compose is really meant for running web services, so let's move from simple binary wrappers to running a HTTP service. 
 
-<https://github.com/jwilder/whoami> is simple service that prints the current container id (hostname). 
+<https://github.com/jwilder/whoami> is a simple service that prints the current container id (hostname). 
 
     $ docker run -d -p 8000:8000 jwilder/whoami 
       736ab83847bb12dddd8b09969433f3a02d64d5b0be48f7a5c59a594e3a6a3541 
 
-Navigate with browser or curl localhost:8000, they both will answer with the id. 
+Navigate with a browser or curl to localhost:8000, they both will answer with the id. 
 
-Take down the container so that it's not blocking port 8000 
+Take down the container so that it's not blocking port 8000.
 
     $ docker stop 736ab83847bb
     $ docker rm 736ab83847bb  
@@ -284,7 +284,7 @@ networks:
 
 Next we'll setup Wordpress that requires MySQL and persisted volume. 
  
-In <https://hub.docker.com/_/wordpress/> there is a massive list of different variants in `Supported tags and respective Dockerfile links` - most likely for this testing we can use any of the images. From "How to use this image" we can see that all variants require `WORDPRESS_DB_HOST` that needs to be MySQL.So before moving forward, let's setup that. 
+In <https://hub.docker.com/_/wordpress/> there is a massive list of different variants in `Supported tags and respective Dockerfile links` - most likely for this testing we can use any of the images. From "How to use this image" we can see that all variants require `WORDPRESS_DB_HOST` that needs to be MySQL. So before moving forward, let's setup that. 
 
 In <https://hub.docker.com/_/mysql/> there's a sample compose file under "via docker stack deploy or docker-compose" - Let's strip that down to 
 
@@ -303,7 +303,7 @@ services:
 
 Notes: 
 
- - `restart: always` was changed to `unless-stopped` that will keep the container running unless it's stopped. With `always` the a stopped container is started after reboot for example. 
+ - `restart: always` was changed to `unless-stopped` that will keep the container running unless it's stopped. With `always` the stopped container is started after reboot for example. 
 
 Under "Caveats - Where to Store Data" we can see that the `/var/lib/mysql` needs to be mounted separately to preserve data so that the container can be recreated. We could use a bind mount like previously, but this time let's create a separete **volume** for the data: 
 
@@ -374,7 +374,7 @@ Now when you run it:
       wordpress_1  | Complete! WordPress has been successfully copied to /var/www/html 
       ... 
 
-We see that Wordpress image creates files in startup at `/var/www/html` that also needs to be persisted. The Dockerfile has this line <https://github.com/docker-library/wordpress/blob/6a085d90853b8baffadbd3f0a41d6814a2513c11/php7.1/apache/Dockerfile#L44> where it declares that a volume should be created. Docker will create the volume, but it will be handled as a anonymous volume that is not managed by compose, so it's better to be explicit about the volume. With that in mind our final file should look like this: 
+We see that Wordpress image creates files in startup at `/var/www/html` that also needs to be persisted. The Dockerfile has this line <https://github.com/docker-library/wordpress/blob/6a085d90853b8baffadbd3f0a41d6814a2513c11/php7.1/apache/Dockerfile#L44> where it declares that a volume should be created. Docker will create the volume, but it will be handled as an anonymous volume that is not managed by compose, so it's better to be explicit about the volume. With that in mind our final file should look like this: 
 
 ``` 
 version: '3.5' 
@@ -415,7 +415,7 @@ We can inspect the changes that happened in the image and ensure that no extra m
 
 Since plugins and image uploads will by default write to local disk at `/var/www/html`, this means that Wordpress can not be scaled in a real production deployment on multiple machines without somehow sharing this path. Some possible solutions: 
 
-    - shared filesystem like NFS or AWS EFS 
+    - Shared filesystem like NFS or AWS EFS 
 
     - Something like https://www.gluster.org/ or http://ceph.com/ 
 
