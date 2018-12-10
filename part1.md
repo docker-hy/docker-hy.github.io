@@ -11,7 +11,9 @@ order: 0
 Applications are often developed and tested on one machine. This leads to a problem more commonly known as "works on my machine" where the developer does not know why or how the application does not work on a different machine. In addition, different parts of a system may change over time, possibly leading to the application not working. These changes may be anything from an operating system update to changes in dependencies, or even hardware changes.
 
 Docker combines the application and its dependencies into an **image** that can then be run on any machine, provided it can run Docker.
+
 ![]({{ "/images/1/container.png" | absolute_url }})
+
 A container consists of only the dependencies of the Application A and Application A itself.
 
 Isn't there already a solution for this? Virtual Machines are not the same as the Docker Engine and they solve different problems. We will not be looking into Virtual Machines on this course.
@@ -135,7 +137,7 @@ It's common that, over time, the docker daemon becomes clogged with old images a
 | `docker run <image>` | Runs an image creating a container, you can use either image name or id | 
 
 
-Do exercises 1.1 and 1.2
+**[Do exercises 1.1 and 1.2](/exercises/#11)**
 
 ### Where do the images come from?
 
@@ -291,7 +293,7 @@ Now let's attach to the container and hit control+p, control+q that detaches us 
 
 Note that hitting `^C` would still kill (and remove due to `--rm`) the process because the `docker attach` was done without `--sig-proxy=false` 
 
-Do exercise 1.3
+**[Do exercise 1.3](/exercises/#13)**
 
 ## Creating your own dockerized project 
 
@@ -319,8 +321,6 @@ CMD ["/bin/bash"]
 Then we'll build it by running build with context argument `.` which means that we have to be in the same directory (we could run this build from another directory and then give the path here) 
 
     $ docker build . 
-
- 
 
 This fails in the `COPY` because the `local.txt` doesn't exist. Fix that and build again to see the next error. 
 
@@ -393,7 +393,7 @@ Let's try creating a new container from the new image, this time by setting the 
 
 And as expected, our `manually.txt` file is now in the image.  
 
-Do exercise 1.4
+**[Do exercises 1.4](/exercises/#14)**
 
 ### Bigger and more complex image
 
@@ -593,7 +593,7 @@ Now you could make connection to host port 1234 (for example http://localhost:12
 
 You can also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 4567/udp` and `-p 1234:4567/udp` respectively.
 
-Do exercises 1.5 - 1.7
+**[Do exercises 1.5 - 1.7](/exercises/#15)**
 
 ### Publishing projects in Docker Hub
 
@@ -617,4 +617,4 @@ Pushing should now work without problems:
 
 `docker push <username>/<repositoryname>`
 
-Do exercises 1.8 and 1.9
+**[Do exercises 1.8 and 1.9](/exercises/#18)**

@@ -121,7 +121,7 @@ services:
         - VARIABLE 
 ```
 
-Do exercise 2.1
+**[Do exercise 2.1](/exercises/#21)**
 
 #### Scaling
 
@@ -261,7 +261,7 @@ Connecting two services such as a server and its database in docker can be achie
 
 For example services defined as `backend-server` that users access can connect to port 2345 of container `database` by connecting to database:2345 if they're both defined as service in the same docker-compose.yml. For this use case there is no need to publish the database port to host machine. This way the ports are only published to other containers in the docker network.
 
-Do exercises 2.2 and 2.3
+**[Do exercises 2.2, 2.3](/exercises/#22)**
 
 You can also manually define the network and also its name in docker-compose version 3.5 forward. A major benefit of defining network is that it makes it easy to setup a configuration where other containers connect to an existing network as an external network.
 
@@ -490,4 +490,4 @@ And then start the wordpress:
 
 And our old site is back! 
 
-Do exercises 2.4, 2.5 and 2.6
+**[Do exercise 2.4, 2.5 and 2.6](/exercises/#24)**

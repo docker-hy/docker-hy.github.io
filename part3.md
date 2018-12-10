@@ -177,7 +177,7 @@ From the build output we can see that `ca-certificates` also adds `openssl`
 
 and this brings us to 36.4 megabytes in our `RUN` layer (from the original 87.4 megabytes) 
 
-Do exercise 3.1 and 3.2
+**[Do exercises 3.1 and 3.2](/exercises/#31)**
 
 # Using a non-root user
 
@@ -219,7 +219,7 @@ When we run this image without bind mounting our local directory:
 
 We'll see that our `app` user can not write to `/app` - this can be fixed with `chown` or not fix it at all, if the intented usage is to always have a `/app` mounted from the host.  
 
-Do exercise 3.3
+**[Do exercise 3.3](/exercises/#33)**
 
 # Alpine Linux variant 
 
@@ -284,7 +284,7 @@ OR, if we don't want to upkeep the ubuntu version anymore we can replace our Ubu
 
 Also remember that unless specified the `:latest` tag will always just refer to the latest image build & pushed - that can basically contain anything. 
 
-Do exercises 3.4 and 3.5
+**[Do exercises 3.4 and 3.5](/exercises/#34)**
 
 ## A peek into multi-host environment
 
@@ -294,4 +294,4 @@ Kubernetes
 
 Docker swarm
 
-Do exercises 3.6 and 3.7
+**[Do exercises 3.6 and 3.7](/exercises/#36)**
