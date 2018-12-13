@@ -277,16 +277,24 @@ Do all of the optimizations from security to size for any other Dockerfile you h
 
 In this exercise choose one of the following:
 
-a)
+a) Write a short article on why and when to use Kubernetes. You can compare it to other similar tools. If you feel like sharing the article put a pull request to links section with a link to your text.
 
-b)
+b) Write a short article on when to use Docker and what are the benefits. Write one example with and without containers. You can also write on any other container platform and compare it to Docker. If you feel like sharing the article put a pull request to links section with a link to your text.
+
+> TIP: Diagrams are often better than text when explaining container setups.
 
 ### 3.7 ### 
 
 In this exercise choose one of the following:
 
-a)
+a) 
 
-b)
+
+
+b) 
+
+
 
 c)
+
+

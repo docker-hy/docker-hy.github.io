@@ -286,12 +286,26 @@ Also remember that unless specified the `:latest` tag will always just refer to 
 
 **[Do exercises 3.4 and 3.5](/exercises/#34)**
 
-## A peek into multi-host environment
+## A peek into multi-host environment options
 
-Kubernetes
+Now that we've mastered containers in small systems with docker-compose it's time to look beyond what the tools we practiced are capable of. In situations where we have more than a single host machine we cannot use docker-compose solely. However, Docker does contain other tools to help us with automatic deployment, scaling and management of dockerized applications.
 
-# Other docker usages
+For the scope of this course we cannot go into how to use the tools in this section, but leaving them out would be a disservice.
 
-Docker swarm
+**Docker swarm** is built into docker. It turns a pool of Docker hosts into a single virtual host. You can read the feature highlights [here](https://docs.docker.com/engine/swarm/). You can run right away with `docker swarm`. Docker swarm is the lightest way of utilizing multiple hosts.
+
+**Kubernetes** is the de facto way of orchestrating your containers in large multi-host environments. The reason being it's customizability, large community and robust features. However the drawback is the higher learning curve compared to Docker swarms. You can read their introduction [here](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/).
+
+The main difference you should take is that the tools are at their best in different situations. In 2-3 host environment for a hobby project the gains from Kubernetes might not be as large compared to a environment where you need to orchestrate hundreds of hosts with multiple containers each.
+
+But with the technology and tools being as new as they are, their popularity might fluctuate as well leading to deprecation of certain tools. A tool called docker stack has been available for a while as a way to replace docker-compose as a baked-in-to-Docker way to do the same things, with built in Kubernetes and Docker Swarm support. You can also start testing this by running `docker stack`.
+
+![]({{ "/images/3/stack.png" | absolute_url }})
+
+Translation:
+
+Luukkainen: "Is docker stack the bleeding edge?"
+
+[Paksula](/#credits): "Deprecated"
 
 **[Do exercises 3.6 and 3.7](/exercises/#36)**

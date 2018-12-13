@@ -56,7 +56,9 @@ Now we can build and push both variants with just these commands:
     $ docker-compose build
     $ docker-compose push
 
-To run the image as we did previously, we'll need to add the volume bind mounts. Compose can work without an absolute path: 
+### Volumes in docker-compose ###
+
+To run the image as we did previously, we'll need to add the volume bind mounts. Volumes in docker-compose are defined with the with the following syntax `location-in-host:location-in-container`. Compose can work without an absolute path:
 
 ``` 
 version: '3.5' 
@@ -69,7 +71,8 @@ services:
       volumes: 
         - .:/mydir
       container_name: youtube-dl
-```` 
+``` 
+
 We can also give the container a name it will use when running with container_name, now we can run it: 
 
     $ docker-compose run youtube-dl-ubuntu https://www.youtube.com/watch?v=420UIn01VVc
@@ -280,7 +283,7 @@ networks:
       name: server-database-network
 ```
 
-# volumes 
+### Larger application with volumes ###
 
 Next we'll setup Wordpress that requires MySQL and persisted volume. 
  
@@ -361,7 +364,7 @@ Now when the MySQL is running, let's add the actual Wordpress. The container see
         - mysql 
 ``` 
 
-We also declare that `mysql` service should be started first and that the container will link to it - The MySQL server is accessible with dns name "mysql" from the Wordpress service. 
+Notice the `depends_on` declaration. This makes sure that the that `mysql` service should be started first and that the container will link to it - The MySQL server is accessible with dns name "mysql" from the Wordpress service. 
 
 Now when you run it: 
 
