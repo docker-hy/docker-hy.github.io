@@ -42,7 +42,7 @@ Prove that you have completed this part of exercise by delivering the output for
 
 Now that we've warmed up it's time to get inside a container while it's running!
 
-Start a ubuntu image with the process `sh -c "read website; sleep 3; curl http://$website;"`
+Start a ubuntu image with the process `sh -c 'read website; sleep 3; curl http://$website;'`
 
 You will notice that a few things required for proper execution are missing. Be sure to remind yourself which flags to use so that the read actually waits for input.
 
