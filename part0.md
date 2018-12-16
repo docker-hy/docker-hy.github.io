@@ -33,7 +33,7 @@ Completing part 1 gives you 1 credit. Completing parts 1 and 2 is worth 2 credit
 
 #### Starting lecture
 
-Starting lecture is not mandatory. It will be held 12:15 18.12.2018 in **A111 Chemicum**
+Starting lecture is not mandatory. It will be held 12:15 18.12.2018 in **A110 Chemicum**
 
 Slides for the starting lecture can be found [here](https://docs.google.com/presentation/d/1op-PxjIoCZ1k-o1JO1h9UhqZFYVMTcYHAQD-XrzwoIo/edit?usp=sharing)
 

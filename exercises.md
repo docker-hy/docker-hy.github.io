@@ -289,14 +289,16 @@ b) Write a short article on when to use Docker and what are the benefits. Write 
 
 In this exercise choose one of the following:
 
-a) 
+a) Create an example setup that uses Kubernetes, Docker Swarm or equivalent using any project and deploy it online. You can use any applications available to you (such as the frontend - backend example). Make sure that the application consists of atleast two different containers that are deployed on two different hosts. 
 
+You can practice deployment using virtual machines and AWS offers free credits for students.
 
+b) Write a CLI tool to help you set up an environment and deploy it. (Helping with the complete deployment pipeline). This exercise can be done with any project of your choice. For example CLI tool automatically pulls your repositories, sets up databases / other services with Docker and contains relevant commands to reset the environment. (and when ready sends it to CI after which the image is build by docker hub and production server pulls it from there).
 
-b) 
+Add in explanation of the complete deployment pipeline with new developers in mind with the final steps containing production deployment instructions with Docker.
 
+Explain your process and give a link to the repository in which the CLI tool exists.
 
-
-c)
+c) 
 
 
