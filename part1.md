@@ -628,3 +628,16 @@ Pushing should now work without problems:
 `docker push <username>/<repositoryname>`
 
 **[Do exercises 1.8 and 1.9](/exercises/#18)**
+
+
+## Epilogue, or rather, a recap ##
+
+We started by learning what Docker container and image mean. Basically we stated from an empty ubuntu with nothing installed into it. It's also possible to start from something else, but for now ubuntu had been enough.
+
+This meant that we had to install almost everything manually, either from the command line or by using a setup file "Dockerfile" to install whatever we needed for the task at hand.
+
+The process of dockerizing the applications meant a bit of configuration on our part, but now that we've done it and built the image anyone can pick up and run the application; no porrible dependency or versioning issues.
+
+Understanding the architecture and the technologies used is also part of making correct choices with the setup. This lead us to read the REAMEs and documentation of the sftware involved in the setup, not just Docker. Fortunately in real life it's often us who are developing and creating the Dockerfile.
+
+The starting and stopping of containers is a bit annoying, not to mention running two applications at the same time. If only there was some way, a tool, to make it simpler... to [compose](/part2).
