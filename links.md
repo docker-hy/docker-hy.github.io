@@ -10,11 +10,14 @@ This page will contain interesting links on subjects sorted by the parts in whic
 
 ## Part 1 ##
 
-### What is docker? ###
+### What is DevOps? ###
 
-- link placeholder 1
-- link placeholder 2
-- link placeholder 3
+- [DevOps is not a role](http://turnoff.us/geek/devops-explained)
+
+### What is Docker? ###
+
+- link placeholder
+- [What is a Docker image?](https://cameronlonsdale.com/2018/11/26/whats-in-a-docker-image)
 
 ## Part 2 ##
 
