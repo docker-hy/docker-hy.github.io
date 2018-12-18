@@ -32,13 +32,13 @@ In that git repository's [README](https://github.com/tianon/docker-brew-ubuntu-c
 
 which means that in somewhere there's a Jenkins server that runs this script and publishes image to the registry - we have no way of knowing if this is true or not. 
 
-Let's see how the image was really built from <https://hub.docker.com/r/_/ubuntu/> by clicking the 16.04 [Dockerfile link](https://github.com/tianon/docker-brew-ubuntu-core/blob/490e0e86ec5c93524b7ae37b79025e5ded5efcc6/xenial/Dockerfile)
+Let's see how the image was really built from <https://hub.docker.com/r/_/ubuntu/> by clicking the 16.04 [Dockerfile link](https://github.com/tianon/docker-brew-ubuntu-core/blob/490e0e86ec5c93524b7ae37b79025e5ded5efcc6/xenial/Dockerfile).
 
 We get to the `Dockerfile` that specifies all the commands that were used to create this image. 
 
-The first line states that the image starts FROM a **special** image "scratch" that is just empty. Then a file `ubuntu-xenial-core-cloudimg-amd64-root.tar.gz` is added to the root from the same [directory](https://github.com/tianon/docker-brew-ubuntu-core/tree/490e0e86ec5c93524b7ae37b79025e5ded5efcc6/xenial)
+The first line states that the image starts FROM a **special** image "scratch" that is just empty. Then a file `ubuntu-xenial-core-cloudimg-amd64-root.tar.gz` is added to the root from the same [directory](https://github.com/tianon/docker-brew-ubuntu-core/tree/490e0e86ec5c93524b7ae37b79025e5ded5efcc6/xenial).
 
-This file should be the "..official rootfs tarballs provided by Canonical" mentioned earlier, but it's not actually coming from <https://partner-images.canonical.com/core/xenial/current/>, it's copied to the repo owned by "tianon". We could verify the checksums of the file if we are interested. 
+This file should be the "..official rootfs tarballs provided by Canonical" mentioned earlier, but it's not actually coming from <https://partner-images.canonical.com/core/xenial/current/>, it's copied to the repo owned by "tianon". We could verify the checksums of the file if we were interested. 
 
 Notice how the file is not extracted at any point, this is because the `ADD` documentation states in [Docker documentation](https://docs.docker.com/engine/reference/builder/#add) that "If src is a local tar archive in a recognized compression format (identity, gzip, bzip2 or xz) then it is unpacked as a directory. " 
 
@@ -46,12 +46,12 @@ Before getting stressed by the potential security problems with this we have to 
 
     $ docker history --no-trunc ubuntu:16.04 
 
-Matches with the directives specified in the `Dockerfile`.  We could also build the image ourselves if we really wanted - there is nothing special in the "official" image and the build process is, as we saw, truly open. 
+matches with the directives specified in the `Dockerfile`.  We could also build the image ourselves if we really wanted - there is nothing special in the "official" image and the build process is, as we saw, truly open. 
 
 
 # Optimizing the Dockerfile 
 
-Lets go back to part 1 and remember the minor problem of our container build process creates many layers resulting in increased image size.
+Lets go back to part 1 and remember the minor problem that our container build process creates many layers resulting in increased image size.
 
 ```
 FROM ubuntu:16.04
@@ -132,7 +132,7 @@ Now when we build, we'll see that the size of the layer is 45.6MB megabytes. We 
     apt-get purge -y --auto-remove curl && \ 
     rm -rf /var/lib/apt/lists/* 
 
-..which brings us down to 34.9MB 
+..which brings us down to 34.9MB.
 
 Now our slimmed down container should work, but: 
 
@@ -148,7 +148,7 @@ Because `--auto-remove` also removed dependencies, like:
 
 We can now see that our `youtube-dl` worked previously because of our `curl` dependencies. If `youtube-dl` would have been installed as a package, it would have declared `ca-certificates` as its dependency. 
 
-Now what we could do is to first `purge --auto-remove` and then add `ca-certificates` back with `apt-get install` or just install `ca-certificates` along with other pacakges before removing `curl`:  
+Now what we could do is to first `purge --auto-remove` and then add `ca-certificates` back with `apt-get install` or just install `ca-certificates` along with other packages before removing `curl`:  
 
 ``` 
 FROM ubuntu:16.04 
@@ -175,7 +175,7 @@ From the build output we can see that `ca-certificates` also adds `openssl`
     The following NEW packages will be installed: 
     ca-certificates openssl 
 
-and this brings us to 36.4 megabytes in our `RUN` layer (from the original 87.4 megabytes) 
+and this brings us to 36.4 megabytes in our `RUN` layer (from the original 87.4 megabytes). 
 
 **[Do exercises 3.1 and 3.2](/exercises/#31)**
 
@@ -244,9 +244,9 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 ``` 
 
 Notes: 
- - The package manager is `apk` and it can work without downloading sources (caches) first with `--no-cache` 
+ - The package manager is `apk` and it can work without downloading sources (caches) first with `--no-cache`.
  - `useradd` is missing, but `adduser` exists. 
- - Most of the package names are the same - there's a good package browser at https://pkgs.alpinelinux.org/packages 
+ - Most of the package names are the same - there's a good package browser at https://pkgs.alpinelinux.org/packages.
 
 Now when we build this file with `:alpine-3.7` as the tag: 
 
@@ -296,7 +296,7 @@ For the scope of this course we cannot go into how to use the tools in this sect
 
 **Kubernetes** is the de facto way of orchestrating your containers in large multi-host environments. The reason being it's customizability, large community and robust features. However the drawback is the higher learning curve compared to Docker swarms. You can read their introduction [here](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/).
 
-The main difference you should take is that the tools are at their best in different situations. In 2-3 host environment for a hobby project the gains from Kubernetes might not be as large compared to a environment where you need to orchestrate hundreds of hosts with multiple containers each.
+The main difference you should take is that the tools are at their best in different situations. In a 2-3 host environment for a hobby project the gains from Kubernetes might not be as large compared to a environment where you need to orchestrate hundreds of hosts with multiple containers each.
 
 But with the technology and tools being as new as they are, their popularity might fluctuate as well leading to deprecation of certain tools. A tool called docker stack has been available for a while as a way to replace docker-compose as a baked-in-to-Docker way to do the same things, with built in Kubernetes and Docker Swarm support. You can also start testing this by running `docker stack`.
 
