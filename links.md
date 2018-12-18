@@ -16,7 +16,7 @@ This page will contain interesting links on subjects sorted by the parts in whic
 
 ### What is Docker? ###
 
-- link placeholder
+- [Understanding how the docker daemon and docker cli work together.](https://nickjanetakis.com/blog/understanding-how-the-docker-daemon-and-docker-cli-work-together)
 - [What is a Docker image?](https://cameronlonsdale.com/2018/11/26/whats-in-a-docker-image)
 
 ## Part 2 ##
