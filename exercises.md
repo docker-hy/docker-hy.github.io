@@ -12,6 +12,10 @@ order: 1
 
 To get a passing grade you have to do every exercise, except you can skip one exercise for each part. You can not "save" skips between parts. Some of the exercises are marked as mandatory and they can not be skipped. 
 
+## Deadline ##
+
+The exercises have only one deadline: 13.1.2019. As the course ends no more exercises can be submitted and grading will start.
+
 ## How to return exercises ##
 
 Make a repository and publish your solutions there in clearly ordered files / folders.
