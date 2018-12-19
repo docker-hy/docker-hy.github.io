@@ -276,7 +276,7 @@ To enter a container, we can start a new process in it.
       root       386  0.0  0.0   4368   672 ?        S    10:33   0:00 sleep 1 
       root       387  0.0  0.0  36836  2900 pts/0    R+   10:34   0:00 ps aux 
 
-In our command `-it` is short for `-i`  and `-t` where `-i` is "interactive, connect STDIN" and `-t` "allocate a pseudo-TTY". From `ps aux` listing we can see that our `bash` process got pid 300. 
+In our command `-it` is short for `-i`  and `-t` where `-i` is "interactive, connect STDIN" and `-t` "allocate a pseudo-TTY". From `ps aux` listing we can see that our `bash` process got pid 300. Or to put it more simply, `-it` allows you to interact with the container by using the command line. 
 
 Now that we're inside the container it behaves like you'd expect from ubuntu and we can terminate the container by killing the process with `kill 1` or exit the container with `exit` and either kill or stop the container. 
 
