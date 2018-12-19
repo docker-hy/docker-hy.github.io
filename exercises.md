@@ -14,7 +14,17 @@ To get a passing grade you have to do every exercise, except you can skip one ex
 
 ## Deadline ##
 
-The exercises have only one deadline: 13.1.2019. As the course ends no more exercises can be submitted and grading will start.
+The exercises have only one deadline: 13.1.2019, 23:59. As the course ends no more exercises can be submitted and grading will start.
+
+## Paja ##
+
+Paja times:
+
+| Monday 31.12 | Friday 4.1 | Monday 7.1 | Friday 11.1 |
+|--------------|------------|------------|-------------|
+| 10-14 | 13-17 | 10-14 | 13-17 |
+
+Paja is held in the BK107 unless something else is there.
 
 ## How to return exercises ##
 
