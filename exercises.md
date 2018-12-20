@@ -313,6 +313,5 @@ Add in explanation of the complete deployment pipeline with new developers in mi
 
 Explain your process and give a link to the repository in which the CLI tool exists.
 
-c) 
-
+c) Building images inside of a container. Create a project that downloads a repository from github, builds a Dockerfile located in the root and then publishes it into Docker Hub. Then create a Dockerfile for it. Make sure that it can build all of the example projects. Bonus (not required for a pass): use a webhook in the project so it is automatically triggered when changes are made into a specific branch.
 
