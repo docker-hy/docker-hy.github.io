@@ -138,8 +138,23 @@ Compose can scale the service to run multiple instances:
       Creating whoami_whoami_2 ... error 
       Creating whoami_whoami_3 ... error 
 
-But it will fail with port clash. If we don't specify the host port, a free port will be allocated: 
+The command fails due to a port clash, as each instance will attempt to bind to the same host port (8000).
 
+We can get around this by only specifying the container port. As mentioned in [part 1](/part1/#allowing-external-connections-into-containers), when leaving the host port unspecified, Docker will automatically choose a free port.
+
+Update the ports definition in `docker-compose.yml`:
+
+    ports: 
+    - 8000
+
+Then run the command again:
+
+    $ docker-compose up --scale whoami=3
+    Starting whoami_whoami_1 ... done
+    Creating whoami_whoami_2 ... done
+    Creating whoami_whoami_3 ... done
+
+All three instances are now running and listening on random host ports. We can use `docker-compose port` to find out which ports the instances are bound to.
 
     $ docker-compose port --index 1 whoami 8000 
       0.0.0.0:32770 
@@ -150,7 +165,7 @@ But it will fail with port clash. If we don't specify the host port, a free port
     $ docker-compose port --index 3 whoami 8000 
       0.0.0.0:32768 
 
-We can curl from these ports: 
+We can now curl from these ports: 
 
     $ curl 0.0.0.0:32769 
       I'm 536e11304357 
