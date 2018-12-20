@@ -601,6 +601,18 @@ Lets say that the image name is "app-in-port"
 
 Now you could make connection to host port 1234 (for example http://localhost:1234) and it will be mapped to the application port.
 
+If you leave out the host port and only specify the container port, docker will automatically choose a free port as the host port:
+
+- `docker run -p 4567 app-in-port`
+
+The `docker port` command can be used to list the port mappings for a container:
+
+    $ docker run -d -p 4567 app-in-port
+    0249795b3778f058314b611e3f0ef4406d730cfb098065c591de44668a732de3
+
+    $ docker port 0249
+    4567/tcp -> 0.0.0.0:32772
+
 You can also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 4567/udp` and `-p 1234:4567/udp` respectively.
 
 **[Do exercises 1.5 - 1.7](/exercises/#15)**
