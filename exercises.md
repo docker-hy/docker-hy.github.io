@@ -253,9 +253,9 @@ Make sure that every button for exercises that you did works in the frontend. If
 
 Return back to our frontend & backend Dockerfiles and you should see the some mistakes we now know to fix.
 
-Document both image sizes at this point, as was done in the material. Optimize the Dockerfiles of both programs, frontend and backend.
+Document both image sizes at this point, as was done in the material. Optimize the Dockerfiles of both programs, frontend and backend, by joining the RUN commands and removing useless parts.
 
-After your improvements document the image sizes again.
+After your improvements document the image sizes again. The size difference may not be very much yet. The frontend should be around 432MB when using `FROM ubuntu:16.04`. The backend should be around 351MB. The sizes may vary.
 
 ### 3.2 ### 
 
@@ -271,31 +271,31 @@ Exercise 3.2 was created by [Terho Uotila](https://github.com/qzuw)
 
 <b style="color:firebrick;">This exercise is mandatory</b>
 
-Return back to our frontend & backend Dockerfiles and you should see the some mistakes we now know to fix.
+Security issues with the user being a root are serious for the example frontend and backend as the containers for web services are supposed to be accessible through the internet.
 
-Security issues with the user being a root are serious as the containers for web services are supposed to be accessible through the internet.
+Make sure the containers start their processes as a non-root user.
 
 ### 3.4 ### 
 
 Document the image size before the changes.
 
-Rather than going alpine, go look into [docker-node](https://github.com/nodejs/docker-node) we realize there's more possibilities to improve to do in frontend & backend. Theres even a [best practices guide](https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md)
+Rather than going to FROM alpine or scratch, lets go look into [docker-node](https://github.com/nodejs/docker-node) and we should find a way how to run a container that has everything pre-installed for us. Theres even a [best practices guide](https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md)
 
-Return back to our frontend & backend Dockerfiles and you should see the some mistakes we now know to fix.
+Return back to our frontend & backend Dockerfiles and change the FROM to something more suitable. Make sure the application still works after the changes.
 
-Document the size after this change.
+Document the size after this change. If you used the alpine version the size for frontend can be less than 250MB. The backend can be below 150MB.
 
 ### 3.5 ### 
 
-Do all of the optimizations from security to size for any other Dockerfile you have access to, for example the ones used in exercises 1.8, 1.9, 2.4 or 3.2. Please document both before and after.
+Do all of the optimizations from security to size for any other Dockerfile you have access to, for example the ones used in exercises 1.8, 1.9, 2.4 or 3.2. Please document Dockerfiles both before and after.
 
 ### 3.6 ### 
 
 In this exercise choose one of the following:
 
-a) Write a short article on why and when to use Kubernetes. You can compare it to other similar tools. If you feel like sharing the article put a pull request to links section with a link to your text.
+a) Write a short (200-300 words) text/article on why and when to use Kubernetes. You can compare it to other similar tools. A markdown file in your repository is the preferred format for submission. If you feel like sharing the article put a pull request to links section with a link to your text. 
 
-b) Write a short article on when to use Docker and what are the benefits. Write one example with and without containers. You can also write on any other container platform and compare it to Docker. If you feel like sharing the article put a pull request to links section with a link to your text.
+b) Write a short (200-300 words) text/article on when to use Docker and what are the benefits. Write one example with and without containers. You can also write on any other container platform and compare it to Docker. A markdown file in your repository is the preferred format for submission. If you feel like sharing the article put a pull request to links section with a link to your text.
 
 > TIP: Diagrams are often better than text when explaining container setups.
 
