@@ -650,6 +650,6 @@ This meant that we had to install almost everything manually, either from the co
 
 The process of dockerizing the applications meant a bit of configuration on our part, but now that we've done it and built the image anyone can pick up and run the application; no porrible dependency or versioning issues.
 
-Understanding the architecture and the technologies used is also part of making correct choices with the setup. This lead us to read the REAMEs and documentation of the sftware involved in the setup, not just Docker. Fortunately in real life it's often us who are developing and creating the Dockerfile.
+Understanding the architecture and the technologies used is also part of making correct choices with the setup. This lead us to read the REAMEs and documentation of the software involved in the setup, not just Docker. Fortunately in real life it's often us who are developing and creating the Dockerfile.
 
 The starting and stopping of containers is a bit annoying, not to mention running two applications at the same time. If only there was some way, a tool, to make it simpler... to [compose](/part2).
