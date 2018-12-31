@@ -100,6 +100,7 @@ Create a Dockerfile for the project and give a command so that the project runs 
 *Do not alter the code of the project*
 
 > TIP: The project has install instructions in README.
+
 > TIP: You do not have to install anything new outside containers.
 
 ### 1.6 ###
