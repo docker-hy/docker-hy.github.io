@@ -97,6 +97,8 @@ Clone, fork or download a project from <https://github.com/docker-hy/frontend-ex
 
 Create a Dockerfile for the project and give a command so that the project runs in a docker container with port 5000 exposed and published so when you start the container and navigate to <http://localhost:5000> you will see message if you're successful.
 
+Submit the Dockerfile.
+
 *Do not alter the code of the project*
 
 > TIP: The project has install instructions in README.
@@ -113,16 +115,20 @@ Create a Dockerfile for the project and give a command so that the project runs 
 
 Create a volume for the logs.txt so that when the application is shut down the logs are not destroyed. And when restarted it continues to write into the same logs.txt.
 
+Submit the Dockerfile and the command used.
+
 *Do not alter the code of the project*
 
 ### 1.7 ###
 
 <b style="color:firebrick;">This exercise is mandatory</b>
 
-Start both frontend-example and backend-example with correct ports exposed and configure the CMD with necessary information from README. 
+Start both frontend-example and backend-example with correct ports exposed and configure the CMD or add ENV with necessary information from README. 
 You know that the configuration is ready when the button for 1.7 of frontend-example responds.
 
 *Do not alter the code of either project*
+
+Submit the edited Dockerfiles and command used to run.
 
 ![]({{ "/images/exercises/back-and-front.png" | absolute_url }})
 
@@ -134,7 +140,7 @@ You know that the configuration is ready when the button for 1.7 of frontend-exa
 
 Create Dockerfile for an application in any of your own repositories and publish it to Docker Hub. This can be any project except clones / forks of backend-example or frontend-example.
 
-For this exercise to be complete you have to provide the link to the project in docker hub, make sure you have instructions in README.
+For this exercise to be complete you have to provide the link to the project in docker hub, make sure you have instructions in a README that's available through your submission.
 
 ### 1.9 ### 
 
@@ -158,15 +164,23 @@ As we saw previously, starting an application with two programs was not trivial 
 
 Since we already created working Dockerfiles for both frontend and backend we can go step further and simplify the usage into one docker-compose.yml.
 
-Configure the backend and frontend from part 1 to work in docker-compose. They will still talk outside of the container
+Configure the backend and frontend from part 1 to work in docker-compose.
+
+Submit the docker-compose.yml
 
 ### 2.2 ### 
 
 Add redis to example backend. 
 
-Redis is used to speed up some operations. Backend uses a slow api to get information. You can test the slow api by requesting `/slow` with curl. It should take 10 to 20 seconds to get a response.
+Redis is used to speed up some operations. Backend uses a slow api to get information. You can test the slow api by requesting `/slow` with curl. The frontend program has a button to test this. Before configuring redis it should take 10 to 20 seconds to get a response.
 
 Configure a redis container to cache information for the backend. Use the documentation if needed when configuring: <https://hub.docker.com/_/redis/>
+
+The backend README should have all the information needed to connect.
+
+When you've correctly configured it should take less than a second to get a response.
+
+Submit the docker-compose.yml
 
 ![]({{ "/images/exercises/back-front-and-redis.png" | absolute_url }})
 
@@ -184,6 +198,8 @@ Lets use a postgres database to save messages. We won't need to configure a volu
 
 The backend README should have all the information needed to connect.
 
+Submit the docker-compose.yml
+
 > TIP: When configuring the database, you might need to destroy the automatically created volumes. Use command `docker volume prune` to remove unused volumes when testing.
 
 ![]({{ "/images/exercises/back-front-redis-and-database.png" | absolute_url }})
@@ -197,6 +213,8 @@ Look into machine learning project created with Python and React and split into 
 Note that the training requires 2 volumes and backend should share volume `/src/model` with training. 
 
 The frontend will display on http://localhost:3000 and the application will tell if the subject of an image looks more like a cucumber or a moped.
+
+Submit the docker-compose.yml
 
 > Note that the generated model is a toy and will not produce good results.  
 
@@ -238,6 +256,8 @@ http {
 
 Note that again inside the docker-compose network the connecting urls are usually form "http://hostname:port" where hostname and port are both known only inside the network.
 
+Submit the docker-compose.yml
+
 > Nginx specific information on why the api might not be found with your url: Leaving a trailing `/` out of your url will tell nginx to preserve the `location` in your url. So if you send a request to /api/ping the request will be proxied to /api/ping. If you have `/` as the final symbol of the url nginx will omit the `location`. So if you send a request to /api/ping the request will be proxied to /ping. The example backend will not answer to /api/ping.
 
 ### 2.6 ### 
@@ -247,6 +267,8 @@ Postgres image uses volume by default. Manually define volumes for redis and dat
 Try running `docker-compose down` and `docker-compose up` and see that the messages are still there and response time for api stays low. 
 
 You can test that you've moved the volumes by deleting the folders from the place you decided to configure them in and running `docker-compose up`, all the data is gone. Maybe it would be simpler to back them up now that you know where they are.
+
+Submit the docker-compose.yml
 
 Make sure that every button for exercises that you did works in the frontend. If any one doesn't why not?
 
