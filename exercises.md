@@ -266,7 +266,7 @@ We've used the youtube-dl a lot in the material but I believe that we should exp
 
 Create a new Dockerfile for [yle-dl](https://aajanki.github.io/yle-dl/) and optimize it. 
 
-Use your application to download something without breaking the [YLE Terms of Service](https://ohjeet.areena.yle.fi/hc/fi/articles/115002969969-Yle-Areenan-k%C3%A4ytt%C3%B6ehdot)
+Use your application to download something to a volume without breaking the [YLE Terms of Service](https://ohjeet.areena.yle.fi/hc/fi/articles/115002969969-Yle-Areenan-k%C3%A4ytt%C3%B6ehdot)
 
 Exercise 3.2 was created by [Terho Uotila](https://github.com/qzuw)
 
