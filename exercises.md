@@ -128,7 +128,7 @@ You know that the configuration is ready when the button for 1.7 of frontend-exa
 
 *Do not alter the code of either project*
 
-Submit the edited Dockerfiles and command used to run.
+Submit the edited Dockerfiles and commands used to run.
 
 ![]({{ "/images/exercises/back-and-front.png" | absolute_url }})
 
