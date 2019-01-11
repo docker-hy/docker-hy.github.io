@@ -170,6 +170,8 @@ Configure a redis container to cache information for the backend. Use the docume
 
 ![]({{ "/images/exercises/back-front-and-redis.png" | absolute_url }})
 
+> `restart: unless-stopped` can help if the redis takes a while to get ready
+
 > TIP for learning about containers that talk to each other:
 
 > Go inside a container in the same way as in 1.3 and try using curl to send requests. At least in 2.4 and 2.5 it might be useful.
@@ -184,7 +186,9 @@ Lets use a postgres database to save messages. We won't need to configure a volu
 
 The backend README should have all the information needed to connect.
 
-> TIP: When configuring the database, you might need to destroy the automatically created volumes. Use command `docker volume prune` to remove unused volumes when testing.
+> TIP: When configuring the database, you might need to destroy the automatically created volumes. Use command `docker volume prune` to remove unused volumes when testing. Make sure to remove containers that depend on them beforehand.
+
+> `restart: unless-stopped` can help if the postgres takes a while to get ready
 
 ![]({{ "/images/exercises/back-front-redis-and-database.png" | absolute_url }})
 
