@@ -206,7 +206,7 @@ Submit the docker-compose.yml
 
 ### 2.4 ### 
 
-Configure a machine learning project.
+Configure a [machine learning](https://en.wikipedia.org/wiki/Machine_learning) project.
 
 Look into machine learning project created with Python and React and split into three parts: [frontend](https://github.com/docker-hy/ml-kurkkumopo-frontend), [backend](https://github.com/docker-hy/ml-kurkkumopo-backend) and [training](https://github.com/docker-hy/ml-kurkkumopo-training) 
 
@@ -216,7 +216,8 @@ The frontend will display on http://localhost:3000 and the application will tell
 
 Submit the docker-compose.yml
 
-> Note that the generated model is a toy and will not produce good results.  
+> Note that the generated model is a toy and will not produce good results.
+> It will still take SEVERAL minutes to build the docker images, download training pictures and train the classifying model.
 
 Exercise 2.4 was created by [Sasu Mäkinen](https://github.com/sasumaki)
 
