@@ -401,6 +401,7 @@ services:
     mysql: 
       image: mysql 
       restart: unless-stopped 
+      command: --default-authentication-plugin=mysql_native_password
       environment: 
         - MYSQL_ROOT_PASSWORD=example 
       volumes: 
