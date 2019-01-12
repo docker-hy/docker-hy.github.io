@@ -263,7 +263,7 @@ Note that again inside the docker-compose network the connecting urls are usuall
 
 Submit the docker-compose.yml
 
-> Nginx specific information on why the api might not be found with your url: Leaving a trailing `/` out of your url will tell nginx to preserve the `location` in your url. So if you send a request to /api/ping the request will be proxied to /api/ping. If you have `/` as the final symbol of the url nginx will omit the `location`. So if you send a request to /api/ping the request will be proxied to /ping. The example backend will not answer to /api/ping.
+> Nginx specific information on why the api might not be found with your url: Leaving a trailing `/` out of your url will tell nginx to preserve the `location` in your url. So if you send a request to /api/ping the request will be proxied to /api/ping. If you have `/` as the final symbol of the url nginx will omit the `location`. So if you send a request to /api/ping/ the request will be proxied to /ping. The example backend will not answer to /api/ping.
 
 ### 2.6 ### 
 
