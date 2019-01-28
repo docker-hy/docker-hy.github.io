@@ -52,9 +52,23 @@ Clean the docker daemon from all images and containers.
 
 Prove that you have completed this part of exercise by delivering the output for `docker ps -a` and `docker images`
 
-### 1.3 ### 
+### 1. new_ex ###
+
+Start image `devopsdockeruh/exercise_1_??` with flags -it. It will wait for your input. Navigate through docker hub to find the docs and Dockerfile that was used to create the image.
+
+Read the Dockerfile and/or docs to learn what input will get the application to answer a "secret message".
+
+Submit the message and commands given as your answer.
+
+### 1. new_ex ###
 
 Now that we've warmed up it's time to get inside a container while it's running!
+
+Start image `devopsdockeruh/exercise_1_??`, it will start a container with clock-like features and create a log. Go inside the container and use. Use `tail -f /log.txt` to follow the logs. Every 15 seconds the clock will send you a "secret message".
+
+Submit the message and commands given as your answer.
+
+### 1.3 ### 
 
 Start a ubuntu image with the process `sh -c 'read website; sleep 3; curl http://$website;'`
 
@@ -79,13 +93,35 @@ This time return the command you used to start and the commands you used to fix 
 
 **For the following exercises, return both Dockerfile(s) and the command you used to run the container(s)**
 
+### 1. new_ex ###
+
+Create a Dockerfile that uses `devopsdockeruh/exercise_1_??` as a FROM and works only as a clock.
+
+The developer has documented how the application works. But we'd like to create a simplified version of it.
+
+Add a CMD line to the Dockerfile and tag it as "docker-clock" so that `docker run docker-clock` starts the application and the clock output.
+
 ### 1.4 ### 
 
-Last exercise solution was not practical. Now that we know how to create and build Dockerfiles we can fix that.
+Now that we know how to create and build Dockerfiles we can improve previous works.
 
 Make a script file for `read website; sleep 3; curl http://$website;` and run it inside the container using CMD. Build the image with tag "curler".
 
 Run command `docker run [options] curler` (with correct flags again, as in 1.3) and input helsinki.fi into it. Output should match the 1.3 one.
+
+### 1. new_ex ###
+
+In this exercise we won't create a new Dockerfile. 
+Image `devopsdockeruh/exercise_1_??` has instructions to create a log into `/log.txt`. Start the container with bind mount so that the logs are created into your filesystem.
+
+Submit your used commands for this exercise.
+
+### 1. new_ex ###
+
+In this exercise we won't create a new Dockerfile. 
+Image `devopsdockeruh/exercise_1_??` will start a web service in port `80`. Use -p flag to access the contents with your browser.
+
+Submit your used commands for this exercise.
 
 ### 1.5 ###
 
@@ -136,6 +172,10 @@ Submit the edited Dockerfiles and commands used to run.
 
 > TIP: Developer console has multiple views, most important ones are Console and Network. Exploring the Network tab can give you a lot of information on where messages are being sent and what is received as response!
 
+### 1. new_ex ###
+
+Create a Dockerfile for ..., use .dockerignore file.
+
 ### 1.8 ### 
 
 Create Dockerfile for an application in any of your own repositories and publish it to Docker Hub. This can be any project except clones / forks of backend-example or frontend-example.
@@ -155,6 +195,22 @@ Explain what you created and publish it to Docker Hub.
 
 *Do not alter the code of the projects, unless by pull-requests to the original projects*
 *Exercises in part 2 should be done using docker-compose*
+
+### 2. new_ex ###
+
+Create a docker-compose.yml file that starts `devopsdockeruh/exercise_1_??`
+
+### 2. new_ex ###
+
+Container of `devopsdockeruh/exercise_1_??` will create logs into its `/usr/app/logs.txt`.
+
+Create a docker-compose.yml file that starts `devopsdockeruh/exercise_1_??` and saves the logs into your filesystem.
+
+### 2. new_ex ###
+
+`devopsdockeruh/exercise_1_??` starts a web service that will answer in port `80`
+
+Create a docker-compoy.yml and use it to start the service so that you can use it with your browser.
 
 ### 2.1 ###
 
@@ -278,6 +334,10 @@ Submit the docker-compose.yml
 Make sure that every button for exercises that you did works in the frontend. If any one doesn't why not?
 
 # Part 3
+
+### 3. new_ex ###
+
+Multi-stage builds
 
 ### 3.1 ### 
 
