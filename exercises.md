@@ -174,13 +174,23 @@ Submit the edited Dockerfiles and commands used to run.
 
 ### 1. new_ex ###
 
-Create a Dockerfile for ..., use .dockerignore file.
+Setup Java Spring ?? project.
+
+### 1. new_ex ###
+
+Create a Dockerfile for rails project, use .dockerignore file.
 
 ### 1.8 ### 
 
 Create Dockerfile for an application in any of your own repositories and publish it to Docker Hub. This can be any project except clones / forks of backend-example or frontend-example.
 
 For this exercise to be complete you have to provide the link to the project in docker hub, make sure you have instructions in a README that's available through your submission.
+
+### 1. new_ex ###
+
+<b style="color:firebrick;">This exercise is mandatory</b>
+
+Push `devopsdockeruh/exercise_1_??` to heroku.
 
 ### 1.9 ### 
 
@@ -189,7 +199,6 @@ Create an image that contains your favorite programming environment in it's enti
 This means that a computer that only has docker can use the image to start a container which contains all the tools and libraries. Excluding IDE / Editor. The environment can be partially used by running commands manually inside the container.
 
 Explain what you created and publish it to Docker Hub.
-
 
 ## Part 2 ##
 
@@ -264,6 +273,10 @@ Submit the docker-compose.yml
 
 ![]({{ "/images/exercises/back-front-redis-and-database.png" | absolute_url }})
 
+### 2. new_ex ###
+
+Exercise 2. new_ex was created by [Sasu Mäkinen](https://github.com/sasumaki)
+
 ### 2.4 ### 
 
 Configure a [machine learning](https://en.wikipedia.org/wiki/Machine_learning) project.
@@ -335,10 +348,6 @@ Make sure that every button for exercises that you did works in the frontend. If
 
 # Part 3
 
-### 3. new_ex ###
-
-Multi-stage builds
-
 ### 3.1 ### 
 
 Return back to our frontend & backend Dockerfiles and you should see the some mistakes we now know to fix.
@@ -374,6 +383,10 @@ Rather than going to FROM alpine or scratch, lets go look into [docker-node](htt
 Return back to our frontend & backend Dockerfiles and change the FROM to something more suitable. Make sure the application still works after the changes.
 
 Document the size after this change. If you used the alpine version the size for frontend can be less than 250MB. The backend can be below 150MB.
+
+### 3. new_ex ###
+
+Multi-stage builds
 
 ### 3.5 ### 
 
