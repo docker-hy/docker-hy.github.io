@@ -279,7 +279,7 @@ Connecting two services such as a server and its database in docker can be achie
 
 For example services defined as `backend-server` that users access can connect to port 2345 of container `database` by connecting to database:2345 if they're both defined as service in the same docker-compose.yml. For this use case there is no need to publish the database port to host machine. This way the ports are only published to other containers in the docker network.
 
-**[Do exercises 2.2, 2.3](/exercises/#22)**
+**[Do exercises 2.2](/exercises/#22)**
 
 You can also manually define the network and also its name in docker-compose version 3.5 forward. A major benefit of defining network is that it makes it easy to setup a configuration where other containers connect to an existing network as an external network.
 
@@ -300,217 +300,196 @@ networks:
 
 ### Larger application with volumes ###
 
-Next we'll setup Wordpress that requires MySQL and persisted volume. 
- 
-In <https://hub.docker.com/_/wordpress/> there is a massive list of different variants in `Supported tags and respective Dockerfile links` - most likely for this testing we can use any of the images. From "How to use this image" we can see that all variants require `WORDPRESS_DB_HOST` that needs to be MySQL. So before moving forward, let's setup that. 
+Next we're going to set up [redmine](https://www.redmine.org/), a postgres database and [adminer](https://www.adminer.org/). All of them have official docker image available as we can see from [redmine](https://hub.docker.com/_/redmine), [postgres](https://hub.docker.com/_/postgres) and [adminer](https://hub.docker.com/_/adminer) respectively. The officiality of the containers is not that important, just that we can expect that it will have some support. We could also for example setup wordpress or a mediawiki inside containers in the same manner if you're interested in running existing applications inside docker. You could even set up your own personal [Sentry](https://hub.docker.com/_/sentry/).
 
-In <https://hub.docker.com/_/mysql/> there's a sample compose file under "via docker stack deploy or docker-compose" - Let's strip that down to 
+In <https://hub.docker.com/_/redmine> there is a list of different variants in `Supported tags and respective Dockerfile links` - most likely for this testing we can use any of the images. From "Environment Variables" we can see that all variants can use `REDMINE_DB_POSTGRES` or `REDMINE_DB_MYSQL` environment variables to set up the database, or it will fallback to SQLite. So before moving forward, let's setup postgres.
 
+In <https://hub.docker.com/_/postgres> there's a sample compose file under "via docker stack deploy or docker-compose" - Let's strip that down to 
 
 ``` 
-
 version: '3.5' 
 
-services: 
-    db: 
-      image: mysql 
-      restart: unless-stopped 
-      environment: 
-        MYSQL_ROOT_PASSWORD: example 
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: example
+    container_name: db_redmine
 ``` 
 
-Notes: 
+Note: 
 
  - `restart: always` was changed to `unless-stopped` that will keep the container running unless it's stopped. With `always` the stopped container is started after reboot for example. 
 
-Under "Caveats - Where to Store Data" we can see that the `/var/lib/mysql` needs to be mounted separately to preserve data so that the container can be recreated. We could use a bind mount like previously, but this time let's create a separete **volume** for the data: 
-
-
-``` 
-version: '3.5' 
-
-services: 
-    mysql: 
-      image: mysql
-      restart: unless-stopped
-      command: --default-authentication-plugin=mysql_native_password
-      environment: 
-        - MYSQL_ROOT_PASSWORD=example 
-      volumes: 
-        - mysql-data:/var/lib/mysql 
-
-volumes: 
-    mysql-data: 
-``` 
-
-    $ docker-compose up 
-      Creating network "wordpress_default" with the default driver 
-      Creating volume "wordpress_mysql-data" with default driver 
-      Creating wordpress_mysql_1 ... 
-      Creating wordpress_mysql_1 ... done 
-      Attaching to wordpress_mysql_1 
-      mysql_1  | Initializing database 
-      ... 
-      mysql_1  | 2018-02-01T19:48:20.660859Z 0 [Warning] 'tables_priv' entry 'sys_config mysql.sys@localhost' ignored in --skip-name-resolve mode. 
-
-      mysql_1  | 2018-02-01T19:48:20.664811Z 0 [Note] Event Scheduler: Loaded 0 events 
-
-      mysql_1  | 2018-02-01T19:48:20.665236Z 0 [Note] mysqld: ready for connections. 
-
-      mysql_1  | Version: '5.7.21'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL) 
-
-The image initializes the data files in the first start. Let's terminate the container with ^C 
-
-    ^CGracefully stopping... (press Ctrl+C again to force) 
-    Stopping wordpress_mysql_1 ... done 
-
-Compose uses the current directory as a prefix for container and volume names so that different projects don't clash. The prefix can be overriden with `COMPOSE_PROJECT_NAME` environment variable if needed. 
-
-Now when the MySQL is running, let's add the actual Wordpress. The container seems to require just two environment variables. 
-
-``` 
-    wordpress: 
-      image: 'wordpress:4.9.1-php7.1-apache' 
-      environment: 
-        - WORDPRESS_DB_HOST=mysql 
-        - WORDPRESS_DB_PASSWORD=example 
-      ports: 
-        - '9999:80' 
-      depends_on: 
-        - mysql 
-``` 
-
-Notice the `depends_on` declaration. This makes sure that the that `mysql` service should be started first and that the container will link to it - The MySQL server is accessible with dns name "mysql" from the Wordpress service. 
-
-Now when you run it: 
-
-    $ docker-compose up -d 
-    $ docker-compose logs wordpress 
-      Attaching to wordpress_wordpress_1 
-
-      wordpress_1  | WordPress not found in /var/www/html - copying now... 
-
-      wordpress_1  | Complete! WordPress has been successfully copied to /var/www/html 
-      ... 
-
-We see that Wordpress image creates files in startup at `/var/www/html` that also needs to be persisted. The Dockerfile has this line <https://github.com/docker-library/wordpress/blob/6a085d90853b8baffadbd3f0a41d6814a2513c11/php7.1/apache/Dockerfile#L44> where it declares that a volume should be created. Docker will create the volume, but it will be handled as an anonymous volume that is not managed by compose, so it's better to be explicit about the volume. With that in mind our final file should look like this: 
+Under "Caveats - Where to Store Data" we can see that the `/var/lib/postgresql/data` can be mounted separately to preserve data in a easy-to-locate directory or let Docker manage the storage. We could use a bind mount like previously, but lets first see what does the "let Docker manage the storage" means. Lets run the docker-compose without setting anything new:
 
 ``` 
 version: '3.5' 
 
 services: 
-    mysql: 
-      image: mysql 
-      restart: unless-stopped 
-      command: --default-authentication-plugin=mysql_native_password
-      environment: 
-        - MYSQL_ROOT_PASSWORD=example 
-      volumes: 
-        - mysql-data:/var/lib/mysql 
-    wordpress: 
-      image: 'wordpress:4.9.1-php7.1-apache' 
-      environment: 
-        - WORDPRESS_DB_HOST=mysql 
-        - WORDPRESS_DB_PASSWORD=example 
-      volumes: 
-        - wordpress-data:/var/www/html 
-      ports: 
-        - '9999:80' 
-      depends_on: 
-        - mysql 
-volumes: 
-    mysql-data: 
-    wordpress-data: 
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: example
+    container_name: db_redmine
+```
+
+```
+$ docker-compose up 
+
+Creating network "redmine_default" with the default driver
+Creating db_redmine ... done
+Attaching to db_redmine
+db_redmine | The files belonging to this database system will be owned by user "postgres".
+...
+db_redmine | 2019-03-03 10:27:22.975 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db_redmine | 2019-03-03 10:27:22.975 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db_redmine | 2019-03-03 10:27:22.979 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db_redmine | 2019-03-03 10:27:22.995 UTC [50] LOG:  database system was shut down at 2019-03-03 10:27:22 UTC
+db_redmine | 2019-03-03 10:27:23.002 UTC [1] LOG:  database system is ready to accept connections
+```
+
+The image initializes the data files in the first start. Let's terminate the container with ^C. Compose uses the current directory as a prefix for container and volume names so that different projects don't clash. The prefix can be overriden with `COMPOSE_PROJECT_NAME` environment variable if needed. 
+
+Let's **inspect** if there was a volume created with `docker inspect db_redmine | grep -A 5 Mounts`
+
+```
+"Mounts": [
+    {
+        "Type": "volume",
+        "Name": "794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df",
+        "Source": "/var/lib/docker/volumes/794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df/_data",
+        "Destination": "/var/lib/postgresql/data",
+```
+
+Now if we check out `docker volume ls` we can see that a volume with name "794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df" exists.
+
+```
+$ docker volume ls
+DRIVER              VOLUME NAME
+local               794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df
+```
+
+There may be more volumes on your machine. If you want to get rid of them you can use `docker volume prune`. Lets put the whole "application" down now with `docker-compose down`. Then, this time let's create a separete volume for the data.
+
+```
+version: '3.5'
+
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: example
+    container_name: db_redmine
+    volumes:
+      - database:/var/lib/postgresql/data
+
+volumes:
+  database:
+```
+
+```
+$ docker volume ls
+DRIVER              VOLUME NAME
+local               redmine_database
+
+$ ongoing docker inspect db_redmine | grep -A 5 Mounts
+"Mounts": [
+    {
+        "Type": "volume",
+        "Name": "redmine_database",
+        "Source": "/var/lib/docker/volumes/ongoing_redminedata/_data",
+        "Destination": "/var/lib/postgresql/data",
+```
+
+Ok, looks a bit more human readable even if it isn't more accessible than bind mounts. Now when the Postgres is running, let's add the [redmine](https://hub.docker.com/_/redmine). The container seems to require just two environment variables. 
+
+``` 
+redmine: 
+  image: redmine
+  environment: 
+    - REDMINE_DB_POSTGRES=db
+    - REDMINE_DB_PASSWORD=example
+  ports: 
+    - '9999:3000' 
+  depends_on: 
+    - db
 ``` 
 
-Now open and configure the installation at <http://localhost:9999>  
+Notice the `depends_on` declaration. This makes sure that the that `db` service should be started first. `depends_on` does not guarantee that the database is up, just that the service is started first. The Postgres server is accessible with dns name "db" from the redmine service as discussed in the "docker networking" section
 
-We can inspect the changes that happened in the image and ensure that no extra meaningful files got written to the container: 
- 
-    $ docker diff $(docker-compose ps -q wordpress) 
-    C /run/apache2 
-    A /run/apache2/apache2.pid 
-    C /run/lock/apache2 
-    C /tmp 
+Now when you run it you will see a bunch of database migrations running first.
 
-Since plugins and image uploads will by default write to local disk at `/var/www/html`, this means that Wordpress can not be scaled in a real production deployment on multiple machines without somehow sharing this path. Some possible solutions: 
+```
+redmine_1  | I, [2019-03-03T10:59:20.956936 #25]  INFO -- : Migrating to Setup (1)
+redmine_1  | == 1 Setup: migrating =========================================================
+...
+redmine_1  | [2019-03-03 11:01:10] INFO  ruby 2.6.1 (2019-01-30) [x86_64-linux]
+redmine_1  | [2019-03-03 11:01:10] INFO  WEBrick::HTTPServer#start: pid=1 port=3000
+```
 
-    - Shared filesystem like NFS or AWS EFS 
+We can see that image also creates files to `/usr/src/redmine/files` that also need to be persisted. The Dockerfile has this [line](https://github.com/docker-library/redmine/blob/cea16044e97567c28802fc8cc06f6cd036c49a5c/4.0/Dockerfile#L15) where it declares that a volume should be created. Again docker will create the volume, but it will be handled as an anonymous volume that is not managed by compose, so it's better to be explicit about the volume. With that in mind our final file should look like this: 
 
-    - Something like https://www.gluster.org/ or http://ceph.com/ 
+``` 
+version: '3.5'
 
-    - Two-way syncing daemon like https://www.cis.upenn.edu/~bcpierce/unison/index.html, https://syncthing.net/ or https://www.resilio.com) - see http://blog.kontena.io/how-to-build-high-availability-wordpress-site-with-docker/ 
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: example
+    container_name: db_redmine
+    volumes:
+      - database:/var/lib/postgresql/data
+  redmine:
+    image: redmine
+    environment:
+      - REDMINE_DB_POSTGRES=db
+      - REDMINE_DB_PASSWORD=example
+    ports:
+      - 9999:3000
+    volumes:
+      - files:/usr/src/redmine/files
+    depends_on:
+      - db
 
-    - User space FUSE solutions like https://github.com/kahing/goofys or https://github.com/googlecloudplatform/gcsfuse 
+volumes:
+  database:
+  files:
+``` 
 
-    - See https://lemag.sfeir.com/wordpress-cluster-docker-google-cloud-platform/ 
+Now we can use the application with our browser through <http://localhost:9999>. After some changes inside the application we can inspect the changes that happened in the image and check that no extra meaningful files got written to the container: 
 
-### Backups and restore 
+```
+$ docker diff $(docker-compose ps -q redmine) 
+C /usr/src/redmine/config/environment.rb
+...
+C /usr/src/redmine/tmp/pdf
+```
 
-We can test backing up: 
+Probably not.
 
-    $ docker-compose exec mysql mysqldump wordpress -uroot -pexample | less 
+Next we'll add adminer to the application. We could also just use psql to interact with a postgres database with `docker exec -it db_redmine psql -U postgres`. (The command **exec**utes psql -U postgres inside the container) The same method can be used to create backups with pg_dump: `docker exec db_redmine pg_dump -U postgres > redmine.dump`. 
 
-Where we see that the first line is unexpected: 
+This step is straightforward, we actually had the instructions open back before we set up postgres. But let's check the [documentation](https://hub.docker.com/_/adminer) and we'll see that the following will suffice:
 
-    mysqldump: [Warning] Using a password on the command line interface can be insecure. 
+```
+adminer:
+  image: adminer
+  restart: always
+  environment:
+    - ADMINER_DESIGN=galkaev
+  ports:
+    - 8083:8080
+```
 
-This is because docker-compose's exec has a bug <https://github.com/docker/compose/issues/5207> where STDERR gets printed to STDOUT.. As a workaround we can skip `docker-compose` 
+Now when we run the application we can access adminer from <http://localhost:8083>. Setting up adminer is straightforward since it will be able to access the database through docker network.
 
-    $ docker exec -i $(docker-compose ps -q mysql) mysqldump wordpress -uroot -pexample > dump.sql 
-
-      mysqldump: [Warning] Using a password on the command line interface can be insecure. 
-
-Now STDERR is correctly printed to the terminal. 
-
-    $ docker-compose down 
-      Stopping wordpress_wordpress_1 ... done 
-      Stopping wordpress_mysql_1     ... done 
-      Removing wordpress_wordpress_1 ... done 
-      Removing wordpress_mysql_1     ... done 
-      Removing network wordpress_default 
-
-As our volumes are managed separately in docker-compose, that command didn't remove our volumes to prevent mistakes. 
-
-    $ docker-compose down --volumes 
-      Removing network wordpress_default 
-      WARNING: Network wordpress_default not found. 
-      Removing volume wordpress_mysql-data 
-      Removing volume wordpress_wordpress-data 
-
-Then start the mysql service again (with fresh volumes) without the wordpress service 
-
-    $ docker-compose up -d mysql 
-
-Since the dumping with `docker-compose exec` did not work, let's see if importing would: 
-
-    $ docker-compose exec mysql mysql -uroot -pexample < dump.sql 
-      mysql: [Warning] Using a password on the command line interface can be insecure. 
-
-      Traceback (most recent call last): 
-
-        File "docker-compose", line 6, in <module> 
-        File "compose/cli/main.py", line 71, in main 
-        File "compose/cli/main.py", line 124, in perform_command 
-        File "compose/cli/main.py", line 467, in exec_command 
-        File "site-packages/dockerpty/pty.py", line 338, in start 
-        File "site-packages/dockerpty/io.py", line 32, in set_blocking 
-
-      ValueError: file descriptor cannot be a negative integer (-1) 
-
-      Failed to execute script docker-compose 
-
-...and no, because of another bug in <https://github.com/docker/compose/issues/3352> - we'll bypass compose again with: 
-
-    $ docker exec -i $(docker-compose ps -q mysql) mysql -uroot -pexample wordpress < dump.sql 
-
-And then start the wordpress: 
-
-    $ docker-compose up -d wordpress 
-
-And our old site is back! 
-
-**[Do exercise 2.4, 2.5 and 2.6](/exercises/#24)**
+**[Do exercises 2.3, 2.4, 2.5 and 2.6](/exercises/#24)**
 
 ## Epilogue, or rather, a recap ##
 
