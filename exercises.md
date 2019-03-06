@@ -14,18 +14,6 @@ To get a passing grade you have to do every exercise, except you can skip one ex
 
 ## Deadline ##
 
-The exercises have only one deadline: 13.1.2019, 23:59. As the course ends no more exercises can be submitted and grading will start.
-
-## Paja ##
-
-Paja times:
-
-| Monday 31.12 | Friday 4.1 | Monday 7.1 | Friday 11.1 |
-|--------------|------------|------------|-------------|
-| 10-14 | 13-17 | 10-14 | 13-17 |
-
-Paja is held in the BK107 unless something else is there.
-
 ## How to return exercises ##
 
 Make a repository and publish your solutions there in clearly ordered files / folders.
@@ -52,7 +40,7 @@ Clean the docker daemon from all images and containers.
 
 Prove that you have completed this part of exercise by delivering the output for `docker ps -a` and `docker images`
 
-### 1. new_ex ###
+### 1.3 ###
 
 Start image `devopsdockeruh/exercise_1_??` with flags -it. It will wait for your input. Navigate through docker hub to find the docs and Dockerfile that was used to create the image.
 
@@ -60,7 +48,7 @@ Read the Dockerfile and/or docs to learn what input will get the application to 
 
 Submit the message and commands given as your answer.
 
-### 1. new_ex ###
+### 1.4 ###
 
 Now that we've warmed up it's time to get inside a container while it's running!
 
@@ -68,7 +56,7 @@ Start image `devopsdockeruh/exercise_1_??`, it will start a container with clock
 
 Submit the message and commands given as your answer.
 
-### 1.3 ### 
+### 1.5 ### 
 
 Start a ubuntu image with the process `sh -c 'read website; sleep 3; curl http://$website;'`
 

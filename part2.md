@@ -300,7 +300,7 @@ networks:
 
 ### Larger application with volumes ###
 
-Next we're going to set up [redmine](https://www.redmine.org/), a postgres database and [adminer](https://www.adminer.org/). All of them have official docker image available as we can see from [redmine](https://hub.docker.com/_/redmine), [postgres](https://hub.docker.com/_/postgres) and [adminer](https://hub.docker.com/_/adminer) respectively. The officiality of the containers is not that important, just that we can expect that it will have some support. We could also for example setup wordpress or a mediawiki inside containers in the same manner if you're interested in running existing applications inside docker. You could even set up your own personal [Sentry](https://hub.docker.com/_/sentry/).
+Next we're going to set up [Redmine](https://www.redmine.org/), a PostgreSQL database and [Adminer](https://www.adminer.org/). All of them have official docker images available as we can see from [Redmine](https://hub.docker.com/_/redmine), [Postgres](https://hub.docker.com/_/postgres) and [Adminer](https://hub.docker.com/_/adminer) respectively. The officiality of the containers is not that important, just that we can expect that it will have some support. We could also, for example, setup wordpress or a mediawiki inside containers in the same manner if you're interested in running existing applications inside docker. You could even set up your own personal [Sentry](https://hub.docker.com/_/sentry/).
 
 In <https://hub.docker.com/_/redmine> there is a list of different variants in `Supported tags and respective Dockerfile links` - most likely for this testing we can use any of the images. From "Environment Variables" we can see that all variants can use `REDMINE_DB_POSTGRES` or `REDMINE_DB_MYSQL` environment variables to set up the database, or it will fallback to SQLite. So before moving forward, let's setup postgres.
 
@@ -322,19 +322,7 @@ Note:
 
  - `restart: always` was changed to `unless-stopped` that will keep the container running unless it's stopped. With `always` the stopped container is started after reboot for example. 
 
-Under "Caveats - Where to Store Data" we can see that the `/var/lib/postgresql/data` can be mounted separately to preserve data in a easy-to-locate directory or let Docker manage the storage. We could use a bind mount like previously, but lets first see what does the "let Docker manage the storage" means. Lets run the docker-compose without setting anything new:
-
-``` 
-version: '3.5' 
-
-services: 
-  db:
-    image: postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_PASSWORD: example
-    container_name: db_redmine
-```
+Under "Caveats - Where to Store Data" we can see that the `/var/lib/postgresql/data` can be mounted separately to preserve data in an easy-to-locate directory or let Docker manage the storage. We could use a bind mount like previously, but let's first see what the "let Docker manage the storage" means. Let's run the docker-compose file without setting anything new:
 
 ```
 $ docker-compose up 
@@ -372,7 +360,7 @@ DRIVER              VOLUME NAME
 local               794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df
 ```
 
-There may be more volumes on your machine. If you want to get rid of them you can use `docker volume prune`. Lets put the whole "application" down now with `docker-compose down`. Then, this time let's create a separete volume for the data.
+There may be more volumes on your machine. If you want to get rid of them you can use `docker volume prune`. Let's put the whole "application" down now with `docker-compose down`. Then, this time let's create a separate volume for the data.
 
 ```
 version: '3.5'

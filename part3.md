@@ -179,7 +179,7 @@ and this brings us to 36.4 megabytes in our `RUN` layer (from the original 87.4 
 
 **[Do exercises 3.1 and 3.2](/exercises/#31)**
 
-# Using a non-root user
+## Using a non-root user ##
 
 Our process (youtube-dl) could in theory escape the container due a bug in docker/kernel.  To mitigate this we'll add a non-root user to our container and run our process with that user. Another option would be to map the root user to a high, non-existing user id on the host with https://docs.docker.com/engine/security/userns-remap/, but this is fairly a new feature and not enabled by default.  
 
@@ -221,7 +221,7 @@ We'll see that our `app` user can not write to `/app` - this can be fixed with `
 
 **[Do exercise 3.3](/exercises/#33)**
 
-# Alpine Linux variant 
+## Alpine Linux variant ##
 
 Our Ubuntu base image adds the most megabytes to our image (approx 113MB).  Alpine Linux provides a popular alternative base in https://hub.docker.com/_/alpine/ that is around 4 megabytes. It's based on altenative glibc implementation musl and busybox binaries, so not all software run well (or at all) with it, but our python container should run just fine. We'll create the following `Dockerfile.alpine` file:  
 
@@ -286,7 +286,48 @@ Also remember that unless specified the `:latest` tag will always just refer to 
 
 **[Do exercises 3.4 and 3.5](/exercises/#34)**
 
-## A peek into multi-host environment options
+## Multi-stage builds ##
+
+Multi-stage builds are useful when you need some tools just for the build but not for the execution of the image CMD. This is an easy way to reduce size in some cases.
+
+Let's create a website with Jekyll, build the site for production and serve the static files with nginx.
+Start by creating the recipe for Jekyll to build the site.
+
+```
+FROM ruby
+
+WORKDIR /usr/app
+
+RUN gem install jekyll
+RUN jekyll new .
+RUN jekyll build
+```
+
+This creates a new Jekyll application and builds it. We could start thinking about optimizations at this point but instead we're going add a new FROM for nginx, this is what resulting image will be. And copy the built static files from the ruby image to our nginx image.
+
+```
+FROM ruby as build-stage
+...
+FROM nginx
+
+COPY --from=build-stage /usr/app/_site/ /usr/share/nginx/html
+```
+
+This copies contents from the first image `/usr/app/_site/` to `/usr/share/nginx/html` Note the naming from ruby to build-stage. We could also use external image as a stage, `--from=python:3.7` for example. Lets build and check the size difference:
+
+```
+$ docker build . -t jekyll
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+jekyll              latest              5f8839505f37        37 seconds ago      109MB
+ruby                latest              616c3cf5968b        28 hours ago        870MB
+```
+
+As you can see, even though our jekyll image needed ruby during the build process, its considerably smaller since it only has nginx and the static files. `docker run -it -p 8080:80 jekyll` also works as expected.
+
+**[Do exercise 3.6](/exercises/#34)**
+
+## A peek into multi-host environment options ##
 
 Now that we've mastered containers in small systems with docker-compose it's time to look beyond what the tools we practiced are capable of. In situations where we have more than a single host machine we cannot use docker-compose solely. However, Docker does contain other tools to help us with automatic deployment, scaling and management of dockerized applications.
 
