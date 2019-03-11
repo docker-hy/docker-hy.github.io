@@ -42,7 +42,7 @@ Prove that you have completed this part of exercise by delivering the output for
 
 ### 1.3 ###
 
-Start image `devopsdockeruh/pull_exercise` with flags -it. It will wait for your input. Navigate through docker hub to find the docs and Dockerfile that was used to create the image.
+Start image `devopsdockeruh/pull_exercise` with flags `-it` like so: `docker run -it devopsdockeruh/pull_exercise`. It will wait for your input. Navigate through docker hub to find the docs and Dockerfile that was used to create the image.
 
 Read the Dockerfile and/or docs to learn what input will get the application to answer a "secret message".
 
@@ -162,10 +162,13 @@ Submit the edited Dockerfiles and commands used to run.
 
 ### 1.13 ###
 
+Lets create a Dockerfile for a Java Spring project.
+
 Setup Java Spring ?? project.
 
 ### 1.14 ###
 
+Lets create a Dockerfile for a rails project.
 Create a Dockerfile for rails project, use .dockerignore file.
 
 ### 1.15 ### 
