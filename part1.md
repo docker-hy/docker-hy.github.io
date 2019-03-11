@@ -143,7 +143,7 @@ It's common that, over time, the docker daemon becomes clogged with old images a
 | `docker rmi <image-id>` | Removes an image, you can use either image name or id |
 | `docker stop <container-id>` | Stops a container, you can use either container name or id |
 | `docker run <image>` | Runs an image creating a container, you can use either image name or id | 
-
+| `docker exec <container-id>` | Executes a command inside the container |
 
 **[Do exercises 1.1 and 1.2](/exercises/#11)**
 
@@ -179,6 +179,8 @@ There are also other Docker registries competing with Docker Hub, such as [quay]
 `docker pull quay.io/nordstrom/hello-world`
 
 So by default, if the host (here: `quay.io`) is omitted, it will pull from Docker Hub.
+
+**[Do exercise 1.3](/exercises/#11)**
 
 ## A detailed look into an image
 
@@ -301,12 +303,11 @@ Now let's attach to the container and hit control+p, control+q that detaches us 
 
 Note that hitting `^C` would still kill (and remove due to `--rm`) the process because the `docker attach` was done without `--sig-proxy=false` 
 
-**[Do exercise 1.3](/exercises/#13)**
+**[Do exercises 1.4 and 1.5](/exercises/#13)**
 
 ## Creating your own dockerized project 
 
 Create a folder and a file called Dockerfile inside it with the following content: 
-
 
 ``` 
 FROM ubuntu:16.04 
@@ -401,7 +402,7 @@ Let's try creating a new container from the new image, this time by setting the 
 
 And as expected, our `manually.txt` file is now in the image.  
 
-**[Do exercises 1.4](/exercises/#14)**
+**[Do exercise 1.6 and 1.7](/exercises/#14)**
 
 ### Bigger and more complex image
 
@@ -572,6 +573,8 @@ So a volume is simply a folder (or a file) that is shared between the host machi
 
 In our youtube-dl we wanted to mount the whole directory since the files are fairly randomly named. If we wish to create a volume with only a single file we could also do that by pointing to it. For example `-v $(pwd)/material.md:/mydir/material.md` this way we could edit the material.md locally and have it change in the container (and vice versa). Note also that `-v` creates a directory if the file does not exist.
 
+**[Do exercise 1.8](/exercises/#14)**
+
 ### Allowing external connections into containers
 
 The details on how programs communicate are not detailed in this course. Courses on Operating Systems and Networking courses explain these. On this course you only need to know the following simplified basics:
@@ -615,7 +618,7 @@ The `docker port` command can be used to list the port mappings for a container:
 
 You can also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 4567/udp` and `-p 1234:4567/udp` respectively.
 
-**[Do exercises 1.5 - 1.7](/exercises/#15)**
+**[Do exercises 1.9 - 1.12](/exercises/#14)**
 
 ### Publishing projects in Docker Hub
 
@@ -639,8 +642,7 @@ Pushing should now work without problems:
 
 `docker push <username>/<repositoryname>`
 
-**[Do exercises 1.8 and 1.9](/exercises/#18)**
-
+**[Do exercises 1.13 - 1.17](/exercises/#18)**
 
 ## Epilogue, or rather, a recap ##
 
