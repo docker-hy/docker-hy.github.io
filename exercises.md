@@ -42,7 +42,7 @@ Prove that you have completed this part of exercise by delivering the output for
 
 ### 1.3 ###
 
-Start image `devopsdockeruh/exercise_1_??` with flags -it. It will wait for your input. Navigate through docker hub to find the docs and Dockerfile that was used to create the image.
+Start image `devopsdockeruh/pull_exercise` with flags -it. It will wait for your input. Navigate through docker hub to find the docs and Dockerfile that was used to create the image.
 
 Read the Dockerfile and/or docs to learn what input will get the application to answer a "secret message".
 
@@ -52,7 +52,7 @@ Submit the message and commands given as your answer.
 
 Now that we've warmed up it's time to get inside a container while it's running!
 
-Start image `devopsdockeruh/exercise_1_??`, it will start a container with clock-like features and create a log. Go inside the container and use. Use `tail -f /log.txt` to follow the logs. Every 15 seconds the clock will send you a "secret message".
+Start image `devopsdockeruh/exec_bash_exercise`, it will start a container with clock-like features and create a log. Go inside the container and use. Use `tail -f /log.txt` to follow the logs. Every 15 seconds the clock will send you a "secret message".
 
 Submit the message and commands given as your answer.
 
@@ -81,15 +81,15 @@ This time return the command you used to start and the commands you used to fix 
 
 **For the following exercises, return both Dockerfile(s) and the command you used to run the container(s)**
 
-### 1. new_ex ###
+### 1.6 ###
 
-Create a Dockerfile that uses `devopsdockeruh/exercise_1_??` as a FROM and works only as a clock.
+Create a Dockerfile that uses `devopsdockeruh/overwrite_cmd_exercise` as a FROM and works only as a clock.
 
 The developer has documented how the application works. But we'd like to create a simplified version of it.
 
 Add a CMD line to the Dockerfile and tag it as "docker-clock" so that `docker run docker-clock` starts the application and the clock output.
 
-### 1.4 ### 
+### 1.7 ### 
 
 Now that we know how to create and build Dockerfiles we can improve previous works.
 
@@ -97,21 +97,21 @@ Make a script file for `read website; sleep 3; curl http://$website;` and run it
 
 Run command `docker run [options] curler` (with correct flags again, as in 1.3) and input helsinki.fi into it. Output should match the 1.3 one.
 
-### 1. new_ex ###
+### 1.8 ###
 
 In this exercise we won't create a new Dockerfile. 
-Image `devopsdockeruh/exercise_1_??` has instructions to create a log into `/log.txt`. Start the container with bind mount so that the logs are created into your filesystem.
+Image `devopsdockeruh/first_volume_exercise` has instructions to create a log into `/log.txt`. Start the container with bind mount so that the logs are created into your filesystem.
 
 Submit your used commands for this exercise.
 
-### 1. new_ex ###
+### 1.9 ###
 
 In this exercise we won't create a new Dockerfile. 
-Image `devopsdockeruh/exercise_1_??` will start a web service in port `80`. Use -p flag to access the contents with your browser.
+Image `devopsdockeruh/ports_exercise` will start a web service in port `80`. Use -p flag to access the contents with your browser.
 
 Submit your used commands for this exercise.
 
-### 1.5 ###
+### 1.10 ###
 
 <b style="color:firebrick;">This exercise is mandatory</b>
 
@@ -129,7 +129,7 @@ Submit the Dockerfile.
 
 > TIP: You do not have to install anything new outside containers.
 
-### 1.6 ###
+### 1.11 ###
 
 <b style="color:firebrick;">This exercise is mandatory</b>
 
@@ -143,7 +143,7 @@ Submit the Dockerfile and the command used.
 
 *Do not alter the code of the project*
 
-### 1.7 ###
+### 1.12 ###
 
 <b style="color:firebrick;">This exercise is mandatory</b>
 
@@ -160,27 +160,27 @@ Submit the edited Dockerfiles and commands used to run.
 
 > TIP: Developer console has multiple views, most important ones are Console and Network. Exploring the Network tab can give you a lot of information on where messages are being sent and what is received as response!
 
-### 1. new_ex ###
+### 1.13 ###
 
 Setup Java Spring ?? project.
 
-### 1. new_ex ###
+### 1.14 ###
 
 Create a Dockerfile for rails project, use .dockerignore file.
 
-### 1.8 ### 
+### 1.15 ### 
 
 Create Dockerfile for an application in any of your own repositories and publish it to Docker Hub. This can be any project except clones / forks of backend-example or frontend-example.
 
 For this exercise to be complete you have to provide the link to the project in docker hub, make sure you have instructions in a README that's available through your submission.
 
-### 1. new_ex ###
+### 1.16 ###
 
 <b style="color:firebrick;">This exercise is mandatory</b>
 
 Push `devopsdockeruh/exercise_1_??` to heroku.
 
-### 1.9 ### 
+### 1.17 ### 
 
 Create an image that contains your favorite programming environment in it's entirety.
 
@@ -372,15 +372,19 @@ Return back to our frontend & backend Dockerfiles and change the FROM to somethi
 
 Document the size after this change. If you used the alpine version the size for frontend can be less than 250MB. The backend can be below 150MB.
 
-### 3. new_ex ###
+### 3.5 ###
 
-Multi-stage builds
+Multi-stage builds. Lets do a multi-stage build for the frontend project.
 
-### 3.5 ### 
+Even though multi-stage builds are designed mostly for binaries in mind, we can leverage the benefits with our frontend project.
 
-Do all of the optimizations from security to size for any other Dockerfile you have access to, for example the ones used in exercises 1.8, 1.9, 2.4 or 3.2. Please document Dockerfiles both before and after.
+You can still use the `serve` to serve the static files or try out something else.
 
 ### 3.6 ### 
+
+Do all of the optimizations from security to size for any other Dockerfile you have access to, in your own project or for example the ones used in exercises 1.8, 1.9, 2.4 or 3.2. Please document Dockerfiles both before and after.
+
+### 3.7 ### 
 
 In this exercise choose one of the following:
 
