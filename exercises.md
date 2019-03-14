@@ -100,7 +100,7 @@ Run command `docker run [options] curler` (with correct flags again, as in 1.3) 
 ### 1.8 ###
 
 In this exercise we won't create a new Dockerfile. 
-Image `devopsdockeruh/first_volume_exercise` has instructions to create a log into `/log.txt`. Start the container with bind mount so that the logs are created into your filesystem.
+Image `devopsdockeruh/first_volume_exercise` has instructions to create a log into `/usr/app/logs.txt`. Start the container with bind mount so that the logs are created into your filesystem.
 
 Submit your used commands for this exercise.
 
