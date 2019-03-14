@@ -52,13 +52,13 @@ Submit the message and commands given as your answer.
 
 Now that we've warmed up it's time to get inside a container while it's running!
 
-Start image `devopsdockeruh/exec_bash_exercise`, it will start a container with clock-like features and create a log. Go inside the container and use `tail -f /log.txt` to follow the logs. Every 15 seconds the clock will send you a "secret message".
+Start image `devopsdockeruh/exec_bash_exercise`, it will start a container with clock-like features and create a log. Go inside the container and use `tail -f ./log.txt` to follow the logs. Every 15 seconds the clock will send you a "secret message".
 
 Submit the message and commands given as your answer.
 
 ### 1.5 ### 
 
-Start a ubuntu image with the process `sh -c 'read website; sleep 3; curl http://$website;'`
+Start a ubuntu image with the process `sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'`
 
 You will notice that a few things required for proper execution are missing. Be sure to remind yourself which flags to use so that the read actually waits for input.
 
@@ -83,9 +83,9 @@ This time return the command you used to start and the commands you used to fix 
 
 ### 1.6 ###
 
-Create a Dockerfile that uses `devopsdockeruh/overwrite_cmd_exercise` as a FROM and works only as a clock.
+Create a Dockerfile that starts with `FROM devopsdockeruh/overwrite_cmd_exercise` and works only as a clock.
 
-The developer has documented how the application works. But we'd like to create a simplified version of it.
+The developer has poorly documented how the application works. Passing flags will open different functionalities, but we'd like to create a simplified version of it.
 
 Add a CMD line to the Dockerfile and tag it as "docker-clock" so that `docker run docker-clock` starts the application and the clock output.
 
@@ -93,7 +93,7 @@ Add a CMD line to the Dockerfile and tag it as "docker-clock" so that `docker ru
 
 Now that we know how to create and build Dockerfiles we can improve previous works.
 
-Make a script file for `read website; sleep 3; curl http://$website;` and run it inside the container using CMD. Build the image with tag "curler".
+Make a script file for `echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;` and run it inside the container using CMD. Build the image with tag "curler".
 
 Run command `docker run [options] curler` (with correct flags again, as in 1.3) and input helsinki.fi into it. Output should match the 1.3 one.
 
