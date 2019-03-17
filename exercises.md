@@ -212,23 +212,19 @@ Explain what you created and publish it to Docker Hub.
 *Do not alter the code of the projects, unless by pull-requests to the original projects*
 *Exercises in part 2 should be done using docker-compose*
 
-### 2. new_ex ###
-
-Create a docker-compose.yml file that starts `devopsdockeruh/exercise_1_??`
-
-### 2. new_ex ###
+### 2.1 ###
 
 Container of `devopsdockeruh/exercise_1_??` will create logs into its `/usr/app/logs.txt`.
 
 Create a docker-compose.yml file that starts `devopsdockeruh/exercise_1_??` and saves the logs into your filesystem.
 
-### 2. new_ex ###
+### 2.2 ###
 
 `devopsdockeruh/exercise_1_??` starts a web service that will answer in port `80`
 
 Create a docker-compoy.yml and use it to start the service so that you can use it with your browser.
 
-### 2.1 ###
+### 2.3 ###
 
 <b style="color:firebrick;">This exercise is mandatory</b>
 
@@ -240,7 +236,7 @@ Configure the backend and frontend from part 1 to work in docker-compose.
 
 Submit the docker-compose.yml
 
-### 2.2 ### 
+### 2.4 ### 
 
 Add redis to example backend. 
 
@@ -264,7 +260,7 @@ Submit the docker-compose.yml
 
 > Try it out by going inside redis (or 2.3 database) container and send a request to http://frontend-or-backend-container-name:relevant-port
 
-### 2.3 ### 
+### 2.5 ### 
 
 Add database to example backend.
 
@@ -280,11 +276,11 @@ Submit the docker-compose.yml
 
 ![]({{ "/images/exercises/back-front-redis-and-database.png" | absolute_url }})
 
-### 2. new_ex ###
+### 2.6 ###
 
 Exercise 2. new_ex was created by [Sasu Mäkinen](https://github.com/sasumaki)
 
-### 2.4 ### 
+### 2.7 ### 
 
 Configure a [machine learning](https://en.wikipedia.org/wiki/Machine_learning) project.
 
@@ -301,7 +297,7 @@ Submit the docker-compose.yml
 
 Exercise 2.4 was created by [Sasu Mäkinen](https://github.com/sasumaki)
 
-### 2.5 ### 
+### 2.8 ### 
 
 Add nginx to example frontend + backend.
 
@@ -311,7 +307,7 @@ Accessing your service from arbitrary port is counter intuitive since browsers u
 
 Nginx will function as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) for us (see the image above). The requests arriving at anything other than /api will be redirected to frontend container and /api will get redirected to backend container. 
 
-At the end you should see that the frontend is accessible simply by going to http://localhost and everything still works.
+At the end you should see that the frontend is accessible simply by going to http://localhost and the button works.
 
 As we will not start configuring reverse proxies on this course you can have a simple config file:
 
@@ -341,7 +337,7 @@ Submit the docker-compose.yml
 
 > Nginx specific information on why the api might not be found with your url: Leaving a trailing `/` out of your url will tell nginx to preserve the `location` in your url. So if you send a request to /api/ping the request will be proxied to /api/ping. If you have `/` as the final symbol of the url nginx will omit the `location`. So if you send a request to /api/ping the request will be proxied to /ping. The example backend will not answer to /api/ping.
 
-### 2.6 ### 
+### 2.9 ### 
 
 Postgres image uses volume by default. Manually define volumes for redis and database in convenient locations. Use both image documentations (redis, postgres) to help you with the task. 
 
@@ -351,7 +347,13 @@ You can test that you've moved the volumes by deleting the folders from the plac
 
 Submit the docker-compose.yml
 
-Make sure that every button for exercises that you did works in the frontend. If any one doesn't why not?
+### 2.10 ###
+ 
+Some buttons may have stopped working in the frontend + backend project. Make sure that every button for exercises works.
+
+If you had to do any changes explain what you had to change. 
+
+Submit the docker-compose yml and both dockerfiles.
 
 # Part 3
 
