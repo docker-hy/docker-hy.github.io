@@ -460,18 +460,13 @@ And it works! Let's persist it for our session and try downloading a video:
 So now when we know what do, let's add these to the bottom of our `Dockerfile` - by adding the instructions to the bottom we preserve our cached layers - this is handy practise to speed up creating the initial version of a Dockerfile when it has time consuming operations like downloads. 
 
     ... 
-
     RUN apt-get install -y curl python 
-
     RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl 
-
     RUN chmod a+x /usr/local/bin/youtube-dl 
-
     ENV LC_ALL=C.UTF-8 
-
     CMD ["/usr/local/bin/youtube-dl"] 
 
-- Instead of using `RUN export LC_ALL=C.UTF-8` we'll store the env directly in the image 
+- Instead of using `RUN export LC_ALL=C.UTF-8` we'll store the environment directly in the image with ENV 
 
 - We'll also override `bash` as our image command (set on the base image) with `youtube-dl` itself. This won't work, but let's see why. 
 

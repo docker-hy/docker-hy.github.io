@@ -147,7 +147,7 @@ Submit the Dockerfile and the command used.
 
 <b style="color:firebrick;">This exercise is mandatory</b>
 
-Start both frontend-example and backend-example with correct ports exposed and configure the CMD or add ENV with necessary information from both READMEs ([front](https://github.com/docker-hy/frontend-example-docker),[back](https://github.com/docker-hy/backend-example-docker)). 
+Start both frontend-example and backend-example with correct ports exposed and add ENV to Dockerfile with necessary information from both READMEs ([front](https://github.com/docker-hy/frontend-example-docker),[back](https://github.com/docker-hy/backend-example-docker)). 
 
 Ignore the backend configurations until frontend sends requests to `<backend>/ping` when you press the button.
 
