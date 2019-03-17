@@ -147,8 +147,11 @@ Submit the Dockerfile and the command used.
 
 <b style="color:firebrick;">This exercise is mandatory</b>
 
-Start both frontend-example and backend-example with correct ports exposed and configure the CMD or add ENV with necessary information from README. 
-You know that the configuration is ready when the button for 1.7 of frontend-example responds.
+Start both frontend-example and backend-example with correct ports exposed and configure the CMD or add ENV with necessary information from both READMEs ([front](https://github.com/docker-hy/frontend-example-docker),[back](https://github.com/docker-hy/backend-example-docker)). 
+
+Ignore the backend configurations until frontend sends requests to `<backend>/ping` when you press the button.
+
+You know that the configuration is ready when the button for 1.12 of frontend-example responds.
 
 *Do not alter the code of either project*
 
@@ -245,7 +248,7 @@ Redis is used to speed up some operations. Backend uses a slow api to get inform
 
 Configure a redis container to cache information for the backend. Use the documentation if needed when configuring: <https://hub.docker.com/_/redis/>
 
-The backend README should have all the information needed to connect.
+The backend [README](https://github.com/docker-hy/backend-example-docker) should have all the information needed to connect.
 
 When you've correctly configured it should take less than a second to get a response.
 
@@ -267,7 +270,7 @@ Add database to example backend.
 
 Lets use a postgres database to save messages. We won't need to configure a volume since the official postgres image sets a default volume for us. Lets use the postgres image documentation to our advantage when configuring: <https://hub.docker.com/_/postgres/>. Especially part Environment Variables is of interest.
 
-The backend README should have all the information needed to connect.
+The backend [README](https://github.com/docker-hy/backend-example-docker) should have all the information needed to connect.
 
 Submit the docker-compose.yml
 
