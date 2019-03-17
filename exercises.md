@@ -168,8 +168,13 @@ Setup Java Spring ?? project.
 
 ### 1.14 ###
 
-Lets create a Dockerfile for a rails project.
-Create a Dockerfile for rails project, use .dockerignore file.
+Lets create a Dockerfile for a rails project: [github page](https://github.com/docker-hy/rails-example-project).
+
+Again we can take a look at the README for the project to see the installation instructions. . Tips to get you started:
+
+Use [Ruby image](https://hub.docker.com/_/ruby) `FROM ruby:<tag>` to easily get most of what you'll need at the beginning.
+
+If you want you can make small edits to the program if you get stuck and google doesn't help you configure the setup. If you did, explain the edits with your submission of the Dockerfile.
 
 ### 1.15 ### 
 
@@ -181,7 +186,15 @@ For this exercise to be complete you have to provide the link to the project in 
 
 <b style="color:firebrick;">This exercise is mandatory</b>
 
-Push `devopsdockeruh/exercise_1_??` to heroku.
+Pushing to heroku happens in a same way. A project has already been prepared at `devopsdockeruh/heroku-example` so lets pull that first.
+
+Go to <https://www.heroku.com/> and create a new project there and install heroku CLI.
+Tag the pulled image as `registry.heroku.com/<app>/<process-type>`, process-type can be `web` for this exercise.
+The app should be your project name in heroku. 
+
+Then push the image to heroku with `docker push registry.heroku.com/<app>/<process-type>` and release it using the heroku CLI: `heroku container:release web`
+
+You could also use the heroku CLI to build and push, but since we didn't want to build anything this time it was easier to just tag the image.
 
 ### 1.17 ### 
 
