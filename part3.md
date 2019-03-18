@@ -59,11 +59,8 @@ FROM ubuntu:16.04
 WORKDIR /mydir
 
 RUN apt-get update
-
 RUN apt-get install -y curl python
-
 RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-
 RUN chmod a+x /usr/local/bin/youtube-dl
 
 ENV LC_ALL=C.UTF-8
@@ -71,7 +68,7 @@ ENV LC_ALL=C.UTF-8
 ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 ```
 
-Now we'll fix the minor problem of our Dockerfile being non-logical and not very space efficient. In the first version we have just commands rearranged so that the build process is logical: 
+Now we'll fix the minor problem of our Dockerfile being non-logical. In the first version we have just commands rearranged so that the build process is logical:
 
 ``` 
 FROM ubuntu:16.04 
@@ -113,38 +110,49 @@ As a sidenote not directly related to docker: remember that if needed, it is pos
 
 With `docker history` we can see that our single `RUN` layer adds 85.2 megabytes to the image: 
 
-    $ docker history youtube-dl 
+```
+$ docker history youtube-dl 
 
-      IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT 
-      295b16d6560a        30 minutes ago      /bin/sh -c #(nop)  ENTRYPOINT ["/usr/local...   0B 
-      f65f66bbae17        30 minutes ago      /bin/sh -c #(nop) WORKDIR /app                  0B 
-      89592bae75a8        30 minutes ago      /bin/sh -c apt-get update && apt-get insta...   85.2MB 
-      ... 
+  IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT 
+  295b16d6560a        30 minutes ago      /bin/sh -c #(nop)  ENTRYPOINT ["/usr/local...   0B 
+  f65f66bbae17        30 minutes ago      /bin/sh -c #(nop) WORKDIR /app                  0B 
+  89592bae75a8        30 minutes ago      /bin/sh -c apt-get update && apt-get insta...   85.2MB 
+  .`.. 
+```
 
 The next step is to remove everything that is not needed in the final image. We don't need the apt source lists anymore, so we'll glue the next line to our single `RUN` 
 
-    .. && \ 
-    rm -rf /var/lib/apt/lists/* 
+```
+.. && \ 
+rm -rf /var/lib/apt/lists/* 
+````
 
 Now when we build, we'll see that the size of the layer is 45.6MB megabytes. We can optimize even further by removing the `curl`. We can remove `curl` and all the dependencies it installed with 
 
-    .. && \ 
-    apt-get purge -y --auto-remove curl && \ 
-    rm -rf /var/lib/apt/lists/* 
+```
+.. `&& \ 
+apt-get purge -y --auto-remove curl && \ 
+rm -rf /var/lib/apt/lists/* 
+````
 
 ..which brings us down to 34.9MB.
 
 Now our slimmed down container should work, but: 
 
-    $ docker run -v "$(pwd):/app" youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
+```
+$ docker run -v "$(pwd):/app" youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
 
-      [youtube] EUHcNeg_e9g: Downloading webpage 
+  [youtube] EUHcNeg_e9g: Downloading webpage 
 
-      ERROR: Unable to download webpage: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:661)> (caused by URLError(SSLError(1, u'[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:661)'),)) 
+  ERROR: Unable to download webpage: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:661
+  > (caused by URLError(SSLError(1, u'[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:661)'),)) 
+```
 
 Because `--auto-remove` also removed dependencies, like: 
 
-    Removing ca-certificates (20170717~16.04.1) ... 
+```
+Removing ca-certificates (20170717~16.04.1) ... 
+```
 
 We can now see that our `youtube-dl` worked previously because of our `curl` dependencies. If `youtube-dl` would have been installed as a package, it would have declared `ca-certificates` as its dependency. 
 
@@ -169,11 +177,13 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 
 From the build output we can see that `ca-certificates` also adds `openssl` 
 
-    The following additional packages will be installed: 
-    openssl 
+```
+The following additional packages will be installed: 
+openssl 
 
-    The following NEW packages will be installed: 
-    ca-certificates openssl 
+The following NEW packages will be installed: 
+ca-certificates openssl 
+````
 
 and this brings us to 36.4 megabytes in our `RUN` layer (from the original 87.4 megabytes). 
 
@@ -183,8 +193,10 @@ and this brings us to 36.4 megabytes in our `RUN` layer (from the original 87.4 
 
 Our process (youtube-dl) could in theory escape the container due a bug in docker/kernel.  To mitigate this we'll add a non-root user to our container and run our process with that user. Another option would be to map the root user to a high, non-existing user id on the host with https://docs.docker.com/engine/security/userns-remap/, but this is fairly a new feature and not enabled by default.  
 
-    && \ 
-    useradd -m app 
+```
+&& \ 
+useradd -m app 
+```
 
 And then we change user with the directive `USER app` - so all commands after this line will be executed as our new user, including the `CMD`. 
 
@@ -210,12 +222,14 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 
 When we run this image without bind mounting our local directory: 
 
-    $ docker run youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
+```
+$ docker run youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
 
-      [youtube] UFLCdmfGs7E: Downloading webpage 
-      [youtube] UFLCdmfGs7E: Downloading video info webpage 
-      [youtube] UFLCdmfGs7E: Extracting video information 
-      ERROR: unable to open for writing: [Errno 13] Permission denied: 'Short introduction to Docker (Scribe)-UFLCdmfGs7E.mp4.part' 
+  [youtube] UFLCdmfGs7E: Downloading webpage 
+  [youtube] UFLCdmfGs7E: Downloading video info webpage 
+  [youtube] UFLCdmfGs7E: Extracting video information 
+  ERROR: unable to open for writing: [Errno 13] Permission denied: ''
+```
 
 We'll see that our `app` user can not write to `/app` - this can be fixed with `chown` or not fix it at all, if the intented usage is to always have a `/app` mounted from the host.  
 
@@ -250,23 +264,27 @@ Notes:
 
 Now when we build this file with `:alpine-3.7` as the tag: 
 
-    $ docker build -t youtube-dl:alpine-3.7 -f Dockerfile.alpine . 
+```
+$ docker build -t youtube-dl:alpine-3.7 -f Dockerfile.alpine . 
+```
 
 It seems to run fine:  
 
-    $ docker run -v "$(pwd):/app" youtube-dl:alpine-3.7 https://www.youtube.com/watch?v=420UIn01VVc
+```
+$ docker run -v "$(pwd):/app" youtube-dl:alpine-3.7 https://www.youtube.com/watch?v=420UIn01VVc
+```
 
 From the history we can see that the our single `RUN` layer size is 41.1MB 
 
-    $ docker history youtube-dl:alpine-3.7 
+```
+$ docker history youtube-dl:alpine-3.7 
 
-      IMAGE... 
-      ... 
-      14cfb0b531fb        20 seconds ago         /bin/sh -c apk add --no-cache curl python ca…   41.1MB 
-      ... 
-      <missing>           3 weeks ago         /bin/sh -c #(nop) ADD file:093f0723fa46f6cdb…   4.15MB 
-
- 
+  IMAGE... 
+  ... 
+  14cfb0b531fb        20 seconds ago         /bin/sh -c apk add --no-cache curl python ca…   41.1MB 
+  ... 
+  <missing>           3 weeks ago         /bin/sh -c #(nop) ADD file:093f0723fa46f6cdb…   4.15MB 
+```
 
 So in total our Alpine variant is about 45 megabytes, significantly less than our Ubuntu based image. 
 
