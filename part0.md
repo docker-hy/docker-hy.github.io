@@ -1,6 +1,6 @@
 ---
 layout: page
-title: part 0
+title: Part 0
 inheader: yes
 permalink: /part0/
 order: 0
@@ -18,7 +18,7 @@ Attendees need to provide their own computers with admin/superuser priviledges. 
 
 The course material is meant to be read part by part from start to finish. To get a passing grade you have to do every exercise, except you can skip one exercise for each part. Some of the exercises are marked as mandatory and they can not be skipped. There are exercises in the material placed so that you will have learned needed skills in the material before it. You can do the exercises as you go through the material.
 
-The course material is written for Ubuntu, so some instructions may lack platform specific details. Please make a pull request to the course material in case you find any mistakes or wish to add something. You can also add an "issue" through github in case you find any issues with the course material.
+The course material is written for Ubuntu, so some instructions may lack platform specific details. Please make a [pull request](https://docker-hy.github.io/contributing) to the course material in case you find any mistakes or wish to add something. You can also [contribute](https://docker-hy.github.io/contributing) through github in case you find any issues with the course material.
 
 ### Completing course
 
@@ -71,4 +71,4 @@ Confirm that docker-compose installed correctly by opening a terminal and runnin
 
 ### Mistakes:
 
-If you find anything missing, issues, typos or mistakes with the material. You can add an [issue](https://github.com/docker-hy/docker-hy.github.io/issues) and if you want to commit to the project you can do so by creating a [pull request](https://github.com/docker-hy/docker-hy.github.io/pulls) with your proposed fixes.
+Please read about [contributing](https://docker-hy.github.io/contributing)

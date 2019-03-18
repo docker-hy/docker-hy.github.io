@@ -1,6 +1,6 @@
 ---
 layout: page
-title: exercises
+title: Exercises
 inheader: yes
 permalink: /exercises/
 order: 1

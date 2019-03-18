@@ -1,6 +1,6 @@
 ---
 layout: page
-title: links
+title: Links
 inheader: yes
 permalink: /links/
 order: 2
