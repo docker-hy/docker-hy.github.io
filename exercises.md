@@ -214,15 +214,19 @@ Explain what you created and publish it to Docker Hub.
 
 ### 2.1 ###
 
-Container of `devopsdockeruh/exercise_1_??` will create logs into its `/usr/app/logs.txt`.
+Container of `devopsdockeruh/first_volume_exercise` will create logs into its `/usr/app/logs.txt`.
 
-Create a docker-compose.yml file that starts `devopsdockeruh/exercise_1_??` and saves the logs into your filesystem.
+Create a docker-compose.yml file that starts `devopsdockeruh/first_volume_exercise` and saves the logs into your filesystem.
+
+Submit the docker-compose.yml, make sure that it works simply by running `docker-compose up`
 
 ### 2.2 ###
 
-`devopsdockeruh/exercise_1_??` starts a web service that will answer in port `80`
+`devopsdockeruh/ports_exercise` starts a web service that will answer in port `80`
 
-Create a docker-compoy.yml and use it to start the service so that you can use it with your browser.
+Create a docker-compose.yml and use it to start the service so that you can use it with your browser.
+
+Submit the docker-compose.yml, make sure that it works simply by running `docker-compose up`
 
 ### 2.3 ###
 

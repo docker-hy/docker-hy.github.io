@@ -180,7 +180,7 @@ There are also other Docker registries competing with Docker Hub, such as [quay]
 
 So by default, if the host (here: `quay.io`) is omitted, it will pull from Docker Hub.
 
-**[Do exercise 1.3](/exercises/#11)**
+**[Do exercise 1.3](/exercises/#13)**
 
 ## A detailed look into an image
 
@@ -303,7 +303,7 @@ Now let's attach to the container and hit control+p, control+q that detaches us 
 
 Note that hitting `^C` would still kill (and remove due to `--rm`) the process because the `docker attach` was done without `--sig-proxy=false` 
 
-**[Do exercises 1.4 and 1.5](/exercises/#13)**
+**[Do exercises 1.4 and 1.5](/exercises/#14)**
 
 ## Creating your own dockerized project 
 
@@ -402,7 +402,7 @@ Let's try creating a new container from the new image, this time by setting the 
 
 And as expected, our `manually.txt` file is now in the image.  
 
-**[Do exercise 1.6 and 1.7](/exercises/#14)**
+**[Do exercise 1.6 and 1.7](/exercises/#16)**
 
 ### Bigger and more complex image
 
@@ -568,7 +568,7 @@ So a volume is simply a folder (or a file) that is shared between the host machi
 
 In our youtube-dl we wanted to mount the whole directory since the files are fairly randomly named. If we wish to create a volume with only a single file we could also do that by pointing to it. For example `-v $(pwd)/material.md:/mydir/material.md` this way we could edit the material.md locally and have it change in the container (and vice versa). Note also that `-v` creates a directory if the file does not exist.
 
-**[Do exercise 1.8](/exercises/#14)**
+**[Do exercise 1.8](/exercises/#18)**
 
 ### Allowing external connections into containers
 
@@ -613,7 +613,7 @@ The `docker port` command can be used to list the port mappings for a container:
 
 You can also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 4567/udp` and `-p 1234:4567/udp` respectively.
 
-**[Do exercises 1.9 - 1.12](/exercises/#14)**
+**[Do exercises 1.9 - 1.12](/exercises/#19)**
 
 ### Publishing projects in Docker Hub
 
@@ -637,7 +637,7 @@ Pushing should now work without problems:
 
 `docker push <username>/<repositoryname>`
 
-**[Do exercises 1.13 - 1.17](/exercises/#18)**
+**[Do exercises 1.13 - 1.17](/exercises/#13)**
 
 ## Epilogue, or rather, a recap ##
 

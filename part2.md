@@ -24,11 +24,8 @@ FROM ubuntu:16.04
 WORKDIR /mydir
 
 RUN apt-get update
-
 RUN apt-get install -y curl python
-
 RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-
 RUN chmod a+x /usr/local/bin/youtube-dl
 
 ENV LC_ALL=C.UTF-8
@@ -42,7 +39,6 @@ we'll create a file called `docker-compose.yml`:
 version: '3' 
 
 services: 
-
     youtube-dl-ubuntu:  
       image: <username>/<repositoryname>
       build: . 
@@ -76,6 +72,8 @@ services:
 We can also give the container a name it will use when running with container_name, now we can run it: 
 
     $ docker-compose run youtube-dl-ubuntu https://www.youtube.com/watch?v=420UIn01VVc
+
+****[Do exercise 2.1](/exercises/#21)**
 
 ### web services 
 
@@ -124,7 +122,7 @@ services:
         - VARIABLE 
 ```
 
-**[Do exercise 2.1](/exercises/#21)**
+**[Do exercises 2.2 and 2.3](/exercises/#22)**
 
 #### Scaling
 
@@ -239,7 +237,6 @@ Let's add couple of more containers behind the same proxy. We can use the offici
 Then add these services to the `docker-compose.yml` file where you mount just the content as `index.html` in the default nginx path: 
 
 ``` 
-
     hello: 
       image: nginx 
       volumes: 
@@ -279,7 +276,7 @@ Connecting two services such as a server and its database in docker can be achie
 
 For example services defined as `backend-server` that users access can connect to port 2345 of container `database` by connecting to database:2345 if they're both defined as service in the same docker-compose.yml. For this use case there is no need to publish the database port to host machine. This way the ports are only published to other containers in the docker network.
 
-**[Do exercises 2.2](/exercises/#22)**
+**[Do exercises 2.4](/exercises/#24)**
 
 You can also manually define the network and also its name in docker-compose version 3.5 forward. A major benefit of defining network is that it makes it easy to setup a configuration where other containers connect to an existing network as an external network.
 
@@ -477,7 +474,7 @@ adminer:
 
 Now when we run the application we can access adminer from <http://localhost:8083>. Setting up adminer is straightforward since it will be able to access the database through docker network.
 
-**[Do exercises 2.3, 2.4, 2.5 and 2.6](/exercises/#24)**
+**[Do exercises 2.5 - 2.10](/exercises/#25)**
 
 ## Epilogue, or rather, a recap ##
 
