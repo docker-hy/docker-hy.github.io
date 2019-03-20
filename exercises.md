@@ -165,19 +165,25 @@ Submit the edited Dockerfiles and commands used to run.
 
 ### 1.13 ###
 
-Lets create a Dockerfile for a Java Spring project.
+Lets create a Dockerfile for a Java Spring project: [github page](https://github.com/docker-hy/spring-example-project)
 
-Setup Java Spring ?? project.
+The setup should be straightforward with the README instructions. Tips to get you started:
+
+Use [openjdk image](https://hub.docker.com/_/openjdk) `FROM openjdk:<tag>` to get java instead of installing it manually.
+
+You've completed the exercise when you see a 'Success' message in your browser.
 
 ### 1.14 ###
 
 Lets create a Dockerfile for a rails project: [github page](https://github.com/docker-hy/rails-example-project).
 
-Again we can take a look at the README for the project to see the installation instructions. . Tips to get you started:
+Again we can take a look at the README for the project to see the installation instructions. Tips to get you started:
 
 Use [Ruby image](https://hub.docker.com/_/ruby) `FROM ruby:<tag>` to easily get most of what you'll need at the beginning.
 
 If you want you can make small edits to the program if you get stuck and google doesn't help you configure the setup. If you did, explain the edits with your submission of the Dockerfile.
+
+You've completed the exercise when the application works in your browser.
 
 ### 1.15 ### 
 
