@@ -193,15 +193,13 @@ For this exercise to be complete you have to provide the link to the project in 
 
 ### 1.16 ###
 
-<b style="color:firebrick;">This exercise is mandatory</b>
-
 Pushing to heroku happens in a same way. A project has already been prepared at `devopsdockeruh/heroku-example` so lets pull that first.
 
-Go to <https://www.heroku.com/> and create a new project there and install heroku CLI.
+Go to <https://www.heroku.com/> and create a new app there and install heroku CLI. You can find additional instructions from `Deploy` tab under `Container Registry`.
 Tag the pulled image as `registry.heroku.com/<app>/<process-type>`, process-type can be `web` for this exercise.
 The app should be your project name in heroku. 
 
-Then push the image to heroku with `docker push registry.heroku.com/<app>/<process-type>` and release it using the heroku CLI: `heroku container:release web`
+Then push the image to heroku with `docker push registry.heroku.com/<app>/web` and release it using the heroku CLI: `heroku container:release web`
 
 You could also use the heroku CLI to build and push, but since we didn't want to build anything this time it was easier to just tag the image.
 
