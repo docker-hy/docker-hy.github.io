@@ -193,13 +193,15 @@ For this exercise to be complete you have to provide the link to the project in 
 
 ### 1.16 ###
 
-Pushing to heroku happens in a same way. A project has already been prepared at `devopsdockeruh/heroku-example` so lets pull that first.
+Pushing to heroku happens in a same way. A project has already been prepared at `devopsdockeruh/heroku-example` so lets pull that first. Note that the image of the project is quite large.
 
 Go to <https://www.heroku.com/> and create a new app there and install heroku CLI. You can find additional instructions from `Deploy` tab under `Container Registry`.
 Tag the pulled image as `registry.heroku.com/<app>/<process-type>`, process-type can be `web` for this exercise.
 The app should be your project name in heroku. 
 
 Then push the image to heroku with `docker push registry.heroku.com/<app>/web` and release it using the heroku CLI: `heroku container:release web`
+
+For this exercise return the url in which the released application is.
 
 You could also use the heroku CLI to build and push, but since we didn't want to build anything this time it was easier to just tag the image.
 
@@ -423,7 +425,7 @@ b) Write a short (200-300 words) text/article on when to use Docker and what are
 
 > TIP: Diagrams are often better than text when explaining container setups.
 
-### 3.7 ### 
+### 3.8 ### 
 
 In this exercise choose one of the following:
 

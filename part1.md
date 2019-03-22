@@ -645,7 +645,7 @@ We started by learning what Docker container and image mean. Basically we stated
 
 This meant that we had to install almost everything manually, either from the command line or by using a setup file "Dockerfile" to install whatever we needed for the task at hand.
 
-The process of dockerizing the applications meant a bit of configuration on our part, but now that we've done it and built the image anyone can pick up and run the application; no porrible dependency or versioning issues.
+The process of dockerizing the applications meant a bit of configuration on our part, but now that we've done it and built the image anyone can pick up and run the application; no possible dependency or versioning issues.
 
 Understanding the architecture and the technologies used is also part of making correct choices with the setup. This lead us to read the REAMEs and documentation of the software involved in the setup, not just Docker. Fortunately in real life it's often us who are developing and creating the Dockerfile.
 
