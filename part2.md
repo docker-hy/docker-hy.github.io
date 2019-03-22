@@ -73,7 +73,7 @@ We can also give the container a name it will use when running with container_na
 
     $ docker-compose run youtube-dl-ubuntu https://www.youtube.com/watch?v=420UIn01VVc
 
-****[Do exercise 2.1](/exercises/#21)**
+**[Do exercise 2.1](/exercises/#21)**
 
 ### web services 
 

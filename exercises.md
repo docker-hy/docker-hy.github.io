@@ -151,13 +151,16 @@ Start both frontend-example and backend-example with correct ports exposed and a
 
 Ignore the backend configurations until frontend sends requests to `<backend>/ping` when you press the button.
 
-You know that the configuration is ready when the button for 1.12 of frontend-example responds.
+You know that the configuration is ready when the button for 1.12 of frontend-example responds and turns green.
 
 *Do not alter the code of either project*
 
 Submit the edited Dockerfiles and commands used to run.
 
 ![]({{ "/images/exercises/back-and-front.png" | absolute_url }})
+> The frontend will first talk to your browser. Then the code will be executed from your browser and that will send a message to backend.
+
+![]({{ "/images/exercises/about-connection-front-back.png" | absolute_url }})
 
 > TIP: When configuring web applications keep browser developer console ALWAYS open, F12 or cmd+shift+I when the browser window is open. Information about configuring cross origin requests is in README of the backend project. 
 
@@ -216,6 +219,7 @@ Explain what you created and publish it to Docker Hub.
 ## Part 2 ##
 
 *Do not alter the code of the projects, unless by pull-requests to the original projects*
+
 *Exercises in part 2 should be done using docker-compose*
 
 ### 2.1 ###
@@ -256,7 +260,7 @@ Configure a redis container to cache information for the backend. Use the docume
 
 The backend [README](https://github.com/docker-hy/backend-example-docker) should have all the information needed to connect.
 
-When you've correctly configured it should take less than a second to get a response.
+When you've correctly configured it should take less than a second to get a response and the button will turn green.
 
 Submit the docker-compose.yml
 
@@ -277,6 +281,8 @@ Add database to example backend.
 Lets use a postgres database to save messages. We won't need to configure a volume since the official postgres image sets a default volume for us. Lets use the postgres image documentation to our advantage when configuring: <https://hub.docker.com/_/postgres/>. Especially part Environment Variables is of interest.
 
 The backend [README](https://github.com/docker-hy/backend-example-docker) should have all the information needed to connect.
+
+The button won't turn green but you can send messages to yourself.
 
 Submit the docker-compose.yml
 
@@ -317,7 +323,7 @@ Accessing your service from arbitrary port is counter intuitive since browsers u
 
 Nginx will function as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) for us (see the image above). The requests arriving at anything other than /api will be redirected to frontend container and /api will get redirected to backend container. 
 
-At the end you should see that the frontend is accessible simply by going to http://localhost and the button works.
+At the end you should see that the frontend is accessible simply by going to http://localhost and the button works. Other buttons may have stopped working, do not worry about them.
 
 As we will not start configuring reverse proxies on this course you can have a simple config file:
 
@@ -359,7 +365,9 @@ Submit the docker-compose.yml
 
 ### 2.10 ###
  
-Some buttons may have stopped working in the frontend + backend project. Make sure that every button for exercises works.
+Some buttons may have stopped working in the frontend + backend project. Make sure that every button for exercises works. 
+
+This may need a peek into the browsers developer consoles again like back part 1. The buttons of nginx exercise and the first button behave differently but you want them to match.
 
 If you had to do any changes explain what you had to change. 
 
