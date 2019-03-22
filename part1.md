@@ -24,20 +24,28 @@ Docker combines the application and its dependencies into an **image** that can 
 
 A container consists of only the dependencies of the Application A and Application A itself.
 
-Isn't there already a solution for this? Virtual Machines are not the same as the Docker Engine and they solve different problems. We will not be looking into Virtual Machines on this course.
+Isn't there already a solution for this? Virtual Machines are not the same as the Docker Engine and they solve different problems. We will not be looking into Virtual Machines on this course. But here's a diagram to give you a rough idea.
 
 ![]({{ "/images/1/docker-explained-3.png" | absolute_url }})
 
-The image above illustrates the difference between the two solutions after moving Application A to an incompatible system "Operating System B".
+The difference between virtual machine and docker solutions after moving Application A to an incompatible system "Operating System B".
 
-### Image vs container
+### Image? ###
+
+Image is a file. It is built according to an instruction file called Dockerfile. An image never changes; you can not edit an existing file but you can create a new **layer** to it.
+
+### Container? ###
+
+Containers contain only everything that is required to execute an application. You can start, stop and interact with them. They are **isolated** environments in the host machine but can interact via defined methods (TCP/UDP) with each other and the host machine.
+
+### Image vs container ###
 
 Containers are instances of images.
 
 Cooking metaphor:
-Dockerfile is the shopping list.
-Image is the ingredients (& recipe).
-Container is the delicious treat.
+* Dockerfile is the shopping list (& recipe).
+* Image is the ingredients.
+* Container is the delicious treat.
 
 To get an image you have to build it with the Dockerfile.
 And then you run the image creating a container.
