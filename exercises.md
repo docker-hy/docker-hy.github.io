@@ -294,7 +294,7 @@ Submit the docker-compose.yml
 
 ### 2.6 ###
 
-Exercise 2. new_ex was created by [Sasu Mäkinen](https://github.com/sasumaki)
+This exercise was created by [Sasu Mäkinen](https://github.com/sasumaki)
 
 ### 2.7 ### 
 
@@ -311,7 +311,7 @@ Submit the docker-compose.yml
 > Note that the generated model is a toy and will not produce good results.
 > It will still take SEVERAL minutes to build the docker images, download training pictures and train the classifying model.
 
-Exercise 2.4 was created by [Sasu Mäkinen](https://github.com/sasumaki)
+This exercise was created by [Sasu Mäkinen](https://github.com/sasumaki)
 
 ### 2.8 ### 
 
@@ -391,7 +391,7 @@ Create a new Dockerfile for [yle-dl](https://aajanki.github.io/yle-dl/) and opti
 
 Use your application to download something to a volume without breaking the [YLE Terms of Service](https://ohjeet.areena.yle.fi/hc/fi/articles/115002969969-Yle-Areenan-k%C3%A4ytt%C3%B6ehdot)
 
-Exercise 3.2 was created by [Terho Uotila](https://github.com/qzuw)
+This exercise was created by [Terho Uotila](https://github.com/qzuw)
 
 ### 3.3 ###
 
