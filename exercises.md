@@ -21,6 +21,8 @@ If you need help publishing using git you should refer to their [guide](https://
 
 When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/courses/#/) to mark your exercises. Please choose the correct course.
 
+When you are ready to get your credits, complete the **Final Exercise** in moodle. By submitting the **Final Exercise** your course ends and you will be graded. The **Final Exercise** is mandatory.
+
 ## Part 1 ##
 
 ### 1.1 ###
