@@ -203,7 +203,7 @@ When we start this and test
 
 It's "working", but the nginx just doesn't know which service we want. The `nginx-proxy` works with two environment variables: `VIRTUAL_HOST` and `VIRTUAL_PORT`. `VIRTUAL_PORT` is not needed if the service has `EXPOSE` in it's docker image. We can see that `jwilder/whoami` sets it: <https://github.com/jwilder/whoami/blob/master/Dockerfile#L9>
 
-The domain `localtest.me` is configured so that all subdomains point to `127.0.0.1`  - let's use that: 
+The domain `colasloth.com` is configured so that all subdomains point to `127.0.0.1`. More information about how this works can be found at [colasloth.github.io](https://colasloth.github.io), but in brief it's a simple DNS "hack". Several other domains serving the same purpose exist, such as `localtest.me`, `lvh.me`, and `vcap.me`, to name a few. In any case, let's use `colasloth.com` here:
 
 ``` 
 version: '3.5' 
@@ -212,7 +212,7 @@ services:
     whoami: 
       image: jwilder/whoami 
       environment: 
-       - VIRTUAL_HOST=whoami.localtest.me 
+       - VIRTUAL_HOST=whoami.colasloth.com 
     proxy: 
       image: jwilder/nginx-proxy 
       volumes: 
@@ -224,9 +224,9 @@ services:
 Now the proxy works: 
 
     $ docker-compose up -d --scale whoami=3 
-    $ curl whoami.localtest.me 
+    $ curl whoami.colasloth.com 
       I'm f6f85f4848a8 
-    $ curl whoami.localtest.me 
+    $ curl whoami.colasloth.com 
       I'm 740dc0de1954 
 
 Let's add couple of more containers behind the same proxy. We can use the official `nginx` image to serve a simple static web page. We don't have to even build the container images, we can just mount the content to the image. Let's prepare some content for two services called "hello" and "world". 
@@ -242,28 +242,28 @@ Then add these services to the `docker-compose.yml` file where you mount just th
       volumes: 
         - ./hello.html:/usr/share/nginx/html/index.html:ro 
       environment: 
-        - VIRTUAL_HOST=hello.localtest.me 
+        - VIRTUAL_HOST=hello.colasloth.com 
     world: 
       image: nginx 
       volumes: 
         - ./world.html:/usr/share/nginx/html/index.html:ro 
       environment: 
-        - VIRTUAL_HOST=world.localtest.me 
+        - VIRTUAL_HOST=world.colasloth.com 
 ``` 
 
 Now let's test: 
 
     $ docker-compose up -d --scale whoami=3 
-    $ curl hello.localtest.me 
+    $ curl hello.colasloth.com 
       hello 
 
-    $ curl world.localtest.me 
+    $ curl world.colasloth.com 
       world 
 
-    $ curl whoami.localtest.me 
+    $ curl whoami.colasloth.com 
       I'm f6f85f4848a8 
 
-    $ curl whoami.localtest.me 
+    $ curl whoami.colasloth.com 
       I'm 740dc0de1954 
 
 Now we have a basic single machine hosting setup up and running. 
