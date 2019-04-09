@@ -19,11 +19,9 @@ This page will contain interesting links on subjects sorted by the parts in whic
 - [Understanding how the docker daemon and docker cli work together.](https://nickjanetakis.com/blog/understanding-how-the-docker-daemon-and-docker-cli-work-together)
 - [What is a Docker image?](https://cameronlonsdale.com/2018/11/26/whats-in-a-docker-image)
 
-## Part 2 ##
+### Other uses for Docker ###
 
-
-
-## Part 3 ##
+- [Reproductible Research](https://dl.acm.org/citation.cfm?id=2723882)
 
 ### Kubernetes ###
 
