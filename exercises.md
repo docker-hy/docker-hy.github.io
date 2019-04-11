@@ -368,11 +368,22 @@ Submit the docker-compose.yml
 
 ### 2.9 ### 
 
-Postgres image uses volume by default. Manually define volumes for redis and database in convenient locations. Use both image documentations (redis, postgres) to help you with the task. 
+Postgres image uses volume by default. Manually define volumes for the database in convenient location such as in `./database` . Use the image documentations (postgres) to help you with the task. You may do the same for redis as well.
 
-Try running `docker-compose down` and `docker-compose up` and see that the messages are still there and response time for api stays low. 
+After you have configured the volume:
 
-You can test that you've moved the volumes by deleting the folders from the place you decided to configure them in and running `docker-compose up`, all the data is gone. Maybe it would be simpler to back them up now that you know where they are.
+* Save a few messages through the frontend
+* Run `docker-compose down`
+* Run `docker-compose up` and see that the messages are available after refreshing browser
+* Run `docker-compose down` and delete the volume folder manually
+* Run `docker-compose up` and the data should be gone
+
+
+Maybe it would be simpler to back them up now that you know where they are.
+
+> TIP: To save you the trouble of testing all of those steps, just look into the folder before trying the steps. If it's empty after docker-compose up then something is wrong.
+
+> TIP: Since you may have broken the buttons in nginx exercise You should test with docker-compose.yml from before it
 
 Submit the docker-compose.yml
 
