@@ -47,11 +47,16 @@ Knows why docker-compose is not an optimal production solution and what is.
 
 ## Getting started ##
 
-#### Starting lecture ###
+### Course has multiple pages ###
+
+As we're trying to make the course as accessible as possible the course has multiple pages: [Moodle](https://moodle.helsinki.fi/course/view.php?id=33653), [Courses page](https://courses.helsinki.fi/fi/aytkt21025en/129059389), [Mooc](https://mooc.fi/) and github page. Everything is found here in this page and if something is missing or unclear after reading only this page please contact jami.kousa@helsinki.fi or through Telegram.
+
+### Starting lecture ###
 
 Slides for a previous starting lecture can be found [here](https://docs.google.com/presentation/d/1op-PxjIoCZ1k-o1JO1h9UhqZFYVMTcYHAQD-XrzwoIo/edit?usp=sharing)
 
-#### Telegram ###
+
+### Telegram ###
 
 This course has a Telegram group where we discuss everything about the course. Support is available almost 24/7, with discussion being in both English and Finnish.
 

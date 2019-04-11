@@ -268,7 +268,7 @@ This exercise was created with [Sasu Mäkinen](https://github.com/sasumaki)
 
 ### 2.5 ### 
 
-Add redis to example backend. 
+Add redis to example backend.
 
 Redis is used to speed up some operations. Backend uses a slow api to get information. You can test the slow api by requesting `/slow` with curl. The frontend program has a button to test this. Before configuring redis it should take 10 to 20 seconds to get a response.
 

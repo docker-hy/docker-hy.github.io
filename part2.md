@@ -270,13 +270,15 @@ Now we have a basic single machine hosting setup up and running.
 
 Test updating the `hello.html` without restarting the container, does it work? 
 
-# docker networking 
+**[Do exercise 2.4](/exercises/#24)**
+
+# Docker networking 
 
 Connecting two services such as a server and its database in docker can be achieved with docker-compose networks. In addition to starting services listed in docker-compose.yml the tool automatically creates and joins both containers into a network where the service name is the hostname. This way containers can reference each other simply with their names.
 
 For example services defined as `backend-server` that users access can connect to port 2345 of container `database` by connecting to database:2345 if they're both defined as service in the same docker-compose.yml. For this use case there is no need to publish the database port to host machine. This way the ports are only published to other containers in the docker network.
 
-**[Do exercises 2.4](/exercises/#24)**
+**[Do exercise 2.5](/exercises/#25)**
 
 You can also manually define the network and also its name in docker-compose version 3.5 forward. A major benefit of defining network is that it makes it easy to setup a configuration where other containers connect to an existing network as an external network.
 
@@ -474,7 +476,7 @@ adminer:
 
 Now when we run the application we can access adminer from <http://localhost:8083>. Setting up adminer is straightforward since it will be able to access the database through docker network.
 
-**[Do exercises 2.5 - 2.10](/exercises/#25)**
+**[Do exercises 2.6 - 2.10](/exercises/#26)**
 
 ## Epilogue, or rather, a recap ##
 
