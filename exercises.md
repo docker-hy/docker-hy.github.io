@@ -258,7 +258,15 @@ Configure the backend and frontend from part 1 to work in docker-compose.
 
 Submit the docker-compose.yml
 
-### 2.4 ### 
+### 2.4 ###
+
+A project over at <https://github.com/docker-hy/scaling-exercise> has a hardly working application. Go ahead and clone it for yourself. The project already includes docker-compose.yml so you can start it by running `docker-compose up`.
+
+Application should be accessible through <http://localhost:3000>. However it doesn't work well enough and I've added a load balancer for scaling. Your task is to scale the `compute` containers so that the button in the application turns green.
+
+This exercise was created with [Sasu Mäkinen](https://github.com/sasumaki)
+
+### 2.5 ### 
 
 Add redis to example backend. 
 
@@ -282,7 +290,7 @@ Submit the docker-compose.yml
 
 > Try it out by going inside redis (or 2.3 database) container and send a request to http://frontend-or-backend-container-name:relevant-port
 
-### 2.5 ### 
+### 2.6 ### 
 
 Add database to example backend.
 
@@ -300,9 +308,6 @@ Submit the docker-compose.yml
 
 ![]({{ "/images/exercises/back-front-redis-and-database.png" | absolute_url }})
 
-### 2.6 ###
-
-This exercise was created by [Sasu Mäkinen](https://github.com/sasumaki)
 
 ### 2.7 ### 
 
