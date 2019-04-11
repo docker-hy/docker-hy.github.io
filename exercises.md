@@ -302,12 +302,11 @@ The button won't turn green but you can send messages to yourself.
 
 Submit the docker-compose.yml
 
-> TIP: When configuring the database, you might need to destroy the automatically created volumes. Use command `docker volume prune` to remove unused volumes when testing. Make sure to remove containers that depend on them beforehand.
+> TIP: When configuring the database, you might need to destroy the automatically created volumes. Use command `docker volume prune`, `docker volume ls` and `docker volume rm` to remove unused volumes when testing. Make sure to remove containers that depend on them beforehand.
 
 > `restart: unless-stopped` can help if the postgres takes a while to get ready
 
 ![]({{ "/images/exercises/back-front-redis-and-database.png" | absolute_url }})
-
 
 ### 2.7 ### 
 
@@ -378,12 +377,11 @@ After you have configured the volume:
 * Run `docker-compose down` and delete the volume folder manually
 * Run `docker-compose up` and the data should be gone
 
-
 Maybe it would be simpler to back them up now that you know where they are.
 
 > TIP: To save you the trouble of testing all of those steps, just look into the folder before trying the steps. If it's empty after docker-compose up then something is wrong.
 
-> TIP: Since you may have broken the buttons in nginx exercise You should test with docker-compose.yml from before it
+> TIP: Since you may have broken the buttons in nginx exercise you should test with docker-compose.yml from before it
 
 Submit the docker-compose.yml
 
