@@ -85,6 +85,10 @@ Confirm that docker-compose installed correctly by opening a terminal and runnin
 
 > TIP: To avoid writing sudos you may consider [adding yourself to docker group](https://docs.docker.com/install/linux/linux-postinstall/)
 
+### First exercise ###
+
+Do the first exercise over **[here](/exercises/#first-exercise)**
+
 ### Mistakes: ###
 
 Please read about [contributing](https://docker-hy.github.io/contributing)
