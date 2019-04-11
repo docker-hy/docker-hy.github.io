@@ -284,11 +284,7 @@ Submit the docker-compose.yml
 
 > `restart: unless-stopped` can help if the redis takes a while to get ready
 
-> TIP for learning about containers that talk to each other:
-
-> Go inside a container in the same way as in 1.3 and try using curl to send requests. At least in 2.4 and 2.5 it might be useful.
-
-> Try it out by going inside redis (or 2.3 database) container and send a request to http://frontend-or-backend-container-name:relevant-port
+> TIP: If you're stuck check out [tips and tricks](/exercise_tricks)
 
 ### 2.6 ### 
 
@@ -399,7 +395,7 @@ Submit the docker-compose yml and both dockerfiles.
 
 ### 3.1 ### 
 
-Return back to our frontend & backend Dockerfiles and you should see the some mistakes we now know to fix.
+Return back to our [frontend](https://github.com/docker-hy/frontend-example-docker) & [backend](https://github.com/docker-hy/backend-example-docker) Dockerfiles and you should see the some mistakes we now know to fix.
 
 Document both image sizes at this point, as was done in the material. Optimize the Dockerfiles of both programs, frontend and backend, by joining the RUN commands and removing useless parts.
 
@@ -435,15 +431,15 @@ Document the size after this change. If you used the alpine version the size for
 
 ### 3.5 ###
 
-Multi-stage builds. Lets do a multi-stage build for the frontend project.
+Multi-stage builds. Lets do a multi-stage build for the [frontend](https://github.com/docker-hy/frontend-example-docker) project.
 
-Even though multi-stage builds are designed mostly for binaries in mind, we can leverage the benefits with our frontend project.
+Even though multi-stage builds are designed mostly for binaries in mind, we can leverage the benefits with our frontend project. Build it with the instructions in README and the built assets should be in `dist` folder
 
 You can still use the `serve` to serve the static files or try out something else.
 
 ### 3.6 ### 
 
-Do all of the optimizations from security to size for any other Dockerfile you have access to, in your own project or for example the ones used in exercises 1.8, 1.9, 2.4 or 3.2. Please document Dockerfiles both before and after.
+Do all of the optimizations from security to size for any other Dockerfile you have access to, in your own project or for example the ones used in previous "standalone" exercises. Please document Dockerfiles both before and after.
 
 ### 3.7 ### 
 
