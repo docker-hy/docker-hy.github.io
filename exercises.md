@@ -444,7 +444,7 @@ Document the size after this change. If you used the alpine version the size for
 
 Multi-stage builds. Lets do a multi-stage build for the [frontend](https://github.com/docker-hy/frontend-example-docker) project.
 
-Even though multi-stage builds are designed mostly for binaries in mind, we can leverage the benefits with our frontend project. Build it with the instructions in README and the built assets should be in `dist` folder
+Even though multi-stage builds are designed mostly for binaries in mind, we can leverage the benefits with our frontend project. Build it with the instructions in README and the built assets should be in `dist` folder
 
 You can still use the `serve` to serve the static files or try out something else.
 
