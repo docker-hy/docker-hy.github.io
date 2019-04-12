@@ -428,6 +428,8 @@ Security issues with the user being a root are serious for the example frontend 
 
 Make sure the containers start their processes as a non-root user.
 
+> TIP `man chown` may help you if you have access errors
+
 ### 3.4 ### 
 
 Document the image size before the changes.
