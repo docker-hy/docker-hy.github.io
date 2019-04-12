@@ -8,7 +8,7 @@ order: 0
 
 ## What is DevOps?
 
-DevOps is a term consisting of two parts, *Dev* and *Ops*. *Dev* means the development of software and *Ops* meaning operations. The concept DevOps has many definitions but in practice it means that the release, configuring and monitoring of a software and is in the hands of the same people who develop it.
+DevOps is a term consisting of two parts, *Dev* and *Ops*. *Dev* means the development of software and *Ops* meaning operations. The concept DevOps has many definitions but in practice it means that the release, configuring and monitoring of a software and is in the hands of the same people who develop it. A more formal definition offered by [Jabbari et al.](https://dl.acm.org/citation.cfm?id=2962707): "DevOps is a development methodology aimed at bridging the gap between Development and Operations, emphasizing communication and collaboration, continuous integration, quality assurance and delivery with automated deployment utulizing a set of development practices". 
 
 ![]({{ "https://upload.wikimedia.org/wikipedia/commons/0/05/Devops-toolchain.svg" | absolute_url }})
 

@@ -27,7 +27,7 @@ When you are ready to get your credits, complete the **Final Exercise** in moodl
 
 ### First Exercise ###
 
-Before starting, over at <https://link_here> is a survey which is used for mapping students learning and possible experience before starting the course.
+Before starting, over at <https://en.surveymonkey.com/r/ZLMG6HR> is a survey which is used for mapping students learning and possible experience before starting the course. Please fill it, my thesis depends on it. Theres also a survey at the end of this course.
 
 ## Part 1 ##
 
@@ -224,6 +224,11 @@ This means that a computer that only has docker can use the image to start a con
 
 Explain what you created and publish it to Docker Hub.
 
+## Ending ##
+
+Ready to end? Fill in a survey [here](https://en.surveymonkey.com/r/K7GDLTX) and if you want credits go to [moodle](https://moodle.helsinki.fi/course/view.php?id=33653#section-1) If you can't access it use instructions over at [courses](https://courses.helsinki.fi/fi/aytkt21025en/129059389) to get an account.
+
+
 ## Part 2 ##
 
 *Do not alter the code of the projects, unless by pull-requests to the original projects*
@@ -391,6 +396,10 @@ If you had to do any changes explain what you had to change.
 
 Submit the docker-compose yml and both dockerfiles.
 
+## Ending ##
+
+Ready to end? Fill in a survey [here](https://en.surveymonkey.com/r/K7GDLTX) and if you want credits go to [moodle](https://moodle.helsinki.fi/course/view.php?id=33653#section-1) If you can't access it use instructions over at [courses](https://courses.helsinki.fi/fi/aytkt21025en/129059389) to get an account.
+
 # Part 3
 
 ### 3.1 ### 
@@ -466,3 +475,7 @@ Add in explanation of the complete deployment pipeline with new developers in mi
 Explain your process and give a link to the repository in which the CLI tool exists.
 
 c) Building images inside of a container. Create a project that downloads a repository from github, builds a Dockerfile located in the root and then publishes it into Docker Hub. Then create a Dockerfile for it. Make sure that it can build all of the example projects. Bonus (not required for a pass): use a webhook in the project so it is automatically triggered when changes are made into a specific branch.
+
+## Ending ##
+
+Fill in a survey [here](https://en.surveymonkey.com/r/K7GDLTX) and if you want credits go to [moodle](https://moodle.helsinki.fi/course/view.php?id=33653#section-1) If you can't access it use instructions over at [courses](https://courses.helsinki.fi/fi/aytkt21025en/129059389) to get an account.
