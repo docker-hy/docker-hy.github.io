@@ -442,15 +442,15 @@ Document the size after this change. If you used the alpine version the size for
 
 ### 3.5 ###
 
-Multi-stage builds. Lets do a multi-stage build for the [frontend](https://github.com/docker-hy/frontend-example-docker) project.
+Multi-stage builds. Lets do a multi-stage build for the [frontend](https://github.com/docker-hy/frontend-example-docker) project since we've come so far with the application.
 
-Even though multi-stage builds are designed mostly for binaries in mind, we can leverage the benefits with our frontend project. Build it with the instructions in README and the built assets should be in `dist` folder
+Even though multi-stage builds are designed mostly for binaries in mind, we can leverage the benefits with our frontend project as having original source code with the final assets makes little sense. Build it with the instructions in README and the built assets should be in `dist` folder.
 
 You can still use the `serve` to serve the static files or try out something else.
 
 ### 3.6 ### 
 
-Do all of the optimizations from security to size for any other Dockerfile you have access to, in your own project or for example the ones used in previous "standalone" exercises. Please document Dockerfiles both before and after.
+Do all or most of the optimizations from security to size for any other Dockerfile you have access to, in your own project or for example the ones used in previous "standalone" exercises. Please document Dockerfiles both before and after.
 
 ### 3.7 ### 
 
