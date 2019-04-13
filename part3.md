@@ -276,7 +276,7 @@ $ docker run -v "$(pwd):/app" youtube-dl:alpine-3.7 https://www.youtube.com/watc
 
 From the history we can see that the our single `RUN` layer size is 41.1MB 
 
-```
+```
 $ docker history youtube-dl:alpine-3.7 
 
   IMAGE... 
@@ -302,7 +302,7 @@ OR, if we don't want to upkeep the ubuntu version anymore we can replace our Ubu
 
 Also remember that unless specified the `:latest` tag will always just refer to the latest image build & pushed - that can basically contain anything. 
 
-**[Do exercises 3.4 and 3.5](/exercises/#34)**
+**[Do exercise 3.4](/exercises/#34)**
 
 ## Multi-stage builds ##
 
@@ -343,7 +343,7 @@ ruby                latest              616c3cf5968b        28 hours ago        
 
 As you can see, even though our jekyll image needed ruby during the build process, its considerably smaller since it only has nginx and the static files. `docker run -it -p 8080:80 jekyll` also works as expected.
 
-**[Do exercise 3.6](/exercises/#34)**
+**[Do exercises 3.5 and 3.6](/exercises/#35)**
 
 ## A peek into multi-host environment options ##
 
@@ -367,4 +367,4 @@ Luukkainen: "Is docker stack the bleeding edge?"
 
 [Paksula](/#credits): "Deprecated"
 
-**[Do exercises 3.6 and 3.7](/exercises/#36)**
+**[Do exercises 3.7 and 3.8](/exercises/#37)**
