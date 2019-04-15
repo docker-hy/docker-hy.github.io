@@ -19,7 +19,7 @@ To get a passing grade you have to do every exercise, except you can skip one ex
 Make a repository and publish your solutions there in clearly ordered files / folders.
 If you need help publishing using git you should refer to their [guide](https://guides.github.com/activities/hello-world/).
 
-When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/courses/#/) to mark your exercises. Please choose the correct course.
+When you have completed a part, use the submission application (link coming here soon) to mark your exercises.
 
 When you are ready to get your credits, complete the **Final Exercise** in moodle. By submitting the **Final Exercise** your course ends and you will be graded. The **Final Exercise** is mandatory.
 
