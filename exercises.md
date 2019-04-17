@@ -14,7 +14,7 @@ To get a passing grade you have to do every exercise, except you can skip one ex
 
 ## Deadline ##
 
-The course ends 17.1.2020. After that course is locked and no more submissions can be made or credits earned.
+The course ends 17.1.2020. After that course is locked and no more submissions can be made or credits earned. Make sure you have also enrolled for the course [here](https://courses.helsinki.fi/en/aytkt21025en/129059389) before 15.1.2020.
 
 ## How to return exercises ##
 
