@@ -645,7 +645,7 @@ Pushing should now work without problems:
 
 `docker push <username>/<repositoryname>`
 
-**[Do exercises 1.13 - 1.17](/exercises/#13)**
+**[Do exercises 1.13 - 1.17](/exercises/#113)**
 
 ## Epilogue, or rather, a recap ##
 
