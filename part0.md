@@ -24,6 +24,8 @@ The course material is written for Ubuntu, so some instructions may lack platfor
 
 The course is composed of 4 parts, first of which is 0 and contains the pre-requisites for doing any of the exercises. The parts should take 5-25 hours each.
 
+Remember to enrol for the course through courses page: <https://courses.helsinki.fi/en/aytkt21025en/129059389>. After filling the form **it will take 1 day for your registration to activate** and after that you'll get access to the last exercise through moodle. This is required to get the credits.
+
 ### Grading ##
 
 Passing this course requires you to do the required exercises for each credit. This course is worth 1-3 credits depending on the completed parts.
