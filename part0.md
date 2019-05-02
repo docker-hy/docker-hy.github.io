@@ -28,7 +28,7 @@ Remember to enrol for the course through courses page: <https://courses.helsinki
 
 ### Grading ##
 
-Passing this course requires you to do the required exercises for each credit. This course is worth 1-3 credits depending on the completed parts.
+Passing this course requires you to do the exercises for each part. This equals to every exercise except one for each part. Some of the exercises are mandatory and can not be skipped. This course is worth 1-3 credits depending on the completed parts.
 Completing part 1 gives you 1 credit. Completing parts 1 and 2 is worth 2 credits. Completing all of the parts will grant you 3 credits.
 
 ### Learning objectives ###
