@@ -60,7 +60,7 @@ Start image `devopsdockeruh/pull_exercise` with flags `-it` like so: `docker run
 
 Read the Dockerfile and/or docs to learn what input will get the application to answer a "secret message".
 
-Submit the message and commands given as your answer.
+Submit the secret message and command(s) given to get it as your answer.
 
 ### 1.4 ###
 
@@ -68,7 +68,7 @@ Now that we've warmed up it's time to get inside a container while it's running!
 
 Start image `devopsdockeruh/exec_bash_exercise`, it will start a container with clock-like features and create a log. Go inside the container and use `tail -f ./logs.txt` to follow the logs. Every 15 seconds the clock will send you a "secret message".
 
-Submit the message and commands given as your answer.
+Submit the secret message and command(s) given as your answer.
 
 ### 1.5 ### 
 
@@ -89,7 +89,7 @@ Test inputting `helsinki.fi` into the application. It should respond with someth
 </body></html>
 ```
 
-This time return the command you used to start and the commands you used to fix the ensuing problems.
+This time return the command you used to start process and the command(s) you used to fix the ensuing problems.
 
 > This exercise has multiple solutions, if the curl for helsinki.fi works then it's done. Can you figure out other (smart) solutions?
 
