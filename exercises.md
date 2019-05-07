@@ -18,12 +18,12 @@ The course ends 17.1.2020. After that course is locked and no more submissions c
 
 ## How to return exercises ##
 
-Make a repository and publish your solutions there in clearly ordered files / folders.
+Make a repository to github and publish your solutions there in clearly ordered files / folders.
 If you need help publishing using git you should refer to their [guide](https://guides.github.com/activities/hello-world/).
 
 When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/docker2019/#/) to mark your exercises. You can not edit a submission so make sure you have completed enough exercises for a part before submitting.
 
-If you have already done parts 1 or 2 in a previous version of the course (during winter 2018) you can skip those parts. But I recommend checking for new exercises that are of interest. In submission application just mark 0s and no exercises completed so the stats don't break :heart:. Give the old submission github repository if you haven't deleted it. I'll check your credits and do the math.
+If you have already done parts 1 or 2 in a previous version of the course (during winter 2018) you can skip those parts. But I recommend checking for new exercises that are of interest. In submission application just mark 0s and no exercises completed so the stats don't break in the SPA app. Give the old submission github repository if you haven't deleted it. I'll check your credits and do the math.
 
 ## Completing ##
 
