@@ -141,6 +141,8 @@ Submit the Dockerfile.
 
 > TIP: The project has install instructions in README.
 
+> TIP: Note that the app starts to accept connections when *Accepting connections at http://localhost:5000* has been printed to the screen, this a few seconds
+
 > TIP: You do not have to install anything new outside containers.
 
 ### 1.11 ###
