@@ -474,7 +474,7 @@ b) Write a short (200-300 words) text/article on when to use Docker and what are
 
 In this exercise choose one of the following:
 
-a) Create an example setup that uses Kubernetes, Docker Swarm or equivalent using any project and deploy it online. You can use any applications available to you (such as the frontend - backend example). Make sure that the application consists of atleast two different containers that are deployed on two different hosts. 
+a) Create an example setup that uses Kubernetes, Docker Swarm or equivalent using any project and deploy it online. You can use any applications available to you (such as the frontend - backend example). Make sure that the application consists of atleast two different containers that are deployed on two different hosts. Explain what you created in your submission.
 
 You can practice deployment using virtual machines and AWS offers free credits for students.
 
@@ -482,9 +482,9 @@ b) Write a CLI tool to help you set up an environment and deploy it. (Helping wi
 
 Add in explanation of the complete deployment pipeline with new developers in mind with the final steps containing production deployment instructions with Docker.
 
-Explain your process and give a link to the repository in which the CLI tool exists.
+Explain your process and give a link to the repository in which the CLI tool exists or submit the project inside of the submission repository.
 
-c) Building images inside of a container. Create a project that downloads a repository from github, builds a Dockerfile located in the root and then publishes it into Docker Hub. Then create a Dockerfile for it. Make sure that it can build all of the example projects. Bonus (not required for a pass): use a webhook in the project so it is automatically triggered when changes are made into a specific branch.
+c) Building images inside of a container. Create a project that downloads a repository from github, builds a Dockerfile located in the root and then publishes it into Docker Hub. You can use any technologies of your choice for the implementation. Then create a Dockerfile for it so that it can be run inside a container. Make sure that it can build all of the example projects. Bonus (not required for a pass): use a webhook in the project so it is automatically triggered when changes are made into a specific branch. For this exercise offer a link to your project repository or submit the project inside of the submission reporitory.
 
 ## Ending ##
 
