@@ -14,7 +14,7 @@ To get a passing grade you have to do every exercise, except you can skip one ex
 
 ## Deadline ##
 
-The course ends 17.1.2020. After that course is locked and no more submissions can be made or credits earned. Make sure you have also enrolled for the course [here](https://courses.helsinki.fi/en/aytkt21025en/129059389) before 15.1.2020.
+The course ends 17.1.2020. After that course is locked and no more submissions can be made or credits earned. Make sure you have also enrolled for the course [here](https://courses.helsinki.fi/en/aytkt21025en/129059389) before 15.1.2020 if you want to get credits.
 
 ## How to return exercises ##
 
@@ -27,13 +27,13 @@ If you have already done parts 1 or 2 in a previous version of the course (durin
 
 ## Completing ##
 
-When you are ready to get your credits, complete the **Final Exercise** in moodle. By submitting the **Final Exercise** your course ends and you will be graded. The **Final Exercise** is mandatory.
+When you are ready to get your credits, complete the **Final Exercise** in moodle. By submitting the **Final Exercise** your course ends and you will be graded. The **Final Exercise** is mandatory to get credits but not to get a certificate.
 
 ## Part 0 ##
 
 ### First Exercise ###
 
-Before starting, over at <https://en.surveymonkey.com/r/ZLMG6HR> is a survey which is used for mapping students learning and possible experience before starting the course. Please fill it, my thesis depends on it. Theres also a survey at the end of this course.
+Before starting, over at <https://en.surveymonkey.com/r/ZLMG6HR> is a survey which is used for mapping students learning and possible experience before starting the course. Please fill it, my thesis depends on it. Theres also a survey at the end of this course. Both surveys can be skipped.
 
 ## Part 1 ##
 
