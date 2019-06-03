@@ -6,7 +6,7 @@ permalink: /links/
 order: 2
 ---
 
-This page will contain interesting links on subjects sorted by the parts in which the subject is contained. They are not required to complete the course but may help you to get a better understanding of Docker.
+This page will contain interesting links on subjects sorted by the parts in which the subject is contained. They are not required to complete the course but may help you to get a better understanding of Docker. Create a [pull request](https://github.com/docker-hy/docker-hy.github.io/pulls) if you have anything you'd like to share.
 
 ## Part 1 ##
 
@@ -23,10 +23,6 @@ This page will contain interesting links on subjects sorted by the parts in whic
 
 - [Reproducible Research](https://dl.acm.org/citation.cfm?id=2723882)
 
-### Kubernetes ###
-
-- link placeholder
-
 ### Answer to exercise 3.6 ###
 
-- Your answer
+- Your answer if you're brave
