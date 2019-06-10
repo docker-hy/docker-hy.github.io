@@ -234,7 +234,7 @@ Explain what you created and publish it to Docker Hub.
 
 ## Ending ##
 
-Ready to end the course? Fill in a survey [here](https://en.surveymonkey.com/r/K7GDLTX) and if you want credits go to [moodle](https://moodle.helsinki.fi/course/view.php?id=33653#section-1) If you can't access it use instructions over at [courses](https://courses.helsinki.fi/fi/aytkt21025en/129059389) to get an account.
+Ready to end the course? Fill in a survey [here](https://en.surveymonkey.com/r/K7GDLTX) and if you want credits go to [moodle](https://moodle.helsinki.fi/course/view.php?id=33653#section-1). If you can't access it use instructions over at [courses](https://courses.helsinki.fi/fi/aytkt21025en/129059389) to get an account. For certificate just mark the course as finished in the submission software and the certificate link will appear into the submission software after your exercises have been reviewed.
 
 
 ## Part 2 ##
@@ -406,7 +406,7 @@ Submit the docker-compose yml and both dockerfiles.
 
 ## Ending ##
 
-Ready to end the course? Fill in a survey [here](https://en.surveymonkey.com/r/K7GDLTX) and if you want credits go to [moodle](https://moodle.helsinki.fi/course/view.php?id=33653#section-1) If you can't access it use instructions over at [courses](https://courses.helsinki.fi/fi/aytkt21025en/129059389) to get an account.
+Ready to end the course? Fill in a survey [here](https://en.surveymonkey.com/r/K7GDLTX) and if you want credits go to [moodle](https://moodle.helsinki.fi/course/view.php?id=33653#section-1) If you can't access it use instructions over at [courses](https://courses.helsinki.fi/fi/aytkt21025en/129059389) to get an account. For certificate just mark the course as finished in the submission software and the certificate link will appear into the submission software after your exercises have been reviewed.
 
 # Part 3
 
@@ -488,4 +488,5 @@ c) Building images inside of a container. Create a project that downloads a repo
 
 ## Ending ##
 
-Fill in a survey [here](https://en.surveymonkey.com/r/K7GDLTX) and if you want credits go to [moodle](https://moodle.helsinki.fi/course/view.php?id=33653#section-1) If you can't access it use instructions over at [courses](https://courses.helsinki.fi/fi/aytkt21025en/129059389) to get an account.
+Fill in a survey [here](https://en.surveymonkey.com/r/K7GDLTX) and if you want credits go to [moodle](https://moodle.helsinki.fi/course/view.php?id=33653#section-1) If you can't access it use instructions over at [courses](https://courses.helsinki.fi/fi/aytkt21025en/129059389) to get an account. For certificate just mark the course as finished in the submission software and the certificate link will appear into the submission software after your exercises have been reviewed.
+
