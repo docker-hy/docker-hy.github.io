@@ -8,7 +8,7 @@ order: 0
 
 ## General ##
 
-This course is an introductory course to Docker and docker-compose. The course will also look into what different parts web services consist of, such as reverse proxies, databases etc. Docker can not be installed on faculty computers so students will need to provide their own computers to follow the examples outlined in this course material and to complete the exercises.
+This course is an introductory course to Docker and docker-compose. The course will also look into what different parts web services consist of, such as reverse proxies, databases, etc. Docker can not be installed on faculty computers, so students will need to provide their own computers to follow the examples outlined in this course material and to complete the exercises.
 
 ### Prerequisites ###
 
@@ -16,19 +16,19 @@ Attendees need to provide their own computers with admin/superuser priviledges. 
 
 ### Course material ###
 
-The course material is meant to be read part by part from start to finish. To get a passing grade you have to do every exercise, except you can skip one exercise for each part. Some of the exercises are marked as mandatory and they can not be skipped. There are exercises in the material placed so that you will have learned needed skills in the material before it. You can do the exercises as you go through the material.
+The course material is meant to be read sequentially, part by part, from start to finish. To get a passing grade you have to complete each exercise, although one exercise can be skipped for each part. Some of the exercises are marked as mandatory and those can not be skipped. The exercies are placed in the material in such a way that you will have learned the necessary skills from the material prior to each given exercise. You can do the exercises as you're going through the material.
 
 The course material is written for Ubuntu, so some instructions may lack platform specific details. Please make a [pull request](https://docker-hy.github.io/contributing) to the course material in case you find any mistakes or wish to add something. You can also [contribute](https://docker-hy.github.io/contributing) through github in case you find any issues with the course material.
 
 ### Completing course ###
 
-The course is composed of 4 parts, first of which is 0 and contains the pre-requisites for doing any of the exercises. The parts should take 5-25 hours each.
+The course is composed of 4 parts, first of which is part 0 and contains the pre-requisites for all the upcoming exercises. The parts should take 5-25 hours each to complete.
 
-Remember to enrol for the course through courses page: <https://courses.helsinki.fi/en/aytkt21025en/129059389>. After filling the form **it will take 1 day for your registration to activate** and after that you'll get access to the last exercise through moodle. This is required to get the credits.
+Remember to enrol for the course through courses page: <https://courses.helsinki.fi/en/aytkt21025en/129059389>. After filling the form, **it will take 1 day for your registration to activate**, after which you'll get access to the last exercise through moodle. This is required to get the credits.
 
 ### Grading ##
 
-Passing this course requires you to do the exercises for each part. This equals to every exercise except one for each part. Some of the exercises are mandatory and can not be skipped. This course is worth 1-3 credits depending on the completed parts.
+Passing this course requires you to do the exercises for each part. This means every exercise, except one for each part. Some of the exercises are mandatory and can not be skipped. This course is worth 1-3 credits depending on the completed parts.
 Completing part 1 gives you 1 credit. Completing parts 1 and 2 is worth 2 credits. Completing all of the parts will grant you 3 credits.
 
 ### Learning objectives ###
@@ -51,12 +51,11 @@ Knows why docker-compose is not an optimal production solution and what is.
 
 ### Course has multiple pages ###
 
-As we're trying to make the course as accessible as possible the course has multiple pages: [Moodle](https://moodle.helsinki.fi/course/view.php?id=33653), [Courses page](https://courses.helsinki.fi/fi/aytkt21025en/129059389), [Mooc](https://mooc.fi/) and github page. Everything is found here in this page and if something is missing or unclear after reading only this page please contact jami.kousa@helsinki.fi or through Telegram.
+As we're trying to make the course as accessible as possible, the course has multiple pages: [Moodle](https://moodle.helsinki.fi/course/view.php?id=33653), [Courses page](https://courses.helsinki.fi/fi/aytkt21025en/129059389), [Mooc](https://mooc.fi/) and github page. Everything is found here in this page, and if something is missing or unclear after reading this page only then please contact jami.kousa@helsinki.fi or get in touch through Telegram.
 
 ### Starting lecture ###
 
 Slides for a previous starting lecture can be found [here](https://docs.google.com/presentation/d/1op-PxjIoCZ1k-o1JO1h9UhqZFYVMTcYHAQD-XrzwoIo/edit?usp=sharing)
-
 
 ### Telegram ###
 
