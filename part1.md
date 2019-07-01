@@ -8,7 +8,7 @@ order: 0
 
 ## What is DevOps?
 
-DevOps is a term consisting of two parts, *Dev* and *Ops*. *Dev* means the development of software and *Ops* meaning operations. The concept DevOps has many definitions but in practice it means that the release, configuring and monitoring of a software and is in the hands of the same people who develop it. A more formal definition offered by [Jabbari et al.](https://dl.acm.org/citation.cfm?id=2962707): "DevOps is a development methodology aimed at bridging the gap between Development and Operations, emphasizing communication and collaboration, continuous integration, quality assurance and delivery with automated deployment utilizing a set of development practices". 
+DevOps is a term consisting of two parts, *Dev* and *Ops*. *Dev* refers to the development of software and *Ops* to operations. The concept DevOps has many definitions, but in practice it means that the release, configuring, and monitoring of a software is in the hands of the very people who develop it. A more formal definition is offered by [Jabbari et al.](https://dl.acm.org/citation.cfm?id=2962707): "DevOps is a development methodology aimed at bridging the gap between Development and Operations, emphasizing communication and collaboration, continuous integration, quality assurance and delivery with automated deployment utilizing a set of development practices". 
 
 ![]({{ "https://upload.wikimedia.org/wikipedia/commons/0/05/Devops-toolchain.svg" | absolute_url }})
 
@@ -16,27 +16,27 @@ Image of devops toolchain by Kharnagy from [wikipedia](https://commons.wikimedia
 
 ## What is Docker? 
 
-Applications are often developed and tested on one machine. This leads to a problem more commonly known as "works on my machine" where the developer does not know why or how the application does not work on a different machine. In addition, different parts of a system may change over time, possibly leading to the application not working. These changes may be anything from an operating system update to changes in dependencies, or even hardware changes.
+Applications are often developed and tested on one machine. This leads to a problem more commonly known as "works on my machine", where the developer does not know why or how the application does not work on a different machine. In addition, different parts of a system may change over time, possibly leading to the application not working. These changes may be anything from an operating system update to changes in dependencies, or even hardware changes.
 
 Docker combines the application and its dependencies into an **image** that can then be run on any machine, provided it can run Docker.
 
 ![]({{ "/images/1/container.png" | absolute_url }})
 
-A container consists of only the dependencies of the Application A and Application A itself.
+A container consists only of a given application and its dependencies.
 
-Isn't there already a solution for this? Virtual Machines are not the same as the Docker Engine and they solve different problems. We will not be looking into Virtual Machines on this course. But here's a diagram to give you a rough idea.
+Isn't there already a solution for this? Virtual Machines are not the same as the Docker Engine - they solve different problems. We will not be looking into Virtual Machines in this course. However, here's a diagram to give you a rough idea of the difference.
 
 ![]({{ "/images/1/docker-explained-3.png" | absolute_url }})
 
 The difference between virtual machine and docker solutions after moving Application A to an incompatible system "Operating System B".
 
-### Image? ###
+### What's a Docker Image? ###
 
-Image is a file. It is built according to an instruction file called Dockerfile. An image never changes; you can not edit an existing file but you can create a new **layer** to it.
+Image is a file. It is built according to an instruction file called Dockerfile. An image never changes; you can not edit an existing file, but you can create a new **layer** to it.
 
-### Container? ###
+### What's a Docker Container? ###
 
-Containers contain only everything that is required to execute an application. You can start, stop and interact with them. They are **isolated** environments in the host machine but can interact via defined methods (TCP/UDP) with each other and the host machine.
+Containers only contain that which is required to execute an application; and you can start, stop and interact with them. They are **isolated** environments in the host machine with the ability to interact with each other and the host machine itself via defined methods (TCP/UDP).
 
 ### Image vs container ###
 
@@ -47,10 +47,10 @@ Cooking metaphor:
 * Image is the ingredients.
 * Container is the delicious treat.
 
-To get an image you have to build it with the Dockerfile.
-And then you run the image creating a container.
+1. To get an image, you have to build it with the Dockerfile.
+2. You then run the image creating a container.
 
-So maybe even more fitting metaphor would be that the image is a frozen pre-cooked meal.
+So, perhaps an even more fitting metaphor would be that the image is a frozen, pre-cooked meal.
 
 ## Hello World docker 
 
@@ -80,7 +80,7 @@ Congratulations, you've now ran your first dockerized application. Let's get use
 
 The Docker CLI is usually referenced as the "docker engine", see [docs for more information](https://docs.docker.com/engine/reference/commandline/cli/)
 
-Even though you will find over 50 commands in the documentation, for general usage we are only going to need handful of commands. You'll find a list of most commonly used basic commands at the end of this section.
+Even though you will find over 50 commands in the documentation, only a handful of them is needed for general use. You'll find a list of the most commonly used basic commands at the end of this section.
 
 To list images you currently have downloaded, run: `docker images` 
 
@@ -94,7 +94,7 @@ Let's remove the image since we don't need it anymore. The command `docker rmi h
 
       Error response from daemon: conflict: unable to remove repository reference "hello-world" (must force) - container <container ID> is using its referenced image <image ID>
 
-This means that a container currently exists which was created from the image *hello-world* and that removing *hello-world* could have consequences. So before removing images, you should have the referencing container removed first. Forcing is usually a bad idea, especially as we are still learning.
+This means that a container currently exists which was created from the image *hello-world*, and that removing *hello-world* could have consequences. So before removing images, you should have the referencing container removed first. Forcing is usually a bad idea, especially as we are still learning.
 
 To list containers that are running, run: `docker ps` 
 
@@ -108,9 +108,9 @@ When we have a lot of different containers, we can use grep (or another similar 
 
 Let's remove the container with the `rm` command. It accepts a container's name or ID as its arguments. Notice that the command also works with the first few characters of an ID. For example, if a container's ID is 3d4bab29dd67, you can use `docker rm 3d` to delete it. Using the shorthand for the ID will not delete multiple containers, so if you have two IDs starting with 3d, a warning will be printed and neither will be deleted. You can also use multiple arguments: `docker rm id1 id2 id3`
 
-If you have hundreds of stopped containers and you wish to delete them all you should use `docker container prune` 
+If you have hundreds of stopped containers and you wish to delete them all, you should use `docker container prune` 
  
-> TIP: prune was introduced in 1.13 and in previous versions you can use `docker rm $(docker ps -q -f status=exited)` where -q prints just container ids and -f filters the list of containers to only those where status is exited 
+> TIP: prune was introduced in 1.13, and in previous versions you can use `docker rm $(docker ps -q -f status=exited)` where -q prints just container IDs and -f filters the list of containers to only those where status is exited 
 
 After removing all of the *hello-world* containers, run `docker rmi hello-world` to delete the image. You can use `docker images` to confirm that the image is not listed. 
 
@@ -133,11 +133,11 @@ Now if we try to remove it, it will fail:
       Error response from daemon: You cannot remove a running container f72c583c982ca686b0826fdc447f04710e78ff6c25dc1ddc7c427cc35eadf5f0. Stop the container before attempting removal or force remove 
 
  
-We should first stop the container using `docker stop <container id or name>` and then use `rm`.
+We should first stop the container using `docker stop <container id or name>`, and then use `rm`.
 
-Forcing is also a possibility and we can this time safely use `docker rm --force <container id or name>`.
+Forcing is also a possibility and we can use `docker rm --force <container id or name>` safely this time.
 
-It's common that, over time, the docker daemon becomes clogged with old images and containers.
+It's common for the docker daemon to become clogged over time with old images and containers.
  
 
 ### MOST USED COMMANDS 
@@ -159,11 +159,11 @@ It's common that, over time, the docker daemon becomes clogged with old images a
 
 When running a command such as `docker run hello-world`, Docker will automatically search [Docker Hub](https://hub.docker.com/) for the image if it is not found locally.
 
-This means that we can pull and run any public image from Docker's servers. For example‚ if we wanted to start an instance of the PostgreSQL database, we could just run `docker run postgres` which would pull and run https://hub.docker.com/_/postgres/.
+This means that we can pull and run any public image from Docker's servers. For example‚ if we wanted to start an instance of the PostgreSQL database, we could just run `docker run postgres`, which would pull and run https://hub.docker.com/_/postgres/.
 
 We can search for images in the Docker Hub with `docker search`. Try running `docker search hello-world`.
 
-The search finds plenty of results, and prints each image's name, short description, amount of stars, and "official" and "automated" status.
+The search finds plenty of results, and prints each image's name, short description, amount of stars, and "official" and "automated" statuses.
 
     NAME                         DESCRIPTION    STARS   OFFICIAL   AUTOMATED
     hello-world                  Hello World!…  699     [OK]
@@ -175,18 +175,18 @@ Let's examine the list.
 
 The first result, `hello-world`, is an official image. [Official images](https://docs.docker.com/docker-hub/official_images/) are curated and reviewed by Docker, Inc. and are usually actively maintained by the authors. They are built from repositories in the [docker-library](https://github.com/docker-library).
 
-When browsing the CLI's search results, you can recognize an official image from the "[OK]" in the "OFFICIAL" column and from the fact that the image's name has no prefix (aka organization/user). When browsing Docker Hub, the page will show "Docker Official Images" as the repository, instead of a user or organization. For example, see the [Docker Hub page](https://hub.docker.com/_/hello-world/) of the `hello-world` image.
+When browsing the CLI's search results, you can recognize an official image from the "[OK]" in the "OFFICIAL" column and also from the fact that the image's name has no prefix (aka organization/user). When browsing Docker Hub, the page will show "Docker Official Images" as the repository, instead of a user or organization. For example, see the [Docker Hub page](https://hub.docker.com/_/hello-world/) of the `hello-world` image.
 
-The third result, `tutum/hello-world`, is marked as "automated". This means that the image is [automatically built](https://docs.docker.com/docker-hub/builds/) from the source repository. Its [Docker Hub page](https://hub.docker.com/r/tutum/hello-world/) shows its previous "Builds" and a link to the image's "Source Repository" (in this case, to Github) from which Docker Hub builds the image.
+The third result, `tutum/hello-world`, is marked as "automated". This means that the image is [automatically built](https://docs.docker.com/docker-hub/builds/) from the source repository. Its [Docker Hub page](https://hub.docker.com/r/tutum/hello-world/) shows its previous "Builds" and a link to the image's "Source Repository" (in this case, to GitHub) from which Docker Hub builds the image.
 
 The second result, `kitematic/hello-world-nginx`, is neither an official nor automated image.
 We can't really know what the image is built from, since its [Docker Hub page](https://hub.docker.com/r/kitematic/hello-world-nginx/) has no links to any repos. The only thing its Docker Hub page reveals is that the image is 4 years old. Even if the image's "Overview" section had links to a repository, we would have no guarantees that the published image was actually built from that source.
 
-There are also other Docker registries competing with Docker Hub, such as [quay](https://quay.io/). However, `docker search` will only search Docker Hub, so we'll need to use the registry's web pages to search for images. Take a look at the page of [the `nordstrom/hello-world` image on quay](https://quay.io/repository/nordstrom/hello-world). The page shows the command to use to pull the image, which reveals that we can also pull images from other hosts than Docker Hub:
+There are also other Docker registries competing with Docker Hub, such as [quay](https://quay.io/). However, `docker search` will only search Docker Hub, so we'll need to use the registry's web pages to search for images. Take a look at the page of [the `nordstrom/hello-world` image on quay](https://quay.io/repository/nordstrom/hello-world). The page shows the command to use to pull the image, which reveals that we can also pull images from hosts other than Docker Hub:
 
 `docker pull quay.io/nordstrom/hello-world`
 
-So by default, if the host (here: `quay.io`) is omitted, it will pull from Docker Hub.
+So, if the host's name (here: `quay.io`) is omitted, it will pull from Docker Hub by default.
 
 **[Do exercise 1.3](/exercises/#13)**
 
@@ -201,7 +201,7 @@ Let's look at the first lines:
       Using default tag: latest
       latest: Pulling from library/ubuntu
 
-Since we didn't specify a tag, Docker defaulted to `latest` which is usually the latest image built and pushed to the registry. **However**, in this case the repository's README says that the `ubuntu:latest` tag points to the "latest LTS" instead, since that's the version recommended for general use.
+Since we didn't specify a tag, Docker defaulted to `latest`, which is usually the latest image built and pushed to the registry. **However**, in this case the repository's README says that the `ubuntu:latest` tag points to the "latest LTS" instead, since that's the version recommended for general use.
 
 Images can be tagged to save different versions of the same image. You define an image's tag by adding `:<tag>` after the image's name.
 
@@ -230,17 +230,17 @@ We'll look more into the Ubuntu image in part 3.
 
 ### Running and stopping containers 
 
-Let's run a container in the background
+Let's run a container in the background:
 
 `docker run -d --name looper ubuntu:16.04 sh -c 'while true; do date; sleep 1; done'`
 
-- First part `docker run -d` should be familiar by now.
+- The first part, `docker run -d`, should be familiar by now.
 
-- Because we started the ran the container with `--name looper` we can now reference it easily.
+- Because we ran the container with `--name looper`, we can now reference it easily.
 
-- The image is `ubuntu:16.04` and the last part is the given to the container.
+- The image is `ubuntu:16.04` and what follows it is the command given to the container.
 
-And check that it's running with `docker ps`
+And to check that it's running, run `docker ps`
 
 Lets follow '-f' the output of logs with `docker logs -f looper`
 
@@ -249,18 +249,18 @@ Lets follow '-f' the output of logs with `docker logs -f looper`
       Fri Oct 19 11:51:07 UTC 2018
       ... 
 
-Lets test pausing the looper without exiting or stopping. In another terminal run `docker pause looper`. Notice how the logs output has paused in the first terminal. To unpause do `docker unpause looper`.
+Let's test pausing the looper without exiting or stopping it. In another terminal run `docker pause looper`. Notice how the logs output has paused in the first terminal. To unpause run `docker unpause looper`.
 
-Keep the logs open and attach to the container on the second terminal using 'attach': 
+Keep the logs open and attach to the running container from the second terminal using 'attach': 
 
     $ docker attach looper 
       Mon Jan 15 19:26:54 UTC 2018 
       Mon Jan 15 19:26:55 UTC 2018 
       ... 
 
-Now you have logs (STDOUT) running in two terminals. Now in the attach window press control+c. The container is stopped because the process is no longer running.
+Now you have process logs (STDOUT) running in two terminals. Now press control+c in the attach window. The container is stopped because the process is no longer running.
 
-If we want to attach to a container and make sure we don't close it we can disable signal proxying. Lets start the stopped container with `docker start looper` and attach to it with `--sig-proxy=false`. 
+If we want to attach to a container while making sure we don't close it from the other terminal we can disable signal proxying. Let's start the stopped container with `docker start looper` and attach to it with `--sig-proxy=false`. 
 
 Then try control+c.  
 
@@ -271,7 +271,7 @@ Then try control+c.
       Mon Jan 15 19:27:55 UTC 2018 
       ^C 
 
-The container will stays running, just disconnecting you from the STDOUT. 
+The container will continue running. Control+c now only disconnects you from the STDOUT. 
 
 To enter a container, we can start a new process in it.
 
@@ -286,22 +286,22 @@ To enter a container, we can start a new process in it.
       root       386  0.0  0.0   4368   672 ?        S    10:33   0:00 sleep 1 
       root       387  0.0  0.0  36836  2900 pts/0    R+   10:34   0:00 ps aux 
 
-In our command `-it` is short for `-i`  and `-t` where `-i` is "interactive, connect STDIN" and `-t` "allocate a pseudo-TTY". From `ps aux` listing we can see that our `bash` process got pid 300. Or to put it more simply, `-it` allows you to interact with the container by using the command line. 
+In our command `-it` is short for `-i`  and `-t` where `-i` is "interactive, connect STDIN" and `-t` "allocate a pseudo-TTY". Or to put it more simply, `-it` allows you to interact with the container by using the command line. From the `ps aux` listing we can see that our `bash` process got PID (process ID) of 300.  
 
-Now that we're inside the container it behaves like you'd expect from ubuntu and we can terminate the container by killing the process with `kill 1` or exit the container with `exit` and either kill or stop the container. 
+Now that we're inside the container it behaves as you'd expect from ubuntu, and we can terminate the container by killing the process with `kill 1`, or exit the container with `exit` and then either kill or stop the container. 
 
-Our looper won't stop for SIGTERM that the stop sends but stop sends SIGKILL command after grace period. In this case it's simply faster to use kill.
+Our looper won't stop for a SIGTERM signal sent by a stop command. To terminate the process, stop follows the SIGTERM with a SIGKILL after a grace period. In this case it's simply faster to use kill.
 
     $ docker kill looper 
     $ docker rm looper 
 
-The previous two commands would be basically the same as `docker rm --force looper` 
+Running the previous two commands is basically equivalent to running `docker rm --force looper` 
 
-Let's start another process with `-it` and also with `--rm` to remove it automatically after it has exited. This means that there is no garbage containers left behind, but also that `docker start` can not be used to start the container after it has exited. 
+Let's start another process with `-it` and also with `--rm` in order to remove it automatically after it has exited. This means that there is no garbage containers left behind, but also that `docker start` can not be used to start the container after it has exited. 
 
 `docker run -d --rm -it --name looper-it ubuntu:16.04 sh -c 'while true; do date; sleep 1; done'`
 
-Now let's attach to the container and hit control+p, control+q that detaches us from the STDOUT.
+Now let's attach to the container and hit control+p, control+q to detach us from the STDOUT.
 
     $ docker attach looper-it 
 
@@ -309,7 +309,7 @@ Now let's attach to the container and hit control+p, control+q that detaches us 
       Mon Jan 15 19:50:43 UTC 2018 
       ^P^Qread escape sequence 
 
-Note that hitting `^C` would still kill (and remove due to `--rm`) the process because the `docker attach` was done without `--sig-proxy=false` 
+Note that hitting `^C` would still kill (and remove due to `--rm`) the process, because the `docker attach` command did not include `--sig-proxy=false` 
 
 **[Do exercises 1.4 and 1.5](/exercises/#14)**
 
@@ -329,19 +329,19 @@ CMD ["/bin/bash"]
 
  - `WORKDIR` will create **and** set the current working directory to `/mydir` after this directive 
 
- - `RUN` will execute a command with `/bin/sh -c` prefix - Because of `WORKDIR` this is essentially same as `RUN touch /mydir/hello.txt` 
+ - `RUN` will execute a command with `/bin/sh -c` prefix - Because of `WORKDIR` this is essentially the same as `RUN touch /mydir/hello.txt` 
 
  - `COPY` adds a local file to the second argument. It's preferred to use `COPY` instead of `ADD` when you are just adding files (ADD has all kinds of magic behaviour attached to it) 
 
  - `CMD` is the command that will be executed when using `docker run`
 
-Then we'll build it by running build with context argument `.` which means that we have to be in the same directory (we could run this build from another directory and then give the path here) 
+Then we'll build it by running build with context argument `.`, which means that we have to be in the same directory (we could run this build from another directory and then give the path here) 
 
     $ docker build . 
 
-This fails in the `COPY` because the `local.txt` doesn't exist. Fix that and build again to see the next error. 
+This fails in the `COPY`, because the `local.txt` doesn't exist. Fix that and build again to see the next error. 
 
-Before fixing the next error now notice how all steps that modify the image will say ` ---> Using cache` - this is because the Docker daemon caches all the operations for speed. Changing any build directive will invalidate all the caches **after** that line. 
+Before fixing the next error, notice how all steps that modify the image will say ` ---> Using cache` - this is because the Docker daemon caches all the operations for speed. Changing any build directive will invalidate all the caches **after** that line. 
 
 Now we will find out that `wget` doesn't exist in the Ubuntu base image.  We'll need to add it with `apt-get` as this is Ubuntu. But, if we just add: 
 
@@ -353,13 +353,13 @@ It will fail because the apt sources are not part of the image to bring down the
     RUN apt-get install -y wget 
 
 
-the image should build nicely and at the end it will say something like `Successfully built 66b527252f32` where the `66b527252f32` is a random name for our **image**. 
+the image should build nicely and at the end it will say something like `Successfully built 66b527252f32`, where the `66b527252f32` is a random name for our **image**. 
 
-Before running our image we have a looming problem ahead of us: because `apt-get update` is run in a separate step that is cached. If we add another package in the `apt-get install -y` line some other day, the sources might have changed and thus the installing will fail. When something depends on another command, it's best practise to run them together, like this: 
+Before running our image we have a looming problem ahead of us: because `apt-get update` is run in a separate step that is cached. If we add another package in the `apt-get install -y` line some other day, the sources might have changed and thus the installation will fail. When something depends on another command, it's best practise to run them together, like this: 
 
     RUN apt-get update && apt-get install -y wget 
 
-We don't have to give a command (to be run in the container) after the image since the ubuntu base image sets it to `bash` at the last line.
+We don't have to give a command (to be run in the container) after the image since the ubuntu base image sets it to `bash` on the last line.
 
 ```
 FROM ubuntu:16.04 
