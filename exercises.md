@@ -208,7 +208,7 @@ You've completed the exercise when the application works in your browser.
 
 Create Dockerfile for an application in any of your own repositories and publish it to Docker Hub. This can be any project except clones / forks of backend-example or frontend-example.
 
-For this exercise to be complete you have to provide the link to the project in docker hub, make sure you have instructions in a README that's available through your submission.
+For this exercise to be complete you have to provide the link to the project in docker hub, make sure you at least have a basic description and instructions for how to run the application in a [README](https://help.github.com/en/articles/about-readmes) that's available through your submission.
 
 ### 1.16 ###
 
