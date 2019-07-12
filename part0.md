@@ -93,7 +93,7 @@ Confirm that docker-compose installed correctly by opening a terminal and runnin
 
 ### First exercise ###
 
-Do the first exercise over **[here](/exercises/#first-exercise)**
+Do the first exercise over **[here](/exercises/#part-0)**
 
 ### Mistakes: ###
 
