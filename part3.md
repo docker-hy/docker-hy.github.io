@@ -140,12 +140,11 @@ rm -rf /var/lib/apt/lists/*
 Now our slimmed down container should work, but: 
 
 ```
-$ docker run -v "$(pwd):/app" youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
+$ docker run -v "$(pwd):/app" youtube-dl https://imgur.com/JY5tHqr
 
-  [youtube] EUHcNeg_e9g: Downloading webpage 
+[Imgur] JY5tHqr: Downloading webpage
 
-  ERROR: Unable to download webpage: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:661
-  > (caused by URLError(SSLError(1, u'[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:661)'),)) 
+ERROR: Unable to download webpage: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:590)> (caused by URLError(SSLError(1, u'[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:590)'),))
 ```
 
 Because `--auto-remove` also removed dependencies, like: 
@@ -223,12 +222,13 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 When we run this image without bind mounting our local directory: 
 
 ```
-$ docker run youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
+$ docker run youtube-dl https://imgur.com/JY5tHqr
 
-  [youtube] UFLCdmfGs7E: Downloading webpage 
-  [youtube] UFLCdmfGs7E: Downloading video info webpage 
-  [youtube] UFLCdmfGs7E: Extracting video information 
-  ERROR: unable to open for writing: [Errno 13] Permission denied: ''
+
+[Imgur] JY5tHqr: Downloading webpage
+[download] Destination: Imgur-JY5tHqr.mp4
+[download] 100% of 190.20KiB in 00:0044MiB/s ETA 00:000
+ERROR: unable to open for writing: [Errno 13] Permission denied: 'Imgur-JY5tHqr.mp4.part'
 ```
 
 We'll see that our `app` user can not write to `/app` - this can be fixed with `chown` or not fix it at all, if the intented usage is to always have a `/app` mounted from the host.  
@@ -271,7 +271,7 @@ $ docker build -t youtube-dl:alpine-3.7 -f Dockerfile.alpine .
 It seems to run fine:  
 
 ```
-$ docker run -v "$(pwd):/app" youtube-dl:alpine-3.7 https://www.youtube.com/watch?v=420UIn01VVc
+$ docker run -v "$(pwd):/app" youtube-dl:alpine-3.7 https://imgur.com/JY5tHqr
 ```
 
 From the history we can see that the our single `RUN` layer size is 41.1MB 

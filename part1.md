@@ -463,7 +463,7 @@ It works (we just need to give an URL), but we notice that it outputs a warning 
 And it works! Let's persist it for our session and try downloading a video: 
 
     $ export LC_ALL=C.UTF-8 
-    $ youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
+    $ youtube-dl https://imgur.com/JY5tHqr
 
 So now when we know what do, let's add these to the bottom of our `Dockerfile` - by adding the instructions to the bottom we preserve our cached layers - this is handy practise to speed up creating the initial version of a Dockerfile when it has time consuming operations like downloads. 
 
@@ -495,9 +495,9 @@ And run it:
 
 So far so good, but now the natural way to use this image would be to give the URL as an argument: 
 
-    $ docker run youtube-dl http://www.youtube.com 
+    $ docker run youtube-dl https://imgur.com/JY5tHqr 
 
-      /usr/local/bin/docker: Error response from daemon: OCI runtime create failed: container_linux.go:296: starting container process caused "exec: \"http://www.youtube.com\": stat http://www.youtube.com: no such file or directory": unknown. 
+      /usr/local/bin/docker: Error response from daemon: OCI runtime create failed: container_linux.go:296: starting container process caused "exec: \"https://imgur.com/JY5tHqr\": stat https://imgur.com/JY5tHqr: no such file or directory": unknown. 
 
       ERRO[0001] error waiting for container: context canceled 
 
@@ -508,14 +508,11 @@ Now our URL became the command (`CMD`). Luckily we have another way to do this: 
 And now it works like it should: 
 
     $ docker build -t youtube-dl . 
+    $ docker run youtube-dl https://imgur.com/JY5tHqr
 
-    $ docker run youtube-dl https://www.youtube.com/watch?v=420UIn01VVc 
-
-      [youtube] UFLCdmfGs7E: Downloading webpage 
-      [youtube] UFLCdmfGs7E: Downloading video info webpage 
-      [youtube] UFLCdmfGs7E: Extracting video information 
-      [download] Destination: Short introduction to Docker (Scribe)-UFLCdmfGs7E.mp4 
-      [download] 100% of 3.02MiB in 00:0072MiB/s ETA 00:003 
+    [Imgur] JY5tHqr: Downloading webpage
+    [download] Destination: Imgur-JY5tHqr.mp4
+    [download] 100% of 190.20KiB in 00:0044MiB/s ETA 00:000
 
 `ENTRYPOINT` vs `CMD` can be confusing - in a properly set up image such as our youtube-dl the command represents an argument list for the entrypoint. By default entrypoint is set as `/bin/sh` and this is passed if no entrypoint is set. This is why giving path to a script file as CMD works: you're giving the file as a parameter to `/bin/sh`.
 
@@ -570,7 +567,7 @@ And now we have our file locally. This doesn't really fix our issue, so let's co
 
 By **bind mounting** a host (our machine) folder to the container we can get the file directly to our machine. Let's start another run with `-v` option, that requires an absolute path. We mount our current folder as `/mydir` in our container, overwriting everything that we have put in that folder in our Dockerfile. 
 
-    $ docker run -v $(pwd):/mydir youtube-dl https://www.youtube.com/watch?v=420UIn01VVc
+    $ docker run -v $(pwd):/mydir youtube-dl https://imgur.com/JY5tHqr
 
 > Note: the Docker for Mac/Win has some magic so that the directories from our host become available for the `moby` virtual machine allowing our command to work as it would on a Linux machine. 
 
