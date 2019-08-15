@@ -311,7 +311,7 @@ Now let's attach to the container and hit control+p, control+q to detach us from
 
 Note that hitting `^C` would still kill (and remove due to `--rm`) the process, because the `docker attach` command did not include `--sig-proxy=false` 
 
-**[Do exercises 1.4 and 1.5](/exercises/#14)**
+**[Do exercise 1.4](/exercises/#14)**
 
 ## Creating your own dockerized project 
 
@@ -410,7 +410,7 @@ Let's try creating a new container from the new image, this time by setting the 
 
 And as expected, our `manually.txt` file is now in the image.  
 
-**[Do exercise 1.6 and 1.7](/exercises/#16)**
+**[Do exercise 1.5, 1.6 and 1.7](/exercises/#15)**
 
 ### Bigger and more complex image
 
