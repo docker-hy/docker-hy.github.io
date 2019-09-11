@@ -8,7 +8,9 @@ order: 2
 
 ## How do I sign up for the course? ##
 
-You don't have to sign up until you want to do the course exam "Final exercise". The exam is done to the Moodle-system of the Open University. You can find more information here. Please note that only persons with Finnish social security number can get take part to exam and get official ECTS credits.
+You don't have to sign up until you want to do the course exam "Final exercise". The exam is done to the Moodle-system of the Open University. You can find more information on the [courses page](https://courses.helsinki.fi/en/aytkt21025en/129059389). Please note that only persons with Finnish social security number can get take part to exam and get official ECTS credits.
+
+For the certificate you do not need to sign up.
 
 ## How many credits is the course? ##
 
