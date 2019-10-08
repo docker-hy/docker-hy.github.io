@@ -23,6 +23,10 @@ This page will contain interesting links on subjects sorted by the parts in whic
 
 - [Reproducible Research](https://dl.acm.org/citation.cfm?id=2723882)
 
+### Tools ###
+
+- [From:latest, an opinionated Dockerfile linter](https://www.fromlatest.io/#/)
+
 ### Answer to exercise 3.6 ###
 
-- Your answer if you're brave
+- Placeholder for your answer
