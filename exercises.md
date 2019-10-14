@@ -218,7 +218,7 @@ Go to <https://www.heroku.com/> and create a new app there and install heroku CL
 Tag the pulled image as `registry.heroku.com/<app>/<process-type>`, process-type can be `web` for this exercise.
 The app should be your project name in heroku. 
 
-Then push the image to heroku with `docker push registry.heroku.com/<app>/web` and release it using the heroku CLI: `heroku container:release web`
+Then push the image to heroku with `docker push registry.heroku.com/<app>/web` and release it using the heroku CLI: `heroku container:release web` (you might need to login first: `heroku container:login`)
 
 For this exercise return the url in which the released application is.
 
