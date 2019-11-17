@@ -650,7 +650,7 @@ Pushing should now work without problems:
 
 ## Epilogue, or rather, a recap ##
 
-We started by learning what Docker container and image mean. Basically we stated from an empty ubuntu with nothing installed into it. It's also possible to start from something else, but for now ubuntu had been enough.
+We started by learning what Docker container and image mean. Basically we started from an empty ubuntu with nothing installed into it. It's also possible to start from something else, but for now ubuntu had been enough.
 
 This meant that we had to install almost everything manually, either from the command line or by using a setup file "Dockerfile" to install whatever we needed for the task at hand.
 
