@@ -383,7 +383,7 @@ $ docker volume ls
 DRIVER              VOLUME NAME
 local               redmine_database
 
-$ ongoing docker inspect db_redmine | grep -A 5 Mounts
+$ docker inspect db_redmine | grep -A 5 Mounts
 "Mounts": [
     {
         "Type": "volume",
