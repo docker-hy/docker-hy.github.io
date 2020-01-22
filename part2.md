@@ -75,7 +75,7 @@ We can also give the container a name it will use when running with container_na
 
 **[Do exercise 2.1](/exercises/#21)**
 
-### web services 
+### Web services 
 
 Compose is really meant for running web services, so let's move from simple binary wrappers to running a HTTP service. 
 
@@ -299,7 +299,7 @@ networks:
 
 ### Larger application with volumes ###
 
-Next we're going to set up [Redmine](https://www.redmine.org/), a PostgreSQL database and [Adminer](https://www.adminer.org/). All of them have official docker images available as we can see from [Redmine](https://hub.docker.com/_/redmine), [Postgres](https://hub.docker.com/_/postgres) and [Adminer](https://hub.docker.com/_/adminer) respectively. The officiality of the containers is not that important, just that we can expect that it will have some support. We could also, for example, setup wordpress or a mediawiki inside containers in the same manner if you're interested in running existing applications inside docker. You could even set up your own personal [Sentry](https://hub.docker.com/_/sentry/).
+Next we're going to set up [Redmine](https://www.redmine.org/), a PostgreSQL database and [Adminer](https://www.adminer.org/). All of them have official docker images available as we can see from [Redmine](https://hub.docker.com/_/redmine), [Postgres](https://hub.docker.com/_/postgres) and [Adminer](https://hub.docker.com/_/adminer) respectively. The officiality of the containers is not that important, just that we can expect that it will have some support. We could also, for example, setup Wordpress or a MediaWiki inside containers in the same manner if you're interested in running existing applications inside docker. You could even set up your own personal [Sentry](https://hub.docker.com/_/sentry/).
 
 In <https://hub.docker.com/_/redmine> there is a list of different variants in `Supported tags and respective Dockerfile links` - most likely for this testing we can use any of the images. From "Environment Variables" we can see that all variants can use `REDMINE_DB_POSTGRES` or `REDMINE_DB_MYSQL` environment variables to set up the database, or it will fallback to SQLite. So before moving forward, let's setup postgres.
 
@@ -383,7 +383,7 @@ $ docker volume ls
 DRIVER              VOLUME NAME
 local               redmine_database
 
-$ ongoing docker inspect db_redmine | grep -A 5 Mounts
+$ docker inspect db_redmine | grep -A 5 Mounts
 "Mounts": [
     {
         "Type": "volume",
@@ -418,7 +418,7 @@ redmine_1  | [2019-03-03 11:01:10] INFO  ruby 2.6.1 (2019-01-30) [x86_64-linux]
 redmine_1  | [2019-03-03 11:01:10] INFO  WEBrick::HTTPServer#start: pid=1 port=3000
 ```
 
-We can see that image also creates files to `/usr/src/redmine/files` that also need to be persisted. The Dockerfile has this [line](https://github.com/docker-library/redmine/blob/cea16044e97567c28802fc8cc06f6cd036c49a5c/4.0/Dockerfile#L15) where it declares that a volume should be created. Again docker will create the volume, but it will be handled as an anonymous volume that is not managed by compose, so it's better to be explicit about the volume. With that in mind our final file should look like this: 
+We can see that image also creates files to `/usr/src/redmine/files` that also need to be persisted. The Dockerfile has this [line](https://github.com/docker-library/redmine/blob/cea16044e97567c28802fc8cc06f6cd036c49a5c/4.0/Dockerfile#L155) where it declares that a volume should be created. Again docker will create the volume, but it will be handled as an anonymous volume that is not managed by compose, so it's better to be explicit about the volume. With that in mind our final file should look like this: 
 
 ``` 
 version: '3.5'
