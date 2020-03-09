@@ -24,7 +24,7 @@ The course material is written for Ubuntu, so some instructions may lack platfor
 
 The course is composed of 4 parts, first of which is part 0 and contains the pre-requisites for all the upcoming exercises. The parts should take 5-25 hours each to complete.
 
-Remember to enrol for the course through courses page: <https://courses.helsinki.fi/en/aytkt21025en/129059389>. After filling the form, **it will take 1 day for your registration to activate**, after which you'll get access to the last exercise through moodle. This is required to get the credits.
+Here's additional instructions for the end of the course: [completion](/completion)
 
 ### Grading ##
 
@@ -51,11 +51,11 @@ Knows why docker-compose is not an optimal production solution and what is.
 
 ### Course has multiple pages ###
 
-As we're trying to make the course as accessible as possible, the course has multiple pages: [Moodle](https://moodle.helsinki.fi/course/view.php?id=33653), [Courses page](https://courses.helsinki.fi/fi/aytkt21025en/129059389), [Mooc](https://mooc.fi/) and github page. Everything is found here in this page, and if something is missing or unclear after reading this page only then please contact jami.kousa@helsinki.fi or get in touch through Telegram.
+As we're trying to make the course as accessible as possible, the course has multiple pages: [Courses page](https://courses.helsinki.fi/fi/aytkt21025en/129059389), [Mooc](https://mooc.fi/) and github page. Everything is found here in this page, and if something is missing or unclear after reading this page only then please contact jami.kousa@helsinki.fi or get in touch through Telegram.
 
 ### Starting lecture ###
 
-Slides for a previous starting lecture can be found [here](https://docs.google.com/presentation/d/1op-PxjIoCZ1k-o1JO1h9UhqZFYVMTcYHAQD-XrzwoIo/edit?usp=sharing)
+Slides for an old starting lecture can be found [here](https://docs.google.com/presentation/d/1op-PxjIoCZ1k-o1JO1h9UhqZFYVMTcYHAQD-XrzwoIo/edit?usp=sharing), but it shouldn't contain anything that's not in the course material.
 
 ### Telegram ###
 
