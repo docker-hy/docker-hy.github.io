@@ -30,7 +30,7 @@ No. All exercises for a part must be submitted at the same time. If you marked e
 
 ## When and how can I get my credits? ##
 
-You can get your credits after submitting enough exercises for passing the course, passing the course exam and letting us know through the exercise submission system that you are ready with the course. Please note that only exchange students and persons with the Finnish social security number can get official ECTS credits.
+You can get your credits after submitting enough exercises for passing the course, passing the course exam and letting us know through the exercise submission system that you are ready with the course.
 
 ## Do I get a certificate after completing the course? ##
 
