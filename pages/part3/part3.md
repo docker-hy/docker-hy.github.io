@@ -186,7 +186,8 @@ ca-certificates openssl
 
 and this brings us to 36.4 megabytes in our `RUN` layer (from the original 87.4 megabytes). 
 
-**[Do exercises 3.1 and 3.2](/exercises/#31)**
+{% include_relative exercises/3_1.html %}
+{% include_relative exercises/3_2.html %}
 
 ## Using a non-root user ##
 
@@ -233,7 +234,7 @@ ERROR: unable to open for writing: [Errno 13] Permission denied: 'Imgur-JY5tHqr.
 
 We'll see that our `app` user can not write to `/app` - this can be fixed with `chown` or not fix it at all, if the intented usage is to always have a `/app` mounted from the host.  
 
-**[Do exercise 3.3](/exercises/#33)**
+{% include_relative exercises/3_3.html %}
 
 ## Alpine Linux variant ##
 
@@ -302,7 +303,7 @@ OR, if we don't want to upkeep the ubuntu version anymore we can replace our Ubu
 
 Also remember that unless specified the `:latest` tag will always just refer to the latest image build & pushed - that can basically contain anything. 
 
-**[Do exercise 3.4](/exercises/#34)**
+{% include_relative exercises/3_4.html %}
 
 ## Multi-stage builds ##
 
@@ -343,7 +344,8 @@ ruby                latest              616c3cf5968b        28 hours ago        
 
 As you can see, even though our jekyll image needed ruby during the build process, its considerably smaller since it only has nginx and the static files. `docker run -it -p 8080:80 jekyll` also works as expected.
 
-**[Do exercises 3.5 and 3.6](/exercises/#35)**
+{% include_relative exercises/3_5.html %}
+{% include_relative exercises/3_6.html %}
 
 ## A peek into multi-host environment options ##
 
@@ -369,4 +371,9 @@ Luukkainen: "Is docker stack the bleeding edge?"
 
 [Paksula](/#credits): "Deprecated"
 
-**[Do exercises 3.7 and 3.8](/exercises/#37)**
+{% include_relative exercises/3_7.html %}
+{% include_relative exercises/3_8.html %}
+
+## Ending ##
+
+Go to [completion](/completion)

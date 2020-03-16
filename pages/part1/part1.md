@@ -153,7 +153,8 @@ It's common for the docker daemon to become clogged over time with old images an
 | `docker run <image>` | Runs an image creating a container, you can use either image name or id | 
 | `docker exec <container-id>` | Executes a command inside the container |
 
-**[Do exercises 1.1 and 1.2](/exercises/#11)**
+{% include_relative exercises/1_1.html %}
+{% include_relative exercises/1_2.html %}
 
 ### Where do the images come from?
 
@@ -188,7 +189,7 @@ There are also other Docker registries competing with Docker Hub, such as [quay]
 
 So, if the host's name (here: `quay.io`) is omitted, it will pull from Docker Hub by default.
 
-**[Do exercise 1.3](/exercises/#13)**
+{% include_relative exercises/1_3.html %}
 
 ## A detailed look into an image
 
@@ -311,7 +312,8 @@ Now let's attach to the container and hit control+p, control+q to detach us from
 
 Note that hitting `^C` would still kill (and remove due to `--rm`) the process, because the `docker attach` command did not include `--sig-proxy=false` 
 
-**[Do exercises 1.4 and 1.5](/exercises/#14)**
+{% include_relative exercises/1_4.html %}
+{% include_relative exercises/1_5.html %}
 
 ## Creating your own dockerized project 
 
@@ -410,7 +412,8 @@ Let's try creating a new container from the new image, this time by setting the 
 
 And as expected, our `manually.txt` file is now in the image.  
 
-**[Do exercise 1.6 and 1.7](/exercises/#16)**
+{% include_relative exercises/1_6.html %}
+{% include_relative exercises/1_7.html %}
 
 ### Bigger and more complex image
 
@@ -575,7 +578,7 @@ So a volume is simply a folder (or a file) that is shared between the host machi
 
 In our youtube-dl we wanted to mount the whole directory since the files are fairly randomly named. If we wish to create a volume with only a single file we could also do that by pointing to it. For example `-v $(pwd)/material.md:/mydir/material.md` this way we could edit the material.md locally and have it change in the container (and vice versa). Note also that `-v` creates a directory if the file does not exist.
 
-**[Do exercise 1.8](/exercises/#18)**
+{% include_relative exercises/1_8.html %}
 
 ### Allowing external connections into containers
 
@@ -622,7 +625,21 @@ The `docker port` command can be used to list the port mappings for a container:
 
 You can also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 4567/udp` and `-p 1234:4567/udp` respectively.
 
-**[Do exercises 1.9 - 1.12](/exercises/#19)**
+<div class="exercise" markdown="1">
+<h1>Practice the commands.</h1>
+
+Start 3 containers from image that does not automatically exit, such as nginx, detached.
+
+Stop 2 of the containers leaving 1 up.
+
+Prove that you have completed this part of exercise by delivering the output for docker ps -a.
+
+</div>
+
+{% include_relative exercises/1_9.html %}
+{% include_relative exercises/1_10.html %}
+{% include_relative exercises/1_11.html %}
+{% include_relative exercises/1_12.html %}
 
 ### Publishing projects in Docker Hub
 
@@ -646,7 +663,11 @@ Pushing should now work without problems:
 
 `docker push <username>/<repositoryname>`
 
-**[Do exercises 1.13 - 1.17](/exercises/#113)**
+{% include_relative exercises/1_13.html %}
+{% include_relative exercises/1_14.html %}
+{% include_relative exercises/1_15.html %}
+{% include_relative exercises/1_16.html %}
+{% include_relative exercises/1_17.html %}
 
 ## Epilogue, or rather, a recap ##
 
@@ -659,3 +680,7 @@ The process of dockerizing the applications meant a bit of configuration on our 
 Understanding the architecture and the technologies used is also part of making correct choices with the setup. This lead us to read the REAMEs and documentation of the software involved in the setup, not just Docker. Fortunately in real life it's often us who are developing and creating the Dockerfile.
 
 The starting and stopping of containers is a bit annoying, not to mention running two applications at the same time. If only there was some way, a tool, to make it simpler... to [compose](/part2).
+
+## Don't wish to continue? ##
+
+Ready to end the course? Go to [completion](/completion)

@@ -1,0 +1,32 @@
+<div class="exercise" markdown="1">
+
+  <h1>1.12</h1>
+
+  <b style="color:firebrick;">This exercise is mandatory</b>
+
+  Start both frontend-example and backend-example with correct ports exposed and add ENV to Dockerfile with necessary
+  information from both READMEs
+  ([front](https://github.com/docker-hy/frontend-example-docker),[back](https://github.com/docker-hy/backend-example-docker)).
+
+  Ignore the backend configurations until frontend sends requests to `_backend_url_/ping` when you press the button.
+
+  You know that the configuration is ready when the button for 1.12 of frontend-example responds and turns green.
+
+  *Do not alter the code of either project*
+
+  Submit the edited Dockerfiles and commands used to run.
+
+  <img src="{{ "/images/exercises/back-and-front.png" | absolute_url }}" />
+
+  > The frontend will first talk to your browser. Then the code will be executed from your browser and that will send
+  a message to backend.
+
+  <img src="{{ "/images/exercises/about-connection-front-back.png" | absolute_url }}" />
+
+  > TIP: When configuring web applications keep browser developer console ALWAYS open, F12 or cmd+shift+I when the
+  browser window is open. Information about configuring cross origin requests is in README of the backend project.
+
+  > TIP: Developer console has multiple views, most important ones are Console and Network. Exploring the Network tab
+  can give you a lot of information on where messages are being sent and what is received as response!
+
+</div>

@@ -73,7 +73,7 @@ We can also give the container a name it will use when running with container_na
 
     $ docker-compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr
 
-**[Do exercise 2.1](/exercises/#21)**
+{% include_relative exercises/2_1.html %}
 
 ### Web services 
 
@@ -122,7 +122,8 @@ services:
         - VARIABLE 
 ```
 
-**[Do exercises 2.2 and 2.3](/exercises/#22)**
+{% include_relative exercises/2_2.html %}
+{% include_relative exercises/2_3.html %}
 
 #### Scaling
 
@@ -270,7 +271,7 @@ Now we have a basic single machine hosting setup up and running.
 
 Test updating the `hello.html` without restarting the container, does it work? 
 
-**[Do exercise 2.4](/exercises/#24)**
+{% include_relative exercises/2_4.html %}
 
 # Docker networking 
 
@@ -278,7 +279,7 @@ Connecting two services such as a server and its database in docker can be achie
 
 For example services defined as `backend-server` that users access can connect to port 2345 of container `database` by connecting to database:2345 if they're both defined as service in the same docker-compose.yml. For this use case there is no need to publish the database port to host machine. This way the ports are only published to other containers in the docker network.
 
-**[Do exercise 2.5](/exercises/#25)**
+{% include_relative exercises/2_5.html %}
 
 You can also manually define the network and also its name in docker-compose version 3.5 forward. A major benefit of defining network is that it makes it easy to setup a configuration where other containers connect to an existing network as an external network.
 
@@ -476,7 +477,11 @@ adminer:
 
 Now when we run the application we can access adminer from <http://localhost:8083>. Setting up adminer is straightforward since it will be able to access the database through docker network.
 
-**[Do exercises 2.6 - 2.10](/exercises/#26)**
+{% include_relative exercises/2_6.html %}
+{% include_relative exercises/2_7.html %}
+{% include_relative exercises/2_8.html %}
+{% include_relative exercises/2_9.html %}
+{% include_relative exercises/2_10.html %}
 
 ## Epilogue, or rather, a recap ##
 
@@ -485,3 +490,7 @@ Again we started from the ground up by learning how to translate non-compose set
 Now we've learned how to setup up vastly more complex applications with up to 5 different programs running at the same time and they only expose the used ports to the outside world (or even to our machine).
 
 Are we ready for production yet? Short answer: no. Long answer: depends on the situation. Good thing we have [part 3](/part3/)
+
+## Don't wish to continue? ##
+
+Ready to end the course? Go to [completion](/completion)
