@@ -3,7 +3,7 @@ layout: page
 title: Part 3
 inheader: yes
 permalink: /part3/
-order: 0
+order: 3
 ---
 
 # Deeper understanding of Docker

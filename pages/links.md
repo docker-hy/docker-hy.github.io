@@ -3,7 +3,7 @@ layout: page
 title: Links
 inheader: yes
 permalink: /links/
-order: 2
+order: 8
 ---
 
 This page will contain interesting links on subjects sorted by the parts in which the subject is contained. They are not required to complete the course but may help you to get a better understanding of Docker. Create a [pull request](https://github.com/docker-hy/docker-hy.github.io/pulls) if you have anything you'd like to share.

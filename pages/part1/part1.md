@@ -3,7 +3,7 @@ layout: page
 title: Part 1
 inheader: yes
 permalink: /part1/
-order: 0
+order: 1
 ---
 
 ## What is DevOps?

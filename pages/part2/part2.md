@@ -3,7 +3,7 @@ layout: page
 title: Part 2
 inheader: yes
 permalink: /part2/
-order: 0
+order: 2
 ---
 
 # docker-compose 

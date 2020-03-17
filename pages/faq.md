@@ -3,7 +3,7 @@ layout: page
 title: FAQ
 inheader: yes
 permalink: /faq/
-order: 2
+order: 6
 ---
 
 ## How do I sign up for the course? ##

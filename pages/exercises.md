@@ -3,7 +3,7 @@ layout: page
 title: Exercises
 inheader: yes
 permalink: /exercises/
-order: 1
+order: 5
 ---
 
 ## Passing ##
