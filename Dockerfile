@@ -4,6 +4,8 @@ WORKDIR /usr/src/app
 
 COPY . .
 
+RUN mkdir _site
+
 RUN jekyll build
 
 FROM nginx:alpine
