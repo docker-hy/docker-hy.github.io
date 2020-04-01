@@ -625,17 +625,6 @@ The `docker port` command can be used to list the port mappings for a container:
 
 You can also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 4567/udp` and `-p 1234:4567/udp` respectively.
 
-<div class="exercise" markdown="1">
-<h1>Practice the commands.</h1>
-
-Start 3 containers from image that does not automatically exit, such as nginx, detached.
-
-Stop 2 of the containers leaving 1 up.
-
-Prove that you have completed this part of exercise by delivering the output for docker ps -a.
-
-</div>
-
 {% include_relative exercises/1_9.html %}
 {% include_relative exercises/1_10.html %}
 {% include_relative exercises/1_11.html %}
