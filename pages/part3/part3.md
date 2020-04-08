@@ -6,6 +6,14 @@ permalink: /part3/
 order: 3
 ---
 
+This part introduces production-ready practices such as container optimization and deployment pipelines. We'll also familiarize ourselves with other container orchestration solutions. By the end of this part you are able to:
+
+* Examine the images that you pull
+
+* Trim the container size and image build time via *multiple* methods such as multi-stage builds.
+
+* Automatically deploy containers
+
 # Deeper understanding of Docker
 
 Until now we've focused on using Docker as a tool to solve various types of problems, but meanwhile we have decided to push some of the issues until later and completely ignored others.

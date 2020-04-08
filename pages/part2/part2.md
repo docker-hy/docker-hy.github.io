@@ -6,6 +6,16 @@ permalink: /part2/
 order: 2
 ---
 
+This part introduces container orchestration with docker-compose and relevant concepts such as *docker network*. By the end of this part you are able to:
+
+* Manually scale applications
+
+* Run a group of containerized applications that interact with each other via HTTP
+
+* Run a group of containerized applications that interact with each other via volumes
+
+* Use 3rd party services, such as databases, inside containers as part of your project
+
 # docker-compose 
 
 Even with a simple image, we've already been dealing with plenty of command line options in both building, pushing and running the image.
