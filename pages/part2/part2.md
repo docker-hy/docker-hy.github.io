@@ -28,7 +28,7 @@ docker-compose is designed to simplify running multi-container applications to u
 
 In the folder where we have our Dockerfile with the following content:
 
-```
+```dockerfile
 FROM ubuntu:16.04
 
 WORKDIR /mydir
@@ -45,28 +45,29 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 
 we'll create a file called `docker-compose.yml`:
 
-``` 
+```yaml
 version: '3' 
 
 services: 
     youtube-dl-ubuntu:  
       image: <username>/<repositoryname>
       build: . 
-
 ``` 
 
 The version setting is not very strict, it just needs to be above 2 because otherwise the syntax is significantly different. See <https://docs.docker.com/compose/compose-file/> for more info. The key `build:` value can be set to a path (ubuntu), have an object with `context` and `dockerfile` keys or reference a `url of a git repository`.
 
 Now we can build and push with just these commands: 
 
-    $ docker-compose build
-    $ docker-compose push
+```console
+$ docker-compose build
+$ docker-compose push
+```
 
 ### Volumes in docker-compose ###
 
 To run the image as we did previously, we'll need to add the volume bind mounts. Volumes in docker-compose are defined with the with the following syntax `location-in-host:location-in-container`. Compose can work without an absolute path:
 
-``` 
+```yaml
 version: '3.5' 
 
 services: 
@@ -91,19 +92,23 @@ Compose is really meant for running web services, so let's move from simple bina
 
 <https://github.com/jwilder/whoami> is a simple service that prints the current container id (hostname). 
 
-    $ docker run -d -p 8000:8000 jwilder/whoami 
-      736ab83847bb12dddd8b09969433f3a02d64d5b0be48f7a5c59a594e3a6a3541 
+```console
+$ docker run -d -p 8000:8000 jwilder/whoami 
+  736ab83847bb12dddd8b09969433f3a02d64d5b0be48f7a5c59a594e3a6a3541 
+```
 
 Navigate with a browser or curl to localhost:8000, they both will answer with the id. 
 
 Take down the container so that it's not blocking port 8000.
 
-    $ docker stop 736ab83847bb
-    $ docker rm 736ab83847bb  
+```console
+$ docker stop 736ab83847bb
+$ docker rm 736ab83847bb  
+```
 
 Let's create a new folder and a docker-compose file `whoami/docker-compose.yml` from the command line options.
 
-``` 
+```yaml
 version: '3.5'  
 
 services: 
@@ -115,13 +120,14 @@ services:
 
 Test it: 
 
-    $ docker-compose up -d 
-    $ curl localhost:8000 
-
+```console
+$ docker-compose up -d 
+$ curl localhost:8000 
+```
 
 Environment variables can also be given to the containers in docker-compose.
 
-```
+```yaml
 version: '3.5'
 
 services:
@@ -139,13 +145,15 @@ services:
 
 Compose can scale the service to run multiple instances: 
 
-    $ docker-compose up --scale whoami=3 
+```console
+$ docker-compose up --scale whoami=3 
 
-      WARNING: The "whoami" service specifies a port on the host. If multiple containers for this service are created on a single host, the port will clash. 
+  WARNING: The "whoami" service specifies a port on the host. If multiple containers for this service are created on a single host, the port will clash. 
 
-      Starting whoami_whoami_1 ... done 
-      Creating whoami_whoami_2 ... error 
-      Creating whoami_whoami_3 ... error 
+  Starting whoami_whoami_1 ... done 
+  Creating whoami_whoami_2 ... error 
+  Creating whoami_whoami_3 ... error 
+```
 
 The command fails due to a port clash, as each instance will attempt to bind to the same host port (8000).
 
@@ -153,40 +161,48 @@ We can get around this by only specifying the container port. As mentioned in [p
 
 Update the ports definition in `docker-compose.yml`:
 
+```yaml
     ports: 
     - 8000
+```
 
 Then run the command again:
 
-    $ docker-compose up --scale whoami=3
-    Starting whoami_whoami_1 ... done
-    Creating whoami_whoami_2 ... done
-    Creating whoami_whoami_3 ... done
+```console
+$ docker-compose up --scale whoami=3
+  Starting whoami_whoami_1 ... done
+  Creating whoami_whoami_2 ... done
+  Creating whoami_whoami_3 ... done
+```
 
 All three instances are now running and listening on random host ports. We can use `docker-compose port` to find out which ports the instances are bound to.
 
-    $ docker-compose port --index 1 whoami 8000 
-      0.0.0.0:32770 
+```console
+$ docker-compose port --index 1 whoami 8000 
+  0.0.0.0:32770 
 
-    $ docker-compose port --index 2 whoami 8000 
-      0.0.0.0:32769 
+$ docker-compose port --index 2 whoami 8000 
+  0.0.0.0:32769 
 
-    $ docker-compose port --index 3 whoami 8000 
-      0.0.0.0:32768 
+$ docker-compose port --index 3 whoami 8000 
+  0.0.0.0:32768 
+```
 
 We can now curl from these ports: 
 
-    $ curl 0.0.0.0:32769 
-      I'm 536e11304357 
+```console
+$ curl 0.0.0.0:32769 
+  I'm 536e11304357 
 
-    $ curl 0.0.0.0:32768 
-      I'm 1ae20cd990f7 
+$ curl 0.0.0.0:32768 
+  I'm 1ae20cd990f7 
+```
 
 In a server environment you'd often have a load balancer in-front of the service. For local environment (or a single server) one good solution is to use <https://github.com/jwilder/nginx-proxy> that configures nginx from docker daemon as containers are started and stopped.  
 
 Let's add the proxy to our compose file and remove the port bindings from the whoami service. We'll mount our `docker.sock` inside of the container in `:ro` read-only mode. 
 
-``` 
+```yaml
 version: '3.5' 
 
 services: 
@@ -202,21 +218,23 @@ services:
 
 When we start this and test 
 
-    $ docker-compose up -d --scale whoami=3 
-    $ curl localhost:80 
-      <html> 
-      <head><title>503 Service Temporarily Unavailable</title></head> 
-      <body bgcolor="white"> 
-      <center><h1>503 Service Temporarily Unavailable</h1></center> 
-      <hr><center>nginx/1.13.8</center> 
-      </body> 
-      </html> 
+```console
+$ docker-compose up -d --scale whoami=3 
+$ curl localhost:80 
+  <html> 
+  <head><title>503 Service Temporarily Unavailable</title></head> 
+  <body bgcolor="white"> 
+  <center><h1>503 Service Temporarily Unavailable</h1></center> 
+  <hr><center>nginx/1.13.8</center> 
+  </body> 
+  </html> 
+```
 
 It's "working", but the nginx just doesn't know which service we want. The `nginx-proxy` works with two environment variables: `VIRTUAL_HOST` and `VIRTUAL_PORT`. `VIRTUAL_PORT` is not needed if the service has `EXPOSE` in it's docker image. We can see that `jwilder/whoami` sets it: <https://github.com/jwilder/whoami/blob/master/Dockerfile#L9>
 
 The domain `colasloth.com` is configured so that all subdomains point to `127.0.0.1`. More information about how this works can be found at [colasloth.github.io](https://colasloth.github.io), but in brief it's a simple DNS "hack". Several other domains serving the same purpose exist, such as `localtest.me`, `lvh.me`, and `vcap.me`, to name a few. In any case, let's use `colasloth.com` here:
 
-``` 
+```yaml
 version: '3.5' 
 
 services: 
@@ -234,20 +252,24 @@ services:
 
 Now the proxy works: 
 
-    $ docker-compose up -d --scale whoami=3 
-    $ curl whoami.colasloth.com 
-      I'm f6f85f4848a8 
-    $ curl whoami.colasloth.com 
-      I'm 740dc0de1954 
+```console
+$ docker-compose up -d --scale whoami=3 
+$ curl whoami.colasloth.com 
+  I'm f6f85f4848a8 
+$ curl whoami.colasloth.com 
+  I'm 740dc0de1954 
+```
 
 Let's add couple of more containers behind the same proxy. We can use the official `nginx` image to serve a simple static web page. We don't have to even build the container images, we can just mount the content to the image. Let's prepare some content for two services called "hello" and "world". 
 
-    $ echo "hello" > hello.html 
-    $ echo "world" > world.html 
+```console
+$ echo "hello" > hello.html
+$ echo "world" > world.html
+```
 
 Then add these services to the `docker-compose.yml` file where you mount just the content as `index.html` in the default nginx path: 
 
-``` 
+```yaml
     hello: 
       image: nginx 
       volumes: 
@@ -264,18 +286,20 @@ Then add these services to the `docker-compose.yml` file where you mount just th
 
 Now let's test: 
 
-    $ docker-compose up -d --scale whoami=3 
-    $ curl hello.colasloth.com 
-      hello 
+```console
+$ docker-compose up -d --scale whoami=3 
+$ curl hello.colasloth.com 
+  hello 
 
-    $ curl world.colasloth.com 
-      world 
+$ curl world.colasloth.com 
+  world 
 
-    $ curl whoami.colasloth.com 
-      I'm f6f85f4848a8 
+$ curl whoami.colasloth.com 
+  I'm f6f85f4848a8 
 
-    $ curl whoami.colasloth.com 
-      I'm 740dc0de1954 
+$ curl whoami.colasloth.com 
+  I'm 740dc0de1954 
+```
 
 Now we have a basic single machine hosting setup up and running. 
 
@@ -293,15 +317,17 @@ For example services defined as `backend-server` that users access can connect t
 
 You can also manually define the network and also its name in docker-compose version 3.5 forward. A major benefit of defining network is that it makes it easy to setup a configuration where other containers connect to an existing network as an external network.
 
-Defining  docker-compose.yml
-```
+Defining network in docker-compose.yml
+
+```yaml
 networks:
   database-network:
     name: server-database-network
 ```
 
 To connect containers in another docker-compose.yml
-```
+
+```yaml
 networks:
   default:
     external:
@@ -316,7 +342,7 @@ In <https://hub.docker.com/_/redmine> there is a list of different variants in `
 
 In <https://hub.docker.com/_/postgres> there's a sample compose file under "via docker stack deploy or docker-compose" - Let's strip that down to 
 
-``` 
+```yaml
 version: '3.5' 
 
 services:
@@ -334,26 +360,26 @@ Note:
 
 Under "Caveats - Where to Store Data" we can see that the `/var/lib/postgresql/data` can be mounted separately to preserve data in an easy-to-locate directory or let Docker manage the storage. We could use a bind mount like previously, but let's first see what the "let Docker manage the storage" means. Let's run the docker-compose file without setting anything new:
 
-```
+```console
 $ docker-compose up 
 
-Creating network "redmine_default" with the default driver
-Creating db_redmine ... done
-Attaching to db_redmine
-db_redmine | The files belonging to this database system will be owned by user "postgres".
-...
-db_redmine | 2019-03-03 10:27:22.975 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
-db_redmine | 2019-03-03 10:27:22.975 UTC [1] LOG:  listening on IPv6 address "::", port 5432
-db_redmine | 2019-03-03 10:27:22.979 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
-db_redmine | 2019-03-03 10:27:22.995 UTC [50] LOG:  database system was shut down at 2019-03-03 10:27:22 UTC
-db_redmine | 2019-03-03 10:27:23.002 UTC [1] LOG:  database system is ready to accept connections
+  Creating network "redmine_default" with the default driver
+  Creating db_redmine ... done
+  Attaching to db_redmine
+  db_redmine | The files belonging to this database system will be owned by user "postgres".
+  ...
+  db_redmine | 2019-03-03 10:27:22.975 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+  db_redmine | 2019-03-03 10:27:22.975 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+  db_redmine | 2019-03-03 10:27:22.979 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+  db_redmine | 2019-03-03 10:27:22.995 UTC [50] LOG:  database system was shut down at 2019-03-03 10:27:22 UTC
+  db_redmine | 2019-03-03 10:27:23.002 UTC [1] LOG:  database system is ready to accept connections
 ```
 
 The image initializes the data files in the first start. Let's terminate the container with ^C. Compose uses the current directory as a prefix for container and volume names so that different projects don't clash. The prefix can be overriden with `COMPOSE_PROJECT_NAME` environment variable if needed. 
 
 Let's **inspect** if there was a volume created with `docker inspect db_redmine | grep -A 5 Mounts`
 
-```
+```json
 "Mounts": [
     {
         "Type": "volume",
@@ -364,15 +390,15 @@ Let's **inspect** if there was a volume created with `docker inspect db_redmine 
 
 Now if we check out `docker volume ls` we can see that a volume with name "794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df" exists.
 
-```
+```console
 $ docker volume ls
-DRIVER              VOLUME NAME
-local               794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df
+  DRIVER              VOLUME NAME
+  local               794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df
 ```
 
 There may be more volumes on your machine. If you want to get rid of them you can use `docker volume prune`. Let's put the whole "application" down now with `docker-compose down`. Then, this time let's create a separate volume for the data.
 
-```
+```yaml
 version: '3.5'
 
 services:
@@ -389,10 +415,10 @@ volumes:
   database:
 ```
 
-```
+```console
 $ docker volume ls
-DRIVER              VOLUME NAME
-local               redmine_database
+  DRIVER              VOLUME NAME
+  local               redmine_database
 
 $ docker inspect db_redmine | grep -A 5 Mounts
 "Mounts": [
@@ -405,7 +431,7 @@ $ docker inspect db_redmine | grep -A 5 Mounts
 
 Ok, looks a bit more human readable even if it isn't more accessible than bind mounts. Now when the Postgres is running, let's add the [redmine](https://hub.docker.com/_/redmine). The container seems to require just two environment variables. 
 
-``` 
+```yaml
 redmine: 
   image: redmine
   environment: 
@@ -421,17 +447,17 @@ Notice the `depends_on` declaration. This makes sure that the that `db` service 
 
 Now when you run it you will see a bunch of database migrations running first.
 
-```
-redmine_1  | I, [2019-03-03T10:59:20.956936 #25]  INFO -- : Migrating to Setup (1)
-redmine_1  | == 1 Setup: migrating =========================================================
-...
-redmine_1  | [2019-03-03 11:01:10] INFO  ruby 2.6.1 (2019-01-30) [x86_64-linux]
-redmine_1  | [2019-03-03 11:01:10] INFO  WEBrick::HTTPServer#start: pid=1 port=3000
+```console
+  redmine_1  | I, [2019-03-03T10:59:20.956936 #25]  INFO -- : Migrating to Setup (1)
+  redmine_1  | == 1 Setup: migrating =========================================================
+  ...
+  redmine_1  | [2019-03-03 11:01:10] INFO  ruby 2.6.1 (2019-01-30) [x86_64-linux]
+  redmine_1  | [2019-03-03 11:01:10] INFO  WEBrick::HTTPServer#start: pid=1 port=3000
 ```
 
 We can see that image also creates files to `/usr/src/redmine/files` that also need to be persisted. The Dockerfile has this [line](https://github.com/docker-library/redmine/blob/cea16044e97567c28802fc8cc06f6cd036c49a5c/4.0/Dockerfile#L155) where it declares that a volume should be created. Again docker will create the volume, but it will be handled as an anonymous volume that is not managed by compose, so it's better to be explicit about the volume. With that in mind our final file should look like this: 
 
-``` 
+```yaml
 version: '3.5'
 
 services:
@@ -462,11 +488,11 @@ volumes:
 
 Now we can use the application with our browser through <http://localhost:9999>. After some changes inside the application we can inspect the changes that happened in the image and check that no extra meaningful files got written to the container: 
 
-```
+```console
 $ docker diff $(docker-compose ps -q redmine) 
-C /usr/src/redmine/config/environment.rb
-...
-C /usr/src/redmine/tmp/pdf
+  C /usr/src/redmine/config/environment.rb
+  ...
+  C /usr/src/redmine/tmp/pdf
 ```
 
 Probably not.
@@ -475,7 +501,7 @@ Next we'll add adminer to the application. We could also just use psql to intera
 
 This step is straightforward, we actually had the instructions open back before we set up postgres. But let's check the [documentation](https://hub.docker.com/_/adminer) and we'll see that the following will suffice:
 
-```
+```yaml
 adminer:
   image: adminer
   restart: always
