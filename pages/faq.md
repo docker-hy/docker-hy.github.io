@@ -38,6 +38,10 @@ Yes, the certificate is available to all who pass the course before the deadline
 
 ## How do I extend my 2019 progress? ##
 
+I may code the feature to copy paste submissions from 2019 to 2020 but for now..
+
 You can simply submit the completed exercises again.
 
 There are a few changes in part 3, so if you did part of the exercises during 2019 or during the downtime make sure to do the new exercises 3.2 and 3.3 from the 2020 version. The exercise numbering is changed so that old 3.3 is now 3.4, 3.4 is 3.5 and so on. Total number of exercises did not change.
+
+If you have already done parts 1 or 2 during winter 2018 you can skip those parts. But I recommend checking for new exercises that are of interest.
