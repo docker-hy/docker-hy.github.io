@@ -243,6 +243,8 @@ Run this with `docker-compose up` and commit something new into the repository. 
 
 {% include_relative exercises/3_2.html %}
 
+{% include_relative exercises/3_3.html %}
+
 ## Using a non-root user ##
 
 Our process (youtube-dl) could in theory escape the container due a bug in docker/kernel.  To mitigate this we'll add a non-root user to our container and run our process with that user. Another option would be to map the root user to a high, non-existing user id on the host with https://docs.docker.com/engine/security/userns-remap/, but this is fairly a new feature and not enabled by default.  
@@ -287,7 +289,7 @@ $ docker run youtube-dl https://imgur.com/JY5tHqr
 
 We'll see that our `app` user can not write to `/app` - this can be fixed with `chown` or not fix it at all, if the intented usage is to always have a `/app` mounted from the host.  
 
-{% include_relative exercises/3_3.html %}
+{% include_relative exercises/3_4.html %}
 
 ## Alpine Linux variant ##
 
@@ -360,7 +362,7 @@ $ docker push <username>/youtube-dl
 
 Also remember that unless specified the `:latest` tag will always just refer to the latest image build & pushed - that can basically contain anything. 
 
-{% include_relative exercises/3_4.html %}
+{% include_relative exercises/3_5.html %}
 
 ## Multi-stage builds ##
 
@@ -401,8 +403,8 @@ $ docker images
 
 As you can see, even though our jekyll image needed ruby during the build process, its considerably smaller since it only has nginx and the static files. `docker run -it -p 8080:80 jekyll` also works as expected.
 
-{% include_relative exercises/3_5.html %}
 {% include_relative exercises/3_6.html %}
+{% include_relative exercises/3_7.html %}
 
 ## A peek into multi-host environment options ##
 
@@ -421,8 +423,6 @@ The main difference you should take is that the tools are at their best in diffe
 You can get to know Kubernetes with [k3s](https://k3s.io/) a lightweight Kubernetes distribution which you can run inside containers with [k3d](https://github.com/rancher/k3d). This is a great way to get started as you don't have to worry about any credit limits.
 
 Rather than maintaining one yourself the most common way to use Kubernetes is by using a managed service by a cloud provider. Such as Google Kubernetes Engine (GKE) or Amazon Elastic Kubenetes Service (Amazon EKS) which are both offering some credits to get started.
-
-{% include_relative exercises/3_7.html %}
 
 {% include_relative exercises/3_8.html %}
 

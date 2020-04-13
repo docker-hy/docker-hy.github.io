@@ -1,14 +1,14 @@
 <div class="exercise" markdown="1">
 
-  <h1>3.3</h1>
+  <h1>3.3 Building images inside of a container</h1>
 
-  <b style="color:firebrick;">This exercise is mandatory</b>
+  Watchtower uses volume to docker.sock socket to access Docker daemon of the host from the container. By leveraging this ourselves we can create our own simple build service.
 
-  Security issues with the user being a root are serious for the example frontend and backend as the containers for web
-  services are supposed to be accessible through the internet.
+  Create a project that downloads a repository from github, builds a Dockerfile located in the root and then publishes it into Docker Hub.
 
-  Make sure the containers start their processes as a non-root user.
+  You can use any programming language / technology for the project implementation. A simple bash script is viable
 
-  > TIP `man chown` may help you if you have access errors
+  Then create a Dockerfile for it so that it can be run inside a container.
 
+  Make sure that it can build at least some of the example projects.
 </div>
