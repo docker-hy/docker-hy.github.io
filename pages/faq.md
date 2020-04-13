@@ -35,3 +35,9 @@ You can get your credits after submitting enough exercises for passing the cours
 ## Do I get a certificate after completing the course? ##
 
 Yes, the certificate is available to all who pass the course before the deadline. You can download the certificate after completing the course from the exercise submission system.
+
+## How do I extend my 2019 progress? ##
+
+You can simply submit the completed exercises again.
+
+There are a few changes in part 3, so if you did part of the exercises during 2019 or during the downtime make sure to do the new exercises 3.2 and 3.3 from the 2020 version. The exercise numbering is changed so that old 3.3 is now 3.4, 3.4 is 3.5 and so on. Total number of exercises did not change.

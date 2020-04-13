@@ -24,6 +24,8 @@ Next you will continue to work on the course in the Moodle online learning platf
 
 4. Sign into the Moodle space with your University of Helsinki user ID and the enrolment key.
 
+5. Do the "Final Exercise" exam in moodle.
+
 Please note!
 
 · Registration for the course through the Open University is possible until Jan 23, 2020.
