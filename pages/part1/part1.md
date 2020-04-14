@@ -74,14 +74,14 @@ This command outputs the following:
 
 ```console
 $ docker run hello-world
-Unable to find image 'hello-world:latest' locally
-latest: Pulling from library/hello-world
-d1725b59e92d: Pull complete 
-Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788
-Status: Downloaded newer image for hello-world:latest
+  Unable to find image 'hello-world:latest' locally
+  latest: Pulling from library/hello-world
+  d1725b59e92d: Pull complete 
+  Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788
+  Status: Downloaded newer image for hello-world:latest
 
-Hello from Docker!
---application output--
+  Hello from Docker!
+  --application output--
 ```
 
 The command checks if you already have the image 'hello-world', connects to Docker Hub, pulls the 'hello-world' image and runs it, creating a container.  
@@ -92,7 +92,7 @@ Congratulations, now you have run your first dockerized application. Let's get u
 
 The Docker CLI is usually referenced as the "docker engine", see [docs for more information](https://docs.docker.com/engine/reference/commandline/cli/)
 
-Even though you will find over 50 commands in the documentation, only a handful of them is needed for general use. You'll find a list of the most commonly used basic commands at the end of this section.
+Even though you will find over 50 commands in the documentation, only a handful of them is needed for general use. There's a list of the most commonly used basic commands at the end of this section.
 
 To list images you currently have downloaded, run: `docker images` 
 
@@ -105,7 +105,7 @@ As we already had previously downloaded *hello-world*, Docker noticed that you a
 Let's remove the image since we don't need it anymore. The command `docker rmi hello-world` can be used to remove the *hello-world* image. However, this should fail with the following error: 
 
 ```console
-  Error response from daemon: conflict: unable to remove repository reference "hello-world" (must force) - container <container ID> is using its referenced image <image ID>
+Error response from daemon: conflict: unable to remove repository reference "hello-world" (must force) - container <container ID> is using its referenced image <image ID>
 ```
 
 This means that a container currently exists which was created from the image *hello-world* and that removing *hello-world* could have consequences. So before removing images, you should have the referencing container removed first. Forcing is usually a bad idea, especially as we are still learning.
@@ -140,22 +140,22 @@ Notice how the command line appears to freeze after pulling and starting the con
 
 ```console
 $ docker run -d nginx
-c7749cf989f61353c1d433466d9ed6c45458291106e8131391af972c287fb0e5
+  c7749cf989f61353c1d433466d9ed6c45458291106e8131391af972c287fb0e5
 ```
 
 The `-d` flag starts a container *detached*, meaning that it runs in the background. The container can be seen with 
 
 ```console
 $ docker container ls
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
-c7749cf989f6        nginx               "nginx -g 'daemon of…"   35 seconds ago      Up 34 seconds       80/tcp              blissful_wright
+  CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+  c7749cf989f6        nginx               "nginx -g 'daemon of…"   35 seconds ago      Up 34 seconds       80/tcp              blissful_wright
 ```
 
 Now if we try to remove it, it will fail: 
 
 ```console
 $ docker rm blissful_wright
-Error response from daemon: You cannot remove a running container c7749cf989f61353c1d433466d9ed6c45458291106e8131391af972c287fb0e5. Stop the container before attempting removal or force remove 
+  Error response from daemon: You cannot remove a running container c7749cf989f61353c1d433466d9ed6c45458291106e8131391af972c287fb0e5. Stop the container before attempting removal or force remove 
 ```
  
 We should first stop the container using `docker stop <container id or name>`, and then use `rm`.
@@ -225,8 +225,8 @@ Anyway, let's pull Ubuntu! `docker pull ubuntu`
 Let's look at the first lines:
 
 ```console
-  Using default tag: latest
-  latest: Pulling from library/ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
 ```
 
 Since we didn't specify a tag, Docker defaulted to `latest`, which is usually the latest image built and pushed to the registry. **However**, in this case, the repository's README says that the `ubuntu:latest` tag points to the "latest LTS" instead since that's the version recommended for general use.
@@ -331,9 +331,10 @@ Now that we're inside the container it behaves as you'd expect from ubuntu, and 
 
 Our looper won't stop for a SIGTERM signal sent by a stop command. To terminate the process, stop follows the SIGTERM with a SIGKILL after a grace period. In this case, it's simply faster to use kill.
 
-    $ docker kill looper 
-    $ docker rm looper 
-
+```console
+$ docker kill looper 
+$ docker rm looper 
+```
 Running the previous two commands is basically equivalent to running `docker rm --force looper` 
 
 Let's start another process with `-it` and also with `--rm` in order to remove it automatically after it has exited. This means that there is no garbage containers left behind, but also that `docker start` can not be used to start the container after it has exited. 
@@ -429,7 +430,7 @@ $ docker build -t myfirst .
 
 Now let's run our image.
 
-```shell-session
+```console
 $ docker run -it myfirst 
   root@accf99660aeb:/mydir# ls 
   hello.txt  index.html  local.txt 
@@ -612,8 +613,34 @@ In the shell form the command is provided as a string without brackets. In the e
 |ENTRYPOINT /bin/ping -c 3 <br> CMD ["localhost"] | /bin/sh -c '/bin/ping -c 3' localhost |
 |ENTRYPOINT ["/bin/ping","-c","3"] <br> CMD ["localhost"] | /bin/ping -c 3 localhost | 
 
+As the command at the end of docker run will be the CMD we want to use ENTRYPOINT to specify what to run, and CMD to specify which command (in our case url) to run. Most of the time we can just use CMD for convenience as that will allow us to overwrite the CMD easily with, for example, bash.
 
-Now we have two problems: 
+We can test how some other projects do this. Let's try python:
+
+```console
+$ docker pull python:3.8
+...
+$ docker run -it python:3.8
+  Python 3.8.2 (default, Mar 31 2020, 15:23:55)
+  [GCC 8.3.0] on linux
+  Type "help", "copyright", "credits" or "license" for more information.
+  >>> print("Hello, World!")
+  Hello, World!
+  >>> exit()
+$ docker run -it python:3.8 bash
+```
+
+If they had ENTRYPOINT as python we'd be able to run --version. We can create our own image for personal use as we did in a previous exercise
+
+```dockerfile
+FROM python:3.8
+ENTRYPOINT ["python3"]
+CMD ["--help"]
+```
+
+The result is an image that has python as ENTRYPOINT and you can add the commands at the end, for example --version to see the version. Or without command it will output the help. This is really convenient for some images, such as our youtubedl project. ENTRYPOINT is rather rare as instead of writing a new dockerfile you could've ran `docker run python:3.8 python3 --version` for the same result.
+
+Now we have two problems with the project: 
 
 - Minor: Our container build process creates many layers resulting in increased image size 
 
@@ -627,11 +654,8 @@ By inspecting `docker container ls -a` we can see all our previous runs. When we
 $ docker container ls -a --last 3 
 
   CONTAINER ID        IMAGE               COMMAND                   CREATED                  STATUS                          PORTS               NAMES 
-
   be9fdbcafb23        youtube-dl          "/usr/local/bin/yout…"    Less than a second ago   Exited (0) About a minute ago                       determined_elion 
-
   b61e4029f997        f2210c2591a1        "/bin/sh -c \"/usr/lo…"   Less than a second ago   Exited (2) About a minute ago                       vigorous_bardeen 
-
   326bb4f5af1e        f2210c2591a1        "/bin/sh -c \"/usr/lo…"   About a minute ago       Exited (2) 3 minutes ago                            hardcore_carson 
 ```
  
@@ -641,13 +665,13 @@ We'll see that the last container was `be9fdbcafb23` or `determined_elion` for u
 $ docker diff determined_elion 
 
   C /mydir 
-  A /mydir/Short introduction to Docker (Scribe)-UFLCdmfGs7E.mp4 
+  A /mydir/Imgur-JY5tHqr.mp4 
 ```
 
-Let's try `docker cp` command to copy the file (notice the quotes because of our filename that has spaces) 
+Let's try `docker cp` command to copy the file. We can use quotes if the filename has spaces.
 
 ```console
-$ docker cp "determined_elion://mydir/Short introduction to Docker (Scribe)-UFLCdmfGs7E.mp4" . 
+$ docker cp "determined_elion://mydir/Imgur-JY5tHqr.mp4" . 
 ```
 
 And now we have our file locally. This doesn't really fix our issue, so let's continue: 
@@ -717,7 +741,7 @@ $ docker port 0249
   4567/tcp -> 0.0.0.0:32772
 ```
 
-You can also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 4567/udp` and `-p 1234:4567/udp` respectively.
+We could also limit connections to certain protocol only, in this case udp by adding the protocol at the end: `EXPOSE 4567/udp` and `-p 1234:4567/udp` respectively.
 
 {% include_relative exercises/1_9.html %}
 {% include_relative exercises/1_10.html %}
@@ -757,6 +781,8 @@ $ docker push <username>/<repositoryname>
 {% include_relative exercises/1_15.html %}
 {% include_relative exercises/1_16.html %}
 {% include_relative exercises/1_17.html %}
+
+Remember to mark your exercises into the submission application! Instructions on how and what to submit are on the exercises page.
 
 ## Epilogue, or rather, a recap ##
 

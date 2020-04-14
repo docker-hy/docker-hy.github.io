@@ -426,6 +426,8 @@ Rather than maintaining one yourself the most common way to use Kubernetes is by
 
 {% include_relative exercises/3_8.html %}
 
+Remember to mark your exercises into the submission application! Instructions on how and what to submit are on the exercises page.
+
 ## Ending ##
 
 Go to [completion](/completion)

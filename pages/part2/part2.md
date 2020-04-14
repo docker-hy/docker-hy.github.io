@@ -519,6 +519,8 @@ Now when we run the application we can access adminer from <http://localhost:808
 {% include_relative exercises/2_9.html %}
 {% include_relative exercises/2_10.html %}
 
+Remember to mark your exercises into the submission application! Instructions on how and what to submit are on the exercises page.
+
 ## Epilogue, or rather, a recap ##
 
 Again we started from the ground up by learning how to translate non-compose setup into docker-compose.yml and ran with it. Compose gave us also a few handy completely new features that we didn't even know we needed, networks.

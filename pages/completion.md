@@ -28,7 +28,7 @@ Next you will continue to work on the course in the Moodle online learning platf
 
 Please note!
 
-· Registration for the course through the Open University is possible until Jan 23, 2020.
+· Registration for the course through the Open University is possible until Jan 23, 2021.
 
 · Credits for the course are only available to those students who have successfully registered for the course registration through the Open University and have completed the course according to the instructions.
 

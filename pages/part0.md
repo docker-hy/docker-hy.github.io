@@ -51,11 +51,7 @@ Knows why docker-compose is not an optimal production solution and what is.
 
 ### Course has multiple pages ###
 
-As we're trying to make the course as accessible as possible, the course has multiple pages: [Courses page](https://courses.helsinki.fi/fi/aytkt21025en/129059389), [Mooc](https://mooc.fi/) and GitHub page. Everything is found here in this page, and if something is missing or unclear after reading this page only then please contact jami.kousa@helsinki.fi or get in touch through Telegram.
-
-### Starting lecture ###
-
-Slides for an old starting lecture can be found [here](https://docs.google.com/presentation/d/1op-PxjIoCZ1k-o1JO1h9UhqZFYVMTcYHAQD-XrzwoIo/edit?usp=sharing), but it shouldn't contain anything that's not in the course material.
+As we're trying to make the course as accessible as possible, the course has multiple pages: [Courses page](https://courses.helsinki.fi/fi/aytkt21025en/132141109), [Mooc](https://mooc.fi/) and GitHub page. Everything is found here in this page, and if something is missing or unclear after reading this page only then please contact jami.kousa@helsinki.fi or get in touch through Telegram.
 
 ### Telegram ###
 
