@@ -454,6 +454,8 @@ $ docker diff accf
   A /root/.bash_history 
 ```
 
+The character in front of the file name indicates the type of the change in the container's filesystem: A = added, D = deleted, C = changed.
+
 What we discover is that in addition to our `manually.txt` file, `bash` "secretly" created a history file.  We could create a new image from these changes (`myfirst` + **changes** = **newimage**) with  
 
 ```console
