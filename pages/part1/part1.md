@@ -531,7 +531,7 @@ $ youtube-dl
   Type youtube-dl --help to see a list of all options. 
 ```
 
-It works (we just need to give an URL), but we notice that it outputs a warning about `LC_ALL`. In a regular Ubuntu desktop/server install the localization settings are (usually) set, but in this image they are not set, as we can see by running `env` in our container. To fix this without installing additional locales, see this: https://stackoverflow.com/a/41648500 
+It works (we just need to give an URL), but we notice that it outputs a warning about `LC_ALL`. In a regular Ubuntu desktop/server install the localization settings are (usually) set, but in this image they are not set, as we can see by running `env` in our container. To fix this without installing additional locales, see this: <https://stackoverflow.com/a/41648500>
 
 ```console
 $ LC_ALL=C.UTF-8 youtube-dl 
