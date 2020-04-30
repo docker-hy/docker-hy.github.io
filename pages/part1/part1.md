@@ -632,7 +632,7 @@ $ docker run -it python:3.8
 $ docker run -it python:3.8 bash
 ```
 
-If they had ENTRYPOINT as python we'd be able to run --version. We can create our own image for personal use as we did in a previous exercise
+If they had ENTRYPOINT as python we'd be able to run --version. We can create our own image for personal use as we did in a previous exercise with a new Dockerfile.
 
 ```dockerfile
 FROM python:3.8
