@@ -33,5 +33,5 @@ Please follow the guidelines here when you make a pull request or issue to help 
 
 **Pull request specific: avoid making changes to multiple areas at once.**
 
-- If theres something that we won't merge it's easier for you to edit/remove.
+- If there's something that we won't merge it's easier for you to edit/remove.
 - We cannot add new exercises during the course even if you find something that should / could be added. You can add an issue with enough information or a pending PR with just the new exercise.
