@@ -1,10 +1,16 @@
-FROM jekyll/jekyll as build-stage
+FROM jekyll/jekyll:3.8.3 as build-stage
+
+WORKDIR /tmp
+
+COPY Gemfile* ./
+
+RUN bundle install
 
 WORKDIR /usr/src/app
 
 COPY . .
 
-RUN mkdir _site
+RUN chown -R jekyll .
 
 RUN jekyll build
 
