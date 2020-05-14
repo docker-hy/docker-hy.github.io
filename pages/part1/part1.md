@@ -374,7 +374,7 @@ CMD ["/bin/bash"]
 
  - `RUN` will execute a command with `/bin/sh -c` prefix - Because of `WORKDIR` this is essentially the same as `RUN touch /mydir/hello.txt` 
 
- - `COPY` adds a local file to the second argument. It's preferred to use `COPY` instead of `ADD` when you are just adding files (ADD has all kinds of magic behaviour attached to it) 
+ - `COPY` copies an existing local file to the second argument (in our case it copies to our image current directory which is /mydir). It's preferred to use `COPY` instead of `ADD` when you are just adding files (ADD has all kinds of magic behaviour attached to it) 
 
  - `CMD` is the command that will be executed when using `docker run`
 
