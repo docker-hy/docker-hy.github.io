@@ -375,7 +375,7 @@ $ docker-compose up
   db_redmine | 2019-03-03 10:27:23.002 UTC [1] LOG:  database system is ready to accept connections
 ```
 
-The image initializes the data files in the first start. Let's terminate the container with ^C. Compose uses the current directory as a prefix for container and volume names so that different projects don't clash. The prefix can be overriden with `COMPOSE_PROJECT_NAME` environment variable if needed. 
+The image initializes the data files in the first start. Let's terminate the container with ^C. Compose uses the current directory as a prefix for container and volume names so that different projects don't clash. The prefix can be overridden with `COMPOSE_PROJECT_NAME` environment variable if needed. 
 
 Let's **inspect** if there was a volume created with `docker inspect db_redmine | grep -A 5 Mounts`
 

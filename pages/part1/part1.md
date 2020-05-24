@@ -374,7 +374,7 @@ CMD ["/bin/bash"]
 
  - `RUN` will execute a command with `/bin/sh -c` prefix - Because of `WORKDIR` this is essentially the same as `RUN touch /mydir/hello.txt` 
 
- - `COPY` adds a local file to the second argument. It's preferred to use `COPY` instead of `ADD` when you are just adding files (ADD has all kinds of magic behaviour attached to it) 
+ - `COPY` copies an existing local file to the second argument (in our case it copies to our image current directory which is /mydir). It's preferred to use `COPY` instead of `ADD` when you are just adding files (ADD has all kinds of magic behaviour attached to it) 
 
  - `CMD` is the command that will be executed when using `docker run`
 
@@ -454,6 +454,8 @@ $ docker diff accf
   A /root/.bash_history 
 ```
 
+The character in front of the file name indicates the type of the change in the container's filesystem: A = added, D = deleted, C = changed.
+
 What we discover is that in addition to our `manually.txt` file, `bash` "secretly" created a history file.  We could create a new image from these changes (`myfirst` + **changes** = **newimage**) with  
 
 ```console
@@ -529,7 +531,7 @@ $ youtube-dl
   Type youtube-dl --help to see a list of all options. 
 ```
 
-It works (we just need to give an URL), but we notice that it outputs a warning about `LC_ALL`. In a regular Ubuntu desktop/server install the localization settings are (usually) set, but in this image they are not set, as we can see by running `env` in our container. To fix this without installing additional locales, see this: https://stackoverflow.com/a/41648500 
+It works (we just need to give an URL), but we notice that it outputs a warning about `LC_ALL`. In a regular Ubuntu desktop/server install the localization settings are (usually) set, but in this image they are not set, as we can see by running `env` in our container. To fix this without installing additional locales, see this: <https://stackoverflow.com/a/41648500>
 
 ```console
 $ LC_ALL=C.UTF-8 youtube-dl 
@@ -630,7 +632,7 @@ $ docker run -it python:3.8
 $ docker run -it python:3.8 bash
 ```
 
-If they had ENTRYPOINT as python we'd be able to run --version. We can create our own image for personal use as we did in a previous exercise
+If they had ENTRYPOINT as python we'd be able to run --version. We can create our own image for personal use as we did in a previous exercise with a new Dockerfile.
 
 ```dockerfile
 FROM python:3.8
