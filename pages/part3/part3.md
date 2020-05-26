@@ -414,7 +414,7 @@ For the scope of this course we cannot go into how to use the tools in this sect
 
 **Docker swarm** is built into docker. It turns a pool of Docker hosts into a single virtual host. You can read the feature highlights [here](https://docs.docker.com/engine/swarm/). You can run right away with `docker swarm`. Docker swarm is the lightest way of utilizing multiple hosts.
 
-Docker swarm and other enterprise features were separated from Docker and sold to Mirantis late 2019. Mirantis is supporting swarm only for couple of more years. You can read more [here](https://www.mirantis.com/blog/mirantis-acquires-docker-enterprise-platform-business/).
+Docker swarm and other enterprise features were separated from Docker and sold to Mirantis late 2019. Initially, Mirantis [announced](https://www.mirantis.com/blog/mirantis-acquires-docker-enterprise-platform-business/) that support for Docker Swarm would stop after two years. However, in the months thereafter they decided to continuo supporting and developing Docker Swarm without a definitive end-date. Read more [here](https://www.mirantis.com/blog/mirantis-will-continue-to-support-and-develop-docker-swarm/).
 
 **Kubernetes** is the de facto way of orchestrating your containers in large multi-host environments. The reason being it's customizability, large community and robust features. However the drawback is the higher learning curve compared to Docker swarms. You can read their introduction [here](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/).
 
