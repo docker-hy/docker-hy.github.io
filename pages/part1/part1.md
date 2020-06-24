@@ -44,7 +44,7 @@ The difference between a virtual machine and docker solutions after moving Appli
 
 ### What's a Docker Image? ###
 
-A Docker image is simply a file. This image file is itself built by an instructional file named "Dockerfile". An image never changes; you can not edit an existing file, but you can create a new **layer** to it.
+A Docker image is a file. This image file is itself built by an instructional file named "Dockerfile". An image never changes; you can not edit an existing file, but you can create a new **layer** to it.
 
 ### What's a Docker Container? ###
 
