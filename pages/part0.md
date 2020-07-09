@@ -71,7 +71,7 @@ Use the official documentation to find download instructions for docker-ce for t
 
 [Windows](https://docs.docker.com/docker-for-windows/install/)
 
-Confirm that Docker installed correctly by opening a terminal and running `docker -v` to see the installed version.
+Confirm that Docker installed correctly by opening a terminal and running ```docker -v``` to see the installed version.
 
 > TIP: Windows 10 Home does not support Hyper-V. I recommend installing another OS such as Ubuntu. Remember to back up everything. Instructions for dual boot [here](https://hackernoon.com/installing-ubuntu-18-04-along-with-windows-10-dual-boot-installation-for-deep-learning-f4cd91b58557)
 
@@ -83,7 +83,7 @@ Use the official documentation to find download instructions for docker-compose 
 
 [Install instructions](https://docs.docker.com/compose/install/)
 
-Confirm that docker-compose installed correctly by opening a terminal and running `docker-compose -v` to see the installed docker-compose version.
+Confirm that docker-compose installed correctly by opening a terminal and running ```docker-compose-v``` to see the installed docker-compose version.
 
 > TIP: To avoid writing sudos you may consider [adding yourself to docker group](https://docs.docker.com/install/linux/linux-postinstall/)
 
