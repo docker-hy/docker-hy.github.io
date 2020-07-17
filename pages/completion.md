@@ -32,7 +32,7 @@ Please note!
 
 · Credits for the course are only available to those students who have successfully registered for the course registration through the Open University and have completed the course according to the instructions.
 
-· If you are HAKA student use the Moodle key "Docker20" - remember that you have to enrol for the course as well.
+· If you are HAKA student use the Moodle key "Docker20" - remember that you have to enrol for the course as well. [Guide in finnish here](https://www.helsinki.fi/fi/avoin-yliopisto/opiskelu/opinnoissa-alkuun/ilmoittautuminen-ja-maksut).
 
 ### If you want to register to the course and receive ECTS credits and you're not a student in Finland
 
