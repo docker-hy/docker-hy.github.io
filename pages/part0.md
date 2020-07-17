@@ -83,7 +83,7 @@ Use the official documentation to find download instructions for docker-compose 
 
 [Install instructions](https://docs.docker.com/compose/install/)
 
-Confirm that docker-compose installed correctly by opening a terminal and running ```docker-compose-v``` to see the installed docker-compose version.
+Confirm that docker-compose installed correctly by opening a terminal and running ```docker-compose -v``` to see the installed docker-compose version.
 
 > TIP: To avoid writing sudos you may consider [adding yourself to docker group](https://docs.docker.com/install/linux/linux-postinstall/)
 
