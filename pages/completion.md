@@ -6,34 +6,42 @@ permalink: /completion/
 order: 0
 ---
 
-## Congratulations! ##
-
-### Do you want a certificate? ###
+# Certificate #
 
 For certificate just mark the course as finished in the submission software and the certificate link will appear into the submission software after your exercises have been reviewed.
 
-### Students in Finland (either finnish or exchange students):
+### Completing the course for credits ###
 
 Next you will continue to work on the course in the Moodle online learning platform. Please follow the instructions below to gain access to the course’s Moodle space:
 
-1. Register for the course through the Open University [https://www.avoin.helsinki.fi/palvelut/esittely.aspx?o=132141109](https://www.avoin.helsinki.fi/palvelut/esittely.aspx?o=132141109)
+1. **Enrollment*.** Enroll yourself on the course through the Open University <https://www.avoin.helsinki.fi/palvelut/esittely.aspx?o=132141109>
 
-2. <b>Wait for 24 hours</b> and activate your University of Helsinki user ID. You will receive instructions on the activation process the following day.
+2. **Link and key.** You will receive the Moodle-link and the course key through email within 24 hours after course enrollment.
 
-3. Sign in on the course page, where you will find the enrolment key for the Moodle space [https://courses.helsinki.fi/fi/aytkt21025en/132141109](https://courses.helsinki.fi/fi/aytkt21025en/132141109)
+3. **User ID.** Do you study at University of Helsinki or other HAKA member institution?
 
-4. Sign into the Moodle space with your University of Helsinki user ID and the enrolment key.
+   A. If yes, use your username and password to log in to Moodle.
 
-5. Do the "Final Exercise" exam in moodle.
+   B. If no, please activate your University of Helsinki user ID to access Moodle: You will receive instructions on the activation process the **following day** through email.
+
+4. **Access Moodle.** Sign into the Moodle space with your University of Helsinki / HAKA user ID and the enrolment key.
+
+5. Do the “Final Exercise” exam in moodle.
 
 Please note!
 
-· Registration for the course through the Open University is possible until Jan 23, 2021.
+- Enrollment for the course through the Open University is possible until Jan 23, 2021.
 
-· Credits for the course are only available to those students who have successfully registered for the course registration through the Open University and have completed the course according to the instructions.
+- Credits for the course are only available to those students who have successfully enrolled on the course through the Open University and have completed the course according to the instructions.
 
-· If you are HAKA student use the Moodle key "Docker20" - remember that you have to enrol for the course as well. [Guide in finnish here](https://www.helsinki.fi/fi/avoin-yliopisto/opiskelu/opinnoissa-alkuun/ilmoittautuminen-ja-maksut).
+\* Electronic enrollment is available if you meet one of the following criteria:
 
-### If you want to register to the course and receive ECTS credits and you're not a student in Finland
+- You have a Finnish personal identity number (format: xxxxxxxx-xxxx), or an online banking ID, or
+
+- you are a student at the University of Helsinki, or
+
+- you are a student at a HAKA member institution.
+
+### If you are not a student in Finland and want to enroll on the course and receive ECTS credits. ###
 
 Read guide here under "Re­gis­tra­tion without a Finnish per­sonal identity code or on­line bank­ing ID at the Uni­versity’s Ad­mis­sions Services": [https://www.helsinki.fi/en/open-university/studying/beginning-your-studies/registration-and-fees](https://www.helsinki.fi/en/open-university/studying/beginning-your-studies/registration-and-fees)
