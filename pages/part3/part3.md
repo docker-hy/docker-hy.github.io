@@ -208,7 +208,7 @@ Let's work with the repository [https://github.com/docker-hy/docker-hy.github.io
 
 You can either fork the repository or clone it as your own.
 
-Go to [https://circleci.com/](https://circleci.com/) and sign up / log in with our GitHub account. Give access and set up a new project.
+Go to [https://circleci.com/](https://circleci.com/) and sign up / log in with your GitHub account. Give access and set up a new project.
 
 CircleCI may give a guide on how to setup the project specific build. We can ignore it. Press Start Building in the CircleCI. After a while it should have a red "Failed" for the workflow.
 
@@ -247,7 +247,7 @@ Run this with `docker-compose up` and commit something new into the repository. 
 
 ## Using a non-root user ##
 
-Our process (youtube-dl) could in theory escape the container due a bug in docker/kernel.  To mitigate this we'll add a non-root user to our container and run our process with that user. Another option would be to map the root user to a high, non-existing user id on the host with https://docs.docker.com/engine/security/userns-remap/, but this is fairly a new feature and not enabled by default.  
+Our process (youtube-dl) could in theory escape the container due to a bug in docker/kernel.  To mitigate this we'll add a non-root user to our container and run our process with that user. Another option would be to map the root user to a high, non-existing user id on the host with https://docs.docker.com/engine/security/userns-remap/, but this is fairly a new feature and not enabled by default.  
 
 ```console
 && \ 
