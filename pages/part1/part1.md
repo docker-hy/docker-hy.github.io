@@ -763,7 +763,7 @@ Set visibility to public. Free accounts have access to 1 free private repository
 Next we need to rename the image:
 
 ```console
-$ docker tag youtube-dl <username>/<repositoryname>`
+$ docker tag youtube-dl <username>/<repositoryname>
 ```
 
 And the last thing we need is to authenticate our push by logging in:
