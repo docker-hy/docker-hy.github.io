@@ -128,7 +128,7 @@ If you have hundreds of stopped containers and you wish to delete them all, you 
 
 After removing all of the *hello-world* containers, run `docker rmi hello-world` to delete the image. You can use `docker images` to confirm that the image is not listed. 
 
-You can also use `pull` command to download images without running them: `docker pull hello-world`
+You can also use the `pull` command to download images without running them: `docker pull hello-world`
 
 Let's try starting a new container:
 
@@ -205,7 +205,7 @@ When browsing the CLI's search results, you can recognize an official image from
 
 The third result, `tutum/hello-world`, is marked as "automated". This means that the image is [automatically built](https://docs.docker.com/docker-hub/builds/) from the source repository. Its [Docker Hub page](https://hub.docker.com/r/tutum/hello-world/) shows its previous "Builds" and a link to the image's "Source Repository" (in this case, to GitHub) from which Docker Hub builds the image.
 
-The second result, `kitematic/hello-world-nginx`, is neither an official nor automated image.
+The second result, `kitematic/hello-world-nginx`, is neither an official nor an automated image.
 We can't know what the image is built from, since its [Docker Hub page](https://hub.docker.com/r/kitematic/hello-world-nginx/) has no links to any repositories. The only thing its Docker Hub page reveals is that the image is 5 years old. Even if the image's "Overview" section had links to a repository, we would have no guarantees that the published image was built from that source.
 
 There are also other Docker registries competing with Docker Hub, such as [quay](https://quay.io/). However, `docker search` will only search from Docker Hub, so we'll need to use the registry's web pages to search for images. Take a look at the page of [the `nordstrom/hello-world` image on quay](https://quay.io/repository/nordstrom/hello-world). The page shows the command to use to pull the image, which reveals that we can also pull images from hosts other than Docker Hub:
@@ -509,9 +509,9 @@ $ youtube-dl
   /usr/bin/env: 'python': No such file or directory 
 ```
 
-Okay - On the top of the `youtube-dl` download page we'll notice that 
+Okay - On the top of the `youtube-dl` download page we'll notice this message:
 
-> Remember youtube-dl requires Python version 2.6, 2.7, or 3.2+ to work except for Windows exe. 
+> Remember youtube-dl requires Python version 2.6, 2.7, or 3.2+ to work except for Windows exe.
 
 So let's add python 
 

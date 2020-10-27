@@ -426,6 +426,10 @@ Rather than maintaining one yourself the most common way to use Kubernetes is by
 
 {% include_relative exercises/3_8.html %}
 
+<div class="hint" markdown="1" >
+ If you're interested in Kubernetes you should join [DevOps with Kubernetes](https://devopswithkubernetes.com/), a free MOOC course just like this one.
+</div>
+
 Remember to mark your exercises into the submission application! Instructions on how and what to submit are on the exercises page.
 
 ## Ending ##
