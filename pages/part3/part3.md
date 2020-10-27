@@ -202,7 +202,7 @@ and this brings us to 36.4 megabytes in our `RUN` layer (from the original 87.4 
 
 Let's setup a deployment pipeline from GitHub to a host machine, this could be a raspberry pi or a virtual machine in the cloud (such as one provided by [Hetzner](https://www.hetzner.com/cloud)). Now we're using your local machine since it is cheaper.
 
-We will CircleCI for building the image, save the image to Docker Hub and then automatically pull the image from there.
+We will use CircleCI for building the image, save the image to Docker Hub and then automatically pull the image from there.
 
 Let's work with the repository [https://github.com/docker-hy/docker-hy.github.io](https://github.com/docker-hy/docker-hy.github.io) as it already has a Dockerfile and the CircleCI config for our convenience.
 
