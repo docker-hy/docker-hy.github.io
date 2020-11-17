@@ -683,7 +683,7 @@ And now we have our file locally. This doesn't really fix our issue, so let's co
 By **bind mounting** a host (our machine) folder to the container we can get the file directly to our machine. Let's start another run with `-v` option, that requires an absolute path. We mount our current folder as `/mydir` in our container, overwriting everything that we have put in that folder in our Dockerfile. 
 
 ```console
-$ docker run -v $(pwd):/mydir youtube-dl https://imgur.com/JY5tHqr
+$ docker run -v "$(pwd):/mydir" youtube-dl https://imgur.com/JY5tHqr
 ```
 
 > Note: the Docker for Mac/Win has some magic so that the directories from our host become available for the `moby` virtual machine allowing our command to work as it would on a Linux machine. 
