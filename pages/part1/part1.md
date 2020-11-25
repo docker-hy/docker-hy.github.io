@@ -262,9 +262,11 @@ We'll look more into the Ubuntu image in part 3.
 
 Let's run a container in the background:
 
-`docker run -d --name looper ubuntu:16.04 sh -c 'while true; do date; sleep 1; done'`
+`docker run -d -it --name looper ubuntu:16.04 sh -c 'while true; do date; sleep 1; done'`
 
 - The first part, `docker run -d`, should be familiar by now.
+
+- Followed by `-it` is short for `-i` and `-t` where `-i` is "interactive, connect STDIN" and `-t` "allocate a pseudo-TTY". Or to put it more simply, `-it` allows you to interact with the container by using the command line.
 
 - Because we ran the container with `--name looper`, we can now reference it easily.
 
@@ -325,7 +327,7 @@ $ docker exec -it looper bash
   root       387  0.0  0.0  36836  2900 pts/0    R+   10:34   0:00 ps aux 
 ```
 
-In our command `-it` is short for `-i`  and `-t` where `-i` is "interactive, connect STDIN" and `-t` "allocate a pseudo-TTY". Or to put it more simply, `-it` allows you to interact with the container by using the command line. From the `ps aux` listing we can see that our `bash` process got PID (process ID) of 300.  
+From the `ps aux` listing we can see that our `bash` process got PID (process ID) of 300.  
 
 Now that we're inside the container it behaves as you'd expect from ubuntu, and we can terminate the container by killing the process with `kill 1`, or exit the container with `exit` and then either kill or stop the container. 
 
