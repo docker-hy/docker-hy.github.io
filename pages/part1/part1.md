@@ -264,6 +264,10 @@ Let's run a container in the background:
 
 `docker run -d -it --name looper ubuntu:16.04 sh -c 'while true; do date; sleep 1; done'`
 
+If you are using command prompt(Windows user) you must use double quotes around the script i.e., 
+
+`docker run -d -it --name looper ubuntu:16.04 sh -c "while true; do date; sleep 1; done"`
+
 - The first part, `docker run -d`, should be familiar by now.
 
 - Followed by `-it` is short for `-i` and `-t` where `-i` is "interactive, connect STDIN" and `-t` "allocate a pseudo-TTY". Or to put it more simply, `-it` allows you to interact with the container by using the command line.
