@@ -329,7 +329,7 @@ $ docker exec -it looper bash
 
 From the `ps aux` listing we can see that our `bash` process got PID (process ID) of 300.  
 
-Now that we're inside the container it behaves as you'd expect from ubuntu, and we can terminate the container by killing the process with `kill 1`, or exit the container with `exit` and then either kill or stop the container. 
+Now that we're inside the container it behaves as you'd expect from ubuntu, and we can exit the container with `exit` and then either kill or stop the container.
 
 Our looper won't stop for a SIGTERM signal sent by a stop command. To terminate the process, stop follows the SIGTERM with a SIGKILL after a grace period. In this case, it's simply faster to use kill.
 
