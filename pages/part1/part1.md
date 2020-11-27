@@ -353,7 +353,7 @@ $ docker attach looper-it
   ^P^Qread escape sequence
 ```
 
-Note that hitting `^C` would still kill (and remove due to `--rm`) the process because the `docker attach` command did not include `--sig-proxy=false` 
+Instead if had used ctrl+c it would have send a kill signal followed by removing the container as we specified --rm in `docker run` command.
 
 {% include_relative exercises/1_4.html %}
 {% include_relative exercises/1_5.html %}
