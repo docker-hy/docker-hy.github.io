@@ -346,7 +346,7 @@ Let's start another process with `-it` and also with `--rm` in order to remove i
 Now let's attach to the container and hit control+p, control+q to detach us from the STDOUT.
 
 ```console
-$ docker attach looper-it 
+$ docker attach looper 
 
   Mon Jan 15 19:50:42 UTC 2018 
   Mon Jan 15 19:50:43 UTC 2018 
