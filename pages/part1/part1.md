@@ -415,7 +415,9 @@ Before running our image we have a looming problem ahead of us: because `apt-get
 RUN apt-get update && apt-get install -y wget 
 ```
 
-We don't have to give a command to be run in the container after the image (i.e., `CMD ["/bin/bash"]` as we did earlier in Dockerfile), since the ubuntu base image sets it to `CMD ["/bin/bash"]` already on the last line in its [Dockerfile](https://github.com/tianon/docker-brew-ubuntu-core/blob/74249faf47098bef2cedad89696bfd1ed521e019/xenial/Dockerfile). We can override `ubuntu 16.04` image's `CMD` instruction by passing the command at the time of creating a container from our resulting image for e.g., `docker run <myImageName> echo 'Docker is easy.'`, here `echo 'Docker is easy.'` will override ubuntu image's `CMD` instruction. Dockerfile of each variant of ubuntu can be found at [Ubuntu's docker hub page](https://hub.docker.com/_/ubuntu) under "Supported tags and respective Dockerfile links" section easily.
+An instruction like `CMD ["/bin/bash"])` in Dockerfile runs bash process in the container when we run that image. We don't have to give a command in the end of our Dockerfile (i.e., `CMD ["/bin/bash"]` as we did earlier), since the ubuntu base image sets it to `CMD ["/bin/bash"]` already on the last line in its [Dockerfile](https://github.com/tianon/docker-brew-ubuntu-core/blob/74249faf47098bef2cedad89696bfd1ed521e019/xenial/Dockerfile). We can optionally override `ubuntu 16.04` image's `CMD` instruction by passing the command at the time of creating a container from our resulting image for e.g., `docker run -it <myImageName> echo 'Docker is easy.'`, here `echo 'Docker is easy.'` will override ubuntu image's `CMD` instruction. Though, simply running `docker run -it <myImageName>` will run bash command in the resulting container as we are using ubuntu as the base image.
+
+Dockerfile of each variant of ubuntu can be found at [Ubuntu's docker hub page](https://hub.docker.com/_/ubuntu) under "Supported tags and respective Dockerfile links" section easily.
 
 ```dockerfile
 FROM ubuntu:16.04 
