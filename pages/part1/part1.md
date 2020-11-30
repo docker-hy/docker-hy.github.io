@@ -364,7 +364,7 @@ Instead if had used ctrl+c it would have send a kill signal followed by removing
 
 ## Creating your very own dockerized project 
 
-Create a folder and a file called Dockerfile inside it with the following content: 
+Create a folder and a file called [`Dockerfile`](https://docs.docker.com/engine/reference/builder/) inside it with the following content: 
 
 ```docker
 FROM ubuntu:16.04 
