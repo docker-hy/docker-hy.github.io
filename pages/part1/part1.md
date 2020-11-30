@@ -297,14 +297,14 @@ $ docker attach looper
 
 Now you have process logs (STDOUT) running in two terminals. Now press control+c in the attached window. The container is stopped because the process is no longer running.
 
-If we want to attach to a container while making sure we don't close it from the other terminal we can disable signal proxying. Let's start the stopped container with `docker start looper` and attach to it with `--sig-proxy=false`. 
+If we want to attach to a container while making sure we don't close it from the other terminal we can specify to not attach STDIN with `--no-stdin` option. Let's start the stopped container with `docker start looper` and attach to it with `--no-stdin`. 
 
 Then try control+c.
 
 ```console
 $ docker start looper 
 
-$ docker attach --sig-proxy=false looper 
+$ docker attach --no-stdin looper 
   Mon Jan 15 19:27:54 UTC 2018 
   Mon Jan 15 19:27:55 UTC 2018 
   ^C 
@@ -353,7 +353,7 @@ $ docker attach looper-it
   ^P^Qread escape sequence
 ```
 
-Note that hitting `^C` would still kill (and remove due to `--rm`) the process because the `docker attach` command did not include `--sig-proxy=false` 
+Instead if had used ctrl+c it would have send a kill signal followed by removing the container as we specified --rm in `docker run` command.
 
 {% include_relative exercises/1_4.html %}
 {% include_relative exercises/1_5.html %}
