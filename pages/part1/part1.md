@@ -382,7 +382,7 @@ CMD ["/bin/bash"]
 
  - `COPY` copies an existing local file to the second argument (in our case it copies to our image current directory which is /mydir). It's preferred to use `COPY` instead of `ADD` when you are just adding files (ADD has all kinds of magic behaviour attached to it) 
 
- - `CMD` is the command that will be executed when using `docker run`
+ - `CMD` is the command that will be executed when using `docker run`. Read more about [`CMD` in docs.docker.com](https://docs.docker.com/engine/reference/builder/#cmd).
 
 Then we'll build it by running the build command with context argument `.`, which means that we have to be in the same directory (we could run this build from another directory and then give the path here) 
 
