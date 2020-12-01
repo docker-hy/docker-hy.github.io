@@ -364,7 +364,7 @@ Instead if had used ctrl+c it would have send a kill signal followed by removing
 
 ## Creating your very own dockerized project 
 
-Create a folder and a file called Dockerfile inside it with the following content: 
+Create a folder and a file called [`Dockerfile`](https://docs.docker.com/engine/reference/builder/) inside it with the following content: 
 
 ```docker
 FROM ubuntu:16.04 
@@ -382,7 +382,7 @@ CMD ["/bin/bash"]
 
  - `COPY` copies an existing local file to the second argument (in our case it copies to our image current directory which is /mydir). It's preferred to use `COPY` instead of `ADD` when you are just adding files (ADD has all kinds of magic behaviour attached to it) 
 
- - `CMD` is the command that will be executed when using `docker run`
+ - `CMD` is the command that will be executed when using `docker run`. Any Dockerfile should have exactly one CMD instruction, conversely if there are more than 1 CMD instructions, only the last one will be effective and others will be ignored by docker daemon. Read more about [`CMD` at docs.docker.com](https://docs.docker.com/engine/reference/builder/#cmd).
 
 Then we'll build it by running the build command with context argument `.`, which means that we have to be in the same directory (we could run this build from another directory and then give the path here) 
 
@@ -415,7 +415,9 @@ Before running our image we have a looming problem ahead of us: because `apt-get
 RUN apt-get update && apt-get install -y wget 
 ```
 
-We don't have to give a command (to be run in the container) after the image since the ubuntu base image sets it to `bash` on the last line.
+An instruction like `CMD ["/bin/bash"])` in Dockerfile executes `/bin/bash` command when we start the container created from the image which uses such Dockerfile. In our case we don't have to give a command in the end of our Dockerfile (i.e., `CMD ["/bin/bash"]` as we practised earlier), since the Ubuntu base image sets it to `CMD ["/bin/bash"]` already on the last line in its [Dockerfile](https://github.com/tianon/docker-brew-ubuntu-core/blob/74249faf47098bef2cedad89696bfd1ed521e019/xenial/Dockerfile). We can optionally override `Ubuntu 16.04` image's `CMD` instruction by passing the command at the time of creating a container from our resulting image for e.g., `docker run -it <myImageName> echo 'Docker is easy.'`, here `echo 'Docker is easy.'` will override Ubuntu image's `CMD` instruction. Though, simply running `docker run -it <myImageName>` will run `/bin/bash` command in the resulting container as we are using Ubuntu as the base image in our Dockerfile.
+
+We can examine Dockerfile of each variant of Ubuntu found at [Ubuntu's docker hub page](https://hub.docker.com/_/ubuntu) under "Supported tags and respective Dockerfile links" section easily.
 
 ```dockerfile
 FROM ubuntu:16.04 
