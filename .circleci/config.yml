@@ -5,5 +5,28 @@ workflows:
   deploy:
     jobs:
       - docker/publish:
-          image: jakousa/docker-hy
+          image: diegosl/docker-hy
           tag: 'latest'
+      - heroku_deploy:
+          requires:
+            - docker/publish
+jobs:
+  heroku_deploy:
+    machine: true
+    working_directory: ~/docker-hy.github.io
+    steps:
+      - checkout
+      - run:
+          name: Docker login
+          command: docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+      - run:
+          name: Pull and tag image
+          command: |
+            docker pull diegosl/docker-hy
+            docker tag diegosl/docker-hy registry.heroku.com/docker-hy-diegosl/web
+      - run:
+          name: Push to heroku
+          command: |
+            heroku container:login
+            docker push registry.heroku.com/docker-hy-diegosl/web
+            heroku container:release web -a docker-hy-diegosl 
