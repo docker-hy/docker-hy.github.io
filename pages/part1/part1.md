@@ -68,12 +68,12 @@ So, perhaps an even more fitting metaphor would be that the image is a frozen, p
 
 This is a small exercise that will run through the basics. Do not worry about the commands too much yet.  
 
-Pay attention to the time it takes to complete the command and run `docker run hello-world` 
+Pay attention to the time it takes to complete the command and run `docker container run hello-world` 
 
 This command outputs the following: 
 
 ```console
-$ docker run hello-world
+$ docker container run hello-world
   Unable to find image 'hello-world:latest' locally
   latest: Pulling from library/hello-world
   d1725b59e92d: Pull complete 
@@ -94,15 +94,15 @@ The Docker CLI is usually referenced as the "docker engine", see [docs for more 
 
 Even though you will find over 50 commands in the documentation, only a handful of them is needed for general use. There's a list of the most commonly used basic commands at the end of this section.
 
-To list images you currently have downloaded, run: `docker images` 
+To list images you currently have downloaded, run: `docker image ls` 
 
 As you can see, the *hello-world* we recently ran is still lingering in the images. Let's run it a couple more times: 
 
-`docker run hello-world`  
+`docker container run hello-world`  
 
 As we already had previously downloaded *hello-world*, Docker noticed that you already have the image and ran it straight away. Look at the list of images again. It should reveal that there is still only one *hello-world* image.
 
-Let's remove the image since we don't need it anymore. The command `docker rmi hello-world` can be used to remove the *hello-world* image. However, this should fail with the following error: 
+Let's remove the image since we don't need it anymore. The command `docker image rm hello-world` can be used to remove the *hello-world* image. However, this should fail with the following error: 
 
 ```console
 Error response from daemon: conflict: unable to remove repository reference "hello-world" (must force) - container <container ID> is using its referenced image <image ID>
@@ -122,24 +122,24 @@ When we have a lot of different containers, we can use grep (or another similar 
 $ docker container ls -a | grep hello-world
 ```
 
-Let's remove the container with the `rm` command. It accepts a container's name or ID as its arguments. Notice that the command also works with the first few characters of an ID. For example, if a container's ID is 3d4bab29dd67, you can use `docker rm 3d` to delete it. Using the shorthand for the ID will not delete multiple containers, so if you have two IDs starting with 3d, a warning will be printed and neither will be deleted. You can also use multiple arguments: `docker rm id1 id2 id3`
+Let's remove the container with the `rm` command. It accepts a container's name or ID as its arguments. Notice that the command also works with the first few characters of an ID. For example, if a container's ID is 3d4bab29dd67, you can use `docker container rm 3d` to delete it. Using the shorthand for the ID will not delete multiple containers, so if you have two IDs starting with 3d, a warning will be printed and neither will be deleted. You can also use multiple arguments: `docker container rm id1 id2 id3`
 
 If you have hundreds of stopped containers and you wish to delete them all, you should use `docker container prune`. Prune can also be used to "dangling" images and you can use `docker system prune` to clear everything.
 
-After removing all of the *hello-world* containers, run `docker rmi hello-world` to delete the image. You can use `docker images` to confirm that the image is not listed. 
+After removing all of the *hello-world* containers, run `docker image rm hello-world` to delete the image. You can use `docker image ls` to confirm that the image is not listed. 
 
-You can also use the `pull` command to download images without running them: `docker pull hello-world`
+You can also use the `pull` command to download images without running them: `docker image pull hello-world`
 
 Let's try starting a new container:
 
 ```console
-$ docker run nginx
+$ docker container run nginx
 ```
 
 Notice how the command line appears to freeze after pulling and starting the container. This is because Nginx is now running in the current terminal, blocking the input. Let's exit by pressing `control + c` and try again with the `-d` flag.
 
 ```console
-$ docker run -d nginx
+$ docker container run -d nginx
   c7749cf989f61353c1d433466d9ed6c45458291106e8131391af972c287fb0e5
 ```
 
@@ -154,13 +154,13 @@ $ docker container ls
 Now if we try to remove it, it will fail: 
 
 ```console
-$ docker rm blissful_wright
+$ docker container rm blissful_wright
   Error response from daemon: You cannot remove a running container c7749cf989f61353c1d433466d9ed6c45458291106e8131391af972c287fb0e5. Stop the container before attempting removal or force remove 
 ```
  
-We should first stop the container using `docker stop <container id or name>`, and then use `rm`.
+We should first stop the container using `docker container stop <container id or name>`, and then use `rm`.
 
-Forcing is also a possibility and we can use `docker rm --force <container id or name>` safely in this case.
+Forcing is also a possibility and we can use `docker container rm --force <container id or name>` safely in this case.
 
 It's common for the docker daemon to become clogged over time with old images and containers.
 
@@ -169,22 +169,22 @@ It's common for the docker daemon to become clogged over time with old images an
 |   |   |
 |---|---|
 | `docker container ls -a` | Lists all containers | 
-| `docker images` | Lists all images |
-| `docker pull <image>` | Pulls image from a docker registry called docker hub |
-| `docker rm <container-id>` | Removes a container, you can use either container name or id |
-| `docker rmi <image-id>` | Removes an image, you can use either image name or id |
-| `docker stop <container-id>` | Stops a container, you can use either container name or id |
-| `docker run <image>` | Runs an image creating a container, you can use either image name or id | 
-| `docker exec <container-id>` | Executes a command inside the container |
+| `docker image ls` | Lists all images |
+| `docker image pull <image>` | Pulls image from a docker registry called docker hub |
+| `docker container rm <container-id>` | Removes a container, you can use either container name or id |
+| `docker image rm <image-id>` | Removes an image, you can use either image name or id |
+| `docker container stop <container-id>` | Stops a container, you can use either container name or id |
+| `docker container run <image>` | Runs an image creating a container, you can use either image name or id | 
+| `docker container exec <container-id>` | Executes a command inside the container |
 
 {% include_relative exercises/1_1.html %}
 {% include_relative exercises/1_2.html %}
 
 ### Where do the images come from?
 
-When running a command such as `docker run hello-world`, Docker will automatically search [Docker Hub](https://hub.docker.com/) for the image if it is not found locally.
+When running a command such as `docker container run hello-world`, Docker will automatically search [Docker Hub](https://hub.docker.com/) for the image if it is not found locally.
 
-This means that we can pull and run any public image from Docker's servers. For example‚ if we wanted to start an instance of the PostgreSQL database, we could just run `docker run postgres`, which would pull and run https://hub.docker.com/_/postgres/.
+This means that we can pull and run any public image from Docker's servers. For example‚ if we wanted to start an instance of the PostgreSQL database, we could just run `docker container run postgres`, which would pull and run https://hub.docker.com/_/postgres/.
 
 We can search for images in the Docker Hub with `docker search`. Try running `docker search hello-world`.
 
@@ -210,7 +210,7 @@ We can't know what the image is built from, since its [Docker Hub page](https://
 
 There are also other Docker registries competing with Docker Hub, such as [quay](https://quay.io/). However, `docker search` will only search from Docker Hub, so we'll need to use the registry's web pages to search for images. Take a look at the page of [the `nordstrom/hello-world` image on quay](https://quay.io/repository/nordstrom/hello-world). The page shows the command to use to pull the image, which reveals that we can also pull images from hosts other than Docker Hub:
 
-`docker pull quay.io/nordstrom/hello-world`
+`docker image pull quay.io/nordstrom/hello-world`
 
 So, if the host's name (here: `quay.io`) is omitted, it will pull from Docker Hub by default.
 
@@ -220,7 +220,7 @@ So, if the host's name (here: `quay.io`) is omitted, it will pull from Docker Hu
 
 Let's move on to something more relevant than 'hello-world', for example to [Ubuntu from Docker Hub](https://hub.docker.com/r/library/ubuntu/). It is one of the most common Docker images to use as a base for your own image. 
 
-Anyway, let's pull Ubuntu! `docker pull ubuntu`
+Anyway, let's pull Ubuntu! `docker image pull ubuntu`
 
 Let's look at the first lines:
 
@@ -236,7 +236,7 @@ Images can be tagged to save different versions of the same image. You define an
 Ubuntu's [Docker Hub page](https://hub.docker.com/r/library/ubuntu/tags/) reveals that there's a tag named 16.04 which promises us that the image is based on Ubuntu 16.04. Let's pull that as well:
 
 ```console
-$ docker pull ubuntu:16.04 
+$ docker image pull ubuntu:16.04 
 
   16.04: Pulling from library/ubuntu 
   c2ca09a1934b: Downloading [============================================>      ]  34.25MB/38.64MB 
@@ -248,11 +248,11 @@ $ docker pull ubuntu:16.04
 
 Images are composed of different layers that are downloaded in parallel to speed up the download.
 
-We can also tag images locally for convenience, for example, `docker tag ubuntu:16.04 ubuntu:xenial` creates the tag `ubuntu:xenial` which refers to `ubuntu:16.04`.
+We can also tag images locally for convenience, for example, `docker image tag ubuntu:16.04 ubuntu:xenial` creates the tag `ubuntu:xenial` which refers to `ubuntu:16.04`.
 
-Tagging is also a way to "rename" images. Run `docker tag ubuntu:16.04 fav_distro:xenial` and check `docker images` to see what effects the command had.
+Tagging is also a way to "rename" images. Run `docker image tag ubuntu:16.04 fav_distro:xenial` and check `docker image ls` to see what effects the command had.
 
-We can now create a new Ubuntu container and execute the `uptime` command by running `docker run fav_distro:xenial uptime`
+We can now create a new Ubuntu container and execute the `uptime` command by running `docker container run fav_distro:xenial uptime`
 
 > Mac/win only: Notice how the uptime is the uptime of your moby virtual machine. 
 
@@ -262,13 +262,13 @@ We'll look more into the Ubuntu image in part 3.
 
 Let's run a container in the background:
 
-`docker run -d -it --name looper ubuntu:16.04 sh -c 'while true; do date; sleep 1; done'`
+`docker container run -d -it --name looper ubuntu:16.04 sh -c 'while true; do date; sleep 1; done'`
 
 If you are using command prompt(Windows user) you must use double quotes around the script i.e., 
 
-`docker run -d -it --name looper ubuntu:16.04 sh -c "while true; do date; sleep 1; done"`
+`docker container run -d -it --name looper ubuntu:16.04 sh -c "while true; do date; sleep 1; done"`
 
-- The first part, `docker run -d`, should be familiar by now.
+- The first part, `docker container run -d`, should be familiar by now.
 
 - Followed by `-it` is short for `-i` and `-t` where `-i` is "interactive, connect STDIN" and `-t` "allocate a pseudo-TTY". Or to put it more simply, `-it` allows you to interact with the container by using the command line.
 
@@ -278,22 +278,22 @@ If you are using command prompt(Windows user) you must use double quotes around 
 
 And to check that it's running, run `docker container ls`
 
-Let's follow '-f' the output of logs with `docker logs -f looper`
+Let's follow '-f' the output of logs with `docker container logs -f looper`
 
 ```console
-$ docker logs -f looper
+$ docker container logs -f looper
   Fri Oct 19 11:51:05 UTC 2018
   Fri Oct 19 11:51:06 UTC 2018
   Fri Oct 19 11:51:07 UTC 2018
 ... 
 ```
 
-Let's test pausing the looper without exiting or stopping it. In another terminal run `docker pause looper`. Notice how the logs output has paused in the first terminal. To unpause run `docker unpause looper`.
+Let's test pausing the looper without exiting or stopping it. In another terminal run `docker container pause looper`. Notice how the logs output has paused in the first terminal. To unpause run `docker unpause looper`.
 
 Keep the logs open and attach to the running container from the second terminal using 'attach': 
 
 ```console
-$ docker attach looper 
+$ docker container attach looper 
   Mon Jan 15 19:26:54 UTC 2018 
   Mon Jan 15 19:26:55 UTC 2018 
   ...
@@ -301,14 +301,14 @@ $ docker attach looper
 
 Now you have process logs (STDOUT) running in two terminals. Now press control+c in the attached window. The container is stopped because the process is no longer running.
 
-If we want to attach to a container while making sure we don't close it from the other terminal we can specify to not attach STDIN with `--no-stdin` option. Let's start the stopped container with `docker start looper` and attach to it with `--no-stdin`. 
+If we want to attach to a container while making sure we don't close it from the other terminal we can specify to not attach STDIN with `--no-stdin` option. Let's start the stopped container with `docker container start looper` and attach to it with `--no-stdin`. 
 
 Then try control+c.
 
 ```console
-$ docker start looper 
+$ docker container start looper 
 
-$ docker attach --no-stdin looper 
+$ docker container attach --no-stdin looper 
   Mon Jan 15 19:27:54 UTC 2018 
   Mon Jan 15 19:27:55 UTC 2018 
   ^C 
@@ -319,7 +319,7 @@ The container will continue running. Control+c now only disconnects you from the
 To enter a container, we can start a new process in it.
 
 ```console
-$ docker exec -it looper bash 
+$ docker container exec -it looper bash 
 
   root@2a49df3ba735:/# ps aux 
 
@@ -338,26 +338,26 @@ Now that we're inside the container it behaves as you'd expect from ubuntu, and 
 Our looper won't stop for a SIGTERM signal sent by a stop command. To terminate the process, stop follows the SIGTERM with a SIGKILL after a grace period. In this case, it's simply faster to use kill.
 
 ```console
-$ docker kill looper 
-$ docker rm looper 
+$ docker container kill looper 
+$ docker container rm looper 
 ```
-Running the previous two commands is basically equivalent to running `docker rm --force looper` 
+Running the previous two commands is basically equivalent to running `docker container rm --force looper` 
 
-Let's start another process with `-it` and also with `--rm` in order to remove it automatically after it has exited. This means that there is no garbage containers left behind, but also that `docker start` can not be used to start the container after it has exited. 
+Let's start another process with `-it` and also with `--rm` in order to remove it automatically after it has exited. This means that there is no garbage containers left behind, but also that `docker container start` can not be used to start the container after it has exited. 
 
-`docker run -d --rm -it --name looper-it ubuntu:16.04 sh -c 'while true; do date; sleep 1; done'`
+`docker container run -d --rm -it --name looper-it ubuntu:16.04 sh -c 'while true; do date; sleep 1; done'`
 
 Now let's attach to the container and hit control+p, control+q to detach us from the STDOUT.
 
 ```console
-$ docker attach looper-it 
+$ docker container attach looper-it 
 
   Mon Jan 15 19:50:42 UTC 2018 
   Mon Jan 15 19:50:43 UTC 2018 
   ^P^Qread escape sequence
 ```
 
-Instead if had used ctrl+c it would have send a kill signal followed by removing the container as we specified --rm in `docker run` command.
+Instead if had used ctrl+c it would have send a kill signal followed by removing the container as we specified --rm in `docker container run` command.
 
 {% include_relative exercises/1_4.html %}
 {% include_relative exercises/1_5.html %}
@@ -382,7 +382,7 @@ CMD ["/bin/bash"]
 
  - `COPY` copies an existing local file to the second argument (in our case it copies to our image current directory which is /mydir). It's preferred to use `COPY` instead of `ADD` when you are just adding files (ADD has all kinds of magic behaviour attached to it) 
 
- - `CMD` is the command that will be executed when using `docker run`. Any Dockerfile should have exactly one CMD instruction, conversely if there are more than 1 CMD instructions, only the last one will be effective and others will be ignored by docker daemon. Read more about [`CMD` at docs.docker.com](https://docs.docker.com/engine/reference/builder/#cmd).
+ - `CMD` is the command that will be executed when using `docker container run`. Any Dockerfile should have exactly one CMD instruction, conversely if there are more than 1 CMD instructions, only the last one will be effective and others will be ignored by docker daemon. Read more about [`CMD` at docs.docker.com](https://docs.docker.com/engine/reference/builder/#cmd).
 
 Then we'll build it by running the build command with context argument `.`, which means that we have to be in the same directory (we could run this build from another directory and then give the path here) 
 
@@ -415,7 +415,7 @@ Before running our image we have a looming problem ahead of us: because `apt-get
 RUN apt-get update && apt-get install -y wget 
 ```
 
-An instruction like `CMD ["/bin/bash"])` in Dockerfile executes `/bin/bash` command when we start the container created from the image which uses such Dockerfile. In our case we don't have to give a command in the end of our Dockerfile (i.e., `CMD ["/bin/bash"]` as we practised earlier), since the Ubuntu base image sets it to `CMD ["/bin/bash"]` already on the last line in its [Dockerfile](https://github.com/tianon/docker-brew-ubuntu-core/blob/74249faf47098bef2cedad89696bfd1ed521e019/xenial/Dockerfile). We can optionally override `Ubuntu 16.04` image's `CMD` instruction by passing the command at the time of creating a container from our resulting image for e.g., `docker run -it <myImageName> echo 'Docker is easy.'`, here `echo 'Docker is easy.'` will override Ubuntu image's `CMD` instruction. Though, simply running `docker run -it <myImageName>` will run `/bin/bash` command in the resulting container as we are using Ubuntu as the base image in our Dockerfile.
+An instruction like `CMD ["/bin/bash"])` in Dockerfile executes `/bin/bash` command when we start the container created from the image which uses such Dockerfile. In our case we don't have to give a command in the end of our Dockerfile (i.e., `CMD ["/bin/bash"]` as we practised earlier), since the Ubuntu base image sets it to `CMD ["/bin/bash"]` already on the last line in its [Dockerfile](https://github.com/tianon/docker-brew-ubuntu-core/blob/74249faf47098bef2cedad89696bfd1ed521e019/xenial/Dockerfile). We can optionally override `Ubuntu 16.04` image's `CMD` instruction by passing the command at the time of creating a container from our resulting image for e.g., `docker container run -it <myImageName> echo 'Docker is easy.'`, here `echo 'Docker is easy.'` will override Ubuntu image's `CMD` instruction. Though, simply running `docker container run -it <myImageName>` will run `/bin/bash` command in the resulting container as we are using Ubuntu as the base image in our Dockerfile.
 
 We can examine Dockerfile of each variant of Ubuntu found at [Ubuntu's docker hub page](https://hub.docker.com/_/ubuntu) under "Supported tags and respective Dockerfile links" section easily.
 
@@ -430,7 +430,7 @@ COPY local.txt .
 RUN wget http://example.com/index.html 
 ```
 
-The random name for our image is also not ideal, because now we need to separately `docker tag 66b527252f32 myfirst` to have a sensible name for it, so let's build it again to also tag it: 
+The random name for our image is also not ideal, because now we need to separately `docker image tag 66b527252f32 myfirst` to have a sensible name for it, so let's build it again to also tag it: 
 
 ```console
 $ docker build -t myfirst . 
@@ -439,7 +439,7 @@ $ docker build -t myfirst .
 Now let's run our image.
 
 ```console
-$ docker run -it myfirst 
+$ docker container run -it myfirst 
   root@accf99660aeb:/mydir# ls 
   hello.txt  index.html  local.txt 
 ```
@@ -454,7 +454,7 @@ $ exit
 Now we can use diff to compare changes between our image `myfirst` and container: 
 
 ```console
-$ docker diff accf
+$ docker container diff accf
 
   C /mydir 
   A /mydir/manually.txt 
@@ -467,13 +467,13 @@ The character in front of the file name indicates the type of the change in the 
 What we discover is that in addition to our `manually.txt` file, `bash` "secretly" created a history file.  We could create a new image from these changes (`myfirst` + **changes** = **newimage**) with  
 
 ```console
-$ docker commit accf99660aeb myfirst-pluschanges 
+$ docker container commit accf99660aeb myfirst-pluschanges 
 ```
 
 Let's try creating a new container from the new image, this time by setting the command to "ls -l". Also notice how we don't have to allocate pseudo-TTY or connect STDIN since our command is not interactive (and will exit anyway immediately) 
 
 ```console
-$ docker run myfirst-pluschanges ls -l 
+$ docker container run myfirst-pluschanges ls -l 
   total 4 
   -rw-r--r-- 1 root root    0 Jan  5 11:59 hello.txt 
   -rw------- 1 root root 1270 Aug  9  2013 index.html 
@@ -490,7 +490,7 @@ And as expected, our `manually.txt` file is now in the image.
 Now let's start moving towards a more meaningful image. `youtube-dl` a program that downloads youtube videos <https://rg3.github.io/youtube-dl/download.html> Let's add it to the image - but this time instead of doing it directly in `Dockerfile`, let's try another approach that is sometimes easier than our current process where we add things to it and try to see if it builds. This time we'll open up an interactive session and test stuff beforehand "storing" it in our Dockerfile. By following the youtube-dl install instructions blindly we'll see that... 
 
 ```console
-$ docker run -it myfirst 
+$ docker container run -it myfirst 
   root@8c587232a608:/mydir# sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl 
   bash: sudo: command not found 
 ```
@@ -575,7 +575,7 @@ $ docker build -t youtube-dl .
 
 And run it: 
 ```console
-$ docker run youtube-dl 
+$ docker container run youtube-dl 
 
   Usage: youtube-dl [OPTIONS] URL [URL...] 
 
@@ -587,7 +587,7 @@ $ docker run youtube-dl
 So far so good, but now the natural way to use this image would be to give the URL as an argument: 
 
 ```console
-$ docker run youtube-dl https://imgur.com/JY5tHqr 
+$ docker container run youtube-dl https://imgur.com/JY5tHqr 
 
   /usr/local/bin/docker: Error response from daemon: OCI runtime create failed: container_linux.go:296: starting container process caused "exec: \"https://imgur.com/JY5tHqr\": stat https://imgur.com/JY5tHqr: no such file or directory": unknown. 
 
@@ -603,7 +603,7 @@ And now it works like it should:
 
 ```console
 $ docker build -t youtube-dl . 
-$ docker run youtube-dl https://imgur.com/JY5tHqr
+$ docker container run youtube-dl https://imgur.com/JY5tHqr
 
   [Imgur] JY5tHqr: Downloading webpage
   [download] Destination: Imgur-JY5tHqr.mp4
@@ -623,21 +623,21 @@ In the shell form the command is provided as a string without brackets. In the e
 |ENTRYPOINT /bin/ping -c 3 <br> CMD ["localhost"] | /bin/sh -c '/bin/ping -c 3' localhost |
 |ENTRYPOINT ["/bin/ping","-c","3"] <br> CMD ["localhost"] | /bin/ping -c 3 localhost | 
 
-As the command at the end of docker run will be the CMD we want to use ENTRYPOINT to specify what to run, and CMD to specify which command (in our case url) to run. Most of the time we can just use CMD for convenience as that will allow us to overwrite the CMD easily with, for example, bash.
+As the command at the end of `docker container run` will be the CMD we want to use ENTRYPOINT to specify what to run, and CMD to specify which command (in our case url) to run. Most of the time we can just use CMD for convenience as that will allow us to overwrite the CMD easily with, for example, bash.
 
 We can test how some other projects do this. Let's try python:
 
 ```console
-$ docker pull python:3.8
+$ docker image pull python:3.8
 ...
-$ docker run -it python:3.8
+$ docker container run -it python:3.8
   Python 3.8.2 (default, Mar 31 2020, 15:23:55)
   [GCC 8.3.0] on linux
   Type "help", "copyright", "credits" or "license" for more information.
   >>> print("Hello, World!")
   Hello, World!
   >>> exit()
-$ docker run -it python:3.8 bash
+$ docker container run -it python:3.8 bash
 ```
 
 If they had ENTRYPOINT as python we'd be able to run --version. We can create our own image for personal use as we did in a previous exercise with a new Dockerfile.
@@ -648,7 +648,7 @@ ENTRYPOINT ["python3"]
 CMD ["--help"]
 ```
 
-The result is an image that has python as ENTRYPOINT and you can add the commands at the end, for example --version to see the version. Or without command it will output the help. This is really convenient for some images, such as our youtubedl project. ENTRYPOINT is rather rare as instead of writing a new dockerfile you could've ran `docker run python:3.8 python3 --version` for the same result.
+The result is an image that has python as ENTRYPOINT and you can add the commands at the end, for example --version to see the version. Or without command it will output the help. This is really convenient for some images, such as our youtubedl project. ENTRYPOINT is rather rare as instead of writing a new dockerfile you could've ran `docker container run python:3.8 python3 --version` for the same result.
 
 Now we have two problems with the project: 
 
@@ -672,16 +672,16 @@ $ docker container ls -a --last 3
 We'll see that the last container was `be9fdbcafb23` or `determined_elion` for us humans. 
 
 ```console
-$ docker diff determined_elion 
+$ docker container diff determined_elion 
 
   C /mydir 
   A /mydir/Imgur-JY5tHqr.mp4 
 ```
 
-Let's try `docker cp` command to copy the file. We can use quotes if the filename has spaces.
+Let's try `docker container cp` command to copy the file. We can use quotes if the filename has spaces.
 
 ```console
-$ docker cp "determined_elion://mydir/Imgur-JY5tHqr.mp4" . 
+$ docker container cp "determined_elion://mydir/Imgur-JY5tHqr.mp4" . 
 ```
 
 And now we have our file locally. This doesn't really fix our issue, so let's continue: 
@@ -691,7 +691,7 @@ And now we have our file locally. This doesn't really fix our issue, so let's co
 By **bind mounting** a host (our machine) folder to the container we can get the file directly to our machine. Let's start another run with `-v` option, that requires an absolute path. We mount our current folder as `/mydir` in our container, overwriting everything that we have put in that folder in our Dockerfile. 
 
 ```console
-$ docker run -v "$(pwd):/mydir" youtube-dl https://imgur.com/JY5tHqr
+$ docker container run -v "$(pwd):/mydir" youtube-dl https://imgur.com/JY5tHqr
 ```
 
 > Note: the Docker for Mac/Win has some magic so that the directories from our host become available for the `moby` virtual machine allowing our command to work as it would on a Linux machine. 
@@ -730,7 +730,7 @@ For example: A certain application uses port 4567 to accept udp connections.
 Lets say that the image name is "app-in-port"
 
 ```console
-$ docker run -p 1234:4567 app-in-port
+$ docker container run -p 1234:4567 app-in-port
 ```
 
 Now you could make connection to host port 1234 (for example http://localhost:1234) and it will be mapped to the application port.
@@ -738,16 +738,16 @@ Now you could make connection to host port 1234 (for example http://localhost:12
 If you leave out the host port and only specify the container port, docker will automatically choose a free port as the host port:
 
 ```console
-$ docker run -p 4567 app-in-port
+$ docker container run -p 4567 app-in-port
 ```
 
-The `docker port` command can be used to list the port mappings for a container:
+The `docker container port` command can be used to list the port mappings for a container:
 
 ```console
-$ docker run -d -p 4567 app-in-port
+$ docker container run -d -p 4567 app-in-port
   0249795b3778f058314b611e3f0ef4406d730cfb098065c591de44668a732de3
 
-$ docker port 0249
+$ docker container port 0249
   4567/tcp -> 0.0.0.0:32772
 ```
 
@@ -771,7 +771,7 @@ Set visibility to public. Free accounts have access to 1 free private repository
 Next we need to rename the image:
 
 ```console
-$ docker tag youtube-dl <username>/<repositoryname>
+$ docker image tag youtube-dl <username>/<repositoryname>
 ```
 
 And the last thing we need is to authenticate our push by logging in:
@@ -783,7 +783,7 @@ $ docker login
 Pushing should now work without problems:
 
 ```console
-$ docker push <username>/<repositoryname>
+$ docker image push <username>/<repositoryname>
 ```
 
 {% include_relative exercises/1_13.html %}
