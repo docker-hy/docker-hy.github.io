@@ -163,7 +163,7 @@ Update the ports definition in `docker-compose.yml`:
 
 ```yaml
     ports: 
-    - 8000
+      - 8000
 ```
 
 Then run the command again:
@@ -438,7 +438,7 @@ redmine:
     - REDMINE_DB_POSTGRES=db
     - REDMINE_DB_PASSWORD=example
   ports: 
-    - '9999:3000' 
+    - 9999:3000 
   depends_on: 
     - db
 ``` 
