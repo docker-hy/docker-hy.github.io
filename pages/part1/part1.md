@@ -254,8 +254,6 @@ Tagging is also a way to "rename" images. Run `docker image tag ubuntu:16.04 fav
 
 We can now create a new Ubuntu container and execute the `uptime` command by running `docker container run fav_distro:xenial uptime`
 
-> Mac/win only: Notice how the uptime is the uptime of your moby virtual machine. 
-
 We'll look more into the Ubuntu image in part 3.
 
 ### Running and stopping containers 
@@ -693,8 +691,6 @@ By **bind mounting** a host (our machine) folder to the container we can get the
 ```console
 $ docker container run -v "$(pwd):/mydir" youtube-dl https://imgur.com/JY5tHqr
 ```
-
-> Note: the Docker for Mac/Win has some magic so that the directories from our host become available for the `moby` virtual machine allowing our command to work as it would on a Linux machine. 
 
 So a volume is simply a folder (or a file) that is shared between the host machine and the container. If a file in volume is modified by a program that's running inside the container the changes are also saved from destruction when the container is shut down as the file exists on the host machine. This is the main use for volumes as otherwise all of the files wouldn't be accessible when restarting the container. Volumes also can be used to share files between containers and run programs that are able to load changed files.
 
