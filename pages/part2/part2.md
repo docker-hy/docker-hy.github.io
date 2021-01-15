@@ -93,7 +93,7 @@ Compose is really meant for running web services, so let's move from simple bina
 <https://github.com/jwilder/whoami> is a simple service that prints the current container id (hostname). 
 
 ```console
-$ docker run -d -p 8000:8000 jwilder/whoami 
+$ docker container run -d -p 8000:8000 jwilder/whoami 
   736ab83847bb12dddd8b09969433f3a02d64d5b0be48f7a5c59a594e3a6a3541 
 ```
 
@@ -102,8 +102,8 @@ Navigate with a browser or curl to localhost:8000, they both will answer with th
 Take down the container so that it's not blocking port 8000.
 
 ```console
-$ docker stop 736ab83847bb
-$ docker rm 736ab83847bb  
+$ docker container stop 736ab83847bb
+$ docker container rm 736ab83847bb  
 ```
 
 Let's create a new folder and a docker-compose file `whoami/docker-compose.yml` from the command line options.
@@ -163,7 +163,7 @@ Update the ports definition in `docker-compose.yml`:
 
 ```yaml
     ports: 
-    - 8000
+      - 8000
 ```
 
 Then run the command again:
@@ -377,7 +377,7 @@ $ docker-compose up
 
 The image initializes the data files in the first start. Let's terminate the container with ^C. Compose uses the current directory as a prefix for container and volume names so that different projects don't clash. The prefix can be overridden with `COMPOSE_PROJECT_NAME` environment variable if needed. 
 
-Let's **inspect** if there was a volume created with `docker inspect db_redmine | grep -A 5 Mounts`
+Let's **inspect** if there was a volume created with `docker container inspect db_redmine | grep -A 5 Mounts`
 
 ```json
 "Mounts": [
@@ -420,7 +420,7 @@ $ docker volume ls
   DRIVER              VOLUME NAME
   local               redmine_database
 
-$ docker inspect db_redmine | grep -A 5 Mounts
+$ docker container inspect db_redmine | grep -A 5 Mounts
 "Mounts": [
     {
         "Type": "volume",
@@ -438,14 +438,14 @@ redmine:
     - REDMINE_DB_POSTGRES=db
     - REDMINE_DB_PASSWORD=example
   ports: 
-    - '9999:3000' 
+    - 9999:3000 
   depends_on: 
     - db
 ``` 
 
 Notice the `depends_on` declaration. This makes sure that the that `db` service should be started first. `depends_on` does not guarantee that the database is up, just that the service is started first. The Postgres server is accessible with dns name "db" from the redmine service as discussed in the "docker networking" section
 
-Now when you run it you will see a bunch of database migrations running first.
+Now when you run `docker-compose up` you will see a bunch of database migrations running first.
 
 ```console
   redmine_1  | I, [2019-03-03T10:59:20.956936 #25]  INFO -- : Migrating to Setup (1)
@@ -489,7 +489,7 @@ volumes:
 Now we can use the application with our browser through <http://localhost:9999>. After some changes inside the application we can inspect the changes that happened in the image and check that no extra meaningful files got written to the container: 
 
 ```console
-$ docker diff $(docker-compose ps -q redmine) 
+$ docker container diff $(docker-compose ps -q redmine) 
   C /usr/src/redmine/config/environment.rb
   ...
   C /usr/src/redmine/tmp/pdf
@@ -497,7 +497,7 @@ $ docker diff $(docker-compose ps -q redmine)
 
 Probably not.
 
-Next we'll add adminer to the application. We could also just use psql to interact with a postgres database with `docker exec -it db_redmine psql -U postgres`. (The command **exec**utes psql -U postgres inside the container) The same method can be used to create backups with pg_dump: `docker exec db_redmine pg_dump -U postgres > redmine.dump`. 
+Next we'll add adminer to the application. We could also just use psql to interact with a postgres database with `docker container exec -it db_redmine psql -U postgres`. (The command **exec**utes psql -U postgres inside the container) The same method can be used to create backups with pg_dump: `docker container exec db_redmine pg_dump -U postgres > redmine.dump`. 
 
 This step is straightforward, we actually had the instructions open back before we set up postgres. But let's check the [documentation](https://hub.docker.com/_/adminer) and we'll see that the following will suffice:
 

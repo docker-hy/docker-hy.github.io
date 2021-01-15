@@ -53,7 +53,7 @@ Notice how the file is not extracted at any point, this is because the `ADD` doc
 Before getting stressed by the potential security problems with this we have to remind ourselves of Ken Thompsons "You can't trust code that you did not totally create yourself." (1984, Reflections on Trusting Trust). However, we assume that the `ubuntu:16.04` that we downloaded is this image, because 
 
 ```console
-$ docker history --no-trunc ubuntu:16.04 
+$ docker image history --no-trunc ubuntu:16.04 
 ```
 
 matches with the directives specified in the `Dockerfile`.  We could also build the image ourselves if we really wanted - there is nothing special in the "official" image and the build process is, as we saw, truly open. 
@@ -118,10 +118,10 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 
 As a sidenote not directly related to docker: remember that if needed, it is possible to bind packages to versions with `curl=1.2.3` - this will ensure that if the image is built at the later date, then the image is more likely to work, because the versions are exact. On the other hand the packages will be old and have security issues.  
 
-With `docker history` we can see that our single `RUN` layer adds 85.2 megabytes to the image: 
+With `docker image history` we can see that our single `RUN` layer adds 85.2 megabytes to the image: 
 
 ```console
-$ docker history youtube-dl 
+$ docker image history youtube-dl 
 
   IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT 
   295b16d6560a        30 minutes ago      /bin/sh -c #(nop)  ENTRYPOINT ["/usr/local...   0B 
@@ -140,7 +140,7 @@ rm -rf /var/lib/apt/lists/*
 Now when we build, we'll see that the size of the layer is 45.6MB megabytes. We can optimize even further by removing the `curl`. We can remove `curl` and all the dependencies it installed with 
 
 ```console
-.. `&& \ 
+.. && \ 
 apt-get purge -y --auto-remove curl && \ 
 rm -rf /var/lib/apt/lists/* 
 ````
@@ -150,7 +150,7 @@ rm -rf /var/lib/apt/lists/*
 Now our slimmed down container should work, but: 
 
 ```console
-$ docker run -v "$(pwd):/app" youtube-dl https://imgur.com/JY5tHqr
+$ docker container run -v "$(pwd):/app" youtube-dl https://imgur.com/JY5tHqr
 
   [Imgur] JY5tHqr: Downloading webpage
 
@@ -200,15 +200,15 @@ and this brings us to 36.4 megabytes in our `RUN` layer (from the original 87.4 
 
 ## Deployment pipeline with docker-compose ##
 
-Let's setup a deployment pipeline from GitHub to a host machine, this could be a raspberry pi or a virtual machine in the cloud (such as one provided by [Hetzner](https://www.hetzner.com/cloud)). Now we're using your local machine since it is cheaper.
+Let's setup a deployment pipeline from GitHub to a host machine. We will demonstrate this using your local machine, but the same steps can be used for Raspberry Pi or even a virtual machine in the cloud (such as one provided by [Hetzner](https://www.hetzner.com/cloud)).
 
-We will use CircleCI for building the image, save the image to Docker Hub and then automatically pull the image from there.
+We will CircleCI to build an image, push the image to Docker Hub, and then automatically pull the image from there.
 
 Let's work with the repository [https://github.com/docker-hy/docker-hy.github.io](https://github.com/docker-hy/docker-hy.github.io) as it already has a Dockerfile and the CircleCI config for our convenience.
 
 You can either fork the repository or clone it as your own.
 
-Go to [https://circleci.com/](https://circleci.com/) and sign up / log in with your GitHub account. Give access and set up a new project.
+Go to the [CircleCI homepage](https://circleci.com/) and sign in with your GitHub account. Give access and set up a new project.
 
 CircleCI may give a guide on how to setup the project specific build. We can ignore it. Press Start Building in the CircleCI. After a while it should have a red "Failed" for the workflow.
 
@@ -279,7 +279,7 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 When we run this image without bind mounting our local directory: 
 
 ```console
-$ docker run youtube-dl https://imgur.com/JY5tHqr
+$ docker container run youtube-dl https://imgur.com/JY5tHqr
 
   [Imgur] JY5tHqr: Downloading webpage
   [download] Destination: Imgur-JY5tHqr.mp4
@@ -327,13 +327,13 @@ $ docker build -t youtube-dl:alpine-3.7 -f Dockerfile.alpine .
 It seems to run fine:  
 
 ```console
-$ docker run -v "$(pwd):/app" youtube-dl:alpine-3.7 https://imgur.com/JY5tHqr
+$ docker container run -v "$(pwd):/app" youtube-dl:alpine-3.7 https://imgur.com/JY5tHqr
 ```
 
 From the history we can see that the our single `RUN` layer size is 41.1MB 
 
 ```console
-$ docker history youtube-dl:alpine-3.7 
+$ docker image history youtube-dl:alpine-3.7 
 
   IMAGE... 
   ... 
@@ -349,15 +349,15 @@ Back in part 1 we published the ubuntu version of youtube-dl with tag latest.
 We can publish both variants without overriding the other by publishing them with a describing tag: 
 
 ```console
-$ docker tag youtube-dl:alpine-3.7 <username>/youtube-dl:alpine-3.7 
-$ docker push <username>/youtube-dl:alpine-3.7 
+$ docker image tag youtube-dl:alpine-3.7 <username>/youtube-dl:alpine-3.7 
+$ docker image push <username>/youtube-dl:alpine-3.7 
 ```
 
 OR, if we don't want to upkeep the ubuntu version anymore we can replace our Ubuntu image by pushing this as the latest. Someone might depend on the image being ubuntu though.
 
 ```console
-$ docker tag youtube-dl:alpine-3.7 <username>/youtube-dl 
-$ docker push <username>/youtube-dl 
+$ docker image tag youtube-dl:alpine-3.7 <username>/youtube-dl 
+$ docker image push <username>/youtube-dl 
 ```
 
 Also remember that unless specified the `:latest` tag will always just refer to the latest image build & pushed - that can basically contain anything. 
@@ -395,13 +395,13 @@ This copies contents from the first image `/usr/app/_site/` to `/usr/share/nginx
 
 ```console
 $ docker build . -t jekyll
-$ docker images
+$ docker image ls
   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
   jekyll              latest              5f8839505f37        37 seconds ago      109MB
   ruby                latest              616c3cf5968b        28 hours ago        870MB
 ```
 
-As you can see, even though our jekyll image needed ruby during the build process, its considerably smaller since it only has nginx and the static files. `docker run -it -p 8080:80 jekyll` also works as expected.
+As you can see, even though our jekyll image needed ruby during the build process, its considerably smaller since it only has nginx and the static files. `docker container run -it -p 8080:80 jekyll` also works as expected.
 
 {% include_relative exercises/3_6.html %}
 {% include_relative exercises/3_7.html %}

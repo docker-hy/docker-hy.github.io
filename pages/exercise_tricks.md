@@ -14,7 +14,7 @@ At this point you know what containers are when configuring: ISOLATED environmen
 
 On your own computer you can use a command line tool called curl (among many others) to do a GET request. GET usually gets you something from where you sent that request.
 
-So when you're figuring things out you can use the `docker exec` from part 1 to go use bash / sh inside a container. And then use curl to poke into the distance just to see what happens.
+So when you're figuring things out you can use the `docker container exec` from part 1 to go use bash / sh inside a container. And then use curl to poke into the instance just to see what happens.
 
 For example if you have a process running in `container_A` you can it to send a request to `container_B`. You can go inside `container_A` and just guess where the process is and more often than not test curling. 
 
