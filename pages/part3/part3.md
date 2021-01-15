@@ -140,7 +140,7 @@ rm -rf /var/lib/apt/lists/*
 Now when we build, we'll see that the size of the layer is 45.6MB megabytes. We can optimize even further by removing the `curl`. We can remove `curl` and all the dependencies it installed with 
 
 ```console
-.. `&& \ 
+.. && \ 
 apt-get purge -y --auto-remove curl && \ 
 rm -rf /var/lib/apt/lists/* 
 ````
@@ -200,15 +200,15 @@ and this brings us to 36.4 megabytes in our `RUN` layer (from the original 87.4 
 
 ## Deployment pipeline with docker-compose ##
 
-Let's setup a deployment pipeline from GitHub to a host machine, this could be a raspberry pi or a virtual machine in the cloud (such as one provided by [Hetzner](https://www.hetzner.com/cloud)). Now we're using your local machine since it is cheaper.
+Let's setup a deployment pipeline from GitHub to a host machine. We will demonstrate this using your local machine, but the same steps can be used for Raspberry Pi or even a virtual machine in the cloud (such as one provided by [Hetzner](https://www.hetzner.com/cloud)).
 
-We will use CircleCI for building the image, save the image to Docker Hub and then automatically pull the image from there.
+We will CircleCI to build an image, push the image to Docker Hub, and then automatically pull the image from there.
 
 Let's work with the repository [https://github.com/docker-hy/docker-hy.github.io](https://github.com/docker-hy/docker-hy.github.io) as it already has a Dockerfile and the CircleCI config for our convenience.
 
 You can either fork the repository or clone it as your own.
 
-Go to [https://circleci.com/](https://circleci.com/) and sign up / log in with your GitHub account. Give access and set up a new project.
+Go to the [CircleCI homepage](https://circleci.com/) and sign in with your GitHub account. Give access and set up a new project.
 
 CircleCI may give a guide on how to setup the project specific build. We can ignore it. Press Start Building in the CircleCI. After a while it should have a red "Failed" for the workflow.
 

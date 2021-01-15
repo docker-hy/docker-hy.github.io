@@ -163,7 +163,7 @@ Update the ports definition in `docker-compose.yml`:
 
 ```yaml
     ports: 
-    - 8000
+      - 8000
 ```
 
 Then run the command again:
@@ -438,14 +438,14 @@ redmine:
     - REDMINE_DB_POSTGRES=db
     - REDMINE_DB_PASSWORD=example
   ports: 
-    - '9999:3000' 
+    - 9999:3000 
   depends_on: 
     - db
 ``` 
 
 Notice the `depends_on` declaration. This makes sure that the that `db` service should be started first. `depends_on` does not guarantee that the database is up, just that the service is started first. The Postgres server is accessible with dns name "db" from the redmine service as discussed in the "docker networking" section
 
-Now when you run it you will see a bunch of database migrations running first.
+Now when you run `docker-compose up` you will see a bunch of database migrations running first.
 
 ```console
   redmine_1  | I, [2019-03-03T10:59:20.956936 #25]  INFO -- : Migrating to Setup (1)

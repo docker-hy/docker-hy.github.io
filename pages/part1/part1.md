@@ -254,8 +254,6 @@ Tagging is also a way to "rename" images. Run `docker image tag ubuntu:16.04 fav
 
 We can now create a new Ubuntu container and execute the `uptime` command by running `docker container run fav_distro:xenial uptime`
 
-> Mac/win only: Notice how the uptime is the uptime of your moby virtual machine. 
-
 We'll look more into the Ubuntu image in part 3.
 
 ### Running and stopping containers 
@@ -409,13 +407,13 @@ RUN apt-get install -y wget
 
 the image should build nicely and at the end it will say something like `Successfully built 66b527252f32`, where the `66b527252f32` is a random name for our **image**. 
 
-Before running our image we have a looming problem ahead of us: because `apt-get update` is run in a separate step that is cached. If we add another package in the `apt-get install -y` line some other day, the sources might have changed and thus the installation will fail. When something depends on another command, it's best practise to run them together, like this: 
+Before running our image we have a looming problem ahead of us: because `apt-get update` is run in a separate step that is cached. If we add another package in the `apt-get install -y` line some other day, the sources might have changed and thus the installation will fail. When something depends on another command, it's best practice to run them together, like this: 
 
 ```dockerfile
 RUN apt-get update && apt-get install -y wget 
 ```
 
-An instruction like `CMD ["/bin/bash"])` in Dockerfile executes `/bin/bash` command when we start the container created from the image which uses such Dockerfile. In our case we don't have to give a command in the end of our Dockerfile (i.e., `CMD ["/bin/bash"]` as we practised earlier), since the Ubuntu base image sets it to `CMD ["/bin/bash"]` already on the last line in its [Dockerfile](https://github.com/tianon/docker-brew-ubuntu-core/blob/74249faf47098bef2cedad89696bfd1ed521e019/xenial/Dockerfile). We can optionally override `Ubuntu 16.04` image's `CMD` instruction by passing the command at the time of creating a container from our resulting image for e.g., `docker container run -it <myImageName> echo 'Docker is easy.'`, here `echo 'Docker is easy.'` will override Ubuntu image's `CMD` instruction. Though, simply running `docker container run -it <myImageName>` will run `/bin/bash` command in the resulting container as we are using Ubuntu as the base image in our Dockerfile.
+An instruction like `CMD ["/bin/bash"])` in Dockerfile executes `/bin/bash` command when we start the container created from the image which uses such Dockerfile. In our case we don't have to give a command in the end of our Dockerfile (i.e., `CMD ["/bin/bash"]` as we practiced earlier), since the Ubuntu base image sets it to `CMD ["/bin/bash"]` already on the last line in its [Dockerfile](https://github.com/tianon/docker-brew-ubuntu-core/blob/74249faf47098bef2cedad89696bfd1ed521e019/xenial/Dockerfile). We can optionally override `Ubuntu 16.04` image's `CMD` instruction by passing the command at the time of creating a container from our resulting image for e.g., `docker container run -it <myImageName> echo 'Docker is easy.'`, here `echo 'Docker is easy.'` will override Ubuntu image's `CMD` instruction. Though, simply running `docker container run -it <myImageName>` will run `/bin/bash` command in the resulting container as we are using Ubuntu as the base image in our Dockerfile.
 
 We can examine Dockerfile of each variant of Ubuntu found at [Ubuntu's docker hub page](https://hub.docker.com/_/ubuntu) under "Supported tags and respective Dockerfile links" section easily.
 
@@ -552,7 +550,7 @@ $ export LC_ALL=C.UTF-8
 $ youtube-dl https://imgur.com/JY5tHqr
 ```
 
-So now when we know what do, let's add these to the bottom of our `Dockerfile` - by adding the instructions to the bottom we preserve our cached layers - this is handy practise to speed up creating the initial version of a Dockerfile when it has time consuming operations like downloads. 
+So now when we know what do, let's add these to the bottom of our `Dockerfile` - by adding the instructions to the bottom we preserve our cached layers - this is handy practice to speed up creating the initial version of a Dockerfile when it has time consuming operations like downloads. 
 
 ```dockerfile
 ... 
@@ -693,8 +691,6 @@ By **bind mounting** a host (our machine) folder to the container we can get the
 ```console
 $ docker container run -v "$(pwd):/mydir" youtube-dl https://imgur.com/JY5tHqr
 ```
-
-> Note: the Docker for Mac/Win has some magic so that the directories from our host become available for the `moby` virtual machine allowing our command to work as it would on a Linux machine. 
 
 So a volume is simply a folder (or a file) that is shared between the host machine and the container. If a file in volume is modified by a program that's running inside the container the changes are also saved from destruction when the container is shut down as the file exists on the host machine. This is the main use for volumes as otherwise all of the files wouldn't be accessible when restarting the container. Volumes also can be used to share files between containers and run programs that are able to load changed files.
 
