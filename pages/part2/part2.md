@@ -241,7 +241,9 @@ services:
     whoami: 
       image: jwilder/whoami 
       environment: 
-       - VIRTUAL_HOST=whoami.colasloth.com 
+       - VIRTUAL_HOST=whoami.*
+#COMMENT: Specifying VIRTUAL_HOST for this container binds `whoami` subdomain to it.
+
     proxy: 
       image: jwilder/nginx-proxy 
       volumes: 
@@ -260,6 +262,8 @@ $ curl whoami.colasloth.com
   I'm 740dc0de1954 
 ```
 
+Note: Instead of `colasloth.me`, you may replace it with `localtest.me`, `lvh.me` or `vcap.me` and it'll output same results as well.
+
 Let's add couple of more containers behind the same proxy. We can use the official `nginx` image to serve a simple static web page. We don't have to even build the container images, we can just mount the content to the image. Let's prepare some content for two services called "hello" and "world". 
 
 ```console
@@ -275,13 +279,13 @@ Then add these services to the `docker-compose.yml` file where you mount just th
       volumes: 
         - ./hello.html:/usr/share/nginx/html/index.html:ro 
       environment: 
-        - VIRTUAL_HOST=hello.colasloth.com 
+        - VIRTUAL_HOST=hello.*
     world: 
       image: nginx 
       volumes: 
         - ./world.html:/usr/share/nginx/html/index.html:ro 
       environment: 
-        - VIRTUAL_HOST=world.colasloth.com 
+        - VIRTUAL_HOST=world.*
 ``` 
 
 Now let's test: 
