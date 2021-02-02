@@ -296,12 +296,12 @@ We'll see that our `app` user can not write to `/app` - this can be fixed with `
 Our Ubuntu base image adds the most megabytes to our image (approx 113MB).  Alpine Linux provides a popular alternative base in https://hub.docker.com/_/alpine/ that is around 4 megabytes. It's based on altenative glibc implementation musl and busybox binaries, so not all software run well (or at all) with it, but our python container should run just fine. We'll create the following `Dockerfile.alpine` file:  
 
 ```dockerfile
-FROM alpine:3.7 
+FROM alpine:3.11 
 
 ENV LC_ALL=C.UTF-8 
 
 RUN apk add --no-cache curl python ca-certificates && \ 
-    curl -kL https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && \ 
+    curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && \ 
     chmod a+x /usr/local/bin/youtube-dl && \ 
     apk del curl && \ 
     adduser -D app 
