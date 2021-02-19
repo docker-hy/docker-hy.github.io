@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Part 2
-inheader: yes
+inheader: no
 permalink: /part2/
 order: 2
 ---

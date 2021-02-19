@@ -16,9 +16,9 @@ Attendees need to have computers with admin/superuser privileges. Attendees are 
 
 ### Course material ###
 
-The course material is meant to be read sequentially, part by part, from start to finish. To get a passing grade you have to complete each exercise, although one exercise can be skipped for each part. Some of the exercises are marked as mandatory and those can not be skipped. The exercises are placed in the material in such a way that you will have learned the necessary skills from the material prior to each given exercise. You can do the exercises as you're going through the material.
+The course material is meant to be read sequentially, part by part, from start to finish. To get a passing grade you have to complete each exercise. Except one exercise can be skipped for each part. Some of the exercises are marked as mandatory and the mandatory exercises can not be skipped. The exercises are placed in the material in such a way that you will have learned the necessary skills from the material prior to each given exercise. You can do the exercises as you're going through the material.
 
-The course material is written for Ubuntu, so some instructions may lack platform-specific details. Please make a [pull request](https://docker-hy.github.io/contributing) to the course material in case you find any mistakes or wish to add something. You can also [contribute](https://docker-hy.github.io/contributing) through GitHub in case you find any issues with the course material.
+The course material does not consider all operating systems and as such some instructions may lack platform-specific details. But we've had students who've made it through the material with varying machines. Please make a [pull request](/contributing) to the course material if you find any mistakes or wish to add something. You can also [contribute](/contributing) through GitHub.
 
 ### Completing course ###
 
@@ -51,7 +51,7 @@ Knows why docker-compose is not an optimal production solution and what is.
 
 ### Course has multiple pages ###
 
-As we're trying to make the course as accessible as possible, the course has multiple pages: [Courses page](https://courses.helsinki.fi/fi/aytkt21025en/132141109), [Mooc](https://mooc.fi/) and GitHub page. Everything is found here in this page, and if something is missing or unclear after reading this page only then please contact jami.kousa@helsinki.fi or get in touch through Telegram.
+As we're trying to make the course as accessible as possible, the course has multiple pages: [Studies page](https://studies.helsinki.fi/courses/cur/hy-CUR-135622221/Open_uni_DevOps_with_Docker_2021), [Mooc](https://mooc.fi/) and a GitHub page. Everything should be found from this page. If something is missing or unclear after reading this page, please contact jami.kousa@helsinki.fi or get in touch through Telegram.
 
 ### Telegram ###
 
@@ -72,8 +72,6 @@ Use the official documentation to find download instructions for docker-ce for t
 [Windows](https://docs.docker.com/docker-for-windows/install/)
 
 Confirm that Docker installed correctly by opening a terminal and running ```docker -v``` to see the installed version.
-
-> TIP: Windows 10 Home does not support Hyper-V. I recommend installing another OS such as Ubuntu. Remember to back up everything. Instructions for dual boot [here](https://hackernoon.com/installing-ubuntu-18-04-along-with-windows-10-dual-boot-installation-for-deep-learning-f4cd91b58557)
 
 ## Installing docker-compose ##
 

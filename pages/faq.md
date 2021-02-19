@@ -36,12 +36,8 @@ You can get your credits after submitting enough exercises for passing the cours
 
 Yes, the certificate is available to all who pass the course before the deadline. You can download the certificate after completing the course from the exercise submission system.
 
-## How do I extend my 2019 progress? ##
+## How do I extend my 2020 progress? ##
 
-I may code the feature to copy paste submissions from 2019 to 2020 but for now..
+You can simply submit the completed parts again. 
 
-You can simply submit the completed exercises again.
-
-There are a few changes in part 3, so if you did part of the exercises during 2019 or during the downtime make sure to do the new exercises 3.2 and 3.3 from the 2020 version. The exercise numbering is changed so that old 3.3 is now 3.4, 3.4 is 3.5 and so on. Total number of exercises did not change.
-
-If you have already done parts 1 or 2 during winter 2018 you can skip those parts. But I recommend checking for new exercises that are of interest.
+If you left 1 exercise not completed, mark one exercise not completed in the 2021 version. If you did all of the exercises mark all as done in the 2021 course.

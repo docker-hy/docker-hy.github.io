@@ -14,6 +14,10 @@ RUN chown -R jekyll .
 
 RUN jekyll build
 
-FROM nginx:alpine
+FROM node:alpine
 
-COPY --from=build-stage /usr/src/app/_site/ /usr/share/nginx/html
+COPY --from=build-stage /usr/src/app/_site/ /usr/src/html
+
+RUN npm install -g serve
+
+CMD serve -l $PORT /usr/src/html

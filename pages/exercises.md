@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Exercises
-inheader: yes
+inheader: no
 permalink: /exercises/
 order: 5
 ---
