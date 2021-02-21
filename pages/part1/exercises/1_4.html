@@ -2,12 +2,34 @@
 
   <h1>1.4</h1>
 
-  Now that we've warmed up it's time to get inside a container while it's running!
+  Start a ubuntu image with the process `sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1;
+    curl http://$website;'`
 
-  Start image `devopsdockeruh/exec_bash_exercise`, it will start a container with clock-like features and create a
-  log. Go inside the container and use `tail -f ./logs.txt` to follow the logs. Every 15 seconds the clock will send
-  you a "secret message".
+  You will notice that a few things required for proper execution are missing. Be sure to remind yourself which flags
+    to use so that the read actually waits for input.
 
-  Submit the secret message and command(s) given as your answer.
+  > Note also that curl is NOT installed in the container yet. You will have to install it from inside of the container.
+
+  Test inputting `helsinki.fi` into the application. It should respond with something like
+
+  ```html
+<html>
+
+<head>
+  <title>301 Moved Permanently</title>
+</head>
+
+<body>
+  <h1>Moved Permanently</h1>
+  <p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+</body>
+
+</html>
+  ```
+
+  This time return the command you used to start process and the command(s) you used to fix the ensuing problems.
+
+  > This exercise has multiple solutions, if the curl for helsinki.fi works then it's done. Can you figure out other
+  (smart) solutions?
 
 </div>

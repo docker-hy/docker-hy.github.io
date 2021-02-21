@@ -1,21 +1,12 @@
 <div class="exercise" markdown="1">
-
   <h1>1.11</h1>
 
-  <b style="color:firebrick;">This exercise is mandatory</b>
+  Lets create a Dockerfile for a Java Spring project: [github page](https://github.com/docker-hy/spring-example-project)
 
-  Clone, fork or download a project from
-  [https://github.com/docker-hy/backend-example-docker](https://github.com/docker-hy/backend-example-docker).
+  The setup should be straightforward with the README instructions. Tips to get you started:
 
-  Create a Dockerfile for the project and give a command so that the project runs in a docker container with port 8000
-  exposed and published so when you start the container and navigate to [http://localhost:8000](http://localhost:8000)
-  you will generate a message in logs.txt in the working directory.
+  Use [openjdk image](https://hub.docker.com/_/openjdk) `FROM openjdk:_tag_` to get java instead of installing it
+  manually. Pick the tag by using the README and dockerhub page.
 
-  Create a volume for the logs.txt so that when the application is shut down the logs are not destroyed. And when
-  restarted it continues to write into the same logs.txt.
-
-  Submit the Dockerfile and the command used.
-
-  *Do not alter the code of the project*
-
+  You've completed the exercise when you see a 'Success' message in your browser.
 </div>

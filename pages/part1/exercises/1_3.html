@@ -1,12 +1,13 @@
 <div class="exercise" markdown="1">
 
-  <h1>1.3 Hello Docker Hub</h1>
+  <h1>1.3</h1>
 
-  Start image `devopsdockeruh/pull_exercise` with flags `-it` like so: `docker container run -it devopsdockeruh/pull_exercise`.
-  It will wait for your input. Navigate through docker hub to find the docs and Dockerfile that was used to create the
-  image.
+  Now that we've warmed up it's time to get inside a container while it's running!
 
-  Read the Dockerfile and/or docs to learn what input will get the application to answer a "secret message".
+  Image `devopsdockeruh/simple-web-service:ubuntu` will start a container that outputs logs into a file. 
+  Go inside the container and use `tail -f ./text.log` to follow the logs. 
+  Every 10 seconds the clock will send you a "secret message".
 
-  Submit the secret message and command(s) given to get it as your answer.
+  Submit the secret message and command(s) given as your answer.
+
 </div>

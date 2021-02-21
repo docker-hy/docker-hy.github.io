@@ -2,16 +2,19 @@
 
   <h1>1.7</h1>
 
-  Now that we know how to create and build Dockerfiles we can improve previous works.
+  By default our `devopsdockeruh/simple-web-service:alpine` doesn't have a CMD. It instead uses *ENTRYPOINT* to declare which application is run.
 
-  Create a Dockerfile for a new image that starts from ubuntu:16.04.
+  We'll talk more about "ENTRYPOINT" in the next section, but you already know that the last argument can be used to give command.
 
-  Make a script file on you local machine with such content as `echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;`. Transfer this file to an image and
-  run it inside the container using CMD. Build the image with tag "curler".
+  As you might've noticed it doesn't start the web service even though the name is "simple-web-service". A command is needed to start the server!
 
-  Run command `docker container run [options] curler` (with correct flags again, as in 1.5) and input helsinki.fi into it. Output
-  should match the 1.5 one.
+  Try `docker run devopsdockeruh/simple-web-service:alpine hello`. The application reads the argument but will inform that hello isn't accepted.
 
-  Return both Dockerfile(s) and the command you used to run the container(s)
+  In this exercise create a Dockerfile and use FROM and CMD to create a brand new image that automatically runs the server. 
+  Tag the new image as "web-server"
+
+  Return the Dockerfile and the command you used to run the container.
+
+  > We don't have any method of accessing the web service yet. As such confirming that the console output is the same will suffice.
 
 </div>

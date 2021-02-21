@@ -32,3 +32,22 @@ pre {
   padding: 1em;
   border-radius: 0.5em;
 }
+
+
+main {
+  .learning-goals {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: -webkit-calc(800px - (30px * 2));
+    max-width: calc(800px - (30px * 2));
+  }
+  .section:nth-of-type(2n) {
+    background-color: #fafafa;
+  }
+  .section * {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: -webkit-calc(800px - (30px * 2));
+      max-width: calc(800px - (30px * 2));
+    }
+}
