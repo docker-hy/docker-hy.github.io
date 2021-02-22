@@ -5,16 +5,15 @@
   Add redis to example backend.
 
   Redis is used to speed up some operations. Backend uses a slow api to get information. You can test the slow api by
-  requesting `/slow` with curl. The frontend program has a button to test this. Before configuring redis it should take
-  10 to 20 seconds to get a response.
+  requesting `/ping?redis=true` with curl. The frontend program has a button to test this.
 
   Configure a redis container to cache information for the backend. Use the documentation if needed when configuring:
   [https://hub.docker.com/\_/redis/](https://hub.docker.com/_/redis/)
 
-  The backend [README](https://github.com/docker-hy/backend-example-docker) should have all the information needed to
+  The backend [README](https://github.com/docker-hy/material-applications/tree/main/example-backend) should have all the information needed to
   connect.
 
-  When you've correctly configured it should take less than a second to get a response and the button will turn green.
+  When you've correctly configured the button will turn green.
 
   Submit the docker-compose.yml
 

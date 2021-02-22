@@ -22,7 +22,6 @@ CMD npm start
 
 And that's it. We'll use volume to copy all source code inside the volume so CMD will run the application we're developing. Let's try it!
 
-
 The next exercise can be extremely easy or extremely hard. Feel free to have fun with it.
 
-{% include_relative exercises/2_17.html %}
+{% include_relative exercises/2_11.html %}
