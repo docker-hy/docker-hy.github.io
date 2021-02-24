@@ -35,3 +35,7 @@ This part introduces production-ready practices such as container optimization a
 <div class="section" markdown="1">
 {% include_relative section-5.md %}
 </div>
+
+<div class="section" markdown="1">
+{% include_relative section-6.md %}
+</div>
