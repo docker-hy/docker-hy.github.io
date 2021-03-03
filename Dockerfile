@@ -16,8 +16,10 @@ RUN jekyll build
 
 FROM node:alpine
 
-COPY --from=build-stage /usr/src/app/_site/ /usr/src/html
+ENV PORT 80
 
 RUN npm install -g serve
+
+COPY --from=build-stage /usr/src/app/_site/ /usr/src/html
 
 CMD serve -l $PORT /usr/src/html
