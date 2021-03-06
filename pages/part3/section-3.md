@@ -30,7 +30,7 @@ And then we change user with the directive `USER` - so all commands after this l
 ```dockerfile
 FROM ubuntu:16.04 
 
-WORKDIR /usr/app
+WORKDIR /usr/videos
 
 ENV LC_ALL=C.UTF-8 
 
@@ -43,9 +43,9 @@ RUN useradd -m appuser
 USER appuser
 
 ENTRYPOINT ["/usr/local/bin/youtube-dl"] 
-``` 
+```
 
-When we run this image without bind mounting our local directory: 
+I also renamed the WORKDIR to /usr/videos since it makes more sense as the videos will be downloaded there. When we run this image without bind mounting our local directory: 
 
 ```console
 $ docker container run youtube-dl https://imgur.com/JY5tHqr
@@ -56,6 +56,6 @@ $ docker container run youtube-dl https://imgur.com/JY5tHqr
   ERROR: unable to open for writing: [Errno 13] Permission denied: 'Imgur-JY5tHqr.mp4.part'
 ```
 
-We'll see that our `appuser` user can not write to `/usr/app` - this can be fixed with `chown` or not fix it at all, if the intented usage is to always have a `/usr/app` mounted from the host.
+We'll see that our `appuser` user can not write to `/usr/videos` - this can be fixed with `chown` or not fix it at all, if the intented usage is to always have a `/usr/videos` mounted from the host. By mounting the directory the application works as intended.
 
 {% include_relative exercises/3_4.html %}
