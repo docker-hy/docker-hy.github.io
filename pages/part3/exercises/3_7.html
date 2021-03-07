@@ -1,9 +1,9 @@
 <div class="exercise" markdown="1">
 
-  <h1>3.7</h1>
+  <h1>3.6: Multi-stage backend</h1>
+  Lets do a multi-stage build for the [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) project since we've come so far with the application.
 
-  Do all or most of the optimizations from security to size for any other Dockerfile you have access to, in your own
-  project or for example the ones used in previous "standalone" exercises. Please document Dockerfiles both before and
-  after.
+  The project is in golang and building a binary that runs in a container, while straightforward, isn't exactly trivial. Use resources that you have available (Google, example projects) to build the binary and run it inside a container that uses FROM scratch.
 
+  To pass the exercise the image must be smaller than <b>25MB</b>.
 </div>

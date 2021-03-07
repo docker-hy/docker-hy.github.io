@@ -135,7 +135,7 @@ From the build output we can see that `ca-certificates` also adds `openssl`
 
 and this brings us to 36.9 megabytes in our `RUN` layer (from the original 76.7 megabytes). 
 
-{% include_relative exercises/3_45.html %}
+{% include_relative exercises/3_4.html %}
 
 ## Alpine Linux variant ##
 
@@ -253,3 +253,4 @@ As you can see, even though our jekyll image needed ruby during the build proces
 
 {% include_relative exercises/3_6.html %}
 {% include_relative exercises/3_7.html %}
+{% include_relative exercises/3_8.html %}

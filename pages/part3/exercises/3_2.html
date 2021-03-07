@@ -1,13 +1,14 @@
 <div class="exercise" markdown="1">
-  <h1>3.2 A deployment pipeline to heroku</h1>
 
-  Let's create our first deployment pipeline!
+  <h1>3.2 Building images inside of a container</h1>
 
-  For this exercise you can select which ever web application you already have containerized.
+  Watchtower uses volume to docker.sock socket to access Docker daemon of the host from the container. By leveraging this ourselves we can create our own simple build service.
 
-  If you don't have any web applications available you can use any one from this course and modify it. (Such as the course material itself)
+  Create a project that downloads a repository from github, builds a Dockerfile located in the root and then publishes it into Docker Hub.
 
-  Let's use GitHub, Github Actions, and Heroku to deploy to heroku. You can also use other CI/CD tools instead of GitHub Actions.
-  
-  Submit a link to the repository with the config.
+  You can use any programming language / technology for the project implementation. A simple bash script is viable
+
+  Then create a Dockerfile for it so that it can be run inside a container.
+
+  Make sure that it can build at least some of the example projects.
 </div>
