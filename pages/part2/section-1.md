@@ -9,7 +9,7 @@ docker-compose is designed to simplify running multi-container applications to u
 In the folder where we have our Dockerfile with the following content:
 
 ```dockerfile
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 WORKDIR /mydir
 

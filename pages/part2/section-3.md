@@ -12,7 +12,7 @@ version: '3.5'
 
 services:
   db:
-    image: postgres
+    image: postgres:13.2-alpine
     restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: example
@@ -68,7 +68,7 @@ version: '3.5'
 
 services:
   db:
-    image: postgres
+    image: postgres:13.2-alpine
     restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: example
@@ -98,7 +98,7 @@ Ok, looks a bit more human readable even if it isn't more accessible than bind m
 
 ```yaml
 redmine: 
-  image: redmine
+  image: redmine:4.1-alpine
   environment: 
     - REDMINE_DB_POSTGRES=db
     - REDMINE_DB_PASSWORD=example
@@ -127,7 +127,7 @@ version: '3.5'
 
 services:
   db:
-    image: postgres
+    image: postgres:13.2-alpine
     restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: example
@@ -135,7 +135,7 @@ services:
     volumes:
       - database:/var/lib/postgresql/data
   redmine:
-    image: redmine
+    image: redmine:4.1-alpine
     environment:
       - REDMINE_DB_POSTGRES=db
       - REDMINE_DB_PASSWORD=example
@@ -168,7 +168,7 @@ This step is straightforward, we actually had the instructions open back before 
 
 ```yaml
 adminer:
-  image: adminer
+  image: adminer:4
   restart: always
   environment:
     - ADMINER_DESIGN=galkaev

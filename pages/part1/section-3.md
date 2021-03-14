@@ -58,12 +58,12 @@ Since we didn't specify a tag, Docker defaulted to `latest`, which is usually th
 
 Images can be tagged to save different versions of the same image. You define an image's tag by adding `:<tag>` after the image's name.
 
-Ubuntu's [Docker Hub page](https://hub.docker.com/r/library/ubuntu/tags/) reveals that there's a tag named 16.04 which promises us that the image is based on Ubuntu 16.04. Let's pull that as well:
+Ubuntu's [Docker Hub page](https://hub.docker.com/r/library/ubuntu/tags/) reveals that there's a tag named 18.04 which promises us that the image is based on Ubuntu 18.04. Let's pull that as well:
 
 ```console
-$ docker pull ubuntu:16.04 
+$ docker pull ubuntu:18.04 
 
-  16.04: Pulling from library/ubuntu 
+  18.04: Pulling from library/ubuntu 
   c2ca09a1934b: Downloading [============================================>      ]  34.25MB/38.64MB 
   d6c3619d2153: Download complete 
   0efe07335a04: Download complete 
@@ -73,9 +73,9 @@ $ docker pull ubuntu:16.04
 
 Images are composed of different layers that are downloaded in parallel to speed up the download. Images being made of layers also have other aspects and we will talk about them in part 3.
 
-We can also tag images locally for convenience, for example, `docker tag ubuntu:16.04 ubuntu:xenial` creates the tag `ubuntu:xenial` which refers to `ubuntu:16.04`.
+We can also tag images locally for convenience, for example, `docker tag ubuntu:18.04 ubuntu:bionic` creates the tag `ubuntu:bionic` which refers to `ubuntu:18.04`.
 
-Tagging is also a way to "rename" images. Run `docker tag ubuntu:16.04 fav_distro:xenial` and check `docker images` to see what effects the command had.
+Tagging is also a way to "rename" images. Run `docker tag ubuntu:18.04 fav_distro:bionic` and check `docker images` to see what effects the command had.
 
 To summarize, an image name may consist of 3 parts plus a tag. Usually like the following: `registry/organisation/image:tag`. But may be as short as `ubuntu`, then the registry will default to docker hub, organisation to *library* and tag to *latest*. The organisation may also be an user, but calling it an organisation may be more clear.
 

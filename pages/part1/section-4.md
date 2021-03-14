@@ -13,7 +13,7 @@ Let's take a most simple application and containerize it first. Here is a script
 echo "Hello, docker!"
 ```
 
-First test that it works on any machine. Create the file, add execution permissions and run it:
+First, we will test that it even works. Create the file, add execution permissions and run it:
 
 ```console
 $ chmod +x hello.sh
@@ -22,14 +22,18 @@ $ ./hello.sh
   Hello, docker!
 ```
 
-And now to create an image from it. We'll have to create the Dockerfile that declares all of the required dependencies. At least it depends on something that can run shell scripts. So I will choose alpine, its a small linux and often used to create small images. In part 3 we will talk more about why small images are important.
+And now to create an image from it. We'll have to create the Dockerfile that declares all of the required dependencies. At least it depends on something that can run shell scripts. So I will choose alpine, it is a small linux and often used to create small images. 
+
+Even though we're using alpine here, you can use ubuntu during exercises. Ubuntu images by default contain more tools to debug what is wrong when something doesn't work. In part 3 we will talk more about why small images are important.
+
+It's important that we choose exactly which version of a given image we use. This makes it so that we don't accidentally update through a breaking change and we know which images need updating, so we don't have an insecure container.
 
 Let's create a Dockerfile with the following contents
 
 **Dockerfile**
 ```Dockerfile
 # Start from the alpine image that is smaller but no fancy tools
-FROM alpine
+FROM alpine:3.13
 
 # Use /usr/src/app as our workdir. The following instructions will be executed in this location.
 WORKDIR /usr/src/app
@@ -46,7 +50,7 @@ Great! Now we can run `docker build` with instructions where to build (`.`) and 
 ```console
 $ docker build . -t hello-docker
   Sending build context to Docker daemon  54.78kB
-  Step 1/4 : FROM alpine
+  Step 1/4 : FROM alpine:3.13
    ---> d6e46aa2470d
   Step 2/4 : WORKDIR /usr/src/app
    ---> Running in bd0b4e349cb4
@@ -125,7 +129,7 @@ Let's do just that and create hello-docker with v2 tag that includes additional.
 **Dockerfile**
 ```Dockerfile
 # Start from the alpine image
-FROM alpine
+FROM alpine:3.13
 
 # Use /usr/src/app as our workdir. The following instructions will be executed in this location.
 WORKDIR /usr/src/app

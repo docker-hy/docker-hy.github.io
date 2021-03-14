@@ -6,10 +6,10 @@ The bigger your image is the larger the surface area for an attack is. The follo
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/wGz_cbtCiEA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
-Let's start by reducing the number of layers. To keep track of the improvements let's follow the image size after each new Dockerfile.
+Let's start by reducing the number of layers. To keep track of the improvements, we will follow the image size after each new Dockerfile.
 
 ```dockerfile
-FROM ubuntu:16.04 
+FROM ubuntu:18.04 
 
 WORKDIR /usr/videos
 
@@ -31,7 +31,7 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 We will glue all `RUN` commands together to reduce the number of layers we are making in our image. 
 
 ```dockerfile
-FROM ubuntu:16.04 
+FROM ubuntu:18.04 
 
 WORKDIR /usr/videos
 
@@ -94,7 +94,7 @@ $ docker container run -v "$(pwd):/usr/videos" youtube-dl https://imgur.com/JY5t
 Because `--auto-remove` also removed dependencies, like: 
 
 ```console
-  Removing ca-certificates (20170717~16.04.1) ... 
+  Removing ca-certificates (20170717~18.04.1) ... 
 ```
 
 We can now see that our `youtube-dl` worked previously because of our `curl` dependencies. If `youtube-dl` would have been installed as a package, it would have declared `ca-certificates` as its dependency. 
@@ -102,7 +102,7 @@ We can now see that our `youtube-dl` worked previously because of our `curl` dep
 Now what we could do is to first `purge --auto-remove` and then add `ca-certificates` back with `apt-get install` or just install `ca-certificates` along with other packages before removing `curl`:  
 
 ```dockerfile
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 WORKDIR /usr/videos
 
@@ -220,7 +220,7 @@ Let's create a website with Jekyll, build the site for production and serve the 
 Start by creating the recipe for Jekyll to build the site.
 
 ```dockerfile
-FROM ruby
+FROM ruby:3
 
 WORKDIR /usr/app
 
@@ -232,9 +232,9 @@ RUN jekyll build
 This creates a new Jekyll application and builds it. We could start thinking about optimizations at this point but instead we're going add a new FROM for nginx, this is what resulting image will be. And copy the built static files from the ruby image to our nginx image.
 
 ```dockerfile
-FROM ruby as build-stage
+FROM ruby:3 as build-stage
 ...
-FROM nginx
+FROM nginx:1.19-alpine
 
 COPY --from=build-stage /usr/app/_site/ /usr/share/nginx/html
 ```
@@ -250,6 +250,8 @@ $ docker image ls
 ```
 
 As you can see, even though our jekyll image needed ruby during the build process, its considerably smaller since it only has nginx and the static files. `docker container run -it -p 8080:80 jekyll` also works as expected.
+
+Often the best choice is to use a FROM **scratch** image as it doesn't have anything we don't explicitly add there, making it most secure option over time.
 
 {% include_relative exercises/3_6.html %}
 {% include_relative exercises/3_7.html %}

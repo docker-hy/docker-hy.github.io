@@ -46,7 +46,7 @@ Before this will work we will need to add 2 Secrets to the repository: `DOCKERHU
 
 Now create a docker-compose.yml. We will use [watchtower](https://github.com/containrrr/watchtower) to automate the updates.
 
-Watchtower is an open source project that automates the task of updating images. It will poll the source of the image (in this case dockerhub) for changes in the containers that are running. The container that is running will be updated when a new version of the image is pushed to docker hub. Watchtower respects tags e.g. container using ubuntu:16.04 will not be updated unless a new version of ubuntu:16.04 is released.
+Watchtower is an open source project that automates the task of updating images. It will poll the source of the image (in this case dockerhub) for changes in the containers that are running. The container that is running will be updated when a new version of the image is pushed to docker hub. Watchtower respects tags e.g. container using ubuntu:18.04 will not be updated unless a new version of ubuntu:18.04 is released.
 
 
 ```yaml

@@ -17,7 +17,7 @@ version: "3.8"
 
 services:
   db:
-    image: postgres
+    image: postgres:13.2-alpine
     networks:
       - database-network # Name in this docker-compose file
 
@@ -190,13 +190,13 @@ Then add these services to the `docker-compose.yml` file where you mount just th
 
 ```yaml
     hello: 
-      image: nginx 
+      image: nginx:1.19-alpine
       volumes: 
         - ./hello.html:/usr/share/nginx/html/index.html:ro 
       environment: 
         - VIRTUAL_HOST=hello.colasloth.com 
     world: 
-      image: nginx 
+      image: nginx:1.19-alpine
       volumes: 
         - ./world.html:/usr/share/nginx/html/index.html:ro 
       environment: 

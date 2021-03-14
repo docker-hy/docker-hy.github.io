@@ -5,7 +5,7 @@ Let's go back to our youtube-dl application. The application could, in theory, e
 Our status from the previous part was this:
 
 ```dockerfile
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 WORKDIR /mydir
 
@@ -28,7 +28,7 @@ RUN useradd -m appuser
 And then we change user with the directive `USER` - so all commands after this line will be executed as our new user, including the `CMD`. 
 
 ```dockerfile
-FROM ubuntu:16.04 
+FROM ubuntu:18.04 
 
 WORKDIR /usr/videos
 

@@ -25,21 +25,21 @@ In that git repository's [README](https://github.com/tianon/docker-brew-ubuntu-c
 
 This step implies that somewhere there is a Jenkins server that runs this script, builds the image, and publishes the image to the registry - we have no way of knowing if this is true or not. 
 
-Let's see the Dockerfile of <https://hub.docker.com/r/_/ubuntu/> by clicking the 16.04 [Dockerfile link](https://github.com/tianon/docker-brew-ubuntu-core/blob/490e0e86ec5c93524b7ae37b79025e5ded5efcc6/xenial/Dockerfile).
+Let's see the Dockerfile of <https://hub.docker.com/r/_/ubuntu/> by clicking the 18.04 [Dockerfile link](https://github.com/tianon/docker-brew-ubuntu-core/blob/490e0e86ec5c93524b7ae37b79025e5ded5efcc6/bionic/Dockerfile).
 
-The first line states that the image starts FROM a **special** image "scratch" that is just empty. Then a file `ubuntu-xenial-core-cloudimg-amd64-root.tar.gz` is added to the root from the same [directory](https://github.com/tianon/docker-brew-ubuntu-core/tree/490e0e86ec5c93524b7ae37b79025e5ded5efcc6/xenial).
+The first line states that the image starts FROM a **special** image "scratch" that is just empty. Then a file `ubuntu-bionic-core-cloudimg-amd64-root.tar.gz` is added to the root from the same [directory](https://github.com/tianon/docker-brew-ubuntu-core/tree/490e0e86ec5c93524b7ae37b79025e5ded5efcc6/bionic).
 
-This file should be the "..official rootfs tarballs provided by Canonical" mentioned earlier, but it's not actually coming from [canonical](https://partner-images.canonical.com/core/xenial/current/), it is copied from repo owned by "tianon". We could verify the checksums of the file if we were interested. 
+This file should be the "..official rootfs tarballs provided by Canonical" mentioned earlier, but it's not actually coming from [canonical](https://partner-images.canonical.com/core/bionic/current/), it is copied from repo owned by "tianon". We could verify the checksums of the file if we were interested. 
 
 Notice how the file is not extracted at any point. The `ADD` instruction [documentation](https://docs.docker.com/engine/reference/builder/#add) states that "If src is a local tar archive in a recognized compression format (identity, gzip, bzip2 or xz) then it is unpacked as a directory. " 
 
 Before getting stressed by the potential security problems with this, we have to remind ourselves:
 > "You can't trust code that you did not totally create yourself." - Ken Thompson (1984, Reflections on Trusting Trust). 
 
-However, we will assume that the `ubuntu:16.04` that we downloaded is this image. The command `image history` supports us:
+However, we will assume that the `ubuntu:18.04` that we downloaded is this image. The command `image history` supports us:
 
 ```console
-$ docker image history --no-trunc ubuntu:16.04 
+$ docker image history --no-trunc ubuntu:18.04 
 ```
 
 The output from image history matches with the directives specified in the Dockerfile. In case this isn't enough, we could also build the image ourselves. The build process is, as we saw, truly open, and there is nothing that makes the "official" image special.
