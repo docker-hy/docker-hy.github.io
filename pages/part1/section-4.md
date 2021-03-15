@@ -1,13 +1,14 @@
+
 # Building images #
 
 Finally, we get to build our own images and get to talk about [`Dockerfile`](https://docs.docker.com/engine/reference/builder/) and why it's so great.
 
-Dockerfile is simply a file that contains the build instructions for an image. You define what should be included in the image with different instructions. We'll learn about the best practices here by creating one.ß
+Dockerfile is simply a file that contains the build instructions for an image. You define what should be included in the image with different instructions. We'll learn about the best practices here by creating one.
 
 Let's take a most simple application and containerize it first. Here is a script called "hello.sh"
 
 **hello.sh**
-```bash
+```sh
 #!/bin/sh
 
 echo "Hello, docker!"
@@ -22,11 +23,13 @@ $ ./hello.sh
   Hello, docker!
 ```
 
+> If you're using windows you can skip these two and add chmod +x hello.sh to the Dockerfile.
+
 And now to create an image from it. We'll have to create the Dockerfile that declares all of the required dependencies. At least it depends on something that can run shell scripts. So I will choose alpine, it is a small linux and often used to create small images. 
 
 Even though we're using alpine here, you can use ubuntu during exercises. Ubuntu images by default contain more tools to debug what is wrong when something doesn't work. In part 3 we will talk more about why small images are important.
 
-It's important that we choose exactly which version of a given image we use. This makes it so that we don't accidentally update through a breaking change and we know which images need updating, so we don't have an insecure container.
+We will choose exactly which version of a given image we want to use. This makes it so that we don't accidentally update through a breaking change, and we know which images need updating when there are known security vulnerabilities in old images.
 
 Let's create a Dockerfile with the following contents
 
@@ -41,9 +44,14 @@ WORKDIR /usr/src/app
 # Copy the hello.sh file from this location to /usr/src/app/ creating /usr/src/app/hello.sh
 COPY hello.sh .
 
+# Alternatively, if we skipped chmod earlier, we can add execution permissions during the build.
+# RUN chmod +x hello.sh
+
 # When running docker run the command will be ./hello.sh
 CMD ./hello.sh
 ```
+
+> If you're now getting "/bin/sh: ./hello.sh: Permission denied" it's because the `chmod +x hello.sh` was skipped earlier. You can simply uncomment the RUN instruction between COPY and CMD instructions
 
 Great! Now we can run `docker build` with instructions where to build (`.`) and give it a name (`-t <name>`):
 
@@ -81,7 +89,7 @@ The intermediate containers are containers created from the image in which the c
 1 /usr/src/app # 
 ```
 
-Now we're inside of the container. We replaced the CMD we defined earlier with `sh` and used -i and -t to start the container so that we can interact with it. In the second terminal we'll copy the file here.
+Now we're inside of the container. We replaced the CMD we defined earlier with `sh` and used -i and -t to start the container so that we can interact with it. In the second terminal we will copy the file here.
 
 ```console
 2 $ docker ps

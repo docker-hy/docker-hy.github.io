@@ -1,3 +1,4 @@
+
 # Running and stopping containers #
 
 Next we will start using a more useful image than hello-world. We can run ubuntu just with `docker run ubuntu`.
@@ -11,10 +12,9 @@ $ docker run ubuntu
   f611acd52c6c: Pull complete 
   Digest: sha256:703218c0465075f4425e58fac086e09e1de5c340b12976ab9eb8ad26615c3715
   Status: Downloaded newer image for ubuntu:latest
-
 ```
 
-Anticlimactic as nothing really happened. The image was downloaded and ran and that was the end of that. It actually tried to open a shell but we'll need to add a few flags to interact with it. `-t` will create a tty.
+Anticlimactic as nothing really happened. The image was downloaded and ran and that was the end of that. It actually tried to open a shell but we will need to add a few flags to interact with it. `-t` will create a tty.
 
 ```console
 $ docker run -t ubuntu
@@ -37,7 +37,7 @@ Let's throw in a few more and run a container in the background:
 $ docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done'
 ```
 
-> If you are using command prompt(Windows user) you must use double quotes around the script i.e. `docker run -d -it --name looper ubuntu sh -c "while true; do date; sleep 1; done"`. The quote or double-quote may haunt you later during the course.
+> If you are command prompt (Windows) user you must use double quotes around the script i.e. `docker run -d -it --name looper ubuntu sh -c "while true; do date; sleep 1; done"`. The quote or double-quote may haunt you later during the course.
 
 - The first part, `docker run -d`. Should be familiar by now, run container detached.
 
@@ -94,15 +94,14 @@ $ docker exec -it looper bash
 
   root@2a49df3ba735:/# ps aux 
 
-  USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND 
-  root         1  0.0  0.0   4496  1716 ?        Ss   10:31   0:00 sh -c while true; do date; sleep 1; done 
-  root       271  0.0  0.0   4496   704 ?        Ss   10:33   0:00 sh 
-  root       300  0.0  0.0  18380  3364 pts/0    Ss   10:33   0:00 bash 
-  root       386  0.0  0.0   4368   672 ?        S    10:33   0:00 sleep 1 
-  root       387  0.0  0.0  36836  2900 pts/0    R+   10:34   0:00 ps aux 
+  USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+  root         1  0.2  0.0   2612  1512 pts/0    Ss+  12:36   0:00 sh -c while true; do date; sleep 1; done
+  root        64  1.5  0.0   4112  3460 pts/1    Ss   12:36   0:00 bash
+  root        79  0.0  0.0   2512   584 pts/0    S+   12:36   0:00 sleep 1
+  root        80  0.0  0.0   5900  2844 pts/1    R+   12:36   0:00 ps aux
 ```
 
-From the `ps aux` listing we can see that our `bash` process got PID (process ID) of 300.  
+From the `ps aux` listing we can see that our `bash` process got PID (process ID) of 64.  
 
 Now that we're inside the container it behaves as you'd expect from ubuntu, and we can exit the container with `exit` and then either kill or stop the container.
 
@@ -112,9 +111,10 @@ Our looper won't stop for a SIGTERM signal sent by a stop command. To terminate 
 $ docker kill looper 
 $ docker rm looper 
 ```
+
 Running the previous two commands is basically equivalent to running `docker rm --force looper` 
 
-Let's start another process with `-it` and also with `--rm` in order to remove it automatically after it has exited. This means that there is no garbage containers left behind, but also that `docker start` can not be used to start the container after it has exited. 
+Let's start another process with `-it` and add `--rm` in order to remove it automatically after it has exited. The `--rm` ensures that there are no garbage containers left behind. It also means that `docker start` can not be used to start the container after it has exited. 
 
 ```console
 $ docker run -d --rm -it --name looper-it ubuntu sh -c 'while true; do date; sleep 1; done' 

@@ -1,3 +1,4 @@
+
 # Volumes: bind mount #
 
 By **bind mounting** a host (our machine) folder to the container we can get the file directly to our machine. Let's start another run with `-v` option, that requires an absolute path. We mount our current folder as `/mydir` in our container, overwriting everything that we have put in that folder in our Dockerfile. 
@@ -14,11 +15,11 @@ In our youtube-dl we wanted to mount the whole directory since the files are fai
 
 # Allowing external connections into containers #
 
-The details on how programs communicate are not detailed in this course. Courses on Operating Systems and Networking courses explain these. On this course you only need to know the following simplified basics:
+The details on how programs communicate are not detailed in this course. Courses on Operating Systems and the Networking courses explain subjects in detail. In this course you only need to know the following simplified basics:
 
 - Sending messages: Programs can send messages to [URL](https://en.wikipedia.org/wiki/URL) addresses such as this: http://127.0.0.1:3000 where http is the [_protocol_](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol), 127.0.0.1 is a ip address, and and 3000 is a [_port_](https://en.wikipedia.org/wiki/Port_(computer_networking)). Note the ip part could also be a [_hostname_](https://en.wikipedia.org/wiki/Hostname): 127.0.0.1 is also called [_localhost_](https://en.wikipedia.org/wiki/Localhost) so instead you could use http://localhost:3000.
 
-- Receiving messages: Programs can be assigned to listen to any available port. If a program is listening for traffic on port 3000 and a message is sent to that port it will receive it (and possibly process it).
+- Receiving messages: Programs can be assigned to listen to any available port. If a program is listening for traffic on port 3000, and a message is sent to that port, it will receive it (and possibly process it).
 
 The address _127.0.0.1_ and hostname _localhost_ are special ones, they refer to the machine or container itself, so if you are on a container and send message to _localhost_, the target is the same container. Similarly, if you are sending the request from outside of a container to _localhost_, the target is your machine.
 
@@ -32,7 +33,7 @@ Opening a connection from outside world to a docker container happens in two ste
 
 Exposing a container port means that you tell Docker that the container listens to a certain port. This doesn't actually do much except helps us humans with the configuration.
 
-Publishing a port means that Docker will map containers ports to the host ports.
+Publishing a port means that Docker will map host ports to the container ports.
 
 To expose a port, add line `EXPOSE <port>` in your Dockerfile
 
@@ -50,10 +51,11 @@ We could also limit connections to certain protocol only, e.g. udp by adding the
 
 # Technology agnostic #
 
-As we've already seen it should be possible to containerize almost any project. As we are in between Dev and Ops let's pretend again that some developer teammates of ours did an application with a README that instructs what to install and how to run the application. Now we as the container experts can containerize it in seconds. Open this `https://github.com/docker-hy/rails-example-project` repository and read through the README and think about how to transform it into a Dockerfile. Thanks to the README we should be able to decipher what we will need to do even if we have no clue about the language or technology!
+As we've already seen it should be possible to containerize almost any project. As we are in between Dev and Ops let's pretend again that some developer teammates of ours did an application with a README that instructs what to install and how to run the application. Now we as the container experts can containerize it in seconds. Open this `https://github.com/docker-hy/material-applications/tree/main/rails-example-project` project and read through the README and think about how to transform it into a Dockerfile. Thanks to the README we should be able to decipher what we will need to do even if we have no clue about the language or technology!
 
-We will need to clone the repository and after that, let's start with a Dockerfile. We know that we need to install ruby and whatever dependencies it had.
+We will need to clone the repository, which you may have already done. After the project is done, let's start with a Dockerfile. We know that we need to install ruby and whatever dependencies it had. Let's place the Dockerfile in the project root.
 
+**Dockerfile**
 ```Dockerfile
 # We need ruby 3.0.0. I found this from docker hub
 FROM ruby:3.0.0
@@ -96,9 +98,10 @@ RUN rake assets:precompile
 # And finally the command to run the application
 CMD ["rails", "s", "-e", "production"]
 ```
-And finally we copy the project, install all of the dependencies and follow the instructions in the README.
 
-Ok. Let's see how well monkeying the README worked for us: `docker build . -t rails-project && docker run -p 3000:3000 rails-project`. After a while of waiting the application starts in port 3000, and in production mode.
+And finally, we copy the project, install all of the dependencies and follow the instructions in the README.
+
+Ok. Let's see how well monkeying the README worked for us: `docker build . -t rails-project && docker run -p 3000:3000 rails-project`. After a while of waiting, the application starts in port 3000 in production mode.
 
 {% include_relative exercises/1_11.html %}
 
@@ -112,9 +115,9 @@ The next three exercises will start a larger project that we will configure in p
 
 Go to <https://hub.docker.com/> to create an account. You can configure docker hub to build your images for you, but using `push` works as well.
 
-Let's publish the youtube-dl image. Log in and navigate to your [dashboard](https://hub.docker.com/) and press Create Repository. The namespace can be either your personal account or an organization account. For now, let's stick to personal accounts and write something descriptive such as youtube-dl to repository name. We'll need to remember it in part 2.
+Let's publish the youtube-dl image. Log in and navigate to your [dashboard](https://hub.docker.com/) and press Create Repository. The namespace can be either your personal account or an organization account. For now, let's stick to personal accounts and write something descriptive such as youtube-dl to repository name. We will need to remember it in part 2.
 
-Set visibility to public.
+Set visibility to *public*.
 
 And the last thing we need is to authenticate our push by logging in:
 
@@ -122,7 +125,7 @@ And the last thing we need is to authenticate our push by logging in:
 $ docker login
 ```
 
-Next you will need to rename the image to include your username and then you can push it:
+Next, you will need to rename the image to include your username, and then you can push it:
 
 ```console
 $ docker tag youtube-dl <username>/<repository>

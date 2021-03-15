@@ -1,3 +1,4 @@
+
 # Conclusion #
 
 We started by learning what Docker container and image mean. Basically we started from an empty ubuntu with nothing installed into it. It's also possible to start from something else, but for now ubuntu had been enough.

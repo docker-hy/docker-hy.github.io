@@ -1,28 +1,24 @@
+
 # More complex image #
 
 Next, we will start moving towards a more meaningful image. _youtube-dl_ is a program that downloads youtube videos <https://rg3.github.io/youtube-dl/download.html>. Let's add it to an image - but this time instead of doing it directly in Dockerfile. Instead of our current process where we add things to the Dockerfile hope it works, let's try another approach. This time we will open up an interactive session and test stuff before "storing" it in our Dockerfile. By following the youtube-dl install instructions we will see that:
 
 ```console
-$ docker run -it myfirst 
-  root@8c587232a608:/mydir# sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl 
-  bash: sudo: command not found 
+$ docker run -it ubuntu:18.04
+  root@8c587232a608:/# curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl 
+  bash: curl: command not found 
 ```
 
-`sudo` is not installed, but since we are `root` we don't need it now, so let's try again without... 
+..and, as we already know, curl is not installed - let's add `curl` with `apt-get` again. 
 
 ```console
-root@8c587232a608:/mydir# curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl 
-bash: curl: command not found 
-```
-
-..and we see that curl is not installed either - we could just revert to use `wget`, but as an exercise, let's add `curl` with `apt-get` since we already have the apt sources in our image (that hopefully are still valid) 
-
-```console
-$ apt-get install -y curl 
+$ apt-get update && apt-get install -y curl 
 $ curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl 
 ```
 
-Then we'll add permissions and run it: 
+At some point, you may have noticed that *sudo* is not installed either, but since we are *root* we don't need it.
+
+Next, we will add permissions and run it: 
 
 ```console
 $ chmod a+rx /usr/local/bin/youtube-dl 
@@ -30,14 +26,14 @@ $ youtube-dl
   /usr/bin/env: 'python': No such file or directory 
 ```
 
-Okay - On the top of the `youtube-dl` download page we'll notice this message:
+Okay - On the top of the `youtube-dl` download page we notice this message:
 
 > Remember youtube-dl requires Python version 2.6, 2.7, or 3.2+ to work except for Windows exe.
 
-So let's add python 
+So we will add python 
 
 ```console
-$ apt-get install -y python 
+$ apt-get install -y python
 ```
 
 And let's run it again 
@@ -65,20 +61,25 @@ $ export LC_ALL=C.UTF-8
 $ youtube-dl https://imgur.com/JY5tHqr
 ```
 
-So now when we know what do, let's add these to the bottom of our `Dockerfile` - by adding the instructions to the bottom we preserve our cached layers - this is handy practise to speed up creating the initial version of a Dockerfile when it has time consuming operations like downloads. 
+So now when we know exactly what we need. Starting FROM ubuntu:18.04, add these to our `Dockerfile`. We should always try to keep the most prone to change rows at the bottom, by adding the instructions to the bottom we can preserve our cached layers - this is handy practise to speed up creating the initial version of a Dockerfile when it has time consuming operations like downloads. Also added WORKDIR, this will ensure the videos will be downloaded there.
 
 ```dockerfile
-... 
+FROM ubuntu:18.04
+
+WORKDIR /mydir
+
 RUN apt-get update && apt-get install -y curl python 
 RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl 
 RUN chmod a+x /usr/local/bin/youtube-dl 
+
 ENV LC_ALL=C.UTF-8 
+
 CMD ["/usr/local/bin/youtube-dl"] 
 ```
 
-- Instead of using `RUN export LC_ALL=C.UTF-8` we'll store the environment directly in the image with ENV 
+- Instead of using `RUN export LC_ALL=C.UTF-8` we store the environment directly in the image with ENV 
 
-- We'll also override `bash` as our image command (set on the base image) with _youtube-dl_ itself. This will not work, but let's see why. 
+- We also override `bash` as our image command (set on the base image) with _youtube-dl_ itself. This will not work, but let's see why. 
 
 When we build this as youtube-dl and run it:
 ```console
@@ -104,9 +105,20 @@ $ docker run youtube-dl https://imgur.com/JY5tHqr
   ERRO[0001] error waiting for container: context canceled 
 ```
 
-As we now know the argument we gave it is actually replacing the command or `CMD`. We need a way to have something before the command. Luckily we have a way to do this: we can use `ENTRYPOINT` to define the main executable and then docker will combine our run arguments for it. 
+As we now know, the argument we gave it is replacing the command or `CMD`. We need a way to have something *before* the command. Luckily we have a way to do this: we can use `ENTRYPOINT` to define the main executable and then docker will combine our run arguments for it. 
 
 ```dockerfile
+FROM ubuntu:18.04
+
+WORKDIR /mydir
+
+RUN apt-get update && apt-get install -y curl python 
+RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl 
+RUN chmod a+x /usr/local/bin/youtube-dl 
+
+ENV LC_ALL=C.UTF-8
+
+# Replacing CMD with ENTRYPOINT
 ENTRYPOINT ["/usr/local/bin/youtube-dl"] 
 ```
 And now it works like it should: 
@@ -120,7 +132,7 @@ $ docker run youtube-dl https://imgur.com/JY5tHqr
   [download] 100% of 190.20KiB in 00:0044MiB/s ETA 00:000
 ```
 
-With the ENTRYPOINT this now ran `/usr/local/bin/youtube-dl https://imgur.com/JY5tHqr` when we started the image with that command!
+With *ENTRYPOINT* `docker run` now executed the combined `/usr/local/bin/youtube-dl https://imgur.com/JY5tHqr` inside the container with that command!
 
 `ENTRYPOINT` vs `CMD` can be confusing - in a properly set up image such as our youtube-dl the command represents an argument list for the entrypoint. By default entrypoint is set as `/bin/sh` and this is passed if no entrypoint is set. This is why giving path to a script file as CMD works: you're giving the file as a parameter to `/bin/sh`.
 
@@ -137,7 +149,7 @@ In the shell form the command is provided as a string without brackets. In the e
 
 As the command at the end of docker run will be the CMD we want to use ENTRYPOINT to specify what to run, and CMD to specify which command (in our case url) to run. 
 
-**Most of the time** we can ignore ENTRYPOINT when building our images and only use CMD. For example, ubuntu image defaults the ENTRYPOINT to bash so we don't have to worry about it. And it gives us the convenience of allowing us to overwrite the CMD easily, for example, with bash to go inside the container.
+**Most of the time** we can ignore ENTRYPOINT when building our images and only use CMD. For example, ubuntu image defaults the ENTRYPOINT to bash so we do not have to worry about it. And it gives us the convenience of allowing us to overwrite the CMD easily, for example, with bash to go inside the container.
 
 We can test how some other projects do this. Let's try python:
 
@@ -176,7 +188,7 @@ Now we have two problems with the youtube-dl project:
 
 - Minor: Our container build process creates many layers resulting in increased image size 
 
-Let's fix the bigger issue first. We will look at the minor issue in part 3.
+We will fix the major issue first. The minor issue will get our attention in part 3.
 
 By inspecting `docker container ls -a` we can see all our previous runs. When we filter this list with 
 
@@ -204,4 +216,4 @@ Let's try `docker cp` command to copy the file. We can use quotes if the filenam
 $ docker cp "determined_elion://mydir/Imgur-JY5tHqr.mp4" . 
 ```
 
-And now we have our file locally. This does not really fix our issue, so let's continue: 
+And now we have our file locally. Sadly, this is not sufficient to fix our issue, so let's continue: 

@@ -1,3 +1,4 @@
+
 # What is DevOps? #
 
 Before we get started with Docker let's lay the groundwork for learning the right mindset. Defining DevOps is not a trivial task but the term itself consists of two parts, *Dev* and *Ops*. *Dev* refers to the development of software and *Ops* to operations. Simple definition for DevOps would be that it means the release, configuring, and monitoring of software is in the hands of the very people who develop it. 
@@ -22,7 +23,7 @@ So stripping the jargon we get two definitions:
 
 ![]({{ "/images/1/container.png" | absolute_url }})
 
-Containers include the application and its dependencies, and nothing else.
+The above image illustrates how containers include the application and its dependencies. These containers are isolated so that they don't interfere with each other or the software running outside of the containers. In case you need to interact with them or enable interactions between them, Docker offers tools to do so.
 
 ## Benefits from containers ##
 
@@ -84,8 +85,8 @@ Simply run `docker container run hello-world`, the output will be the following:
 $ docker container run hello-world
   Unable to find image 'hello-world:latest' locally
   latest: Pulling from library/hello-world
-  0e03bdcc26d7: Pull complete 
-  Digest: sha256:1a523af650137b8accdaed439c17d684df61ee4d74feac151b5b337bd29e7eec
+  b8dfde127a29: Pull complete
+  Digest: sha256:308866a43596e83578c7dfa15e27a73011bdd402185a84c5cd7f32a88b501a24
   Status: Downloaded newer image for hello-world:latest
   
   Hello from Docker!
@@ -114,6 +115,8 @@ If you already ran hello-world previously it will skip the first 5 lines. The fi
 
 ```console
 $ docker container run hello-world
+  
+  Hello from Docker!
   ...
 ```
 
@@ -121,29 +124,31 @@ It found the **image** locally so it skipped right to running the hello-world. S
 
 # Image and containers #
 
-Containers are instances of images. A basic mistake is to confuse images and containers.
+Since we already know what containers are it's easier to explain images through them: Containers are instances of images. A basic mistake is to confuse images and containers.
 
 Cooking metaphor:
 * Image is pre-cooked, frozen treat.
 * Container is the delicious treat.
 
+With the cooking metaphor, the difficult task is creating the frozen treat while warming it up is relatively easy. Images require some work and knowledge to be created, but when you know how to create images you can leverage the power of containers in your own projects.
+
 ## Image ##
 
-A Docker image is a file. An image never changes; you can not edit an existing file. Creating a new image happens by starting from a base image and adding new **layers** to it.
+A Docker image is a file. An image never changes; you can not edit an existing file. Creating a new image happens by starting from a base image and adding new **layers** to it. We will talk about layers later, but you should think of images as *immutable*, they can not be changed after they are created.
 
 List all your images with `docker image ls`
 
 ```console
 $ docker image ls
   REPOSITORY      TAG      IMAGE ID       CREATED         SIZE
-  hello-world     latest   bf756fb1ae65   12 months ago   13.3kB
+  hello-world     latest   d1165f221234   9 days ago      13.3kB
 ```
 
-Containers are created from images so when we ran hello-world twice we downloaded one *image* and created 2 containers from the single image.
+Containers are created from images, so when we ran hello-world twice we downloaded one *image* and created two of them from the single image.
 
-Well, if containers are created from images then where are images created from? This image file is built by an instructional file named "Dockerfile" that is parsed when you run `docker image build`. We will look into Dockerfiles later when we get to building our own image.
+Well then, if images are used to create containers, where do images come from? This image file is built from an instructional file named **Dockerfile** that is parsed when you run `docker image build`.
 
-Dockerfile is a file named "Dockerfile" that looks something like this
+Dockerfile is a file named Dockerfile, that looks something like this
 
 **Dockerfile**
 ```Dockerfile
@@ -154,13 +159,16 @@ RUN <install some dependencies>
 CMD <command that is executed on `docker container run`>
 ```
 
-and is the instruction set for building an image. 
+and is the instruction set for building an image. We will look into Dockerfiles later when we get to build our own image.
+
+If we go back to the cooking metaphor, Dockerfile is the recipe.
 
 ## Container ##
 
 Containers only contain that which is required to execute an application; and you can start, stop and interact with them. They are **isolated** environments in the host machine with the ability to interact with each other and the host machine itself via defined methods (TCP/UDP).
 
 List all your containers with `docker container ls`
+
 ```console
 $ docker container ls
   CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
@@ -173,25 +181,24 @@ $ docker container ls -a
   CONTAINER ID   IMAGE           COMMAND      CREATED          STATUS                      PORTS     NAMES
   b7a53260b513   hello-world     "/hello"     5 minutes ago    Exited (0) 5 minutes ago              brave_bhabha
   1cd4cb01482d   hello-world     "/hello"     8 minutes ago    Exited (0) 8 minutes ago              vibrant_bell
-  af457fa54a2b   hello-world     "/hello"     30 minutes ago   Exited (0) 30 minutes ago             boring_yonath
 ```
 
-# Docker CLI basics #
+## Docker CLI basics ##
 
-We are using the command line to interact with the "Docker Engine" that is made up of 3 parts: CLI, a REST API and docker daemon. When you run a command. e.g. `docker container run`. behind the scenes the client sends a request through the REST API to the **docker daemon** which takes care of images, containers and other resources. 
+We are using the command line to interact with the "Docker Engine" that is made up of 3 parts: CLI, a REST API and docker daemon. When you run a command, e.g. `docker container run`, behind the scenes the client sends a request through the REST API to the **docker daemon** which takes care of images, containers and other resources. 
 
 You can read the [docs for more information](https://docs.docker.com/engine/reference/commandline/cli/). But even though you will find over 50 commands in the documentation, only a handful of them is needed for general use. There's a list of the most commonly used basic commands at the end of this section.
 
-One of them is already familiar: `docker container run <image>`, which instructs daemon to create a container from the image. Downloading the image if it's not available.
+One of them is already familiar: `docker container run <image>`, which instructs daemon to create a container from the image and downloading the image if it is not available.
 
-Let's remove the image since we don't need it anymore. `docker image rm hello-world` should do the trick. However, this should fail with the following error: 
+Let's remove the image since we will not need it anymore, `docker image rm hello-world` sounds about right. However, this should fail with the following error: 
 
 ```console
 $ docker image rm hello-world 
   Error response from daemon: conflict: unable to remove repository reference "hello-world" (must force) - container <container ID> is using its referenced image <image ID>
 ```
 
-This means that a container currently exists which was created from the image *hello-world* and that removing *hello-world* could have consequences. So before removing images, you should have the referencing container removed first. Forcing is usually a bad idea, especially as we are still learning.
+This means that a container that was created from the image *hello-world* still exists and that removing *hello-world* could have consequences. So before removing images, you should have the referencing container removed first. Forcing is usually a bad idea, especially as we are still learning.
 
 Run `docker container ls -a` to list all containers again.
 
@@ -200,7 +207,6 @@ $ docker container ls -a
   CONTAINER ID   IMAGE           COMMAND        CREATED          STATUS                      PORTS     NAMES
   b7a53260b513   hello-world     "/hello"       35 minutes ago   Exited (0) 35 minutes ago             brave_bhabha
   1cd4cb01482d   hello-world     "/hello"       41 minutes ago   Exited (0) 41 minutes ago             vibrant_bell
-  af457fa54a2b   hello-world     "/hello"       51 minutes ago   Exited (0) 51 minutes ago             boring_yonath
 ```
 
 Notice that containers have a *CONTAINER ID* and *NAME*. The names are currently autogenerated. When we have a lot of different containers, we can use grep (or another similar utility) to filter the list:
@@ -209,7 +215,9 @@ Notice that containers have a *CONTAINER ID* and *NAME*. The names are currently
 $ docker container ls -a | grep hello-world
 ```
 
-Let's remove the container with `docker container rm` command. It accepts a container's name or ID as its arguments. Notice that the command also works with the first few characters of an ID. For example, if a container's ID is 3d4bab29dd67, you can use `docker container rm 3d` to delete it. Using the shorthand for the ID will not delete multiple containers, so if you have two IDs starting with 3d, a warning will be printed and neither will be deleted. You can also use multiple arguments: `docker container rm id1 id2 id3`
+Let's remove the container with `docker container rm` command. It accepts a container's name or ID as its arguments. 
+
+Notice that the command also works with the first few characters of an ID. For example, if a container's ID is 3d4bab29dd67, you can use `docker container rm 3d` to delete it. Using the shorthand for the ID will not delete multiple containers, so if you have two IDs starting with 3d, a warning will be printed, and neither will be deleted. You can also use multiple arguments: `docker container rm id1 id2 id3`
 
 If you have hundreds of stopped containers and you wish to delete them all, you should use `docker container prune`. Prune can also be used to remove "dangling" images with `docker image prune`. Dangling images are images that do not have a name and are not used. They can be created manually and are automatically generated during build. Removing them just saves some space. 
 
