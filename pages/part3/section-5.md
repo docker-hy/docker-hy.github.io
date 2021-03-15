@@ -1,4 +1,5 @@
-## A peek into multi-host environment options ##
+
+# A peek into multi-host environment options #
 
 Now that we've mastered containers in small systems with docker-compose it's time to look beyond what the tools we practiced are capable of. In situations where we have more than a single host machine we cannot use docker-compose solely. However, Docker does contain other tools to help us with automatic deployment, scaling and management of dockerized applications.
 

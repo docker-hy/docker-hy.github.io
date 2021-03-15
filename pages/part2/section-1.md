@@ -1,8 +1,9 @@
+
 # Migrating to docker-compose.yml #
 
 Even with a simple image, we've already been dealing with plenty of command line options in both building, pushing and running the image.
  
-Now we'll switch to a tool called docker-compose to manage these. 
+Next we will switch to a tool called docker-compose to manage these. 
 
 docker-compose is designed to simplify running multi-container applications to using a single command.
 
@@ -23,7 +24,7 @@ ENV LC_ALL=C.UTF-8
 ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 ```
 
-we'll create a file called `docker-compose.yml`:
+we create a file called `docker-compose.yml`:
 
 ```yaml
 version: '3' 
@@ -45,7 +46,7 @@ $ docker-compose push
 
 ## Volumes in docker-compose ##
 
-To run the image as we did previously, we'll need to add the volume bind mounts. Volumes in docker-compose are defined with the with the following syntax `location-in-host:location-in-container`. Compose can work without an absolute path:
+To run the image as we did previously, we will need to add the volume bind mounts. Volumes in docker-compose are defined with the with the following syntax `location-in-host:location-in-container`. Compose can work without an absolute path:
 
 ```yaml
 version: '3.5' 

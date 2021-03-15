@@ -1,3 +1,4 @@
+
 # Deeper understanding of Docker #
 
 We've focused on using Docker as a tool to solve various types of problems. Meanwhile we have decided to push some of the issues until later and completely ignored others.

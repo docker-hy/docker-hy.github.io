@@ -162,9 +162,9 @@ $ docker container diff $(docker-compose ps -q redmine)
 
 Probably not.
 
-Next we'll add adminer to the application. We could also just use psql to interact with a postgres database with `docker container exec -it db_redmine psql -U postgres`. (The command **exec**utes psql -U postgres inside the container) The same method can be used to create backups with pg_dump: `docker container exec db_redmine pg_dump -U postgres > redmine.dump`. 
+Next, we will add adminer to the application. We could also just use psql to interact with a postgres database with `docker container exec -it db_redmine psql -U postgres`. (The command **exec**utes psql -U postgres inside the container) The same method can be used to create backups with pg_dump: `docker container exec db_redmine pg_dump -U postgres > redmine.dump`. 
 
-This step is straightforward, we actually had the instructions open back before we set up postgres. But let's check the [documentation](https://hub.docker.com/_/adminer) and we'll see that the following will suffice:
+This step is straightforward, we actually had the instructions open back before we set up postgres. But let's check the [documentation](https://hub.docker.com/_/adminer) and we see that the following will suffice:
 
 ```yaml
 adminer:

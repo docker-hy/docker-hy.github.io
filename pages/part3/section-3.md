@@ -1,3 +1,4 @@
+
 # Using a non-root user #
 
 Let's go back to our youtube-dl application. The application could, in theory, escape the container due to a bug in docker/kernel. To mitigate this security issue we will add a non-root user to our container and run our process with that user. Another option would be to map the root user to a high, non-existing user id on the host with https://docs.docker.com/engine/security/userns-remap/, and can be used in case you must use root within the container.

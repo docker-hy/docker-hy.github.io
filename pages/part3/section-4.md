@@ -1,3 +1,4 @@
+
 # Optimizing the Dockerfile #
 
 The bigger your image is the larger the surface area for an attack is. The following tutorial to "Building Small Containers" from Google is an excellent video to showcase the importance of optimizing your Dockerfiles:
@@ -64,14 +65,14 @@ $ docker image history youtube-dl
   ...
 ```
 
-The next step is to remove everything that is not needed in the final image. We don't need the apt source lists anymore, so we'll glue the next line to our single `RUN` 
+The next step is to remove everything that is not needed in the final image. We don't need the apt source lists anymore, so we can glue the next line to our single `RUN` 
 
 ```console
 .. && \ 
 rm -rf /var/lib/apt/lists/* 
 ````
 
-Now when we build, we'll see that the size of the layer is 45.6MB megabytes. We can optimize even further by removing the `curl`. We can remove `curl` and all the dependencies it installed with 
+Now, after we build, the size of the layer is 45.6MB megabytes. We can optimize even further by removing the `curl`. We can remove `curl` and all the dependencies it installed with 
 
 ```console
 .. && \ 

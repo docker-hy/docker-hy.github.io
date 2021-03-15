@@ -17,25 +17,37 @@ This part introduces production-ready practices such as container optimization a
 </div>
 
 <div class="section" markdown="1">
-{% include_relative section-1.md %}
+  <div class="content" markdown="1">
+    {% include_relative section-1.md %}
+  </div>
 </div>
 
 <div class="section" markdown="1">
-{% include_relative section-2.md %}
+  <div class="content" markdown="1">
+    {% include_relative section-2.md %}
+  </div>
 </div>
 
 <div class="section" markdown="1">
-{% include_relative section-3.md %}
+  <div class="content" markdown="1">
+    {% include_relative section-3.md %}
+  </div>
 </div>
 
 <div class="section" markdown="1">
-{% include_relative section-4.md %}
+  <div class="content" markdown="1">
+    {% include_relative section-4.md %}
+  </div>
 </div>
 
 <div class="section" markdown="1">
-{% include_relative section-5.md %}
+  <div class="content" markdown="1">
+    {% include_relative section-5.md %}
+  </div>
 </div>
 
 <div class="section" markdown="1">
-{% include_relative section-6.md %}
+  <div class="content" markdown="1">
+    {% include_relative section-6.md %}
+  </div>
 </div>
