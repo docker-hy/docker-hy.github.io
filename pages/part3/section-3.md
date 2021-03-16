@@ -59,4 +59,4 @@ $ docker container run youtube-dl https://imgur.com/JY5tHqr
 
 We'll see that our `appuser` user can not write to `/usr/videos` - this can be fixed with `chown` or not fix it at all, if the intented usage is to always have a `/usr/videos` mounted from the host. By mounting the directory the application works as intended.
 
-{% include_relative exercises/3_4.html %}
+{% include_relative exercises/3_3.html %}

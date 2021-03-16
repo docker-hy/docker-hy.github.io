@@ -61,9 +61,11 @@ services:
       container_name: youtube-dl
 ``` 
 
-We can also give the container a name it will use when running with container_name, now we can run it: 
+We can also give the container a name it will use when running with container_name. And the service name can be used to run it: 
 
-    $ docker-compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr
+```console
+$ docker-compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr
+```
 
 {% include_relative exercises/2_1.html %}
 
