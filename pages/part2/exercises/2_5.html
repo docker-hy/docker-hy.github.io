@@ -1,26 +1,13 @@
 <div class="exercise" markdown="1">
 
   <h1>2.5</h1>
+  
+A project over at [https://github.com/docker-hy/material-applications/tree/main/scaling-exercise](https://github.com/docker-hy/material-applications/tree/main/scaling-exercise) has a hardly working application. Go ahead and clone it for yourself. The project already includes docker-compose.yml so you can start it by running `docker-compose up`.
 
-  Add redis to example backend.
+Application should be accessible through [http://localhost:3000](http://localhost:3000). However it doesn't work well enough and I've added a load balancer for scaling. Your task is to scale the `compute` containers so that the button in the application turns green.
 
-  Redis is used to speed up some operations. Backend uses a slow api to get information. You can test the slow api by
-  requesting `/ping?redis=true` with curl. The frontend program has a button to test this.
-
-  Configure a redis container to cache information for the backend. Use the documentation if needed when configuring:
-  [https://hub.docker.com/\_/redis/](https://hub.docker.com/_/redis/)
-
-  The backend [README](https://github.com/docker-hy/material-applications/tree/main/example-backend) should have all the information needed to
-  connect.
-
-  When you've correctly configured the button will turn green.
-
-  Submit the docker-compose.yml
-
-  <img src="{{ "/images/exercises/back-front-and-redis.png" | absolute_url }}" />
-
-  > `restart: unless-stopped` can help if the redis takes a while to get ready
-
-  > TIP: If you're stuck check out [tips and tricks](/exercise_tricks)
+This exercise was created with [Sasu Mäkinen](https://github.com/sasumaki)
+  
+Please return the used commands for this exercise.
 
 </div>

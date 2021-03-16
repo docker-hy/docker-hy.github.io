@@ -7,7 +7,7 @@ Connecting two services such as a server and its database in docker can be achie
 
 Here are two services in a single network: webapp and webapp-helper. The webapp-helper has a server, listening for requests in port 3000, that webapp wants to access. Because they were defined in the same docker-compose.yml file the access is trivial. Docker-compose has already taken care of creating a network and webapp can simply send a request to webapp-helper:3000, the internal DNS will translate that to the correct access and ports do not have to be published outside of the network.
 
-{% include_relative exercises/2_5.html %}
+{% include_relative exercises/2_4.html %}
 
 You can also manually define the network and its name. A major benefit of defining network is that it makes it easy to setup a configuration where other containers connect to an existing network as an external network. This is used when a container wishes to interact with a container defined in another docker-compose file.
 
@@ -225,5 +225,5 @@ Now we have a basic single machine hosting setup up and running.
 
 Test updating the `hello.html` without restarting the container, does it work? 
 
-{% include_relative exercises/2_4.html %}
+{% include_relative exercises/2_5.html %}
 
