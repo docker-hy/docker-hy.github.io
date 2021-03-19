@@ -130,7 +130,7 @@ $ docker attach looper-it
   ^P^Qread escape sequence
 ```
 
-Instead if had used ctrl+c it would have send a kill signal followed by removing the container as we specified --rm in `docker run` command.
+Instead, if we had used ctrl+c, it would have sent a kill signal followed by removing the container as we specified --rm in `docker run` command.
 
 {% include_relative exercises/1_3.html %}
 {% include_relative exercises/1_4.html %}
