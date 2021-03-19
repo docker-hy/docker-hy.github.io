@@ -57,7 +57,7 @@ You are brought into a dev team. They run a web app that uses other services whe
 
 What a headache to start installing and then managing the development databases on your own machine.
 
-Thankfully by the time you are told to do that do that you are already docker expert. With one command you get an isolated application, like postgres or mongo, running in your machine.
+Thankfully by the time you are told to do that you are already docker expert. With one command you get an isolated application, like postgres or mongo, running in your machine.
 
 ### Scenario 4: Scaling ###
 
