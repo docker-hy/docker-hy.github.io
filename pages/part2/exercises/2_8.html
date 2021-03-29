@@ -33,6 +33,7 @@
       }
 
       location /api/ {
+        proxy_set_header Host $host;
         proxy_pass _backend-connection-url_;
       }
     }
