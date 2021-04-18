@@ -18,7 +18,7 @@ During this course we will focus mainly on the packaging, releasing and configur
 "Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called containers." - [from Wikipedia](https://en.wikipedia.org/wiki/Docker_(software)). 
 
 So stripping the jargon we get two definitions:
-  1. Docker is set of tools to deliver software in containers.
+  1. Docker is a set of tools to deliver software in containers.
   2. Containers are packages of software.
 
 ![]({{ "/images/1/container.png" | absolute_url }})
@@ -47,9 +47,9 @@ Containers solve this problem by allowing the developer to personally run the ap
 
 You have 5 different Python applications. You need to deploy them to a server that already has an application requiring Python 2.7 and of course none of your applications are 2.7. What do you do?
 
-Since containers package the software with all of its dependencies you package the existing app, and all 5 new ones with their respective python versions and that's it.
+Since containers package the software with all of its dependencies, you package the existing app and all 5 new ones with their respective python versions and that's it.
 
-I can only imagine the disaster that would result if you try to run them side by side on the same machine without isolating the environments. It sounds more like a time bomb sometimes different parts of a system may change over time, possibly leading to the application not working. These changes may be anything from an operating system update to changes in dependencies. 
+I can only imagine the disaster that would result if you try to run them side by side on the same machine without isolating the environments. It sounds more like a time bomb. Sometimes different parts of a system may change over time, possibly leading to the application not working. These changes may be anything from an operating system update to changes in dependencies. 
 
 ### Scenario 3: Development ###
 
@@ -57,17 +57,17 @@ You are brought into a dev team. They run a web app that uses other services whe
 
 What a headache to start installing and then managing the development databases on your own machine.
 
-Thankfully by the time you are told to do that you are already docker expert. With one command you get an isolated application, like postgres or mongo, running in your machine.
+Thankfully, by the time you are told to do that you are already a docker expert. With one command you get an isolated application, like postgres or mongo, running in your machine.
 
 ### Scenario 4: Scaling ###
 
-Starting and stopping a docker container has little overhead. When you run your own netflix or facebook you want to meet the changing demand. With some advanced tooling, that we learn about in part 2 and 3, we can spin up multiple containers instantly and load balance traffic between them. 
+Starting and stopping a docker container has little overhead. But when you run your own Netflix or Facebook, you want to meet the changing demand. With some advanced tooling, that we learn about in part 2 and 3, we can spin up multiple containers instantly and load balance traffic between them. 
 
 Container orchestration will be talked in parts 2 and 3. But the simplest example: what happens when one application dies? The orchestration system notices it, splits traffic between the working replicas and spin up a new container to replace the dead one.
 
 ## Virtual machines ##
 
-Isn't there already a solution for this? Virtual Machines are not the same as the Containers - they solve different problems. We will not be looking into Virtual Machines in this course. However, here's a diagram to give you a rough idea of the difference.
+Isn't there already a solution for this? Virtual Machines are not the same as Containers - they solve different problems. We will not be looking into Virtual Machines in this course. However, here's a diagram to give you a rough idea of the difference.
 
 ![]({{ "/images/1/docker-explained-3.png" | absolute_url }})
 
