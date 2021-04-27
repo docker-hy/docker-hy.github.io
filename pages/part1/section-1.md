@@ -127,10 +127,10 @@ It found the **image** locally so it skipped right to running the hello-world. S
 Since we already know what containers are it's easier to explain images through them: Containers are instances of images. A basic mistake is to confuse images and containers.
 
 Cooking metaphor:
-* Image is pre-cooked, frozen treat.
-* Container is the delicious treat.
+* Image is the recipe to a delicious treat.
+* Container is the prepared treat based on the recipe.
 
-With the cooking metaphor, the difficult task is creating the frozen treat while warming it up is relatively easy. Images require some work and knowledge to be created, but when you know how to create images you can leverage the power of containers in your own projects.
+With the cooking metaphor, the difficult task is to put together the recipe while following instructions to prepare the treat is relatively easy. Images require some work and knowledge to be created, but when you know how to create images you can leverage the power of containers in your own projects.
 
 ## Image ##
 
