@@ -46,7 +46,7 @@ $ docker-compose push
 
 ## Volumes in docker-compose ##
 
-To run the image as we did previously, we will need to add the volume bind mounts. Volumes in docker-compose are defined with the with the following syntax `location-in-host:location-in-container`. Compose can work without an absolute path:
+To run the image as we did previously, we will need to add the volume bind mounts. Volumes in docker-compose are defined with the following syntax `location-in-host:location-in-container`. Compose can work without an absolute path:
 
 ```yaml
 version: '3.5' 
