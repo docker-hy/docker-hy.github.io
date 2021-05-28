@@ -12,7 +12,7 @@ To get a passing grade, you have to do every exercise, except you can skip one e
 
 ## Deadline ##
 
-The sign up for ECTS credits ends 12.12.2021! The course ends 13.12.2021. After that course is locked and submissions can no longer be made or credits earned. As the certificate is received through submissions, you have to submit everything before the course ends. More details under completion.
+The sign up for ECTS credits ends 12.12.2021! The course ends 13.12.2021. After that course is locked and submissions can no longer be made or credits earned. As the certificate is received through submissions, you have to submit everything before the course ends. More details under completion and after each part.
 
 ## General guidance ##
 
@@ -33,4 +33,12 @@ When you have completed a part, use the [submission application](https://studies
 
 ## Completing ##
 
-There are a few steps you need to do at the end of the course. Read more [here](/completion).
+The certificate is available from the small icon beneath your submissions!
+
+After you have returned all of the required exercises and wish to end your course completion and want the ECTS credits press the following button in the submission application (ignore the message about an "exam" as there is no exam in this course):
+
+![]({{ "/images/incomplete_course.png" | absolute_url }})
+
+After that, ensure that the application has the message "Course marked as completed" and the date. 
+
+![]({{ "/images/completed_course.png" | absolute_url }})

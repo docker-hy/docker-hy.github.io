@@ -24,7 +24,7 @@ The course material does not consider all operating systems and as such some ins
 
 The course is composed of 4 parts, first of which is part 0 and contains the pre-requisites for all the upcoming exercises. The parts should take 5-25 hours each to complete.
 
-Here are additional instructions for the end of the course: [completion](/completion)
+Here are additional instructions for completion are after each part and on the [exercises page](/exercises)
 
 ### Grading ##
 
