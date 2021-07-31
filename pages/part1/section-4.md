@@ -25,7 +25,7 @@ $ ./hello.sh
 
 > If you're using windows you can skip these two and add chmod +x hello.sh to the Dockerfile.
 
-And now to create an image from it. We'll have to create the Dockerfile that declares all of the required dependencies. At least it depends on something that can run shell scripts. So I will choose alpine, it is a small linux and often used to create small images. 
+And now to create an image from it. We'll have to create the Dockerfile that declares all of the required dependencies. At least it depends on something that can run shell scripts. So I will choose alpine, it is a small Linux distribution and often used to create small images.
 
 Even though we're using alpine here, you can use ubuntu during exercises. Ubuntu images by default contain more tools to debug what is wrong when something doesn't work. In part 3 we will talk more about why small images are important.
 
