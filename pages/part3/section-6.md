@@ -7,7 +7,8 @@
 
 Enrolling after each part is required for the ECTS credits. Now that you have completed part 3 use the following link to enroll in this course:
 
-* DevOps with Docker: security and optimization 2021 - <https://www.avoin.helsinki.fi/palvelut/esittely.aspx?o=143119709>
+* DevOps with Docker: security and optimization 2021, before 1.9 - <https://www.avoin.helsinki.fi/palvelut/esittely.aspx?o=143119709>
+* DevOps with Docker: security and optimization 2021, after 1.9 - <https://www.avoin.helsinki.fi/palvelut/esittely.aspx?s=otm-cf712bf5-e4f8-4aac-b09f-ff0c79fd8ca4>
 
 If you wish to end in this part and not do the following parts, follow the instructions [at the bottom of exercises page](/exercises)
 

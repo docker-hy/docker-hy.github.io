@@ -17,7 +17,8 @@ The starting and stopping of containers is a bit annoying, not to mention runnin
 
 Enrolling after each part is required for the ECTS credits. Now that you have completed part 1 use the following link to enroll in this course:
 
-* DevOps with Docker 2021 - <https://www.avoin.helsinki.fi/palvelut/esittely.aspx?o=143101675>
+* DevOps with Docker 2021, before 1.9 - <https://www.avoin.helsinki.fi/palvelut/esittely.aspx?o=143101675>
+* DevOps with Docker 2021, after 1.9 <https://www.avoin.helsinki.fi/palvelut/esittely.aspx?s=otm-888af4c9-562a-4cf6-a7a4-119e15dd2bf0>
 
 If you wish to end in this part and not do the following parts, follow the instructions [at the bottom of exercises page](/exercises)
 
