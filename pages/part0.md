@@ -53,11 +53,11 @@ Knows why docker-compose is not an optimal production solution and what is.
 
 As we're trying to make the course as accessible as possible, the course has multiple pages: [Studies page](https://studies.helsinki.fi/courses/cur/hy-CUR-135622221/Open_uni_DevOps_with_Docker_2021), [Mooc](https://mooc.fi/) and a GitHub page. Everything should be found from this page. If something is missing or unclear after reading this page, please contact jami.kousa@helsinki.fi or get in touch through Telegram.
 
-### Telegram ###
+### Discord ###
 
-This course has a Telegram group where we discuss everything about the course. Support is available almost 24/7, with the discussion being in both English and Finnish.
+This course has a Discord group where we discuss everything about the course. Support is available almost 24/7, with the discussion being in both English and Finnish.
 
-Join our telegram group [here](https://t.me/joinchat/HIg2vkuQ1T4QUPJDxIgshQ).
+Join our discord group [here](https://study.cs.helsinki.fi/discord/join/docker). The legacy telegram group is also still active [here](https://t.me/joinchat/HIg2vkuQ1T4QUPJDxIgshQ).
 
 **All** inappropriate, degrading or discriminating comments on the channel are prohibited and will lead to action taken against the commenter.
 
