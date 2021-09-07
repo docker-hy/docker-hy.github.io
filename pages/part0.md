@@ -51,7 +51,7 @@ Knows why docker-compose is not an optimal production solution and what is.
 
 ### Course has multiple pages ###
 
-As we're trying to make the course as accessible as possible, the course has multiple pages: [Studies page](https://studies.helsinki.fi/courses/cur/hy-CUR-135622221/Open_uni_DevOps_with_Docker_2021), [Mooc](https://mooc.fi/) and a GitHub page. Everything should be found from this page. If something is missing or unclear after reading this page, please contact jami.kousa@helsinki.fi or get in touch through Telegram.
+As we're trying to make the course as accessible as possible, the course has multiple pages: [Studies page](https://studies.helsinki.fi/courses/cur/hy-CUR-135622221/Open_uni_DevOps_with_Docker_2021), [Mooc](https://mooc.fi/) and a [GitHub page](https://github.com/docker-hy/docker-hy.github.io/). Everything should be found from this page. If something is missing or unclear after reading this page, please contact jami.kousa@helsinki.fi or get in touch through Telegram.
 
 ### Telegram ###
 
