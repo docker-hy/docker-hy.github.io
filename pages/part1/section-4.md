@@ -31,7 +31,7 @@ Even though we're using alpine here, you can use ubuntu during exercises. Ubuntu
 
 We will choose exactly which version of a given image we want to use. This makes it so that we don't accidentally update through a breaking change, and we know which images need updating when there are known security vulnerabilities in old images.
 
-Let's create a Dockerfile with the following contents
+Now create a file and name it "Dockerfile" and lets put the following instructions inside it:
 
 **Dockerfile**
 ```Dockerfile
@@ -53,7 +53,7 @@ CMD ./hello.sh
 
 > If you're now getting "/bin/sh: ./hello.sh: Permission denied" it's because the `chmod +x hello.sh` was skipped earlier. You can simply uncomment the RUN instruction between COPY and CMD instructions
 
-Great! Now we can run `docker build` with instructions where to build (`.`) and give it a name (`-t <name>`):
+Great! By default `docker build` will look for a file named Dockerfile. Now we can run `docker build` with instructions where to build (`.`) and give it a name (`-t <name>`):
 
 ```console
 $ docker build . -t hello-docker
