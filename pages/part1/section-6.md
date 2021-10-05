@@ -115,7 +115,7 @@ The next three exercises will start a larger project that we will configure in p
 
 Go to <https://hub.docker.com/> to create an account. You can configure docker hub to build your images for you, but using `push` works as well.
 
-Let's publish the youtube-dl image. Log in and navigate to your [dashboard](https://hub.docker.com/) and press Create Repository. The namespace can be either your personal account or an organization account. For now, let's stick to personal accounts and write something descriptive such as youtube-dl to repository name. We will need to remember it in part 2.
+Let's publish the youtube-dl image. Log in and navigate to your [dashboard](https://hub.docker.com/repositories) and press Create Repository. The namespace can be either your personal account or an organization account. For now, let's stick to personal accounts and write something descriptive such as youtube-dl to repository name. We will need to remember it in part 2.
 
 Set visibility to *public*.
 
