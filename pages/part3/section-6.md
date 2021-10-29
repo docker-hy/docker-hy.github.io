@@ -1,7 +1,7 @@
 
 # Ending #
 
-**Remember to mark your exercises into the submission application! Instructions on how and what to submit are on the exercises page.**
+**Remember to mark your exercises into the [submission application](https://studies.cs.helsinki.fi/stats/courses/docker2021)! Instructions on how and what to submit are on the exercises page.**
 
 ## ECTS Credits
 
