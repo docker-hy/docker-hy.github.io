@@ -61,9 +61,9 @@ Thankfully, by the time you are told to do that you are already a docker expert.
 
 ### Scenario 4: Scaling ###
 
-Starting and stopping a docker container has little overhead. But when you run your own Netflix or Facebook, you want to meet the changing demand. With some advanced tooling, that we learn about in part 2 and 3, we can spin up multiple containers instantly and load balance traffic between them. 
+Starting and stopping a docker container has little overhead. But when you run your own Netflix or Facebook, you want to meet the changing demand. With some advanced tooling that we will learn about in parts 2 and 3, we can spin up multiple containers instantly and load balance traffic between them. 
 
-Container orchestration will be talked in parts 2 and 3. But the simplest example: what happens when one application dies? The orchestration system notices it, splits traffic between the working replicas and spin up a new container to replace the dead one.
+Container orchestration will be discussed in parts 2 and 3. But the simplest example: what happens when one application dies? The orchestration system notices it, splits traffic between the working replicas, and spins up a new container to replace the dead one.
 
 ## Virtual machines ##
 
