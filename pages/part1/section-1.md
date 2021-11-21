@@ -33,15 +33,15 @@ Containers package applications. Sounds simple, right? To illustrate the potenti
 
 Let's first take a closer look into what happens in web development without containers following the chain above starting from "Plan".
 
-First you plan an application. Then your team of 1-n developers create the software. It works on your computer. It may even go through a testing pipeline working perfectly. You send it to the server and ..
+First you plan an application. Then your team of 1-n developers create the software. It works on your computer. It may even go through a testing pipeline working perfectly. You send it to the server and...
 
-.. it does not work.
+...it does not work.
 
-This known as the **"works on my machine"** problem. The only way to solve this was by finding out what in tarnation the developer had installed on their machine that made the application work.
+This is known as the **"works on my machine"** problem. The only way to solve this is by finding out what in tarnation the developer had installed on their machine that made the application work.
 
 Containers solve this problem by allowing the developer to personally run the application inside a container, which then includes all of the dependencies required for the app to work.
 
-> Sometimes you may hear "Works in my container" issue - this is often an usage error
+> You may still occasionally hear about "works in my **container**" issues - these are often just usage errors.
 
 ### Scenario 2: Isolated environments ###
 
@@ -61,9 +61,9 @@ Thankfully, by the time you are told to do that you are already a docker expert.
 
 ### Scenario 4: Scaling ###
 
-Starting and stopping a docker container has little overhead. But when you run your own Netflix or Facebook, you want to meet the changing demand. With some advanced tooling, that we learn about in part 2 and 3, we can spin up multiple containers instantly and load balance traffic between them. 
+Starting and stopping a docker container has little overhead. But when you run your own Netflix or Facebook, you want to meet the changing demand. With some advanced tooling that we will learn about in parts 2 and 3, we can spin up multiple containers instantly and load balance traffic between them. 
 
-Container orchestration will be talked in parts 2 and 3. But the simplest example: what happens when one application dies? The orchestration system notices it, splits traffic between the working replicas and spin up a new container to replace the dead one.
+Container orchestration will be discussed in parts 2 and 3. But the simplest example: what happens when one application dies? The orchestration system notices it, splits traffic between the working replicas, and spins up a new container to replace the dead one.
 
 ## Virtual machines ##
 
