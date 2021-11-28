@@ -184,11 +184,12 @@ $ curl whoami.colasloth.com
   I'm 740dc0de1954 
 ```
 
-Let's add couple of more containers behind the same proxy. We can use the official `nginx` image to serve a simple static web page. We don't have to even build the container images, we can just mount the content to the image. Let's prepare some content for two services called "hello" and "world". 
+Let's add couple of more containers behind the same proxy. We can use the official `nginx` image to serve a simple static web page. We don't have to even build the container images, we can just mount the content to the image. Let's prepare some html content for two services called "hello" and "world", and give other users read access to the files.
 
 ```console
 $ echo "hello" > hello.html
 $ echo "world" > world.html
+$ chmod go+r hello.html world.html
 ```
 
 Then add these services to the `docker-compose.yml` file where you mount just the content as `index.html` in the default nginx path: 
