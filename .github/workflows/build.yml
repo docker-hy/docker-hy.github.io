@@ -21,4 +21,4 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: devopsdockeruh/coursepage:latest
+        tags: hajame/docker-hy-coursepage:latest
