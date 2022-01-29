@@ -18,5 +18,3 @@ This part introduces containerization with Docker and relevant concepts such as 
 * Share your own containers publicly
 
 <pages-in-this-section></pages-in-this-section>
-
-<exercises-in-this-section></exercises-in-this-section>

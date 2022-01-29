@@ -16,5 +16,3 @@ This part introduces container orchestration with docker-compose and relevant co
 * Use 3rd party services, such as databases, inside containers as part of your project
 
 <pages-in-this-section></pages-in-this-section>
-
-<exercises-in-this-section></exercises-in-this-section>

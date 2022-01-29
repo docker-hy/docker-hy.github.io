@@ -14,5 +14,3 @@ This part introduces production-ready practices such as container optimization a
 * Automatically deploy containers
 
 <pages-in-this-section></pages-in-this-section>
-
-<exercises-in-this-section></exercises-in-this-section>
