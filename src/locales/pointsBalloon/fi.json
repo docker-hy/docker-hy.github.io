@@ -1,0 +1,13 @@
+{
+    "gotPoints": "Saadut pisteet: ",
+    "maxPoints": "Maksimipisteet: ",
+    "programmingService": "Ohjelmointitehtävät",
+    "quizService": "Kyselyt",
+    "totalPoints": "Tehtäväpisteet yhteensä",
+    "progressTotal": "Osasta saadut kurssipisteet: ",
+    "noTimeLimit": "Olet aikatauluttomalla kurssilla, josta ei voi hakea opinto-oikeutta.",
+    "canApplyForStudyRight": "Opinto-oikeuteen vaaditaan 90% aikataulutetun kurssin ohjelmointitehtävien pisteistä. Edistymisesi tällä hetkellä:",
+    "progress":"Edistyminen (beta)",
+    "close": "sulje",
+    "error":"Edistymisen hakeminen kaatui seuraavaan virheeseen:"
+}

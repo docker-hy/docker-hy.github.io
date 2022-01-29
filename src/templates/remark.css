@@ -1,0 +1,37 @@
+code {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.gatsby-highlight {
+  margin-bottom: 2rem;
+}
+
+.gatsby-highlight pre {
+  border-radius: 10px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+.gatsby-highlight code.language-text {
+  padding: 0.2rem !important;
+  margin-right: 0.4rem;
+  padding-left: 0.4rem !important;
+}
+
+.gatsby-highlight code, .gatsby-highlight pre {
+  background-color: white !important;
+}
+
+:not(pre) > code[class*='language-'] {
+  background-color: rgb(243, 243, 243) !important;
+  color: rgb(20, 20, 20) !important;
+  white-space: pre-wrap;
+}
+
+
+@media only screen and (min-width: 550px) {
+  .singleline-code > code {
+    white-space: nowrap !important;
+  }
+}
+
+
