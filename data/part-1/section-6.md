@@ -57,12 +57,12 @@ Ok. Let's see how well monkeying the README worked for us: `docker build . -t ra
 
 <exercise name="Exercise 1.11: Spring">
 
-Lets create a Dockerfile for a Java Spring project: [github page](https://github.com/docker-hy/material-applications/tree/main/spring-example-project)
+Create a Dockerfile for an old Java Spring project: [GitHub page](https://github.com/docker-hy/material-applications/tree/main/spring-example-project)
 
 The setup should be straightforward with the README instructions. Tips to get you started:
 
-Use [openjdk image](https://hub.docker.com/_/openjdk) `FROM openjdk:_tag_` to get java instead of installing it
-manually. Pick the tag by using the README and dockerhub page.
+Use [openjdk image](https://hub.docker.com/_/openjdk) `FROM openjdk:_tag_` to get Java instead of installing it
+manually. Pick the tag by using the README and Docker Hub page.
 
 You've completed the exercise when you see a 'Success' message in your browser.
 
@@ -70,13 +70,13 @@ Submit the Dockerfile you used to run the container.
 
 </exercise>
 
-The next three exercises will start a larger project that we will configure in parts 2 and 3. They will require you to use everything you've learned up until now.
+The following three exercises will start a larger project that we will configure in parts 2 and 3. They will require you to use everything you've learned up until now. If you need to modify a Dockerfile in some later exercises, feel free to do it on top of the Dockerfiles you create here.
 
 <exercise name="Exercise 1.12: Hello, frontend!">
 
 <b style="color:firebrick;">This exercise is mandatory</b>
 
-A good developer creates well written READMEs that can be used to create Dockerfiles with ease.
+A good developer creates well-written READMEs. Such that they can be used to create Dockerfiles with ease.
 
 Clone, fork or download the project from
 [https://github.com/docker-hy/material-applications/tree/main/example-frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend).
