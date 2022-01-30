@@ -71,6 +71,7 @@ manually. Pick the tag by using the README and dockerhub page.
 You've completed the exercise when you see a 'Success' message in your browser.
 
 Submit the Dockerfile you used to run the container.
+
 </exercise>
 
 The next three exercises will start a larger project that we will configure in parts 2 and 3. They will require you to use everything you've learned up until now.
