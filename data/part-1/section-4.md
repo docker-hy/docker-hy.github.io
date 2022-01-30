@@ -221,4 +221,39 @@ Let's try `docker cp` command to copy the file. We can use quotes if the filenam
 $ docker cp "determined_elion://mydir/Imgur-JY5tHqr.mp4" .
 ```
 
-And now we have our file locally. Sadly, this is not sufficient to fix our issue, so let's continue:
+And now we have our file locally. Sadly, this is not sufficient to fix our issue. In the next section, we will improve this.
+
+<text-box name="Entrypoint to improve curler" variant="hint">
+
+With `ENTRYPOINT` we can make the curler more flexible.
+
+Change the script to take in the first argument as the input:
+
+```bash
+#!/bin/bash
+
+echo "Searching..";
+sleep 1;
+curl http://$1;
+```
+
+And change the CMD to ENTRYPOINT with the format `[ "./script.txt" ]`. Now we can run
+
+```bash
+$ docker build . -t curler-v2
+$ docker run curler-v2 helsinki.fi
+
+  Searching..
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                   Dload  Upload   Total   Spent    Left  Speed
+  100   232  100   232    0     0  13647      0 --:--:-- --:--:-- --:--:-- 13647
+  <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+  <html><head>
+  <title>301 Moved Permanently</title>
+  </head><body>
+  <h1>Moved Permanently</h1>
+  <p>The document has moved <a href="https://www.helsinki.fi/">here</a>.</p>
+  </body></html>
+```
+
+</text-box>
