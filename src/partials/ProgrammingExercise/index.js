@@ -1,45 +1,45 @@
-import React from "react"
-import styled from "styled-components"
-import { OutboundLink } from "gatsby-plugin-google-analytics"
-import { get } from "lodash"
+import React from "react";
+import styled from "styled-components";
+import { OutboundLink } from "gatsby-plugin-google-analytics";
+import { get } from "lodash";
 
-import { withTranslation } from "react-i18next"
+import { withTranslation } from "react-i18next";
 import {
   fetchProgrammingExerciseDetails,
   fetchProgrammingExerciseModelSolution,
-} from "../../services/moocfi"
-import LoginStateContext from "../../contexes/LoginStateContext"
-import LoginControls from "../../components/LoginControls"
-import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary"
-import ExerciseDescription from "./ExerciseDescription"
-import StyledDivider from "../../components/StyledDivider"
-import ProgrammingExerciseCard from "./ProgrammingExerciseCard"
-import Alert from "@material-ui/lab/Alert"
-import CourseSettings from "../../../course-settings"
+} from "../../services/moocfi";
+import LoginStateContext from "../../contexes/LoginStateContext";
+import LoginControls from "../../components/LoginControls";
+import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary";
+import ExerciseDescription from "./ExerciseDescription";
+import StyledDivider from "../../components/StyledDivider";
+import ProgrammingExerciseCard from "./ProgrammingExerciseCard";
+import Alert from "@material-ui/lab/Alert";
+import CourseSettings from "../../../course-settings";
 
 const LoginNag = styled.div`
   margin-bottom: 1rem;
-`
+`;
 
 const LoginNagWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-content: center;
   justify-content: center;
-`
+`;
 
 const Small = styled.div`
   p {
     font-size: 0.9rem;
     color: #333;
   }
-`
+`;
 const StyledAlert = styled(Alert)`
   margin-bottom: 1rem;
-`
+`;
 
 class ProgrammingExercise extends React.Component {
-  static contextType = LoginStateContext
+  static contextType = LoginStateContext;
 
   // {
   //   "id": 55219,
@@ -64,71 +64,71 @@ class ProgrammingExercise extends React.Component {
     modelSolutionModalOpen: false,
     modelSolution: undefined,
     render: false,
-  }
+  };
 
   async componentDidMount() {
-    this.setState({ render: true })
-    await this.fetch()
+    this.setState({ render: true });
+    await this.fetch();
   }
 
   fetch = async () => {
     if (!this.props.tmcname) {
-      return
+      return;
     }
-    let exerciseDetails = null
+    let exerciseDetails = null;
     try {
       exerciseDetails = await fetchProgrammingExerciseDetails(
-        this.props.tmcname,
-      )
+        this.props.tmcname
+      );
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
     this.setState({
       exerciseDetails,
-    })
-  }
+    });
+  };
 
   onShowModelSolution = async () => {
     try {
-      let modelSolution = this.state.modelSolution
+      let modelSolution = this.state.modelSolution;
       if (!modelSolution) {
         modelSolution = await fetchProgrammingExerciseModelSolution(
-          this.state.exerciseDetails.id,
-        )
+          this.state.exerciseDetails.id
+        );
       }
 
-      this.setState({ modelSolutionModalOpen: true, modelSolution })
+      this.setState({ modelSolutionModalOpen: true, modelSolution });
     } catch (err) {
-      console.error("Could not fetch model solution", err)
+      console.error("Could not fetch model solution", err);
     }
-  }
+  };
 
   onModelSolutionModalClose = () => {
-    this.setState({ modelSolutionModalOpen: false })
-  }
+    this.setState({ modelSolutionModalOpen: false });
+  };
 
   onUpdate = async () => {
     this.setState({
       exerciseDetails: undefined,
       modelSolutionModalOpen: false,
       modelSolution: undefined,
-    })
-    await this.fetch()
-  }
+    });
+    await this.fetch();
+  };
 
   render() {
-    const { children, name, difficulty } = this.props
+    const { children, name, difficulty } = this.props;
 
     if (!this.state.render) {
-      return <div>Loading</div>
+      return <div>Loading</div>;
     }
 
-    const completed = get(this.state, "exerciseDetails.completed")
-    const points = get(this.state, "exerciseDetails.available_points.length")
+    const completed = get(this.state, "exerciseDetails.completed");
+    const points = get(this.state, "exerciseDetails.available_points.length");
     const awardedPoints = get(
       this.state,
-      "exerciseDetails.awarded_points.length",
-    )
+      "exerciseDetails.awarded_points.length"
+    );
 
     return (
       <ProgrammingExerciseCard
@@ -203,10 +203,10 @@ class ProgrammingExercise extends React.Component {
           )}
         </div>
       </ProgrammingExerciseCard>
-    )
+    );
   }
 }
 
 export default withTranslation("common")(
-  withSimpleErrorBoundary(ProgrammingExercise),
-)
+  withSimpleErrorBoundary(ProgrammingExercise)
+);

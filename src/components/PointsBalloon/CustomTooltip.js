@@ -1,8 +1,8 @@
-import React from "react"
-import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary"
-import styled from "styled-components"
-import { SMALL_MEDIUM_BREAKPOINT } from "../../util/constants"
-import { withTranslation } from "react-i18next"
+import React from "react";
+import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary";
+import styled from "styled-components";
+import { SMALL_MEDIUM_BREAKPOINT } from "../../util/constants";
+import { withTranslation } from "react-i18next";
 
 const StyledTooltip = styled.div`
   background: white;
@@ -17,11 +17,11 @@ const StyledTooltip = styled.div`
       font-size: 0.75rem;
     }
   }
-`
+`;
 
 const CustomTooltip = (props) => {
   if (!props.active) {
-    return null
+    return null;
   }
 
   return (
@@ -33,9 +33,9 @@ const CustomTooltip = (props) => {
         {props.t("maxPoints")}: {props.payload?.[0].payload.max_points}
       </p>
     </StyledTooltip>
-  )
-}
+  );
+};
 
 export default withTranslation("points-balloon")(
-  withSimpleErrorBoundary(CustomTooltip),
-)
+  withSimpleErrorBoundary(CustomTooltip)
+);

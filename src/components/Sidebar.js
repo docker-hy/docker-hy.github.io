@@ -1,22 +1,22 @@
-import React from "react"
-import styled from "styled-components"
-import { graphql, StaticQuery } from "gatsby"
-import { Button } from "@material-ui/core"
-import CourseSettings from "../../course-settings"
+import React from "react";
+import styled from "styled-components";
+import { graphql, StaticQuery } from "gatsby";
+import { Button } from "@material-ui/core";
+import CourseSettings from "../../course-settings";
 
-import Logo from "./Logo"
-import TreeView from "./TreeView"
-import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
+import Logo from "./Logo";
+import TreeView from "./TreeView";
+import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import {
   MEDIUM_LARGE_BREAKPOINT,
   SMALL_MEDIUM_BREAKPOINT,
   MEDIUM_SIDEBAR_WIDTH,
   LARGE_SIDEBAR_WIDTH,
-} from "../util/constants"
+} from "../util/constants";
 
 const StyledIcon = styled(FontAwesomeIcon)`
   vertical-align: middle;
@@ -24,7 +24,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
   margin-left: 0.1em;
   color: var(--color);
   font-size: 1.5em;
-`
+`;
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -59,19 +59,19 @@ const SidebarContainer = styled.div`
     max-width: 500px;
     margin: 0 auto;
   }
-`
+`;
 const LogoContainer = styled.div`
   display: flex;
   background-color: white;
   justify-content: space-around;
   align-content: center;
   align-items: center;
-`
+`;
 
 const TreeViewContainer = styled.nav`
   flex: 1;
   margin-bottom: 1em;
-`
+`;
 
 const Brand = styled.div`
   width: 100%;
@@ -81,7 +81,7 @@ const Brand = styled.div`
   font-weight: bold;
   color: #c0392b;
   font-size: 1.15em;
-`
+`;
 
 const MenuExpanderWrapper = styled.div`
   width: 100%;
@@ -92,7 +92,7 @@ const MenuExpanderWrapper = styled.div`
   @media only screen and (min-width: ${SMALL_MEDIUM_BREAKPOINT}) {
     display: none;
   }
-`
+`;
 
 const MobileWrapper = styled.div`
   @media only screen and (max-width: ${SMALL_MEDIUM_BREAKPOINT}) {
@@ -105,20 +105,20 @@ const MobileWrapper = styled.div`
     overflow-y: scroll;
     background-color: white;
   }
-`
+`;
 
 const MobileWrapperOrFragment = (props) => {
   if (props.mobileMenuOpen) {
-    return <MobileWrapper {...props} />
+    return <MobileWrapper {...props} />;
   }
-  return <div {...props} />
-}
+  return <div {...props} />;
+};
 
 const Sidebar = (props) => {
   let edges =
-    props.data?.allMarkdownRemark?.edges.map((o) => o.node?.frontmatter) || []
+    props.data?.allMarkdownRemark?.edges.map((o) => o.node?.frontmatter) || [];
   if (process.env.NODE_ENV === "production") {
-    edges = edges.filter((o) => !o.hidden)
+    edges = edges.filter((o) => !o.hidden);
   }
 
   edges = edges
@@ -127,14 +127,14 @@ const Sidebar = (props) => {
       a.title.localeCompare(b.title, undefined, {
         numeric: true,
         sensitivity: "base",
-      }),
-    )
+      })
+    );
 
-  let coursePartEdges = edges.filter((o) => !o.information_page && !o.upcoming)
+  let coursePartEdges = edges.filter((o) => !o.information_page && !o.upcoming);
 
   let informationPageEdges = edges
     .filter((o) => o.information_page)
-    .sort((a, b) => b.sidebar_priority - a.sidebar_priority)
+    .sort((a, b) => b.sidebar_priority - a.sidebar_priority);
 
   let upcomingPageEdges = edges
     .filter((o) => o.upcoming)
@@ -143,26 +143,26 @@ const Sidebar = (props) => {
       tba: o.upcoming,
       path: o.path,
       separator_after: o.separator_after,
-    }))
+    }));
 
   let content = informationPageEdges
     .concat(coursePartEdges)
-    .concat(upcomingPageEdges)
+    .concat(upcomingPageEdges);
 
-  let separatorEdges = []
+  let separatorEdges = [];
   content.forEach((edge) => {
     if (edge.separator_after) {
-      separatorEdges.push(edge)
+      separatorEdges.push(edge);
     }
-  })
+  });
 
   separatorEdges.forEach((edge) => {
-    let middlepoint = content.findIndex((o) => o.title === edge.title)
+    let middlepoint = content.findIndex((o) => o.title === edge.title);
     content.splice(middlepoint + 1, 0, {
       separator: true,
       title: edge.separator_after,
-    })
-  })
+    });
+  });
 
   return (
     <MobileWrapperOrFragment mobileMenuOpen={props.mobileMenuOpen}>
@@ -195,8 +195,8 @@ const Sidebar = (props) => {
         </LogoContainer>
       </SidebarContainer>
     </MobileWrapperOrFragment>
-  )
-}
+  );
+};
 
 const query = graphql`
   query {
@@ -221,13 +221,13 @@ const query = graphql`
       }
     }
   }
-`
+`;
 
 const SidebarWithData = (props) => (
   <StaticQuery
     query={query}
     render={(data) => <Sidebar data={data} {...props} />}
   />
-)
+);
 
-export default withSimpleErrorBoundary(SidebarWithData)
+export default withSimpleErrorBoundary(SidebarWithData);

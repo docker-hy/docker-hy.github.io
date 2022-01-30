@@ -1,9 +1,9 @@
-import React from "react"
-import Helmet from "react-helmet"
-import Layout from "../templates/Layout"
-import Container from "../components/Container"
-import { OutboundLink } from "gatsby-plugin-google-analytics"
-import { withLoginStateContext } from "../contexes/LoginStateContext"
+import React from "react";
+import Helmet from "react-helmet";
+import Layout from "../templates/Layout";
+import Container from "../components/Container";
+import { OutboundLink } from "gatsby-plugin-google-analytics";
+import { withLoginStateContext } from "../contexes/LoginStateContext";
 
 const Credits = () => (
   <Layout>
@@ -88,6 +88,6 @@ const Credits = () => (
       </p>
     </Container>
   </Layout>
-)
+);
 
-export default withLoginStateContext(Credits)
+export default withLoginStateContext(Credits);

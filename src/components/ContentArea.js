@@ -1,6 +1,6 @@
-import React from "react"
-import styled from "styled-components"
-import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
+import React from "react";
+import styled from "styled-components";
+import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary";
 
 const ContentAreaContainer = styled.main`
   padding: 0 0.5rem;
@@ -13,7 +13,7 @@ const ContentAreaContainer = styled.main`
     `
   display: none;
   `}
-`
+`;
 
 class ContentArea extends React.Component {
   render() {
@@ -24,8 +24,8 @@ class ContentArea extends React.Component {
       >
         {this.props.children}
       </ContentAreaContainer>
-    )
+    );
   }
 }
 
-export default withSimpleErrorBoundary(ContentArea)
+export default withSimpleErrorBoundary(ContentArea);

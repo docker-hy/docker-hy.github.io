@@ -1,103 +1,103 @@
-import React from "react"
-import Helmet from "react-helmet"
-import Layout from "../templates/Layout"
-import { authenticate, loggedIn } from "../services/moocfi"
-import { navigate, Link } from "gatsby"
-import { TextField, Button } from "@material-ui/core"
-import { OutboundLink } from "gatsby-plugin-google-analytics"
-import { withTranslation } from "react-i18next"
-import styled from "styled-components"
+import React from "react";
+import Helmet from "react-helmet";
+import Layout from "../templates/Layout";
+import { authenticate, loggedIn } from "../services/moocfi";
+import { navigate, Link } from "gatsby";
+import { TextField, Button } from "@material-ui/core";
+import { OutboundLink } from "gatsby-plugin-google-analytics";
+import { withTranslation } from "react-i18next";
+import styled from "styled-components";
 import LoginStateContext, {
   withLoginStateContext,
-} from "../contexes/LoginStateContext"
-import Container from "../components/Container"
+} from "../contexes/LoginStateContext";
+import Container from "../components/Container";
 
 const Row = styled.div`
   margin-bottom: 1.5rem;
-`
+`;
 
-const Form = styled.form``
+const Form = styled.form``;
 
 const InfoBox = styled.div`
   margin-bottom: 2rem;
-`
+`;
 
 const FormContainer = styled.div`
   height: 100%;
   margin-top: 2rem;
-`
+`;
 
 class SignInPage extends React.Component {
-  static contextType = LoginStateContext
+  static contextType = LoginStateContext;
 
   componentDidMount = () => {
     // This is a workaroud to some really weird login redirect problems
     this.fallbackRedirector = setInterval(() => {
       if (!loggedIn()) {
-        return
+        return;
       }
       setTimeout(() => {
         if (
           window.location.pathname === "/sign-in/" ||
           window.location.pathname === "/sign-in"
         ) {
-          window.location = "/"
+          window.location = "/";
         }
-      }, 2000)
-    }, 1000)
-  }
+      }, 2000);
+    }, 1000);
+  };
 
   componentWillUnmount() {
-    clearInterval(this.fallbackRedirector)
+    clearInterval(this.fallbackRedirector);
   }
 
   onClick = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (
       this.state.submitting ||
       (this.state.email.length === 0 && this.state.password.length === 0)
     ) {
-      return
+      return;
     }
     this.setState({
       submitting: true,
       error: false,
-    })
+    });
     try {
       await authenticate({
         username: this.state.email,
         password: this.state.password,
-      })
+      });
 
       // Give loginstate time to update
       setTimeout(() => {
         try {
           if (typeof window !== "undefined") {
-            window.history.go(-1)
-            return
+            window.history.go(-1);
+            return;
           }
-          navigate("/")
+          navigate("/");
         } catch (_e) {
-          navigate("/")
+          navigate("/");
         }
-      }, 100)
+      }, 100);
     } catch (error) {
-      this.setState({ error: true, submitting: false })
-      return
+      this.setState({ error: true, submitting: false });
+      return;
     }
-  }
+  };
 
   state = {
     email: "",
     password: "",
     submitting: false,
     error: false,
-  }
+  };
 
   render() {
     if (this.context.loggedIn && !this.state.submitting) {
-      navigate("/")
-      return <div>Redirecting....</div>
+      navigate("/");
+      return <div>Redirecting....</div>;
     }
     return (
       <Layout>
@@ -174,10 +174,10 @@ class SignInPage extends React.Component {
           </FormContainer>
         </Container>
       </Layout>
-    )
+    );
   }
 }
 
 export default withTranslation(["common", "user"])(
-  withLoginStateContext(SignInPage),
-)
+  withLoginStateContext(SignInPage)
+);

@@ -1,5 +1,5 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
 const ExerciseDescriptionWrapper = styled.div`
   counter-reset: headingCounter;
@@ -12,13 +12,13 @@ const ExerciseDescriptionWrapper = styled.div`
     content: "Part " counter(headingCounter) ": ";
     counter-increment: headingCounter;
   }
-`
+`;
 
 const ExerciseDescription = ({ children }) => (
   <ExerciseDescriptionWrapper>
     <div />
     {children}
   </ExerciseDescriptionWrapper>
-)
+);
 
-export default ExerciseDescription
+export default ExerciseDescription;

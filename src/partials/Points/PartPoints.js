@@ -1,5 +1,5 @@
-import React from "react"
-import { Card, CardContent, Typography } from "@material-ui/core"
+import React from "react";
+import { Card, CardContent, Typography } from "@material-ui/core";
 
 export default ({ points }) => (
   <Card>
@@ -9,4 +9,4 @@ export default ({ points }) => (
       </Typography>
     </CardContent>
   </Card>
-)
+);

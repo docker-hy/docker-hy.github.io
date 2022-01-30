@@ -1,20 +1,20 @@
-import React from "react"
-import styled from "styled-components"
-import PagesInThisSection from "../partials/PagesInThisSection"
-import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
+import React from "react";
+import styled from "styled-components";
+import PagesInThisSection from "../partials/PagesInThisSection";
+import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary";
 
 const CoursePageFooterWrapper = styled.footer`
   background-color: white;
   color: black;
   padding: 3rem;
-`
+`;
 
 const CoursePageFooterContent = styled.div`
   display: flex;
   justify-content: center;
   max-width: 960px;
   margin: 0 auto;
-`
+`;
 
 class CoursePageFooter extends React.Component {
   render() {
@@ -26,8 +26,8 @@ class CoursePageFooter extends React.Component {
           />
         </CoursePageFooterContent>
       </CoursePageFooterWrapper>
-    )
+    );
   }
 }
 
-export default withSimpleErrorBoundary(CoursePageFooter)
+export default withSimpleErrorBoundary(CoursePageFooter);

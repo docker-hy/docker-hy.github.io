@@ -1,12 +1,12 @@
-import React, { Fragment } from "react"
-import styled from "styled-components"
-import PagesContext from "../contexes/PagesContext"
-import { nthIndex } from "../util/strings"
-import { Link } from "gatsby"
-import { withTranslation } from "react-i18next"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowRight as icon } from "@fortawesome/free-solid-svg-icons"
-import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
+import React, { Fragment } from "react";
+import styled from "styled-components";
+import PagesContext from "../contexes/PagesContext";
+import { nthIndex } from "../util/strings";
+import { Link } from "gatsby";
+import { withTranslation } from "react-i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight as icon } from "@fortawesome/free-solid-svg-icons";
+import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary";
 
 const StyledLink = styled(Link)`
   color: black;
@@ -24,7 +24,7 @@ const StyledLink = styled(Link)`
     color: black;
     background-color: #eeeeee;
   }
-`
+`;
 
 const StyledIcon = styled(FontAwesomeIcon)`
   vertical-align: middle;
@@ -32,49 +32,49 @@ const StyledIcon = styled(FontAwesomeIcon)`
   margin-left: 0.5rem;
   color: var(--color);
   font-size: 1.5em;
-`
+`;
 
 const ButtonWrapper = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 class EndOfSubSection extends React.Component {
   render() {
     return (
       <PagesContext.Consumer>
         {(value) => {
-          const currentPath = value.current.frontmatter.path
-          let sectionPath = currentPath
-          const sectionSeparator = nthIndex(currentPath, "/", 2)
+          const currentPath = value.current.frontmatter.path;
+          let sectionPath = currentPath;
+          const sectionSeparator = nthIndex(currentPath, "/", 2);
           if (sectionSeparator !== -1) {
-            sectionPath = currentPath.substr(0, sectionSeparator)
+            sectionPath = currentPath.substr(0, sectionSeparator);
           }
           const sectionPages = value.all
             .filter((o) => o.path.startsWith(`${sectionPath}/`))
             .sort((a, b) => {
-              a = a.path.toLowerCase()
-              b = b.path.toLowerCase()
+              a = a.path.toLowerCase();
+              b = b.path.toLowerCase();
 
-              return a > b ? 1 : b > a ? -1 : 0
-            })
+              return a > b ? 1 : b > a ? -1 : 0;
+            });
 
-          let currentPageIndex = null
+          let currentPageIndex = null;
 
           sectionPages.forEach((page, i) => {
             if (page.path !== currentPath) {
-              return
+              return;
             }
-            currentPageIndex = i
-          })
+            currentPageIndex = i;
+          });
 
-          let nextPart = null
+          let nextPart = null;
 
           if (
             currentPageIndex !== null &&
             currentPageIndex !== sectionPages.length - 1
           ) {
-            nextPart = sectionPages[currentPageIndex + 1]
+            nextPart = sectionPages[currentPageIndex + 1];
           }
           return (
             <div>
@@ -91,13 +91,13 @@ class EndOfSubSection extends React.Component {
                 </Fragment>
               )}
             </div>
-          )
+          );
         }}
       </PagesContext.Consumer>
-    )
+    );
   }
 }
 
 export default withTranslation("common")(
-  withSimpleErrorBoundary(EndOfSubSection),
-)
+  withSimpleErrorBoundary(EndOfSubSection)
+);

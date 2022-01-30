@@ -1,9 +1,9 @@
-import React from "react"
-import styled from "styled-components"
-import CourseSettings from "../../course-settings"
+import React from "react";
+import styled from "styled-components";
+import CourseSettings from "../../course-settings";
 
-import BannerImage from "../../banner.svg"
-import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
+import BannerImage from "../../banner.svg";
+import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary";
 
 const BannerWrapper = styled.header`
   height: 30rem;
@@ -20,7 +20,7 @@ const BannerWrapper = styled.header`
   }
   h2 {
   }
-`
+`;
 
 const Heading = styled.div`
   font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -36,7 +36,7 @@ const Heading = styled.div`
   @media only screen and (min-width: 720px) {
     font-size: 3rem;
   }
-`
+`;
 
 const SubHeading = styled.div`
     font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -48,13 +48,13 @@ const SubHeading = styled.div`
     padding .5rem;
     font-size: 1.4rem;
     margin: 0 1rem;
-`
+`;
 
 const Banner = () => (
   <BannerWrapper>
     <Heading>{CourseSettings.name}</Heading>
     <SubHeading>{CourseSettings.subtitle}</SubHeading>
   </BannerWrapper>
-)
+);
 
-export default withSimpleErrorBoundary(Banner)
+export default withSimpleErrorBoundary(Banner);

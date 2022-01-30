@@ -1,7 +1,7 @@
-import React from "react"
-import PartProgress from "./PartProgress"
+import React from "react";
+import PartProgress from "./PartProgress";
 
-const splitCourses = false
+const splitCourses = false;
 const CourseProgress = ({
   data,
   appliesForStudyRight,
@@ -20,7 +20,7 @@ const CourseProgress = ({
               name={name}
               data={data}
             />
-          )
+          );
         })}
       </div>
     ) : (
@@ -37,7 +37,7 @@ const CourseProgress = ({
                   data={data}
                 />
               </div>
-            )
+            );
           } else {
             return (
               <PartProgress
@@ -45,12 +45,12 @@ const CourseProgress = ({
                 name={name}
                 data={data}
               />
-            )
+            );
           }
         })}
       </div>
     ))
-  )
-}
+  );
+};
 
-export default CourseProgress
+export default CourseProgress;

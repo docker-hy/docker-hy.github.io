@@ -1,16 +1,16 @@
-import React, { Fragment } from "react"
-import Layout from "./Layout"
-import Container from "../components/Container"
-import { graphql } from "gatsby"
-import rehypeReact from "rehype-react"
-import { Helmet } from "react-helmet"
-import styled from "styled-components"
-import getNamedPartials from "../partials"
-import "./remark.css"
-import PagesContext from "../contexes/PagesContext"
-import { LoginStateContextProvider } from "../contexes/LoginStateContext"
+import React, { Fragment } from "react";
+import Layout from "./Layout";
+import Container from "../components/Container";
+import { graphql } from "gatsby";
+import rehypeReact from "rehype-react";
+import { Helmet } from "react-helmet";
+import styled from "styled-components";
+import getNamedPartials from "../partials";
+import "./remark.css";
+import PagesContext from "../contexes/PagesContext";
+import { LoginStateContextProvider } from "../contexes/LoginStateContext";
 
-const Title = styled.h1``
+const Title = styled.h1``;
 
 const ContentWrapper = styled.div`
   margin-top: 1rem;
@@ -19,29 +19,29 @@ const ContentWrapper = styled.div`
   p {
     margin-bottom: 2rem;
   }
-`
+`;
 
 export default class VocabularyTemplate extends React.Component {
-  static contextType = PagesContext
+  static contextType = PagesContext;
 
   render() {
-    const { data } = this.props
-    const { frontmatter, htmlAst } = data.page
+    const { data } = this.props;
+    const { frontmatter, htmlAst } = data.page;
     const allPages = data.allPages.edges.map((o) => {
-      const res = o.node?.frontmatter
-      res.words = o.node?.vocabularyWords
-      return res
-    })
-    const partials = getNamedPartials()
+      const res = o.node?.frontmatter;
+      res.words = o.node?.vocabularyWords;
+      return res;
+    });
+    const partials = getNamedPartials();
     const renderAst = new rehypeReact({
       createElement: React.createElement,
       components: partials,
-    }).Compiler
+    }).Compiler;
 
     const filePath = data.page.fileAbsolutePath.substring(
       data.page.fileAbsolutePath.lastIndexOf("/data/"),
-      data.page.fileAbsolutePath.length,
-    )
+      data.page.fileAbsolutePath.length
+    );
 
     return (
       <PagesContext.Provider
@@ -64,7 +64,7 @@ export default class VocabularyTemplate extends React.Component {
           </Layout>
         </LoginStateContextProvider>
       </PagesContext.Provider>
-    )
+    );
   }
 }
 
@@ -104,4 +104,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

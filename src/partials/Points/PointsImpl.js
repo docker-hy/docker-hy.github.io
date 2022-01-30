@@ -1,10 +1,10 @@
-import React from "react"
-import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary"
+import React from "react";
+import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary";
 
-import { useQuery } from "@apollo/react-hooks"
-import { gql } from "apollo-boost"
-import { Button } from "@material-ui/core"
-import OverallPoints from "./OverallPoints"
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+import { Button } from "@material-ui/core";
+import OverallPoints from "./OverallPoints";
 
 const PROGRESS = gql`
   {
@@ -30,18 +30,18 @@ const PROGRESS = gql`
       }
     }
   }
-`
+`;
 
 const Points = (props) => {
   // const course = props.course || CourseSettings.slug
-  const { data, loading, error, refetch } = useQuery(PROGRESS)
+  const { data, loading, error, refetch } = useQuery(PROGRESS);
 
   if (loading) {
-    return <>Loading...</>
+    return <>Loading...</>;
   }
 
   if (error) {
-    return <>Error while fetching progress: {error}</>
+    return <>Error while fetching progress: {error}</>;
   }
 
   if (!data || !data.currentUser) {
@@ -49,18 +49,18 @@ const Points = (props) => {
       <>
         <Button
           onClick={() => {
-            refetch()
+            refetch();
           }}
         >
           Refresh
         </Button>
         <p>Please log in to see your points.</p>
       </>
-    )
+    );
   }
 
   // const points = data.currentUser.progress.user_course_progress.progress[0]
-  const courseName = data.currentUser.progress.course.name
+  const courseName = data.currentUser.progress.course.name;
   return (
     <>
       <OverallPoints
@@ -69,7 +69,7 @@ const Points = (props) => {
         progress={data.currentUser.progress}
       />
     </>
-  )
-}
+  );
+};
 
-export default withSimpleErrorBoundary(Points)
+export default withSimpleErrorBoundary(Points);

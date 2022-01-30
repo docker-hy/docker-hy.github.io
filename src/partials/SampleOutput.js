@@ -1,9 +1,9 @@
-import React from "react"
-import styled from "styled-components"
-import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
-import { withTranslation } from "react-i18next"
+import React from "react";
+import styled from "styled-components";
+import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary";
+import { withTranslation } from "react-i18next";
 
-const accentColor = "#CCC"
+const accentColor = "#CCC";
 
 const Wrapper = styled.div`
   padding 1rem;
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   border-left: 0.2rem solid ${accentColor};
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
-`
+`;
 
 const Body = styled.div`
   padding-bottom: 0.5rem;
@@ -28,13 +28,13 @@ const Body = styled.div`
     color: red;
     font-weight: normal;
   }
-`
+`;
 
 const Note = styled.div`
   width: 100%;
   text-align: right;
   font-size: 0.75rem;
-`
+`;
 
 const SampleOutput = (props) => {
   return (
@@ -42,7 +42,7 @@ const SampleOutput = (props) => {
       <Note>{props.t("sampleOutput")}</Note>
       <Body>{props.children}</Body>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default withTranslation("common")(withSimpleErrorBoundary(SampleOutput))
+export default withTranslation("common")(withSimpleErrorBoundary(SampleOutput));

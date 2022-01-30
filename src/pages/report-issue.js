@@ -1,13 +1,13 @@
-import React from "react"
-import Helmet from "react-helmet"
-import Layout from "../templates/Layout"
-import Container from "../components/Container"
-import { OutboundLink } from "gatsby-plugin-google-analytics"
-import { withLoginStateContext } from "../contexes/LoginStateContext"
-import { Button, Typography } from "@material-ui/core"
-import CourseSettings from "../../course-settings"
-import { withTranslation } from "react-i18next"
-import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
+import React from "react";
+import Helmet from "react-helmet";
+import Layout from "../templates/Layout";
+import Container from "../components/Container";
+import { OutboundLink } from "gatsby-plugin-google-analytics";
+import { withLoginStateContext } from "../contexes/LoginStateContext";
+import { Button, Typography } from "@material-ui/core";
+import CourseSettings from "../../course-settings";
+import { withTranslation } from "react-i18next";
+import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary";
 
 const ReportIssue = ({ t }) => (
   <Layout>
@@ -24,7 +24,7 @@ const ReportIssue = ({ t }) => (
         <OutboundLink
           href={"https://github.com/join?return_to=".concat(
             CourseSettings.githubUrl,
-            "/issues/new&source=login",
+            "/issues/new&source=login"
           )}
           target="_blank"
           rel="noopener noreferrer"
@@ -73,8 +73,8 @@ const ReportIssue = ({ t }) => (
       <p>{t("reportIssue7")}</p>
     </Container>
   </Layout>
-)
+);
 
 export default withTranslation("common")(
-  withSimpleErrorBoundary(withLoginStateContext(ReportIssue)),
-)
+  withSimpleErrorBoundary(withLoginStateContext(ReportIssue))
+);
