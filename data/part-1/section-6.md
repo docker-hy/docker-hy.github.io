@@ -4,8 +4,6 @@ title: "Utilizing tools from the Registry"
 hidden: false
 ---
 
-# Technology agnostic
-
 As we've already seen it should be possible to containerize almost any project. As we are in between Dev and Ops let's pretend again that some developer teammates of ours did an application with a README that instructs what to install and how to run the application. Now we as the container experts can containerize it in seconds. Open this `https://github.com/docker-hy/material-applications/tree/main/rails-example-project` project and read through the README and think about how to transform it into a Dockerfile. Thanks to the README we should be able to decipher what we will need to do even if we have no clue about the language or technology!
 
 We will need to clone the repository, which you may have already done. After the project is done, let's start with a Dockerfile. We know that we need to install ruby and whatever dependencies it had. Let's place the Dockerfile in the project root.

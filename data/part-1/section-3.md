@@ -4,8 +4,6 @@ title: "In-depth dive to images"
 hidden: false
 ---
 
-# In depth dive to images
-
 Images are the basic building blocks for containers and other images. When you "containerize" an application you work towards creating the image.
 
 By learning what images are and how to create them you are ready to start utilizing containers in your own projects.
