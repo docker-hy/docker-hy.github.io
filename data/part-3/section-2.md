@@ -34,10 +34,9 @@ jobs:
     # We need to login so we can later push the image without issues.
     - name: Login to DockerHub
       uses: docker/login-action@v1
-      with: {% raw %}
+      with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-            {% endraw %}
     # Builds devopsdockeruh/docker-hy.github.io
     - name: Build and push
       uses: docker/build-push-action@v2
