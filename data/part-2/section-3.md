@@ -11,7 +11,7 @@ In <https://hub.docker.com/_/redmine> there is a list of different variants in `
 In <https://hub.docker.com/_/postgres> there's a sample compose file under "via docker stack deploy or docker-compose" - Let's strip that down to
 
 ```yaml
-version: "3.5"
+version: "3.8"
 
 services:
   db:
@@ -67,7 +67,7 @@ $ docker volume ls
 There may be more volumes on your machine. If you want to get rid of them you can use `docker volume prune`. Let's put the whole "application" down now with `docker-compose down`. Then, this time let's create a separate volume for the data.
 
 ```yaml
-version: "3.5"
+version: "3.8"
 
 services:
   db:
@@ -126,7 +126,7 @@ Now when you run `docker-compose up` you will see a bunch of database migrations
 We can see that image also creates files to `/usr/src/redmine/files` that also need to be persisted. The Dockerfile has this [line](https://github.com/docker-library/redmine/blob/cea16044e97567c28802fc8cc06f6cd036c49a5c/4.0/Dockerfile#L155) where it declares that a volume should be created. Again docker will create the volume, but it will be handled as an anonymous volume that is not managed by compose, so it's better to be explicit about the volume. With that in mind our final file should look like this:
 
 ```yaml
-version: "3.5"
+version: "3.8"
 
 services:
   db:

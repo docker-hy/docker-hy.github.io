@@ -59,7 +59,8 @@ Note that now anyone with access to your Docker Hub also has access to your PC t
 </text-box>
 
 ```yaml
-version: "3"
+version: "3.8"
+
 services:
   coursematerial:
     image: devopsdockeruh/coursepage

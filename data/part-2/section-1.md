@@ -30,7 +30,7 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 we create a file called `docker-compose.yml`:
 
 ```yaml
-version: '3'
+version: '3.8'
 
 services:
     youtube-dl-ubuntu:
@@ -52,7 +52,7 @@ $ docker-compose push
 To run the image as we did previously, we will need to add the volume bind mounts. Volumes in docker-compose are defined with the following syntax `location-in-host:location-in-container`. Compose can work without an absolute path:
 
 ```yaml
-version: '3.5'
+version: '3.8'
 
 services:
 
@@ -107,7 +107,7 @@ $ docker container rm 736ab83847bb
 Let's create a new folder and a docker-compose file `whoami/docker-compose.yml` from the command line options.
 
 ```yaml
-version: '3.5'
+version: '3.8'
 
 services:
     whoami:
@@ -126,7 +126,7 @@ $ curl localhost:8000
 Environment variables can also be given to the containers in docker-compose.
 
 ```yaml
-version: '3.5'
+version: '3.8'
 
 services:
   backend:

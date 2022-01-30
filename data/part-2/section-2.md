@@ -155,7 +155,7 @@ In a server environment you'd often have a load balancer in-front of the service
 Let's add the proxy to our compose file and remove the port bindings from the whoami service. We'll mount our `docker.sock` inside of the container in `:ro` read-only mode.
 
 ```yaml
-version: "3.5"
+version: "3.8"
 
 services:
   whoami:
@@ -191,7 +191,7 @@ Note:
 The domain `colasloth.com` is configured so that all subdomains point to `127.0.0.1`. More information about how this works can be found at [colasloth.github.io](https://colasloth.github.io), but in brief it's a simple DNS "hack". Several other domains serving the same purpose exist, such as `localtest.me`, `lvh.me`, and `vcap.me`, to name a few. In any case, let's use `colasloth.com` here:
 
 ```yaml
-version: "3.5"
+version: "3.8"
 
 services:
   whoami:
