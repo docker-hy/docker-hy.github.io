@@ -4,8 +4,6 @@ title: "Running and stopping containers"
 hidden: false
 ---
 
-# Running and stopping containers
-
 Next we will start using a more useful image than hello-world. We can run ubuntu just with `docker run ubuntu`.
 
 ```console
@@ -140,7 +138,9 @@ $ docker attach looper-it
 ```
 
 Instead, if we had used ctrl+c, it would have sent a kill signal followed by removing the container as we specified --rm in `docker run` command.
+
 <exercise name="Exercise 1.3: Secret message">
+
 Now that we've warmed up it's time to get inside a container while it's running!
 
 Image `devopsdockeruh/simple-web-service:ubuntu` will start a container that outputs logs into a file.
@@ -148,6 +148,7 @@ Go inside the container and use `tail -f ./text.log` to follow the logs.
 Every 10 seconds the clock will send you a "secret message".
 
 Submit the secret message and command(s) given as your answer.
+
 </exercise>
 
 <exercise name="Exercise 1.4: Missing dependencies">
