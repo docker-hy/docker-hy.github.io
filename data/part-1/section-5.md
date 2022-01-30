@@ -43,11 +43,11 @@ Opening a connection from outside world to a docker container happens in two ste
 
 - Publishing port
 
-Exposing a container port means that you tell Docker that the container listens to a certain port. This doesn't actually do much except helps us humans with the configuration.
+Exposing a container port means telling Docker that the container listens to a certain port. This doesn't do much, except it helps humans with the configuration.
 
 Publishing a port means that Docker will map host ports to the container ports.
 
-To expose a port, add line `EXPOSE <port>` in your Dockerfile
+To expose a port, add the line `EXPOSE <port>` in your Dockerfile
 
 To publish a port, run the container with `-p <host-port>:<container-port>`
 
@@ -63,19 +63,19 @@ We could also limit connections to certain protocol only, e.g. udp by adding the
 
 Since we are opening a port to the application, anyone from the internet could come in and access what you're running.
 
-Don't haphazardly open just any ports - a way for an attacker to get in is by exploiting a port you opened to an insecure server. An easy way to avoid this is by defining the host side port like this `-p 127.0.0.1:3456:3000`. This will only allow requests from your computer through port 3456 to the application port 3000, no outside access allowed.
+Don't haphazardly open just any ports - a way for an attacker to get in is by exploiting a port you opened to an insecure server. An easy way to avoid this is by defining the host-side port like this `-p 127.0.0.1:3456:3000`. This will only allow requests from your computer through port 3456 to the application port 3000, with no outside access allowed.
 
-By default `-p 3456:3000` would result in the same as `-p 0.0.0.0:3456:3000` which truly is opening the port to everyone.
+The short syntax, `-p 3456:3000`, will result in the same as `-p 0.0.0.0:3456:3000`, which truly is opening the port to everyone.
 
-Usually this isn't risky, but depending on the application you are running something you should consider!
+Usually, this isn't risky. But depending on the application, it is something you should consider!
 
 </text-box>
 
 <exercise name="Exercise 1.10: Ports open">
 
-In this exercise we won't create a new Dockerfile.
+In this exercise, we won't create a new Dockerfile.
 
-Image `devopsdockeruh/simple-web-service` will start a web service in port `8080` when given the command "server". From 1.7 you should have an image ready for this. Use -p flag to access the contents with
+The image `devopsdockeruh/simple-web-service` will start a web service in port `8080` when given the command "server". From 1.7 you should have an image ready for this. Use -p flag to access the contents with
 your browser. The output to your browser should be something like:
 `{ message: "You connected to the following path: ...`
 
