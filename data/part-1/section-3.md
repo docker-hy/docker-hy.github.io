@@ -320,16 +320,37 @@ $ docker run web-server
 
 <exercise name="Exercise 1.8: Image for script">
 
-Now that we know how to create and build Dockerfiles we can improve previous works.
+We can improve our previous solutions now that we know how to create and build a Dockerfile.
 
-Create a Dockerfile for a new image that starts from ubuntu:18.04.
+Create a new file on your local machine with and append the script we used previously into that file
 
-Make a script file on you local machine with such content as `echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;`. Transfer this file to an image and
-run it inside the container using CMD. Build the image with tag "curler".
+```
+echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;
+```
 
-Run the new `curler` image with the correct flags and input helsinki.fi into it. Output
-should match the 1.4 one.
+Create a Dockerfile for a new image that starts from ubuntu:20.04 and add instructions to install curl into that image. Then add instructions to copy the script file into that image and finally set it to run on container start using CMD.
 
-Return both Dockerfile and the command you used to run the container.
+After you have filled the Dockerfile, build the image with the tag "curler".
+
+* If you are getting permission denied, use `chmod` to give permission to run the script.
+
+The following should now work:
+
+```bash
+$ docker run -it curler
+
+  Input website:
+  helsinki.fi
+  Searching..
+  <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+  <html><head>
+  <title>301 Moved Permanently</title>
+  </head><body>
+  <h1>Moved Permanently</h1>
+  <p>The document has moved <a href="https://www.helsinki.fi/">here</a>.</p>
+  </body></html>
+```
+
+Submit the Dockerfile.
 
 </exercise>
