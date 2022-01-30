@@ -104,8 +104,7 @@ _As in other exercises, do not alter the code of the project_
 Clone, fork or download a project from
 [https://github.com/docker-hy/material-applications/tree/main/example-backend](https://github.com/docker-hy/material-applications/tree/main/example-backend).
 
-Create a Dockerfile for the project (example-backend) and give a command so that the project runs in a docker container with port 8080
-published.
+Create a Dockerfile for the project (example-backend). Start the container with port 8080 published.
 
 When you start the container and navigate to [http://localhost:8080/ping](http://localhost:8080/ping) you should get a "pong" as response.
 
@@ -169,33 +168,26 @@ $ docker push <username>/<repository>
 
 <exercise name="Exercise 1.15: Homework">
 
-Create Dockerfile for an application or any other dockerised project in any of your own repositories and publish it to Docker Hub. This can be any
-project except clones / forks of backend-example or frontend-example.
+Create Dockerfile for an application or any other dockerised project in any of your own repositories and publish it to Docker Hub. This can be any project, except the clones or forks of backend-example or frontend-example.
 
-For this exercise to be complete you have to provide the link to the project in docker hub, make sure you at least
-have a basic description and instructions for how to run the application in a
-[README](https://help.github.com/en/articles/about-readmes) that's available through your submission.
+For this exercise to be complete you have to provide the link to the project in Docker Hub, make sure you at least have a basic description and instructions for how to run the application in a [README](https://help.github.com/en/articles/about-readmes) that's available through your submission.
 
 </exercise>
 
 <exercise name="Exercise 1.16: Heroku">
 
-Pushing to heroku happens in a similar way. A project has already been prepared at `devopsdockeruh/heroku-example` so
-lets pull that first. Note that the image of the project is quite large.
+Pushing to Heroku happens in a similar way.
 
-Go to [https://www.heroku.com/](https://www.heroku.com/) and create a new app there and install heroku CLI. You can
-find additional instructions from `Deploy` tab under `Container Registry`.
-Tag the pulled image as `registry.heroku.com/_app_/_process-type_`, process-type can be `web` for this exercise.
-The app should be your project name in heroku.
+You can deploy an existing project this time. The course material should work, so let's pull that first from `devopsdockeruh/coursepage`
 
-Then push the image to heroku with `docker push registry.heroku.com/_app_/web` and release it using the heroku CLI:
-`heroku container:release web --_app_` (you might need to login first: `heroku container:login`)
+Go to [https://www.heroku.com/](https://www.heroku.com/) and create a new app there and install Heroku CLI. You can find additional instructions from `Deploy` tab under `Container Registry`. Tag the pulled image as `registry.heroku.com/_app_/_process-type_`, process-type can be `web` for this exercise. The app should be your project name in Heroku.
+
+Then push the image to Heroku with `docker push registry.heroku.com/_app_/web` and release it using the Heroku CLI: `heroku container:release web --_app_` (you might need to login first: `heroku container:login`)
 
 Heroku might take some time to get the application up and running.
 
 For this exercise return the url in which the released application is.
 
-You could also use the heroku CLI to build and push, but since we didn't want to build anything this time it was
-easier to just tag the image.
+You could also use the Heroku CLI to build and push, but since we didn't want to build anything this time it was easier to just tag the image.
 
 </exercise>
