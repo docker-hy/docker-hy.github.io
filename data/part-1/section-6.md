@@ -11,8 +11,8 @@ We will need to clone the repository, which you may have already done. After the
 **Dockerfile**
 
 ```Dockerfile
-# We need ruby 3.0.0. I found this from docker hub
-FROM ruby:3.0.0
+# We need ruby 3.1.0. I found this from Docker Hub
+FROM ruby:3.1.0
 
 EXPOSE 3000
 
@@ -22,25 +22,23 @@ WORKDIR /usr/src/app
 Ok these are the basics, we have FROM a ruby version, EXPOSE 3000 was told at the bottom of the README and WORKDIR /usr/src/app is the convention.
 
 ```Dockerfile
-# Install node, found from the internet
-RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
-RUN apt install -y nodejs
-
-# Install yarn, found from readme
-RUN npm install -g yarn
-
 # Install the correct bundler version
-RUN gem install bundler:2.2.11
-```
+RUN gem install bundler:2.3.3
 
-Nodejs required a little bit of googling but that sounds promising. The next were told to us by the README. We won't need to copy anything from outside of the container to run these.
-
-```Dockerfile
-# Copy all of the content from the project to the image
-COPY . .
+# Copy the files required for dependencies to be installed
+COPY Gemfile* .
 
 # Install all dependencies
 RUN bundle install
+```
+
+Here I do a quick trick to separate installing dependencies from the part where we copy the source code in. This will help us by caching the dependeny layers if we ever need to make changes to the source code. The same kind of caching trick works in many other languages or frameworks, such as Node.js.
+
+The next were told to us by the README. We won't need to copy anything from outside of the container to run these.
+
+```Dockerfile
+# Copy all of the source code
+COPY . .
 
 # We pick the production guide mode since we have no intention of developing the software inside the container.
 # Run database migrations by following instructions from README
@@ -53,7 +51,7 @@ RUN rake assets:precompile
 CMD ["rails", "s", "-e", "production"]
 ```
 
-And finally, we copy the project, install all of the dependencies and follow the instructions in the README.
+And finally, we copy the project and follow the instructions in the README.
 
 Ok. Let's see how well monkeying the README worked for us: `docker build . -t rails-project && docker run -p 3000:3000 rails-project`. After a while of waiting, the application starts in port 3000 in production mode.
 
