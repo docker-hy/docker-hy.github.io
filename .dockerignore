@@ -1,3 +1,5 @@
 _site
 .dockerignore
 Dockerfile
+node_modules
+.cache

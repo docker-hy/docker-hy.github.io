@@ -1,8 +1,21 @@
-FROM node:11
+FROM node:16 as build-stage
 
-COPY . /app
-WORKDIR /app
+WORKDIR /usr/src/app
+
+COPY package* /
 
 RUN npm ci
 
-RUN npm run build && mv /app/public /public
+COPY . .
+
+RUN npm run build
+
+FROM node:alpine
+
+ENV PORT 80
+
+RUN npm install -g serve
+
+COPY --from=build-stage /usr/src/app/public /usr/src/html
+
+CMD serve -l $PORT /usr/src/html
