@@ -16,7 +16,7 @@ The project "node-dev-env" is here [https://github.com/docker-hy/material-applic
 
 **Dockerfile**
 ```Dockerfile
-FROM node:14
+FROM node:16
 
 WORKDIR /usr/src/app
 
