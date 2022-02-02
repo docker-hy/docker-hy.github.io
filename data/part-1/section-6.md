@@ -182,7 +182,7 @@ You can deploy an existing project this time. The course material should work, s
 
 Go to [https://www.heroku.com/](https://www.heroku.com/) and create a new app there and install Heroku CLI. You can find additional instructions from `Deploy` tab under `Container Registry`. Tag the pulled image as `registry.heroku.com/_app_/_process-type_`, process-type can be `web` for this exercise. The app should be your project name in Heroku.
 
-Then push the image to Heroku with `docker push registry.heroku.com/_app_/web` and release it using the Heroku CLI: `heroku container:release web --_app_` (you might need to login first: `heroku container:login`)
+Then push the image to Heroku with `docker push registry.heroku.com/_app_/web` and release it using the Heroku CLI: `heroku container:release web --app _app_` (you might need to login first: `heroku container:login`)
 
 Heroku might take some time to get the application up and running.
 
