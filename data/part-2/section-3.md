@@ -201,7 +201,7 @@ Submit the docker-compose.yml
 
 * `restart: unless-stopped` can help if the postgres takes a while to get ready
 
-<img src="/img/exercises/back-front-redis-and-database.png" />
+<img src="../img/exercises/back-front-redis-and-database.png" />
 
 </exercise>
 
