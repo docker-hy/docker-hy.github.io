@@ -14,7 +14,7 @@ The course material does not consider all operating systems and as such some ins
 
 The course is composed of 3 parts. You should read through this page before starting with part 1. This part includes installation instructions and a serious warning. The parts should take 5-25 hours each to complete.
 
-Here are additional instructions for completion are after each part and on the [exercises page](/exercises)
+Here are additional instructions for completion after each part and at the end of this page.
 
 ### Grading
 
