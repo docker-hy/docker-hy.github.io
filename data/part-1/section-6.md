@@ -26,13 +26,13 @@ Ok these are the basics, we have FROM a ruby version, EXPOSE 3000 was told at th
 RUN gem install bundler:2.3.3
 
 # Copy the files required for dependencies to be installed
-COPY Gemfile* .
+COPY Gemfile* ./
 
 # Install all dependencies
 RUN bundle install
 ```
 
-Here I do a quick trick to separate installing dependencies from the part where we copy the source code in. This will help us by caching the dependeny layers if we ever need to make changes to the source code. The same kind of caching trick works in many other languages or frameworks, such as Node.js.
+Here I do a quick trick to separate installing dependencies from the part where we copy the source code in. The COPY will copy both Gemfile and Gemfile.lock to the current directory. This will help us by caching the dependency layers if we ever need to make changes to the source code. The same kind of caching trick works in many other languages or frameworks, such as Node.js.
 
 The next were told to us by the README. We won't need to copy anything from outside of the container to run these.
 
