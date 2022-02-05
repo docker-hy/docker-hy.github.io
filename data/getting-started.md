@@ -108,11 +108,11 @@ Visit the Discord channel if you are stuck!
 ## How to return exercises
 
 Make a repository to GitHub and publish your solutions in clearly ordered files / folders.
-If you need help publishing using git you should refer to their [guide](https://guides.github.com/activities/hello-world/). Make sure that the repository is available to me, either by using a public repository or a private repository and adding Jakousa as a collaborator.
+If you need help publishing using Git you should refer to their [guide](https://guides.github.com/activities/hello-world/). Make sure that the repository is available to me, either by using a public repository or a private repository and adding Jakousa as a collaborator.
 
-Most of the exercises will be focused on a Dockerfile and/or docker-compose.yml and in those cases submitting the file is enough. In other cases a picture or copy-paste from your command line or a link to docker hub and/or project inside the repository is enough. For the command line exercises at start the command `script` ([https://linux.die.net/man/1/script](https://linux.die.net/man/1/script)) may be helpful.
+Most of the exercises will be focused on a Dockerfile and/or docker-compose.yml. In those cases, submitting the file is enough. In other cases, a picture or copy-paste from your command line or a link to Docker Hub and/or project inside the repository is enough. For the command line exercises at start the command `script` ([https://linux.die.net/man/1/script](https://linux.die.net/man/1/script)) may be helpful.
 
-When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/stats/courses/docker2022) to mark your exercises. You can **not** edit a submission so make sure you have completed enough exercises for a part before submitting.
+When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/stats/courses/docker2022) to mark your exercises. You can **not** edit a submission, so make sure you have completed enough exercises for a part before submitting.
 
 ## Completing
 
