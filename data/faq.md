@@ -21,7 +21,7 @@ The certificate will be available through the submission application. For exchan
 
 ## How do I submit the exercises? ##
 
-The exercises are submitted to GitHub, and by marking the exercises as done in the exercise submission system. You can read more from [here](/exercises)
+The exercises are submitted to GitHub, and by marking the exercises as done in the exercise submission system. You can read more from [getting started](/getting-started)
 
 ## Do I have to submit each part to a separate repository? ##
 
