@@ -64,7 +64,7 @@ $ export LC_ALL=C.UTF-8
 $ youtube-dl https://imgur.com/JY5tHqr
 ```
 
-So now when we know exactly what we need. Starting FROM ubuntu:18.04, add these to our `Dockerfile`. We should always try to keep the most prone to change rows at the bottom, by adding the instructions to the bottom we can preserve our cached layers - this is handy practise to speed up creating the initial version of a Dockerfile when it has time consuming operations like downloads. Also added WORKDIR, this will ensure the videos will be downloaded there.
+So now when we know exactly what we need. Starting FROM ubuntu:18.04, add these to our `Dockerfile`. We should always try to keep the most prone to change rows at the bottom, by adding the instructions to the bottom we can preserve our cached layers - this is handy practise to speed up creating the initial version of a Dockerfile when it has time-consuming operations like downloads. Also added WORKDIR, this will ensure the videos will be downloaded there.
 
 ```dockerfile
 FROM ubuntu:18.04
