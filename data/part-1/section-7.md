@@ -12,7 +12,7 @@ The process of dockerizing the applications meant a bit of configuration on our 
 
 Understanding the architecture and the technologies used is also part of making correct choices with the setup. This lead us to read the READMEs and documentation of the software involved in the setup, not just Docker. Fortunately in real life it's often us who are developing and creating the Dockerfile.
 
-The starting and stopping of containers is a bit annoying, not to mention running two applications at the same time. If only there was some way, a tool, to make it simpler... to [compose](/part2).
+The starting and stopping of containers is a bit annoying, not to mention running two applications at the same time. If only there was some way, a tool, to make it simpler... to [compose](/part-2).
 
 **Remember to mark your exercises into the submission application! Instructions on how and what to submit are on the getting started page.**
 
