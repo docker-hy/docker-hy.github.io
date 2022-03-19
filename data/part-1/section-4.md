@@ -177,7 +177,7 @@ $ docker run -it python:3.8 bash
 
 ```
 
-From this experimentation we learned that they have ENTRYPOINT as something other than python, but the CMD is python and we can overwrite it, here with bash. If they had ENTRYPOINT as python we'd be able to run --version. We can create our own image for personal use as we did in a previous exercise with a new Dockerfile.
+From this experimentation we learned that they have ENTRYPOINT as something other than python, but the CMD is python and we can overwrite it, here with bash. If they had ENTRYPOINT as python we'd be able to run `--version`. We can create our own image for personal use as we did in a previous exercise with a new Dockerfile.
 
 ```dockerfile
 FROM python:3.8

@@ -50,7 +50,7 @@ NOTE: Trying above command may fail giving manifest errors as default tag latest
 
 ## A detailed look into an image
 
-Let's go back to a more relevant image than 'hello-world', the ubuntu image is one of the most common Docker images to use as a base for your own image.
+Let's go back to a more relevant image than 'hello-world', the ubuntu image, one of the most common Docker images to use as a base for your own image.
 
 Let's pull Ubuntu and look at the first lines:
 
@@ -83,7 +83,7 @@ We can also tag images locally for convenience, for example, `docker tag ubuntu:
 
 Tagging is also a way to "rename" images. Run `docker tag ubuntu:18.04 fav_distro:bionic` and check `docker images` to see what effects the command had.
 
-To summarize, an image name may consist of 3 parts plus a tag. Usually like the following: `registry/organisation/image:tag`. But may be as short as `ubuntu`, then the registry will default to docker hub, organisation to _library_ and tag to _latest_. The organisation may also be an user, but calling it an organisation may be more clear.
+To summarize, an image name may consist of 3 parts plus a tag. Usually like the following: `registry/organisation/image:tag`. But may be as short as `ubuntu`, then the registry will default to docker hub, organisation to _library_ and tag to _latest_. The organisation may also be a user, but calling it an organisation may be more clear.
 
 <exercise name="Exercise 1.5: Sizes of images">
 
@@ -314,7 +314,7 @@ $ docker run web-server
 
 * We don't have any method of accessing the web service yet. As such confirming that the console output is the same will suffice.
 
-* The exercise title may be an useful hint here.
+* The exercise title may be a useful hint here.
 
 </exercise>
 

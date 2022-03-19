@@ -76,7 +76,7 @@ Isn't there already a solution for this? Virtual Machines are not the same as Co
 
 <img src="../img/1/docker-explained-3.png">
 
-The difference between a virtual machine and docker solutions after moving Application A to an incompatible system "Operating System B". Running software on top of containers is almost as efficient as running it "natively" outside containers, at least when compared to virtual machines.
+The difference between a virtual machine and docker solutions arises after moving Application A to an incompatible system "Operating System B". Running software on top of containers is almost as efficient as running it "natively" outside containers, at least when compared to virtual machines.
 
 So containers have a direct access to your own Operating Systems kernel and resources. The resource usage overhead of using containers is minimized, as the applications behave as if there were no extra layers. As Docker is using Linux kernels, Mac and Windows can't run it without a few hoops and each have their own solutions on how to run Docker.
 
