@@ -111,7 +111,7 @@ redmine:
     - db
 ```
 
-Notice the `depends_on` declaration. This makes sure that the that `db` service should be started first. `depends_on` does not guarantee that the database is up, just that the service is started first. The Postgres server is accessible with dns name "db" from the redmine service as discussed in the "docker networking" section
+Notice the `depends_on` declaration. This makes sure that the `db` service should be started first. `depends_on` does not guarantee that the database is up, just that the service is started first. The Postgres server is accessible with dns name "db" from the redmine service as discussed in the "docker networking" section
 
 Now when you run `docker-compose up` you will see a bunch of database migrations running first.
 
