@@ -31,7 +31,7 @@ $ youtube-dl
 
 Okay - On the top of the `youtube-dl` download page we notice this message:
 
-   Remember youtube-dl requires Python version 2.6, 2.7, or 3.2+ to work except for Windows exe.
+>Remember youtube-dl requires Python version 2.6, 2.7, or 3.2+ to work except for Windows exe.
 
 So we will add python
 
