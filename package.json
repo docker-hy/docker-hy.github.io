@@ -61,7 +61,7 @@
     "jszip-utils": "^0.1.0",
     "likert-react": "0.0.0-beta6",
     "luxon": "^1.27.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "moocfi-python-editor": "^0.15.2",
     "moocfi-quizzes": "^0.9.10",
     "pdf-slideshow": "^0.1.4",
