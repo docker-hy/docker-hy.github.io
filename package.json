@@ -57,7 +57,7 @@
     "jquery": "^3.6.0",
     "js-base64": "^3.6.0",
     "jss": "^10.6.0",
-    "jszip": "^3.6.0",
+    "jszip": "^3.7.0",
     "jszip-utils": "^0.1.0",
     "likert-react": "0.0.0-beta6",
     "luxon": "^1.27.0",
