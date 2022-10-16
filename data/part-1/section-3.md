@@ -169,6 +169,12 @@ If you're now getting "/bin/sh: ./hello.sh: Permission denied" it's because the 
 
 </text-box>
 
+<text-box name="not found" variant="hint">
+
+If you're now getting "/bin/sh: ./hello.sh: not found" and you're using Windows it might be because by default Windows uses [CRLF](https://www.cs.toronto.edu/~krueger/csc209h/tut/line-endings.html) as line ending. Unix, in our case Alpine, uses just LF which makes the copying of our `hello.sh` invalid bash script in the build phase. To overcome this error change the line endings to LF before running `docker build`
+
+</text-box>
+
 Great! By default `docker build` will look for a file named Dockerfile. Now we can run `docker build` with instructions where to build (`.`) and give it a name (`-t <name>`):
 
 ```console
