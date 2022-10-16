@@ -8,7 +8,7 @@ sidebar_priority: 4000
 
 The course material is meant to be read sequentially, part by part, from start to finish. To get a passing grade you have to complete each exercise. Except one exercise can be skipped for each part. Some of the exercises are marked as mandatory and the mandatory exercises can not be skipped. The exercises are placed in the material in such a way that you will have learned the necessary skills from the material prior to each given exercise. You can do the exercises as you're going through the material.
 
-The course material does not consider all operating systems and as such some instructions may lack platform-specific details. But we've had students who've made it through the material with varying machines. Please make a [pull request](/contributing) to the course material if you find any mistakes or wish to add something. You can also [contribute](/contributing) through GitHub.
+The course material does not consider all operating systems and as such some instructions may lack platform-specific details. But we've had students who've made it through the material with varying machines. Please make a [pull request](https://github.com/docker-hy/docker-hy.github.io#user-content-contributing-to-the-content) to the course material if you find any mistakes or wish to add something. You can also [contribute](https://github.com/docker-hy/docker-hy.github.io#user-content-contributing-to-the-content) through GitHub.
 
 ### Completing course
 
