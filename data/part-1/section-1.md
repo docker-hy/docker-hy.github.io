@@ -248,7 +248,7 @@ Let's try starting a new container:
 $ docker container run nginx
 ```
 
-Notice how the command line appears to freeze after pulling and starting the container. This is because Nginx is now running in the current terminal, blocking the input. You can observe this with `docker container ls` from another terminal. Let's exit by pressing `control + c` and try again with the `-d` flag.
+With some containers the command line appears to freeze after pulling and starting the container. This might be because that particular container is now running in the current terminal, blocking the input. You can observe this with `docker container ls` from another terminal. In this situation one can exit by pressing `control + c` and try again with the `-d` flag.
 
 ```console
 $ docker container run -d nginx
