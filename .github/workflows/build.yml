@@ -1,40 +1,28 @@
-name: Build and Deploy
+name: Release DevOps with Docker # Name of the workflow
 
+# On a push to the branch named master
 on:
   push:
     branches:
       - master
+
+# Job called build runs-on ubuntu-latest
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    # Checkout to the repository (the actions don't actually need this since they use the repository context anyway)
+    - uses: actions/checkout@v2
 
-      - name: Install and Build
-        run: |
-          npm ci
-          npm run build
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.0.0
-        with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: public # The folder the action should deploy.
-
-  publish-docker-hub:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: devopsdockeruh/coursepage:latest
+    # We need to login so we can later push the image without issues.
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    # Builds devopsdockeruh/docker-hy.github.io
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: devopsdockeruh/coursepage:latest
