@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  coursematerial:
+    image: luckylolo123/luckylolo123
+    # user: $DOCKER_USER
+    ports:
+      - 4000:80
+    container_name: coursematerial
+  watchtower:
+    image: containrrr/watchtower
+    environment:
+      -  WATCHTOWER_POLL_INTERVAL=60 # Poll every 60 seconds
+    # user: $DOCKER_USER
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: watchtower

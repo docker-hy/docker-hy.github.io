@@ -143,7 +143,7 @@ With _ENTRYPOINT_ `docker run` now executed the combined `/usr/local/bin/youtube
 
 In addition, there are two ways to set them: **exec** form and **shell** form. We've been using the exec form where the command itself is executed. In shell form the command that is executed is wrapped with `/bin/sh -c` - it's useful when you need to evaluate environment variables in the command like `$MYSQL_PASSWORD` or similar.
 
-In the shell form the command is provided as a string without brackets. In the exec form the command and it's arguments are provided as a list (with brackets), see the table below:
+In the shell form the command is provided as a string without brackets. In the exec form the command and its arguments are provided as a list (with brackets), see the table below:
 
 | Dockerfile                                               | Resulting command                                |
 | -------------------------------------------------------- | ------------------------------------------------ |
