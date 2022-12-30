@@ -1,6 +1,6 @@
 ---
 path: "/"
-title: "About this course"
+title: "About this course and testing :)"
 hidden: false
 information_page: true
 banner: true
