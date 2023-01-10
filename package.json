@@ -60,7 +60,7 @@
     "jszip": "^3.6.0",
     "jszip-utils": "^0.1.0",
     "likert-react": "0.0.0-beta6",
-    "luxon": "^1.27.0",
+    "luxon": "^1.28.1",
     "moment": "^2.29.1",
     "moocfi-python-editor": "^0.15.2",
     "moocfi-quizzes": "^0.9.10",
