@@ -11,7 +11,7 @@ const Credits = () => (
       <Helmet title="Credits" />
       <h1>Credits</h1>
       <p>
-        Course material has been done by{" "}
+        The DevOps with Docker course was created by{" "}
         <a href="https://github.com/jakousa">Jami Kousa</a> with the help of
         University of Helsinki's Tietojenkäsittelytieteen osaston
         sovelluskehitysakatemia (Toska) and{" "}
@@ -24,6 +24,16 @@ const Credits = () => (
         </a>{" "}
         by <a href="https://github.com/matti">Matti Paksula</a>. You can help{" "}
         <a href="/contributing">develop</a> the course material as well.
+      </p>
+      <p>
+        As of 2022 the course was handed off to{" "}
+        <a href="https://github.com/mluukkai">Matti Luukkainen</a> the legendary
+        creator of <a href="https://fullstackopen.com">Full Stack Open</a>. You
+        can contact him on{" "}
+        <a href="mailto:matti.luukkainen@helsinki.fi">
+          matti.luukkainen@helsinki.fi
+        </a>
+        .
       </p>
       <p>
         This material is following the official Docker guidelines presented on

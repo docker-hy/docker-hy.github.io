@@ -10,13 +10,10 @@ import CourseSettings from "../../course-settings";
 
 import UHLogo from "../images/uh-logo.png";
 import MoocfiLogo from "../images/moocfi-logo-bw.png";
+import EficodeLogo from "../images/eficode-logo-bw.png";
+import UnityLogo from "../images/unity-logo-bw.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTwitter,
-  faFacebook,
-  faYoutube,
-  faGithub,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Button from "./Button";
 import PagesContext from "../contexes/PagesContext";
 
@@ -143,6 +140,20 @@ const Footer = ({ t }) => {
                 rel="noopener noreferrer"
               >
                 <img alt="MOOC.fi" src={MoocfiLogo} />
+              </OutboundLink>
+              <OutboundLink
+                href="https://unity.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img alt="Unity.com" src={UnityLogo} />
+              </OutboundLink>
+              <OutboundLink
+                href="https://eficode.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img alt="Eficode.com" src={EficodeLogo} />
               </OutboundLink>
             </BrandsContainer>
           </StyledCardContent>
