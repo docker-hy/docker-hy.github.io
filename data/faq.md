@@ -39,8 +39,8 @@ You can get your credits after submitting enough exercises. First, complete the 
 
 Yes, the certificate is available to all who pass the course before the deadline. You can download the certificate after completing the course from the exercise submission system.
 
-## How do I extend my 2021 progress?
+## How do I extend my 2021 or 2022 progress?
 
 You can simply submit the completed parts again.
 
-If you left 1 exercise not completed, mark one exercise not completed in the 2022 version. If you did all of the exercises mark all as done in the 2022 course.
+If you left 1 exercise not completed, mark one exercise not completed in the 2023 version. If you did all of the exercises mark all as done in the 2023 course.

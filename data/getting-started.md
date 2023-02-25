@@ -75,16 +75,6 @@ Use the official documentation to find download instructions for docker-ce for t
 
 Confirm that Docker installed correctly by opening a terminal and running `docker -v` to see the installed version.
 
-## Installing docker-compose
-
-During the writing of these materials, both macOS and Windows have docker-compose included in their respective Docker packages.
-
-Use the official documentation to find download instructions for docker-compose for the platform of your choice:
-
-[Install instructions](https://docs.docker.com/compose/install/)
-
-Confirm that docker-compose installed correctly by opening a terminal and running `docker-compose -v` to see the installed docker-compose version.
-
 <text-box name="Docker Group" variant="hint">
 
 To avoid writing sudos you may consider [adding yourself to docker group](https://docs.docker.com/install/linux/linux-postinstall/)
@@ -95,7 +85,7 @@ Keep in mind that if you do so, you can now run containers without sudo and cont
 
 ## Deadline
 
-The sign up for ECTS credits and the course ends 22.5.2022! After that course is locked and submissions can no longer be made or credits earned. As the certificate is received through submissions, you have to submit everything before the course ends. More details under completion and after each part.
+The sign up for ECTS credits and the course ends 18.6.2023! After that course is locked and submissions can no longer be made or credits earned. As the certificate is received through submissions, you have to submit everything before the course ends. More details under completion and after each part.
 
 ## General guidance
 
@@ -107,12 +97,11 @@ Visit the Discord channel if you are stuck!
 
 ## How to return exercises
 
-Make a repository to GitHub and publish your solutions in clearly ordered files / folders.
-If you need help publishing using Git you should refer to their [guide](https://guides.github.com/activities/hello-world/). Make sure that the repository is available to me, either by using a public repository or a private repository and adding Jakousa as a collaborator.
+Make a repository to GitHub and publish your solutions in clearly ordered files / folders. If you need help publishing using Git you should refer to their [guide](https://guides.github.com/activities/hello-world/). Make sure that the repository is available to me, either by using a public repository or a private repository and adding Jakousa as a collaborator.
 
 Most of the exercises will be focused on a Dockerfile and/or docker-compose.yml. In those cases, submitting the file is enough. In other cases, a picture or copy-paste from your command line or a link to Docker Hub and/or project inside the repository is enough. For the command line exercises at start the command `script` ([https://linux.die.net/man/1/script](https://linux.die.net/man/1/script)) may be helpful.
 
-When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/stats/courses/docker2022) to mark your exercises. You can **not** edit a submission, so make sure you have completed enough exercises for a part before submitting.
+When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/stats/courses/docker2023) to mark your exercises. You can **not** edit a submission, so make sure you have completed enough exercises for a part before submitting.
 
 ## Completing
 
