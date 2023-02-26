@@ -47,7 +47,7 @@
     "gatsby-remark-prismjs": "^5.4.1",
     "gatsby-remark-smartypants": "^4.4.1",
     "gatsby-source-filesystem": "^3.7.1",
-    "gatsby-transformer-remark": "^4.4.1",
+    "gatsby-transformer-remark": "^5.25.1",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "i18next": "^20.3.1",
