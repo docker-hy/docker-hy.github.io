@@ -29,7 +29,7 @@ Submit the command you used to complete the exercise.
 
 The details on how programs communicate are not detailed in this course. Courses on Operating Systems and the Networking courses explain subjects in detail. In this course you only need to know the following simplified basics:
 
-- Sending messages: Programs can send messages to [URL](https://en.wikipedia.org/wiki/URL) addresses such as this: http://127.0.0.1:3000 where http is the [_protocol_](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol), 127.0.0.1 is a ip address, and and 3000 is a [_port_](<https://en.wikipedia.org/wiki/Port_(computer_networking)>). Note the ip part could also be a [_hostname_](https://en.wikipedia.org/wiki/Hostname): 127.0.0.1 is also called [_localhost_](https://en.wikipedia.org/wiki/Localhost) so instead you could use http://localhost:3000.
+- Sending messages: Programs can send messages to [URL](https://en.wikipedia.org/wiki/URL) addresses such as this: http://127.0.0.1:3000 where http is the [_protocol_](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol), 127.0.0.1 is a ip address, and 3000 is a [_port_](<https://en.wikipedia.org/wiki/Port_(computer_networking)>). Note the ip part could also be a [_hostname_](https://en.wikipedia.org/wiki/Hostname): 127.0.0.1 is also called [_localhost_](https://en.wikipedia.org/wiki/Localhost) so instead you could use http://localhost:3000.
 
 - Receiving messages: Programs can be assigned to listen to any available port. If a program is listening for traffic on port 3000, and a message is sent to that port, it will receive it (and possibly process it).
 
