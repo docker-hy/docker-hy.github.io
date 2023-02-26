@@ -1,91 +1,91 @@
-import React from "react";
-import { Link } from "gatsby";
-import { TextField, Button } from "@material-ui/core";
-import { createAccount, authenticate } from "../../services/moocfi";
-import { capitalizeFirstLetter } from "../../util/strings";
-import { navigate } from "gatsby";
-import { OutboundLink } from "gatsby-plugin-google-analytics";
-import { withTranslation } from "react-i18next";
-import styled from "styled-components";
-import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary";
+import React from "react"
+import { Link } from "gatsby"
+import { TextField, Button } from "@material-ui/core"
+import { createAccount, authenticate } from "../../services/moocfi"
+import { capitalizeFirstLetter } from "../../util/strings"
+import { navigate } from "gatsby"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
+import { withTranslation } from "react-i18next"
+import styled from "styled-components"
+import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary"
 
 const Row = styled.div`
   margin-bottom: 1.5rem;
-`;
+`
 
-const Form = styled.form``;
+const Form = styled.form``
 
 const InfoBox = styled.div`
   margin-bottom: 2rem;
-`;
+`
 
 const FormContainer = styled.div`
   height: 100%;
   margin-top: 2rem;
-`;
+`
 
 class CreateAccountForm extends React.Component {
   onClick = async (e) => {
-    e.preventDefault();
-    this.setState({ submitting: true, triedSubmitting: true });
+    e.preventDefault()
+    this.setState({ submitting: true, triedSubmitting: true })
     if (!this.validate()) {
-      this.setState({ canSubmit: false, submitting: false });
-      return;
+      this.setState({ canSubmit: false, submitting: false })
+      return
     }
     try {
       await createAccount({
         email: this.state.email,
         password: this.state.password,
         password_confirmation: this.state.password_confirmation,
-      });
+      })
       await authenticate({
         username: this.state.email,
         password: this.state.password,
-      });
-      this.props.onComplete();
+      })
+      this.props.onComplete()
     } catch (error) {
       try {
-        let message = "";
+        let message = ""
         Object.entries(error).forEach((o) => {
-          const key = o[0];
-          const value = o[1];
+          const key = o[0]
+          const value = o[1]
           value.forEach((msg) => {
             let newMessage = capitalizeFirstLetter(
-              `${key.replace(/_/g, " ")} ${msg}.`
-            );
+              `${key.replace(/_/g, " ")} ${msg}.`,
+            )
             if (newMessage === "Email has already been taken.") {
-              newMessage = this.props.t("emailInUse");
+              newMessage = this.props.t("emailInUse")
             }
-            message = `${message} ${newMessage}`;
-          });
-        });
+            message = `${message} ${newMessage}`
+          })
+        })
 
         if (message === "") {
           message =
-            this.props.t("problemCreatingAccount") + JSON.stringify(error);
+            this.props.t("problemCreatingAccount") + JSON.stringify(error)
         }
-        this.setState({ error: message, submitting: false, errorObj: error });
+        this.setState({ error: message, submitting: false, errorObj: error })
       } catch (_error2) {
-        this.setState({ error: JSON.stringify(error), submitting: false });
+        this.setState({ error: JSON.stringify(error), submitting: false })
       }
 
-      this.setState({ submitting: false });
+      this.setState({ submitting: false })
     }
-  };
+  }
 
   handleInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const name = e.target.name
+    const value = e.target.value
     this.setState({ [name]: value }, () => {
-      this.validate();
-    });
-  };
+      this.validate()
+    })
+  }
 
   validate = () => {
     let newState = {
       error: "",
       errorObj: {},
-    };
+    }
     const {
       email,
       password,
@@ -93,41 +93,41 @@ class CreateAccountForm extends React.Component {
       validatePassword,
       validateEmail,
       triedSubmitting,
-    } = this.state;
+    } = this.state
     if (email && validateEmail) {
       if (email.indexOf("@") === -1) {
-        newState.error += this.props.t("noAt");
-        newState.errorObj.email = this.props.t("noAt");
+        newState.error += this.props.t("noAt")
+        newState.errorObj.email = this.props.t("noAt")
       }
       if (email && email.indexOf(".") === -1) {
-        newState.error += this.props.t("noAt");
-        newState.errorObj.email = this.props.t("noAt");
+        newState.error += this.props.t("noAt")
+        newState.errorObj.email = this.props.t("noAt")
       }
     }
 
     if (password && password_confirmation && validatePassword) {
       if (password !== password_confirmation) {
-        newState.error += this.props.t("passwordsNoMatch");
-        newState.errorObj.password = this.props.t("passwordsNoMatch");
+        newState.error += this.props.t("passwordsNoMatch")
+        newState.errorObj.password = this.props.t("passwordsNoMatch")
         newState.errorObj.password_confirmation =
-          this.props.t("passwordsNoMatch");
+          this.props.t("passwordsNoMatch")
       }
     }
 
     if (newState.error === "") {
-      newState.error = false;
-      newState.canSubmit = true;
+      newState.error = false
+      newState.canSubmit = true
     }
 
     if (!email || !password || !password_confirmation) {
       if (triedSubmitting) {
-        newState.canSubmit = false;
+        newState.canSubmit = false
       }
-      return false;
+      return false
     }
-    this.setState(newState);
-    return !newState.error;
-  };
+    this.setState(newState)
+    return !newState.error
+  }
 
   state = {
     email: undefined,
@@ -140,12 +140,12 @@ class CreateAccountForm extends React.Component {
     validateEmail: false,
     canSubmit: true,
     triedSubmitting: true,
-  };
+  }
 
   render() {
     if (this.context.loggedIn) {
-      navigate("/");
-      return <div>Redirecting...</div>;
+      navigate("/")
+      return <div>Redirecting...</div>
     }
     return (
       <FormContainer>
@@ -176,8 +176,8 @@ class CreateAccountForm extends React.Component {
               onChange={this.handleInput}
               onBlur={() => {
                 this.setState({ validateEmail: true }, () => {
-                  this.validate();
-                });
+                  this.validate()
+                })
               }}
             />
           </Row>
@@ -205,8 +205,8 @@ class CreateAccountForm extends React.Component {
               onChange={this.handleInput}
               onBlur={() => {
                 this.setState({ validatePassword: true }, () => {
-                  this.validate();
-                });
+                  this.validate()
+                })
               }}
             />
           </Row>
@@ -236,10 +236,10 @@ class CreateAccountForm extends React.Component {
           </InfoBox>
         )}
       </FormContainer>
-    );
+    )
   }
 }
 
 export default withTranslation("user")(
-  withSimpleErrorBoundary(CreateAccountForm)
-);
+  withSimpleErrorBoundary(CreateAccountForm),
+)

@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
-import PagesContext from "../contexes/PagesContext";
-import { normalizeExerciseId, nthIndex } from "../util/strings";
-import { Link } from "gatsby";
-import styled from "styled-components";
-import { withTranslation } from "react-i18next";
-import { Divider, Paper } from "@material-ui/core";
-import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary";
+import React, { Fragment } from "react"
+import PagesContext from "../contexes/PagesContext"
+import { normalizeExerciseId, nthIndex } from "../util/strings"
+import { Link } from "gatsby"
+import styled from "styled-components"
+import { withTranslation } from "react-i18next"
+import { Divider, Paper } from "@material-ui/core"
+import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
 
 const PagesList = styled.ol`
   padding-left: 0;
@@ -14,7 +14,7 @@ const PagesList = styled.ol`
   a {
     text-decoration: none;
   }
-`;
+`
 
 const Page = styled.li`
   margin: 0.5rem;
@@ -40,13 +40,13 @@ const Page = styled.li`
     background-color: #f5ebeb;
     color: black;
   }
-`;
+`
 
 const StyledLink = styled(Link)`
   :hover {
     text-decoration: none;
   }
-`;
+`
 
 const Title = styled.div`
   margin-bottom: 0.35em;
@@ -56,31 +56,31 @@ const Title = styled.div`
   font-weight: 400;
   line-height: 1.33;
   letter-spacing: 0em;
-`;
+`
 
 const StyledPaper = styled(Paper)`
   padding: 1em;
   margin-bottom: 2em;
-`;
+`
 
 const PagesInThisSection = ({ style, t }) => (
   <PagesContext.Consumer>
     {(value) => {
-      const currentPath = value.current.frontmatter.path;
-      let sectionPath = currentPath;
-      const sectionSeparator = nthIndex(currentPath, "/", 2);
+      const currentPath = value.current.frontmatter.path
+      let sectionPath = currentPath
+      const sectionSeparator = nthIndex(currentPath, "/", 2)
       if (sectionSeparator !== -1) {
-        sectionPath = currentPath.substr(0, sectionSeparator);
+        sectionPath = currentPath.substr(0, sectionSeparator)
       }
 
       const sectionPages = value.all
         .filter((o) => o.path.startsWith(`${sectionPath}/`))
         .sort((a, b) => {
-          a = a.path.toLowerCase();
-          b = b.path.toLowerCase();
+          a = a.path.toLowerCase()
+          b = b.path.toLowerCase()
 
-          return a > b ? 1 : b > a ? -1 : 0;
-        });
+          return a > b ? 1 : b > a ? -1 : 0
+        })
 
       return (
         <StyledPaper style={style}>
@@ -98,11 +98,11 @@ const PagesInThisSection = ({ style, t }) => (
             ))}
           </PagesList>
         </StyledPaper>
-      );
+      )
     }}
   </PagesContext.Consumer>
-);
+)
 
 export default withTranslation("common")(
-  withSimpleErrorBoundary(PagesInThisSection)
-);
+  withSimpleErrorBoundary(PagesInThisSection),
+)

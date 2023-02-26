@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
-import styled from "styled-components";
+import React, { Fragment } from "react"
+import styled from "styled-components"
 
-import { CircularProgress } from "@material-ui/core";
-import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary";
+import { CircularProgress } from "@material-ui/core"
+import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
 
 const LoadingWrapper = styled.div`
   padding: 5rem;
@@ -15,7 +15,7 @@ const LoadingWrapper = styled.div`
     `
     height: ${props.heightHint};
   `}
-`;
+`
 
 const Loading = ({ children, loading = true, heightHint = "500px" }) => {
   if (loading) {
@@ -23,10 +23,10 @@ const Loading = ({ children, loading = true, heightHint = "500px" }) => {
       <LoadingWrapper heightHint={heightHint}>
         <CircularProgress />
       </LoadingWrapper>
-    );
+    )
   }
 
-  return <Fragment>{children}</Fragment>;
-};
+  return <Fragment>{children}</Fragment>
+}
 
-export default withSimpleErrorBoundary(Loading);
+export default withSimpleErrorBoundary(Loading)

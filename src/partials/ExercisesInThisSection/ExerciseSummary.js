@@ -1,50 +1,50 @@
-import React from "react";
-import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary";
-import styled from "styled-components";
-import { normalizeExerciseId } from "../../util/strings";
-import { Link } from "gatsby";
-import { withTranslation } from "react-i18next";
+import React from "react"
+import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary"
+import styled from "styled-components"
+import { normalizeExerciseId } from "../../util/strings"
+import { Link } from "gatsby"
+import { withTranslation } from "react-i18next"
 const ExerciseSummaryWrapper = styled(Link)`
   padding-left: 1rem;
   margin-bottom: 0.5rem;
   display: block;
-`;
+`
 
 const ExerciseSummary = ({ exercise, index, quizIdToTitle, t }) => {
-  let description = t("unknownType");
+  let description = t("unknownType")
   if (exercise.type === "quiz") {
-    const name = quizIdToTitle[exercise.id];
+    const name = quizIdToTitle[exercise.id]
     if (name) {
-      description = `${t("quiz")}: ${name}`;
+      description = `${t("quiz")}: ${name}`
     } else {
-      description = t("quiz");
+      description = t("quiz")
     }
   }
   if (exercise.type === "programming-exercise") {
-    description = `${t("programmingExercise")} ${exercise.id}`;
+    description = `${t("programmingExercise")} ${exercise.id}`
   }
   if (exercise.type === "crowdsorcerer") {
-    description = "Crowdsorcerer";
+    description = "Crowdsorcerer"
   }
   if (exercise.type === "moodle-exercise") {
-    description = `${t("moodleExercise")} ${exercise.id}`;
+    description = `${t("moodleExercise")} ${exercise.id}`
   }
   if (exercise.type === "sqltrainer-exercise") {
-    description = `${t("sqlTrainerExercise")} ${exercise.id}`;
+    description = `${t("sqlTrainerExercise")} ${exercise.id}`
   }
   if (exercise.type === "in-browser-programming-exercise") {
-    description = `${t("programmingExercise")} ${exercise.id}`;
+    description = `${t("programmingExercise")} ${exercise.id}`
   }
-  let anchorLinkDigest = normalizeExerciseId(`${exercise.type}-${exercise.id}`);
+  let anchorLinkDigest = normalizeExerciseId(`${exercise.type}-${exercise.id}`)
   return (
     <ExerciseSummaryWrapper
       to={`${exercise.parentPagePath}#${anchorLinkDigest}`}
     >
       {index + 1}. {description}
     </ExerciseSummaryWrapper>
-  );
-};
+  )
+}
 
 export default withTranslation("common")(
-  withSimpleErrorBoundary(ExerciseSummary)
-);
+  withSimpleErrorBoundary(ExerciseSummary),
+)

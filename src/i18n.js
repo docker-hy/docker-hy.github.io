@@ -1,12 +1,12 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import CourseSettings from "../course-settings";
-import commonEN from "./locales/common/en";
-import pointsBalloonEN from "./locales/pointsBalloon/en";
-import userEN from "./locales/user/en";
-import commonFI from "./locales/common/fi";
-import pointsBalloonFI from "./locales/pointsBalloon/fi";
-import userFI from "./locales/user/fi";
+import i18n from "i18next"
+import { initReactI18next } from "react-i18next"
+import CourseSettings from "../course-settings"
+import commonEN from "./locales/common/en"
+import pointsBalloonEN from "./locales/pointsBalloon/en"
+import userEN from "./locales/user/en"
+import commonFI from "./locales/common/fi"
+import pointsBalloonFI from "./locales/pointsBalloon/fi"
+import userFI from "./locales/user/fi"
 
 const resources = {
   en: {
@@ -19,7 +19,7 @@ const resources = {
     "points-balloon": pointsBalloonFI,
     user: userFI,
   },
-};
+}
 
 i18n.use(initReactI18next).init({
   resources,
@@ -29,6 +29,6 @@ i18n.use(initReactI18next).init({
     wait: true,
   },
   lng: CourseSettings.language,
-});
+})
 
-export default i18n;
+export default i18n

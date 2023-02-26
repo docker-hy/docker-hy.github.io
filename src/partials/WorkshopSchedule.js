@@ -1,9 +1,9 @@
-import React from "react";
-import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary";
-import CourseSettings from "../../course-settings";
+import React from "react"
+import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
+import CourseSettings from "../../course-settings"
 
 const WorkShopSchedule = ({ slug }) => {
-  const language = CourseSettings.language;
+  const language = CourseSettings.language
   return (
     <iframe
       title="WorkShop Schedule"
@@ -14,7 +14,7 @@ const WorkShopSchedule = ({ slug }) => {
     >
       Your browser does not support iframes.
     </iframe>
-  );
-};
+  )
+}
 
-export default withSimpleErrorBoundary(WorkShopSchedule);
+export default withSimpleErrorBoundary(WorkShopSchedule)

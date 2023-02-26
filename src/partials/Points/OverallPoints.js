@@ -1,7 +1,7 @@
-import React from "react";
-import { Card, CardContent, Typography, Button } from "@material-ui/core";
-import { LinearProgress } from "@material-ui/core";
-import styled from "styled-components";
+import React from "react"
+import { Card, CardContent, Typography, Button } from "@material-ui/core"
+import { LinearProgress } from "@material-ui/core"
+import styled from "styled-components"
 
 const ProgressLineContainer = styled.div`
   display: flex;
@@ -10,20 +10,20 @@ const ProgressLineContainer = styled.div`
   div {
     height: 20px;
   }
-`;
+`
 
 const StyledLinearProgress = styled(LinearProgress)`
   flex: 1;
   margin-left: 10px;
-`;
+`
 
 const OverallPoints = ({ courseName, progress, refetch }) => {
   const data = progress.user_course_progress.progress.sort((a, b) =>
     a.group.localeCompare(b.group, undefined, {
       numeric: true,
       sensitivity: "base",
-    })
-  );
+    }),
+  )
   return (
     <Card>
       <CardContent>
@@ -42,18 +42,18 @@ const OverallPoints = ({ courseName, progress, refetch }) => {
                 />
               </ProgressLineContainer>
             </>
-          );
+          )
         })}
         <Button
           onClick={() => {
-            refetch();
+            refetch()
           }}
         >
           Refresh
         </Button>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default OverallPoints;
+export default OverallPoints

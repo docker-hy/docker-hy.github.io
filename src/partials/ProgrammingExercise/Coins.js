@@ -1,16 +1,16 @@
-import React, { Fragment, Component } from "react";
-import styled from "styled-components";
-import { fetchProgrammingExerciseModelSolution } from "../../services/moocfi";
-import { Button, Paper, Card, CardContent } from "@material-ui/core";
-import Modal from "@material-ui/core/Modal";
-import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary";
-import { withTranslation, Trans } from "react-i18next";
+import React, { Fragment, Component } from "react"
+import styled from "styled-components"
+import { fetchProgrammingExerciseModelSolution } from "../../services/moocfi"
+import { Button, Paper, Card, CardContent } from "@material-ui/core"
+import Modal from "@material-ui/core/Modal"
+import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary"
+import { withTranslation, Trans } from "react-i18next"
 
 const ModalContent = styled(Paper)`
   padding: 5rem;
   overflow-y: scroll;
   max-height: 100vh;
-`;
+`
 
 const TokenContainer = styled.div`
   margin-bottom: 1rem;
@@ -18,7 +18,7 @@ const TokenContainer = styled.div`
     font-size: 1rem;
     color: #2e3032;
   }
-`;
+`
 
 class Coins extends Component {
   state = {
@@ -26,32 +26,32 @@ class Coins extends Component {
     modelSolutionModalOpen: false,
     modelSolution: undefined,
     render: false,
-  };
+  }
 
   onShowModelSolution = async () => {
     try {
-      let modelSolution = this.state.modelSolution;
+      let modelSolution = this.state.modelSolution
       if (!modelSolution) {
         modelSolution = await fetchProgrammingExerciseModelSolution(
-          this.props.exerciseDetails.id
-        );
+          this.props.exerciseDetails.id,
+        )
       }
 
-      this.setState({ modelSolutionModalOpen: true, modelSolution });
+      this.setState({ modelSolutionModalOpen: true, modelSolution })
     } catch (err) {
-      console.error("Could not fetch model solution", err);
+      console.error("Could not fetch model solution", err)
     }
-  };
+  }
 
   onModelSolutionModalClose = () => {
-    this.setState({ modelSolutionModalOpen: false });
-  };
+    this.setState({ modelSolutionModalOpen: false })
+  }
 
   render() {
-    const { exerciseDetails, nocoins } = this.props;
+    const { exerciseDetails, nocoins } = this.props
 
     if (nocoins) {
-      return <TokenContainer>{this.props.t("noCoin")}</TokenContainer>;
+      return <TokenContainer>{this.props.t("noCoin")}</TokenContainer>
     }
 
     if (!exerciseDetails.email_verified) {
@@ -59,21 +59,21 @@ class Coins extends Component {
         <TokenContainer>
           {this.props.t("modelSolutionUnavailableBecauseEmailNotVerified")}
         </TokenContainer>
-      );
+      )
     }
     const tokenThreshHold =
       exerciseDetails?.course
-        ?.grant_model_solution_token_every_nth_completed_exercise;
+        ?.grant_model_solution_token_every_nth_completed_exercise
     //const _totalTokens = exerciseDetails?.course?.total_model_solution_tokens
     const availableTokens =
-      exerciseDetails?.course?.available_model_solution_tokens;
+      exerciseDetails?.course?.available_model_solution_tokens
     const modelSolutionTokenUsedOnThisExercise =
-      exerciseDetails?.model_solution_token_used_on_this_exercise;
+      exerciseDetails?.model_solution_token_used_on_this_exercise
 
-    const nPoints = exerciseDetails.available_points.length;
+    const nPoints = exerciseDetails.available_points.length
 
     const showDetailedCostOnButton =
-      exerciseDetails.large_exercises_consume_more_coins && nPoints > 1;
+      exerciseDetails.large_exercises_consume_more_coins && nPoints > 1
 
     if (!tokenThreshHold) {
       return (
@@ -83,7 +83,7 @@ class Coins extends Component {
             <p>{this.props.t("noCoinsOnCourse")}</p>
           </Fragment>
         </div>
-      );
+      )
     }
 
     return (
@@ -127,7 +127,7 @@ class Coins extends Component {
                     ? this.props.t("coinUsed")
                     : showDetailedCostOnButton
                     ? `${this.props.t(
-                        "usesCoinMultiplePoints"
+                        "usesCoinMultiplePoints",
                       )} ${nPoints} ${this.props.t("usesCoinMultiplePoints2")}`
                     : this.props.t("usesCoin")}
                   )
@@ -154,7 +154,7 @@ class Coins extends Component {
                           <pre class="language-java">{fileEntry.contents}</pre>
                         </CardContent>
                       </Card>
-                    );
+                    )
                   })}
                 </ModalContent>
               )}
@@ -162,8 +162,8 @@ class Coins extends Component {
           </Fragment>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default withTranslation("common")(withSimpleErrorBoundary(Coins));
+export default withTranslation("common")(withSimpleErrorBoundary(Coins))

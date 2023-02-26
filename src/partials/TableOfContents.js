@@ -1,27 +1,27 @@
-import React, { Component } from "react";
-import Loading from "../components/Loading";
-import styled from "styled-components";
-import { Paper } from "@material-ui/core";
-import { normalizeExerciseId } from "../util/strings";
-import { withTranslation } from "react-i18next";
+import React, { Component } from "react"
+import Loading from "../components/Loading"
+import styled from "styled-components"
+import { Paper } from "@material-ui/core"
+import { normalizeExerciseId } from "../util/strings"
+import { withTranslation } from "react-i18next"
 
 const TableOfContentsWrapper = styled(Paper)`
   padding: 1rem;
   margin: 2rem 0;
-`;
+`
 
 class TableOfContents extends Component {
-  state = { data: null };
+  state = { data: null }
 
   componentDidMount() {
     const data = Array.from(
       document.querySelectorAll(
-        "h1.material-header,h2.material-header,h3.material-header"
-      )
+        "h1.material-header,h2.material-header,h3.material-header",
+      ),
     ).map((o) => {
-      return o.textContent || o.innerText;
-    });
-    this.setState({ data });
+      return o.textContent || o.innerText
+    })
+    this.setState({ data })
   }
 
   render() {
@@ -36,7 +36,7 @@ class TableOfContents extends Component {
                   <li key={o}>
                     <a href={`#${normalizeExerciseId(o)}`}>{o}</a>
                   </li>
-                );
+                )
               })}
             </ol>
           ) : (
@@ -44,8 +44,8 @@ class TableOfContents extends Component {
           )}
         </div>
       </TableOfContentsWrapper>
-    );
+    )
   }
 }
 
-export default withTranslation("common")(TableOfContents);
+export default withTranslation("common")(TableOfContents)

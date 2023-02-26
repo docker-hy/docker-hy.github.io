@@ -1,10 +1,10 @@
-import React from "react";
-import PagesContext from "../../contexes/PagesContext";
-import { nthIndex } from "../../util/strings";
-import styled from "styled-components";
-import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary";
-import ExerciseSummary from "./ExerciseSummary";
-import { fetchQuizNames } from "../../services/quizzes";
+import React from "react"
+import PagesContext from "../../contexes/PagesContext"
+import { nthIndex } from "../../util/strings"
+import styled from "styled-components"
+import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary"
+import ExerciseSummary from "./ExerciseSummary"
+import { fetchQuizNames } from "../../services/quizzes"
 
 const Title = styled.div`
   margin-bottom: 0.5em;
@@ -13,41 +13,41 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 1.25rem;
   letter-spacing: 0em;
-`;
+`
 
 class ExerciseList extends React.Component {
-  static contextType = PagesContext;
+  static contextType = PagesContext
 
   state = {
     render: false,
     sectionPages: null,
     quizIdToTitle: null,
-  };
+  }
 
   async componentDidMount() {
-    const value = this.context;
-    const currentPath = value.current.frontmatter.path;
-    let sectionPath = currentPath;
-    const sectionSeparator = nthIndex(currentPath, "/", 2);
+    const value = this.context
+    const currentPath = value.current.frontmatter.path
+    let sectionPath = currentPath
+    const sectionSeparator = nthIndex(currentPath, "/", 2)
     if (sectionSeparator !== -1) {
-      sectionPath = currentPath.substr(0, sectionSeparator);
+      sectionPath = currentPath.substr(0, sectionSeparator)
     }
 
     const sectionPages = value.all
       .filter((o) => o.path.startsWith(`${sectionPath}/`))
       .sort((a, b) => {
-        a = a.path.toLowerCase();
-        b = b.path.toLowerCase();
+        a = a.path.toLowerCase()
+        b = b.path.toLowerCase()
 
-        return a > b ? 1 : b > a ? -1 : 0;
-      });
+        return a > b ? 1 : b > a ? -1 : 0
+      })
 
-    const quizIdToTitle = await fetchQuizNames();
-    this.setState({ sectionPages, quizIdToTitle, render: true });
+    const quizIdToTitle = await fetchQuizNames()
+    this.setState({ sectionPages, quizIdToTitle, render: true })
   }
   render() {
     if (!this.state.render) {
-      return <div>Loading...</div>;
+      return <div>Loading...</div>
     }
     return (
       <div>
@@ -66,14 +66,14 @@ class ExerciseList extends React.Component {
                       key={exercise.id}
                       quizIdToTitle={this.state.quizIdToTitle}
                     />
-                  );
+                  )
                 })}
               </div>
             </div>
           ))}
       </div>
-    );
+    )
   }
 }
 
-export default withSimpleErrorBoundary(ExerciseList);
+export default withSimpleErrorBoundary(ExerciseList)

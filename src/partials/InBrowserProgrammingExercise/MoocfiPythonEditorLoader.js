@@ -1,46 +1,46 @@
-import React from "react";
-import styled from "styled-components";
-import { withTranslation } from "react-i18next";
+import React from "react"
+import styled from "styled-components"
+import { withTranslation } from "react-i18next"
 
-import LoginStateContext from "../../contexes/LoginStateContext";
-import LoginControls from "../../components/LoginControls";
-import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary";
+import LoginStateContext from "../../contexes/LoginStateContext"
+import LoginControls from "../../components/LoginControls"
+import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary"
 import {
   accessToken,
   getCachedUserDetails,
   getCourseVariant,
-} from "../../services/moocfi";
-import ProgrammingExerciseCard from "../ProgrammingExercise/ProgrammingExerciseCard";
-import { ProgrammingExercise } from "moocfi-python-editor";
-import CourseSettings from "../../../course-settings";
-import { Typography } from "@material-ui/core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
+} from "../../services/moocfi"
+import ProgrammingExerciseCard from "../ProgrammingExercise/ProgrammingExerciseCard"
+import { ProgrammingExercise } from "moocfi-python-editor"
+import CourseSettings from "../../../course-settings"
+import { Typography } from "@material-ui/core"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faClock } from "@fortawesome/free-solid-svg-icons"
 
-let language = "en";
+let language = "en"
 if (CourseSettings.language === "fi") {
-  language = "fi";
+  language = "fi"
 }
 
 const Wrapper = styled.div`
   padding 1rem;
-`;
+`
 
 const StyledDeadlineText = styled(Typography)`
   padding: 0.25rem 0 1rem 0 !important;
   color: rgb(108, 117, 125) !important;
   font-size: 0.8rem !important;
   font-weight: bold !important;
-`;
+`
 
 const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 0.9rem !important;
   margin-right: 0.25em !important;
   vertical-align: -0.1em !important;
-`;
+`
 
 class InBrowserProgrammingExercisePartial extends React.Component {
-  static contextType = LoginStateContext;
+  static contextType = LoginStateContext
 
   state = {
     render: false,
@@ -48,24 +48,24 @@ class InBrowserProgrammingExercisePartial extends React.Component {
     organization: undefined,
     course: undefined,
     userId: undefined,
-  };
+  }
 
   async componentDidMount() {
-    const { tmcOrganization, tmcCourse } = await getCourseVariant();
-    const userDetails = this.context.loggedIn && (await getCachedUserDetails());
+    const { tmcOrganization, tmcCourse } = await getCourseVariant()
+    const userDetails = this.context.loggedIn && (await getCachedUserDetails())
     this.setState({
       render: true,
       organization: tmcOrganization,
       course: tmcCourse,
       userId: userDetails?.id,
-    });
+    })
   }
 
   onUpdate = (exerciseDetails) => {
     this.setState({
       exerciseDetails,
-    });
-  };
+    })
+  }
 
   render() {
     const {
@@ -77,10 +77,10 @@ class InBrowserProgrammingExercisePartial extends React.Component {
       outputheight,
       outputposition,
       difficulty,
-    } = this.props;
+    } = this.props
 
     if (!this.state.render) {
-      return <div>Loading</div>;
+      return <div>Loading</div>
     }
 
     const loginPrompt = (
@@ -88,10 +88,10 @@ class InBrowserProgrammingExercisePartial extends React.Component {
         <p>{t("loginToAttemptExercise")}</p>
         <LoginControls />
       </div>
-    );
+    )
 
-    const details = this.context.loggedIn && this.state.exerciseDetails;
-    const deadline = details?.deadline ? new Date(details.deadline) : null;
+    const details = this.context.loggedIn && this.state.exerciseDetails
+    const deadline = details?.deadline ? new Date(details.deadline) : null
 
     return (
       <ProgrammingExerciseCard
@@ -128,10 +128,10 @@ class InBrowserProgrammingExercisePartial extends React.Component {
           )}
         </div>
       </ProgrammingExerciseCard>
-    );
+    )
   }
 }
 
 export default withTranslation("common")(
-  withSimpleErrorBoundary(InBrowserProgrammingExercisePartial)
-);
+  withSimpleErrorBoundary(InBrowserProgrammingExercisePartial),
+)

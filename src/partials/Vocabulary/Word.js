@@ -1,25 +1,25 @@
-import React from "react";
-import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary";
-import { withTranslation } from "react-i18next";
-import { AnchorLink } from "gatsby-plugin-anchor-links";
-import styled from "styled-components";
+import React from "react"
+import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary"
+import { withTranslation } from "react-i18next"
+import { AnchorLink } from "gatsby-plugin-anchor-links"
+import styled from "styled-components"
 
 const StyledWord = styled.div`
   margin-bottom: 0.5em;
-`;
+`
 
 const StyledLink = styled(AnchorLink)`
   margin-left: 0.5em;
-`;
+`
 
 const transformParentPagePath = (parentPagePath) => {
-  const sectionNumber = parentPagePath.split("-")[1].replace("/", ".");
-  return sectionNumber;
-};
+  const sectionNumber = parentPagePath.split("-")[1].replace("/", ".")
+  return sectionNumber
+}
 
 const transformNameToAnchor = (name) => {
-  return name.toLowerCase().replace(" ", "-");
-};
+  return name.toLowerCase().replace(" ", "-")
+}
 
 const Word = ({ word }) => {
   return (
@@ -48,7 +48,7 @@ const Word = ({ word }) => {
           <div>- {word.description}</div>
         ))}
     </StyledWord>
-  );
-};
+  )
+}
 
-export default withTranslation("common")(withSimpleErrorBoundary(Word));
+export default withTranslation("common")(withSimpleErrorBoundary(Word))

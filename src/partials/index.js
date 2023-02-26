@@ -20,26 +20,26 @@
 
 // export default getNamedPartials
 
-import { OutboundLink } from "gatsby-plugin-google-analytics";
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 
-import Test from "./Test";
-import PagesInThisSection from "./PagesInThisSection";
-import ProgrammingExercise from "./ProgrammingExercise";
-import TextBox from "./TextBox";
-import SampleData from "./SampleData";
-import SampleOutput from "./SampleOutput";
-import Youtube from "./Youtube";
-import Quiz from "./Quiz";
-import Quiznator from "./Quiznator";
-import PleaseLogin from "./PleaseLogin";
-import FloatImageRight from "./FloatImageRight";
-import CodeStatesVisualizer from "./CodeStatesVisualizer";
-import PdfSlideshow from "./PdfSlideshow";
-import ExercisesInThisSection from "./ExercisesInThisSection";
-import Exercise from "./Exercise";
-import AbStudy from "./AbStudy";
-import MoodleExercise from "./MoodleExercise";
-import SqlTrainerExercise from "./SqlTrainerExercise";
+import Test from "./Test"
+import PagesInThisSection from "./PagesInThisSection"
+import ProgrammingExercise from "./ProgrammingExercise"
+import TextBox from "./TextBox"
+import SampleData from "./SampleData"
+import SampleOutput from "./SampleOutput"
+import Youtube from "./Youtube"
+import Quiz from "./Quiz"
+import Quiznator from "./Quiznator"
+import PleaseLogin from "./PleaseLogin"
+import FloatImageRight from "./FloatImageRight"
+import CodeStatesVisualizer from "./CodeStatesVisualizer"
+import PdfSlideshow from "./PdfSlideshow"
+import ExercisesInThisSection from "./ExercisesInThisSection"
+import Exercise from "./Exercise"
+import AbStudy from "./AbStudy"
+import MoodleExercise from "./MoodleExercise"
+import SqlTrainerExercise from "./SqlTrainerExercise"
 
 import {
   Table,
@@ -48,30 +48,30 @@ import {
   TableHead,
   TableRow,
   TableTh,
-} from "./Table";
-import Deadline from "./Deadline";
-import OnlyForAbGroup from "./AbStudy/OnlyForAbGroup";
-import H3 from "./Headers/H3";
-import H1 from "./Headers/H1";
-import H2 from "./Headers/H2";
-import H4 from "./Headers/H4";
-import H5 from "./Headers/H5";
-import H6 from "./Headers/H6";
-import Hr from "./Hr";
-import TableOfContents from "./TableOfContents";
-import Notice from "./Notice";
-import RegistrationLink from "./RegistrationLink";
-import RegistrationLink2 from "./RegistrationLink2";
-import OnlyForCourseVariant from "./OnlyForCourseVariant";
-import OnlyForNotLoggedIn from "./OnlyForNotLoggedIn";
-import Points from "./Points";
-import GoogleFormLink from "./GoogleFormLink";
-import InBrowserProgrammingExercise from "./InBrowserProgrammingExercise";
-import WorkshopSchedule from "./WorkshopSchedule";
-import Summary from "./Summary";
-import Button from "../components/Button";
-import Vocabulary from "./Vocabulary";
-import VocabularyWord from "./Vocabulary/VocabularyWord";
+} from "./Table"
+import Deadline from "./Deadline"
+import OnlyForAbGroup from "./AbStudy/OnlyForAbGroup"
+import H3 from "./Headers/H3"
+import H1 from "./Headers/H1"
+import H2 from "./Headers/H2"
+import H4 from "./Headers/H4"
+import H5 from "./Headers/H5"
+import H6 from "./Headers/H6"
+import Hr from "./Hr"
+import TableOfContents from "./TableOfContents"
+import Notice from "./Notice"
+import RegistrationLink from "./RegistrationLink"
+import RegistrationLink2 from "./RegistrationLink2"
+import OnlyForCourseVariant from "./OnlyForCourseVariant"
+import OnlyForNotLoggedIn from "./OnlyForNotLoggedIn"
+import Points from "./Points"
+import GoogleFormLink from "./GoogleFormLink"
+import InBrowserProgrammingExercise from "./InBrowserProgrammingExercise"
+import WorkshopSchedule from "./WorkshopSchedule"
+import Summary from "./Summary"
+import Button from "../components/Button"
+import Vocabulary from "./Vocabulary"
+import VocabularyWord from "./Vocabulary/VocabularyWord"
 
 const mapping = () => ({
   test: Test,
@@ -122,6 +122,6 @@ const mapping = () => ({
   points: Points,
   summary: Summary,
   button: Button,
-});
+})
 
-export default mapping;
+export default mapping

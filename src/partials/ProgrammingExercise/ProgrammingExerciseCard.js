@@ -1,20 +1,20 @@
-import React from "react";
-import styled from "styled-components";
-import ContentLoader from "react-content-loader";
-import { withTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt as icon, faRedo } from "@fortawesome/free-solid-svg-icons";
-import { Card, CardContent, Button, Typography } from "@material-ui/core";
+import React from "react"
+import styled from "styled-components"
+import ContentLoader from "react-content-loader"
+import { withTranslation } from "react-i18next"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPencilAlt as icon, faRedo } from "@fortawesome/free-solid-svg-icons"
+import { Card, CardContent, Button, Typography } from "@material-ui/core"
 
-import { normalizeExerciseId } from "../../util/strings";
-import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary";
+import { normalizeExerciseId } from "../../util/strings"
+import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary"
 
-const accentColor = "#FAAA38";
+const accentColor = "#FAAA38"
 
 const Body = styled.div`
   padding-bottom: 0.5rem;
   min-height: 300px;
-`;
+`
 
 const Header = styled.div`
   font-size: 1.3rem;
@@ -32,7 +32,7 @@ const Header = styled.div`
   h3 {
     margin-bottom: 0;
   }
-`;
+`
 
 const HeaderMuted = styled.span`
   font-size: 18px;
@@ -40,25 +40,25 @@ const HeaderMuted = styled.span`
   margin-right: 0.2rem;
   position: relative;
   bottom: -3px;
-`;
+`
 
 const HeaderTitleContainer = styled.div`
   flex: 1;
-`;
+`
 
 const Difficulty = styled.span`
   position: relative;
-`;
+`
 
 const PointContentWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-`;
+`
 
 const PointsLabel = styled.span`
   font-size: 18px;
   font-weight: 400;
-`;
+`
 
 const PointsText = styled(Typography)`
   font-size: 1.5rem !important;
@@ -69,7 +69,7 @@ const PointsText = styled(Typography)`
   @media (max-width: 550px) {
     text-align: start;
   }
-`;
+`
 
 const PointsWrapper = styled.div`
   margin-left: 0.5rem;
@@ -77,7 +77,7 @@ const PointsWrapper = styled.div`
   flex-direction: column;
   text-align: right;
   color: white;
-`;
+`
 
 const ProgrammingExerciseWrapper = styled(Card)`
   margin: 3.5rem 0;
@@ -86,7 +86,7 @@ const ProgrammingExerciseWrapper = styled(Card)`
   box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.3) !important;
   padding: 0 !important;
   overflow: visible !important;
-`;
+`
 
 const StyledIcon = styled(FontAwesomeIcon)`
   vertical-align: middle;
@@ -95,7 +95,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
   color: white;
   position: relative;
   bottom: -13px;
-`;
+`
 
 const StyledQuizPointsContentLoader = styled(ContentLoader)`
   width: 100%;
@@ -103,11 +103,11 @@ const StyledQuizPointsContentLoader = styled(ContentLoader)`
   height: 31.2px;
   position: relative;
   top: -4px;
-`;
+`
 
 const StyledRefreshIcon = styled(FontAwesomeIcon)`
   color: white;
-`;
+`
 
 class ProgrammingExerciseCard extends React.Component {
   render() {
@@ -120,7 +120,7 @@ class ProgrammingExerciseCard extends React.Component {
       allowRefresh,
       completed,
       difficulty,
-    } = this.props;
+    } = this.props
 
     return (
       <ProgrammingExerciseWrapper
@@ -187,10 +187,10 @@ class ProgrammingExerciseCard extends React.Component {
           <Body>{children}</Body>
         </CardContent>
       </ProgrammingExerciseWrapper>
-    );
+    )
   }
 }
 
 export default withTranslation("common")(
-  withSimpleErrorBoundary(ProgrammingExerciseCard)
-);
+  withSimpleErrorBoundary(ProgrammingExerciseCard),
+)

@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   Button,
   Card,
@@ -12,53 +12,53 @@ import {
   RadioGroup,
   Select,
   TextField,
-} from "@material-ui/core";
+} from "@material-ui/core"
 
-import { OutboundLink } from "gatsby-plugin-google-analytics";
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 
 import {
   courseVariants,
   updateUserDetails,
   userDetails,
-} from "../../services/moocfi";
-import Loading from "../Loading";
+} from "../../services/moocfi"
+import Loading from "../Loading"
 
-import styled from "styled-components";
-import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary";
-import { withTranslation } from "react-i18next";
+import styled from "styled-components"
+import withSimpleErrorBoundary from "../../util/withSimpleErrorBoundary"
+import { withTranslation } from "react-i18next"
 
 const Row = styled.div`
   margin-bottom: 1.5rem;
-`;
+`
 
-const Form = styled.form``;
+const Form = styled.form``
 
 const InfoBox = styled.div`
   margin-bottom: 2rem;
-`;
+`
 
 const FormContainer = styled.div`
   height: 100%;
   margin-top: 2rem;
-`;
+`
 
 const WarningBox = styled(Card)`
   margin: 2rem 0;
   background: #f1a9a0;
   padding: 1rem;
   font-weight: bold;
-`;
+`
 
 class CourseOptionsEditor extends React.Component {
   async componentDidMount() {
-    const data = await userDetails();
-    const variants = await courseVariants();
+    const data = await userDetails()
+    const variants = await courseVariants()
 
-    let useCourseVariant = data.extra_fields?.use_course_variant === "t";
-    let courseVariant = data.extra_fields?.course_variant ?? "";
+    let useCourseVariant = data.extra_fields?.use_course_variant === "t"
+    let courseVariant = data.extra_fields?.course_variant ?? ""
     if (!variants.find((x) => x.key === courseVariant)) {
-      useCourseVariant = false;
-      courseVariant = "";
+      useCourseVariant = false
+      courseVariant = ""
     }
 
     this.setState(
@@ -77,37 +77,37 @@ class CourseOptionsEditor extends React.Component {
         loading: false,
       },
       () => {
-        this.validate();
-      }
-    );
+        this.validate()
+      },
+    )
   }
 
   onClick = async (e) => {
-    e.preventDefault();
-    this.setState({ submitting: true });
+    e.preventDefault()
+    this.setState({ submitting: true })
     let extraFields = {
       digital_education_for_all: this.state.digital_education_for_all,
       use_course_variant: this.state.use_course_variant,
       course_variant: this.state.course_variant,
       marketing: this.state.marketing,
       research: this.state.research,
-    };
+    }
     const userField = {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       organizational_id: this.state.student_number,
-    };
+    }
     try {
       await updateUserDetails({
         extraFields,
         userField,
-      });
-      this.setState({ submitting: false });
-      this.props.onComplete();
+      })
+      this.setState({ submitting: false })
+      this.props.onComplete()
     } catch (err) {
-      this.setState({ errorObj: err, submitting: false });
+      this.setState({ errorObj: err, submitting: false })
     }
-  };
+  }
 
   state = {
     submitting: false,
@@ -125,23 +125,23 @@ class CourseOptionsEditor extends React.Component {
     student_number: undefined,
     loading: true,
     focused: null,
-  };
+  }
 
   handleInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const name = e.target.name
+    const value = e.target.value
     this.setState({ [name]: value }, () => {
-      this.validate();
-    });
-  };
+      this.validate()
+    })
+  }
 
   handleCheckboxInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.checked;
+    const name = e.target.name
+    const value = e.target.checked
     this.setState({ [name]: value }, () => {
-      this.validate();
-    });
-  };
+      this.validate()
+    })
+  }
 
   handleCourseVariantCheckbox = (e) => {
     this.setState(
@@ -150,28 +150,28 @@ class CourseOptionsEditor extends React.Component {
         course_variant: "",
       },
       () => {
-        this.validate();
-      }
-    );
-  };
+        this.validate()
+      },
+    )
+  }
 
   handleFocus = (e) => {
-    const name = e.target.name;
-    this.setState({ focused: name });
-  };
+    const name = e.target.name
+    this.setState({ focused: name })
+  }
 
   handleUnFocus = () => {
-    this.setState({ focused: null });
-  };
+    this.setState({ focused: null })
+  }
 
   validate = () => {
     this.setState((prev) => {
-      const researchNotAnswered = prev.research === undefined;
-      const missingVariant = prev.use_course_variant && !prev.course_variant;
+      const researchNotAnswered = prev.research === undefined
+      const missingVariant = prev.use_course_variant && !prev.course_variant
 
-      return { error: researchNotAnswered || missingVariant };
-    });
-  };
+      return { error: researchNotAnswered || missingVariant }
+    })
+  }
 
   render() {
     return (
@@ -323,12 +323,12 @@ class CourseOptionsEditor extends React.Component {
                           {this.props.t("chooseCourse")}
                         </MenuItem>
                         {this.state.course_variants.map((x) => {
-                          const key = `${x.tmcOrganization}-${x.tmcCourse}`;
+                          const key = `${x.tmcOrganization}-${x.tmcCourse}`
                           return (
                             <MenuItem value={key} key={key}>
                               {x.organizationName}: {x.title}
                             </MenuItem>
-                          );
+                          )
                         })}
                       </Select>
                     </FormControl>
@@ -409,10 +409,10 @@ class CourseOptionsEditor extends React.Component {
           <WarningBox>{this.state.errorObj.toString()}</WarningBox>
         )}
       </FormContainer>
-    );
+    )
   }
 }
 
 export default withTranslation("common")(
-  withSimpleErrorBoundary(CourseOptionsEditor)
-);
+  withSimpleErrorBoundary(CourseOptionsEditor),
+)

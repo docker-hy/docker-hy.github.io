@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { withTranslation } from "react-i18next";
-import { TextField, Button } from "@material-ui/core";
-import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary";
+import React from "react"
+import styled from "styled-components"
+import { withTranslation } from "react-i18next"
+import { TextField, Button } from "@material-ui/core"
+import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
 
 const Container = styled.div`
   padding: 3rem;
-`;
+`
 
 const FieldContainer = styled.div`
   width: 100%;
@@ -27,12 +27,12 @@ const FieldContainer = styled.div`
       background-color: #4183d7;
     }
   }
-`;
+`
 
 class MailingListForm extends React.Component {
   constructor(props) {
-    super(props);
-    this.form = React.createRef();
+    super(props)
+    this.form = React.createRef()
   }
   render() {
     return (
@@ -57,7 +57,7 @@ class MailingListForm extends React.Component {
             />
             <Button
               onClick={() => {
-                this.form.current.submit();
+                this.form.current.submit()
               }}
             >
               {props.t("subscribe")}
@@ -65,10 +65,10 @@ class MailingListForm extends React.Component {
           </FieldContainer>
         </form>
       </Container>
-    );
+    )
   }
 }
 
 export default withTranslation("common")(
-  withSimpleErrorBoundary(MailingListForm)
-);
+  withSimpleErrorBoundary(MailingListForm),
+)
