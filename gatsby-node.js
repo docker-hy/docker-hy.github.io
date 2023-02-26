@@ -28,6 +28,8 @@ exports.createPages = ({ actions, graphql }) => {
 
   const vocabularyTemplate = path.resolve(`src/templates/VocabularyTemplate.js`)
 
+  const courseInfoTemplate = path.resolve(`src/templates/CourseInfoTemplate.js`)
+
   const query = `
   {
     allMarkdownRemark(

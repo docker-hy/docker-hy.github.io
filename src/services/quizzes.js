@@ -1,11 +1,5 @@
 import axios from "axios"
 import { accessToken, getCourseVariant } from "./moocfi"
-import CourseSettings from "../../course-settings"
-
-// const id = CourseSettings.quizzesId
-const language = CourseSettings.language
-
-// const quizzesLanguage = language === "en" ? "en_US" : "fi_FI"
 
 export async function fetchQuizzesProgress() {
   const { quizzesId } = await getCourseVariant()

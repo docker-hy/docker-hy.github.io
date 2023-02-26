@@ -24,9 +24,12 @@ export async function fetchProgress(t) {
   // const currentCourseVariant = userDetails?.extra_fields?.course_variant
   const progressByGroup = {}
 
+  // progressesCollection[1].forEach((progressEntry) => {
+  //   progressEntry.group = progressEntry.group.replace("osa", "part")
+  // })
+
   zip(serviceIdentifiers, progressesCollection).forEach(
     ([identifier, progresses]) => {
-      console.log(JSON.stringify(progresses))
       progresses.forEach((progressEntry) => {
         if (!progressByGroup[progressEntry.group]) {
           progressByGroup[progressEntry.group] = {}

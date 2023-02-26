@@ -157,7 +157,7 @@ export function updatePassword(currentPassword, password, confirmPassword) {
 }
 
 export async function courseVariants() {
-  const res = await Promise.all(
+  let res = await Promise.allSettled(
     (CourseSettings.courseVariants ?? []).map(async (x) => {
       const courseRes = await axios.get(
         `${BASE_URL}/org/${x.tmcOrganization}/courses/${x.tmcCourse}`,
@@ -181,6 +181,7 @@ export async function courseVariants() {
       }
     }),
   )
+  res = res.filter((x) => x.status === "fulfilled").map((x) => x.value)
   store.set("tmc.courses", res)
   return res
 }

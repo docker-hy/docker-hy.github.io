@@ -1,13 +1,6 @@
 import React from "react"
-import styled from "styled-components"
 import withSimpleErrorBoundary from "../util/withSimpleErrorBoundary"
 import { normalizeExerciseId } from "../util/strings"
-
-const quizWrapper = styled.div`
-  code {
-    color: black !important;
-  }
-`
 
 class Quiznator extends React.Component {
   componentDidMount() {
