@@ -23,7 +23,7 @@ Below are instructions on how to setup a development environment on your own mac
 Requirements: recent Node
 
 ```sh
-npm ci
+npm ci --legacy-peer-deps
 npm run develop
 ```
 
