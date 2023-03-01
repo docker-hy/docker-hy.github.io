@@ -183,7 +183,7 @@ As can be seen, installing a program or library to a container happens just like
 
 <exercise name="Exercise 1.4: Missing dependencies">
 
-Start a ubuntu image with the process `sh -c 'while true; do echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website; done'`
+Start a Ubuntu image with the process `sh -c 'while true; do echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website; done'`
 
 You will notice that a few things required for proper execution are missing. Be sure to remind yourself which flags to use so that the container actually waits for input.
 
