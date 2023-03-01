@@ -4,7 +4,7 @@ title: "Running and stopping containers"
 hidden: false
 ---
 
-Next we will start using a more useful image than hello-world. We can run ubuntu just with `docker run ubuntu`.
+Next we will start using a more useful image than hello-world. We can run Ubuntu just with `docker run ubuntu`.
 
 ```console
 $ docker run ubuntu
@@ -17,7 +17,7 @@ $ docker run ubuntu
   Status: Downloaded newer image for ubuntu:latest
 ```
 
-Anticlimactic as nothing really happened. The image was downloaded and ran and that was the end of that. It actually tried to open a shell but we will need to add a few flags to interact with it. `-t` will create a tty.
+Anticlimactic as nothing really happened. The image was downloaded and ran and that was the end of that. It actually tried to open a shell but we will need to add a few flags to interact with it. `-t` will create a [tty](https://itsfoss.com/what-is-tty-in-linux/).
 
 ```console
 $ docker run -t ubuntu
@@ -60,9 +60,9 @@ Let's follow `-f` the output of logs with
 
 ```console
 $ docker logs -f looper
-  Thu Feb  4 15:51:29 UTC 2021
-  Thu Feb  4 15:51:30 UTC 2021
-  Thu Feb  4 15:51:31 UTC 2021
+  Thu Mar  1 15:51:29 UTC 2023
+  Thu Mar  1 15:51:30 UTC 2023
+  Thu Mar  1 15:51:31 UTC 2023
   ...
 ```
 
@@ -72,8 +72,8 @@ Keep the logs open and attach to the running container from the second terminal 
 
 ```console
 $ docker attach looper
-  Mon Jan 15 19:26:54 UTC 2018
-  Mon Jan 15 19:26:55 UTC 2018
+  Thu Mar  1 15:54:38 UTC 2023
+  Thu Mar  1 15:54:39 UTC 2023
   ...
 ```
 
@@ -87,8 +87,8 @@ Then try control+c.
 $ docker start looper
 
 $ docker attach --no-stdin looper
-  Mon Jan 15 19:27:54 UTC 2018
-  Mon Jan 15 19:27:55 UTC 2018
+  Thu Mar  1 15:56:11 UTC 2023
+  Thu Mar  1 15:56:12 UTC 2023
   ^C
 ```
 
@@ -110,7 +110,7 @@ $ docker exec -it looper bash
 
 From the `ps aux` listing we can see that our `bash` process got PID (process ID) of 64.
 
-Now that we're inside the container it behaves as you'd expect from ubuntu, and we can exit the container with `exit` and then either kill or stop the container.
+Now that we're inside the container it behaves as you'd expect from Ubuntu, and we can exit the container with `exit` and then either kill or stop the container.
 
 Our looper won't stop for a SIGTERM signal sent by a stop command. To terminate the process, stop follows the SIGTERM with a SIGKILL after a grace period. In this case, it's simply faster to use kill.
 
@@ -151,12 +151,42 @@ Submit the secret message and command(s) given as your answer.
 
 </exercise>
 
+### Ubuntu in a container is just... Ubuntu
+
+A container that is running a Ubuntu image works quite like a normal Ubuntu:
+
+```console
+$ docker run -it ubuntu
+root@881a1d4ecff2:/# ls
+bin   dev  home  media  opt   root  sbin  sys  usr
+boot  etc  lib   mnt    proc  run   srv   tmp  var
+root@881a1d4ecff2:/# ps
+  PID TTY          TIME CMD
+    1 pts/0    00:00:00 bash
+   13 pts/0    00:00:00 ps
+root@881a1d4ecff2:/# date
+Wed Mar  1 12:08:24 UTC 2023
+root@881a1d4ecff2:/#
+```
+
+An image like Ubuntu contains already a nice set of tools but sometimes just the one that we need is not within the standard distribution. Let us assume that we would like to edit some files inside the container. The good old [Nano](https://www.nano-editor.org/) editor is a perfect fit for our purposes. We can install it in the container by using [apt-get](https://help.ubuntu.com/community/AptGet/Howto):
+
+```console
+$ docker run -it ubuntu
+root@881a1d4ecff2:/# apt-get update
+root@881a1d4ecff2:/# apt-get -y install nano
+root@881a1d4ecff2:/# cd tmp/
+root@881a1d4ecff2:/tmp# nano temp_file.txt
+```
+
+As can be seen, installing a program or library to a container happens just like the installation is done in "normal" Ubuntu. The remarkable difference is that the installation of Nano is not permanent, that is, if we remove our container, all is gone. We shall soon see how to get a more permanent solution for building images that are perfect to our purposes.
+
 <exercise name="Exercise 1.4: Missing dependencies">
 
 Start a ubuntu image with the process `sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'`
 
 You will notice that a few things required for proper execution are missing. Be sure to remind yourself which flags
-to use so that the read actually waits for input.
+to use so that the container actually waits for input.
 
 > Note also that curl is NOT installed in the container yet. You will have to install it from inside of the container.
 

@@ -52,21 +52,21 @@ Containers solve this problem by allowing the developer to personally run the ap
 
 You have 5 different Python applications. You need to deploy them to a server that already has an application requiring Python 2.7 and of course none of your applications are 2.7. What do you do?
 
-Since containers package the software with all of its dependencies, you package the existing app and all 5 new ones with their respective python versions and that's it.
+Since containers package the software with all of its dependencies, you package the existing app and all 5 new ones with their respective Python versions and that's it.
 
 I can only imagine the disaster that would result if you try to run them side by side on the same machine without isolating the environments. It sounds more like a time bomb. Sometimes different parts of a system may change over time, possibly leading to the application not working. These changes may be anything from an operating system update to changes in dependencies.
 
 ### Scenario 3: Development ###
 
-You are brought into a dev team. They run a web app that uses other services when running: a postgres database, mongodb, redis and a number of others. Simple enough, you install whatever is required to run the application and all of the applications that it depends on...
+You are brought into a dev team. They run a web app that uses other services when running: a Postgres database, MongoDB, Redis and a number of others. Simple enough, you install whatever is required to run the application and all of the applications that it depends on...
 
 What a headache to start installing and then managing the development databases on your own machine.
 
-Thankfully, by the time you are told to do that you are already a docker expert. With one command you get an isolated application, like postgres or mongo, running in your machine.
+Thankfully, by the time you are told to do that you are already a Docker expert. With one command you get an isolated application, like Postgres or Mongo, running in your machine.
 
 ### Scenario 4: Scaling ###
 
-Starting and stopping a docker container has little overhead. But when you run your own Netflix or Facebook, you want to meet the changing demand. With some advanced tooling that we will learn about in parts 2 and 3, we can spin up multiple containers instantly and load balance traffic between them.
+Starting and stopping a Docker container has little overhead. But when you run your own Netflix or Facebook, you want to meet the changing demand. With some advanced tooling that we will learn about in parts 2 and 3, we can spin up multiple containers instantly and load balance traffic between them.
 
 Container orchestration will be discussed in parts 2 and 3. But the simplest example: what happens when one application dies? The orchestration system notices it, splits traffic between the working replicas, and spins up a new container to replace the dead one.
 
@@ -76,7 +76,7 @@ Isn't there already a solution for this? Virtual Machines are not the same as Co
 
 <img src="../img/1/docker-explained-3.png">
 
-The difference between a virtual machine and docker solutions arises after moving Application A to an incompatible system "Operating System B". Running software on top of containers is almost as efficient as running it "natively" outside containers, at least when compared to virtual machines.
+The difference between a virtual machine and Docker solutions arises after moving Application A to an incompatible system "Operating System B". Running software on top of containers is almost as efficient as running it "natively" outside containers, at least when compared to virtual machines.
 
 So containers have a direct access to your own Operating Systems kernel and resources. The resource usage overhead of using containers is minimized, as the applications behave as if there were no extra layers. As Docker is using Linux kernels, Mac and Windows can't run it without a few hoops and each have their own solutions on how to run Docker.
 
@@ -198,9 +198,11 @@ $ docker container ls -a
   1cd4cb01482d   hello-world     "/hello"     8 minutes ago    Exited (0) 8 minutes ago              vibrant_bell
 ```
 
+The command `docker container ls` has also a shorter form `docker ps` that is preferred by many since it requires much less typing...
+
 ## Docker CLI basics ##
 
-We are using the command line to interact with the "Docker Engine" that is made up of 3 parts: CLI, a REST API and docker daemon. When you run a command, e.g. `docker container run`, behind the scenes the client sends a request through the REST API to the **docker daemon** which takes care of images, containers and other resources.
+We are using the command line to interact with the "Docker Engine" that is made up of 3 parts: CLI, a REST API and Docker daemon. When you run a command, e.g. `docker container run`, behind the scenes the client sends a request through the REST API to the **Docker daemon** which takes care of images, containers and other resources.
 
 You can read the [docs for more information](https://docs.docker.com/engine/reference/commandline/cli/). But even though you will find over 50 commands in the documentation, only a handful of them is needed for general use. There's a list of the most commonly used basic commands at the end of this section.
 
@@ -274,7 +276,7 @@ We should first stop the container using `docker container stop blissful_wright`
 
 Forcing is also a possibility and we can use `docker container rm --force blissful_wright` safely in this case. Again for both of them instead of name we could have used the ID or parts of it, e.g. c77.
 
-It's common for the docker daemon to become clogged over time with old images and containers.
+It's common for the Docker daemon to become clogged over time with old images and containers.
 
 ## Most used commands ##
 
@@ -309,7 +311,8 @@ Some of the shorthands are legacy version of doing the same thing. You can use e
 
   We've left containers and a image that won't be used anymore and are taking space, as `docker ps -as` and `docker images` will reveal.
 
-  Clean the docker daemon from all images and containers.
+  Clean the Docker daemon from all images and containers.
 
   Submit the output for `docker ps -a` and `docker images`
+
 </exercise>
