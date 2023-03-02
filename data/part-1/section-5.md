@@ -4,7 +4,11 @@ title: "Interacting with the container via volumes and ports"
 hidden: false
 ---
 
-We can use volumes to make it easier to store the downloads outside the containers ephemeral storage. With **bind mount** we can mount a file or directory from our own machine into the container. Let's start another container with `-v` option, that requires an absolute path. We mount our current folder as `/mydir` in our container, overwriting everything that we have put in that folder in our Dockerfile.
+Let us get back to youtube downloader. It works yes, but it is quite laborous to get the download videos to the host machine.
+
+We can use Docker [volumes](https://docs.docker.com/storage/volumes/) to make it easier to store the downloads outside the containers ephemeral storage. With [bind mount](https://docs.docker.com/storage/bind-mounts/) we can mount a file or directory from our own machine (the host machine) into the container.
+
+Let's start a container with `-v` option, that requires an absolute path. We mount our current folder as `/mydir` in our container, overwriting everything that we have put in that folder in our Dockerfile.
 
 ```console
 $ docker run -v "$(pwd):/mydir" youtube-dl https://imgur.com/JY5tHqr
@@ -23,6 +27,8 @@ container with bind mount so that the logs are created into your filesystem.
 
 Submit the command you used to complete the exercise.
 
+**Hint:** read the note that was made just before this exercise!
+
 </exercise>
 
 # Allowing external connections into containers
@@ -37,7 +43,7 @@ The address _127.0.0.1_ and hostname _localhost_ are special ones, they refer to
 
 You can map your host machine port to a container port.
 
-Opening a connection from outside world to a docker container happens in two steps:
+Opening a connection from outside world to a Docker container happens in two steps:
 
 - Exposing port
 
@@ -51,7 +57,7 @@ To expose a port, add the line `EXPOSE <port>` in your Dockerfile
 
 To publish a port, run the container with `-p <host-port>:<container-port>`
 
-If you leave out the host port and only specify the container port, docker will automatically choose a free port as the host port:
+If you leave out the host port and only specify the container port, Docker will automatically choose a free port as the host port:
 
 ```console
 $ docker run -p 4567 app-in-port
@@ -75,8 +81,9 @@ Usually, this isn't risky. But depending on the application, it is something you
 
 In this exercise, we won't create a new Dockerfile.
 
-The image `devopsdockeruh/simple-web-service` will start a web service in port `8080` when given the command "server". From 1.7 you should have an image ready for this. Use -p flag to access the contents with
-your browser. The output to your browser should be something like:
+The image `devopsdockeruh/simple-web-service` will start a web service in port `8080` when given the argument "server". In [Exercise 1.8](/part-1/3-in-depth-dive-to-images#non-tmc-exercise-exercise-18-two-line-dockerfile) you already did a image that can be used to run the web service without any argument.
+
+Use now the -p flag to access the contents with your browser. The output to your browser should be something like:
 `{ message: "You connected to the following path: ...`
 
 Submit your used commands for this exercise.

@@ -282,7 +282,7 @@ And now we have our file locally. Sadly, this is not sufficient to fix our issue
 
 ## Improved curler
 
-With `ENTRYPOINT` we can make the curler of the [Exercise 1.7.](/part-1/3-in-depth-dive-to-images) more flexible.
+With `ENTRYPOINT` we can make the curler of the [Exercise 1.7.](/part-1/3-in-depth-dive-to-images#non-tmc-exercise-exercise-17-image-for-script) more flexible.
 
 Change the script so that it takes the first argument as the input:
 
