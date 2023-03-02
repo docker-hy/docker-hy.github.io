@@ -109,7 +109,19 @@ $ docker run youtube-dl https://imgur.com/JY5tHqr
   ERRO[0001] error waiting for container: context canceled
 ```
 
-As we now know, the argument we gave it is replacing the command or `CMD`. We need a way to have something _before_ the command. Luckily we have a way to do this: we can use `ENTRYPOINT` to define the main executable and then docker will combine our run arguments for it.
+As we now know, the argument we gave it is replacing the command or `CMD`:
+
+```console
+$ docker run -it youtube-dl ps
+  PID TTY          TIME CMD
+    1 pts/0    00:00:00 ps
+$ docker run -it youtube-dl ls -l
+total 0
+$ docker run -it youtube-dl pwd
+/mydir
+```
+
+We need a way to have something _before_ the command. Luckily we have a way to do this: we can use [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint) to define the main executable and then Docker will combine our run arguments for it.
 
 ```dockerfile
 FROM ubuntu:18.04
@@ -141,7 +153,52 @@ With _ENTRYPOINT_ `docker run` now executed the combined `/usr/local/bin/youtube
 
 `ENTRYPOINT` vs `CMD` can be confusing - in a properly set up image such as our youtube-dl the command represents an argument list for the entrypoint. By default entrypoint is set as `/bin/sh` and this is passed if no entrypoint is set. This is why giving path to a script file as CMD works: you're giving the file as a parameter to `/bin/sh`.
 
-In addition, there are two ways to set them: **exec** form and **shell** form. We've been using the exec form where the command itself is executed. In shell form the command that is executed is wrapped with `/bin/sh -c` - it's useful when you need to evaluate environment variables in the command like `$MYSQL_PASSWORD` or similar.
+If an image defines both, then the CMD is used to give [default arguments](https://docs.docker.com/engine/reference/builder/#cmd) to the entrypoint. Let us now add a CMD to the Dockerfile:
+
+```dockerfile
+FROM ubuntu:18.04
+
+WORKDIR /mydir
+
+RUN apt-get update && apt-get install -y curl python
+RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+RUN chmod a+x /usr/local/bin/youtube-dl
+
+ENV LC_ALL=C.UTF-8
+
+ENTRYPOINT ["/usr/local/bin/youtube-dl"]
+
+# define a default argument
+CMD ["https://imgur.com/gallery/xwJgflf"]
+```
+
+Now (after build again) the image can be run without arguments to download the video defined in CMD:
+
+```console
+$ docker run youtube-dl
+
+  [Imgur] JY5tHqr: Downloading webpage
+  [download] Destination: Imgur-JY5tHqr.mp4
+  [download] 100% of 190.20KiB in 00:0044MiB/s ETA 00:000
+```
+
+The argument defined by CMD can be _overridden_ by giving one in the command line:
+
+```console
+$ docker run youtube-dl https://imgur.com/gallery/iT3U4K4
+[imgur:gallery] iT3U4K4: Downloading JSON metadata
+[download] Downloading playlist: A candlelight dinner needs a doggie serenade
+[imgur:gallery] playlist A candlelight dinner needs a doggie serenade: Collected 1 video ids (downloading 1 of them)
+[download] Downloading video 1 of 1
+[Imgur] ZkjbtYw: Downloading webpage
+[download] Destination: Imgur-ZkjbtYw.mp4
+[download] 100% of 5.02MiB in 00:0183MiB/s ETA 00:00known ETA
+[download] Finished downloading playlist: A candlelight dinner needs a doggie serenade
+```
+
+Note that despite the name, _youtube-dl_ works currently only with [imgurl.com](https://imgur.com/).
+
+In addition to all seen, there are two ways to set the ENTRYPOINT and COM: **exec** form and **shell** form. We've been using the exec form where the command itself is executed. In shell form the command that is executed is wrapped with `/bin/sh -c` - it's useful when you need to evaluate environment variables in the command like `$MYSQL_PASSWORD` or similar.
 
 In the shell form the command is provided as a string without brackets. In the exec form the command and it's arguments are provided as a list (with brackets), see the table below:
 
@@ -152,9 +209,9 @@ In the shell form the command is provided as a string without brackets. In the e
 | ENTRYPOINT /bin/ping -c 3 <br> CMD ["localhost"]         | /bin/sh -c '/bin/ping -c 3' localhost            |
 | ENTRYPOINT ["/bin/ping","-c","3"] <br> CMD ["localhost"] | /bin/ping -c 3 localhost                         |
 
-As the command at the end of docker run will be the CMD we want to use ENTRYPOINT to specify what to run, and CMD to specify which command (in our case url) to run.
+As the command at the end of Docker run will be the CMD we want to use ENTRYPOINT to specify what to run, and CMD to specify which command (in our case url) to run.
 
-**Most of the time** we can ignore ENTRYPOINT when building our images and only use CMD. For example, ubuntu image defaults the ENTRYPOINT to bash so we do not have to worry about it. And it gives us the convenience of allowing us to overwrite the CMD easily, for example, with bash to go inside the container.
+**Most of the time** we can ignore ENTRYPOINT when building our images and only use CMD. For example, Ubuntu image defaults the ENTRYPOINT to bash so we do not have to worry about it. And it gives us the convenience of allowing us to overwrite the CMD easily, for example, with bash to go inside the container.
 
 We can test how some other projects do this. Let's try python:
 
@@ -223,11 +280,11 @@ $ docker cp "determined_elion://mydir/Imgur-JY5tHqr.mp4" .
 
 And now we have our file locally. Sadly, this is not sufficient to fix our issue. In the next section, we will improve this.
 
-<text-box name="Entrypoint to improve curler" variant="hint">
+## Improved curler
 
-With `ENTRYPOINT` we can make the curler more flexible.
+With `ENTRYPOINT` we can make the curler of the [Exercise 1.7.](/part-1/3-in-depth-dive-to-images) more flexible.
 
-Change the script to take in the first argument as the input:
+Change the script so that it takes the first argument as the input:
 
 ```bash
 #!/bin/bash
@@ -237,7 +294,7 @@ sleep 1;
 curl http://$1;
 ```
 
-And change the CMD to ENTRYPOINT with the format `[ "./script.txt" ]`. Now we can run
+And change the CMD to ENTRYPOINT with the format `[ "./script.sh" ]`. Now we can run
 
 ```bash
 $ docker build . -t curler-v2
@@ -256,4 +313,3 @@ $ docker run curler-v2 helsinki.fi
   </body></html>
 ```
 
-</text-box>
