@@ -4,9 +4,9 @@ title: "Utilizing tools from the Registry"
 hidden: false
 ---
 
-As we've already seen it should be possible to containerize almost any project. As we are in between Dev and Ops let's pretend again that some developer teammates of ours did an application with a README that instructs what to install and how to run the application. Now we as the container experts can containerize it in seconds. Open this `https://github.com/docker-hy/material-applications/tree/main/rails-example-project` project and read through the README and think about how to transform it into a Dockerfile. Thanks to the README we should be able to decipher what we will need to do even if we have no clue about the language or technology!
+As we've already seen it should be possible to containerize almost any project. As we are in between Dev and Ops let's pretend again that some developer teammates of ours did an application with a README that instructs what to install and how to run the application. Now we as the container experts can containerize it in seconds. Open this <https://github.com/docker-hy/material-applications/tree/main/rails-example-project> project and read through the README and think about how to transform it into a Dockerfile. Thanks to the README we should be able to decipher what we will need to do even if we have no clue about the language or technology!
 
-We will need to clone the repository, which you may have already done. After the project is done, let's start with a Dockerfile. We know that we need to install ruby and whatever dependencies it had. Let's place the Dockerfile in the project root.
+We will need to clone the [repository](https://github.com/docker-hy/material-applications), which you may have already done. After the project is done, let's start with a Dockerfile. We know that we need to install Ruby and whatever dependencies it had. Let's place the Dockerfile in the project root.
 
 **Dockerfile**
 
@@ -19,7 +19,9 @@ EXPOSE 3000
 WORKDIR /usr/src/app
 ```
 
-Ok these are the basics, we have FROM a ruby version, EXPOSE 3000 was told at the bottom of the README and WORKDIR /usr/src/app is the convention.
+Ok these are the basics, we have FROM a Ruby version, EXPOSE 3000 was told at the bottom of the README and WORKDIR /usr/src/app is the convention.
+
+The next are told to us by the README. We won't need to copy anything from outside of the container to run these:
 
 ```Dockerfile
 # Install the correct bundler version
@@ -34,13 +36,13 @@ RUN bundle install
 
 Here I do a quick trick to separate installing dependencies from the part where we copy the source code in. The COPY will copy both Gemfile and Gemfile.lock to the current directory. This will help us by caching the dependency layers if we ever need to make changes to the source code. The same kind of caching trick works in many other languages or frameworks, such as Node.js.
 
-The next were told to us by the README. We won't need to copy anything from outside of the container to run these.
+And finally, we copy the project and follow the instructions in the README:
 
 ```Dockerfile
 # Copy all of the source code
 COPY . .
 
-# We pick the production guide mode since we have no intention of developing the software inside the container.
+# We pick the production mode since we have no intention of developing the software inside the container.
 # Run database migrations by following instructions from README
 RUN rails db:migrate RAILS_ENV=production
 
@@ -51,9 +53,37 @@ RUN rake assets:precompile
 CMD ["rails", "s", "-e", "production"]
 ```
 
-And finally, we copy the project and follow the instructions in the README.
+Ok. Let's see how well monkeying the README worked for us: `docker build . -t rails-project && docker run -p 3000:3000 rails-project`. After a while of waiting, the application starts in port 3000 in production mode... unless you have a Mac with M1 or M2 processor.
 
-Ok. Let's see how well monkeying the README worked for us: `docker build . -t rails-project && docker run -p 3000:3000 rails-project`. After a while of waiting, the application starts in port 3000 in production mode.
+<text-box name="Building the image with a more recent Mac" variant="hint">
+
+If you have a more recent Mac that has the [M1 or M2](https://support.apple.com/en-us/HT211814) processor, building the image fails:
+
+```bash
+ => ERROR [7/8] RUN rails db:migrate RAILS_ENV=production
+------
+ > [7/8] RUN rails db:migrate RAILS_ENV=production:
+#11 1.142 rails aborted!
+#11 1.142 LoadError: cannot load such file -- nokogiri
+```
+
+This can be fixed by changing the following line in the file <i>Gemfile.lock</i>
+
+
+```bash
+nokogiri (1.13.1-x86_64-darwin)
+```
+
+to the form:
+
+```bash
+nokogiri (1.14.2-arm64-darwin)
+```
+
+The reason for the problem is that the file Gemfile.lock that defines the <i>exact</i> versions of the installed libraries (or Gems in Ruby lingo) is generated with a Linux that has an Intel processor. The Gem
+[Nokogiri](https://nokogiri.org/) has different versions for Intel and Apple M1/M2 processors and to get the right version of the Gem to a more recent Mac, it is now just easiest to make a change in the file Gemfile.lock.
+
+</text-box>
 
 <exercise name="Exercise 1.11: Spring">
 
