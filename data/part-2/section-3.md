@@ -4,9 +4,17 @@ title: "Volumes in action"
 hidden: false
 ---
 
-Next we're going to set up [Redmine](https://www.redmine.org/), a PostgreSQL database and [Adminer](https://www.adminer.org/). All of them have official docker images available as we can see from [Redmine](https://hub.docker.com/_/redmine), [Postgres](https://hub.docker.com/_/postgres) and [Adminer](https://hub.docker.com/_/adminer) respectively. The officiality of the containers is not that important, just that we can expect that it will have some support. We could also, for example, setup Wordpress or a MediaWiki inside containers in the same manner if you're interested in running existing applications inside docker. You could even set up your own personal [Sentry](https://hub.docker.com/_/sentry/).
+Next we're going to set up the project management application [Redmine](https://www.redmine.org/), a PostgreSQL database and [Adminer](https://www.adminer.org/), a graphical interface for database administration.
 
-In <https://hub.docker.com/_/redmine> there is a list of different variants in `Supported tags and respective Dockerfile links` - most likely for this testing we can use any of the images. From "Environment Variables" we can see that all variants can use `REDMINE_DB_POSTGRES` or `REDMINE_DB_MYSQL` environment variables to set up the database, or it will fallback to SQLite. So before moving forward, let's setup postgres.
+All of above have official Docker images available as we can see from [Redmine](https://hub.docker.com/_/redmine), [Postgres](https://hub.docker.com/_/postgres) and [Adminer](https://hub.docker.com/_/adminer) respectively. The officiality of the containers is not that important, just that we can expect that it will have some support. We could also, for example, setup Wordpress or a MediaWiki inside containers in the same manner if you're interested in running existing applications inside Docker. You could even set up a application monitoring tool such as [Sentry](https://hub.docker.com/_/sentry/).
+
+In <https://hub.docker.com/_/redmine> there is a list of different tagged versions:
+
+<img src="../img/2/redmine.png">
+
+We can most likely use any of the available images.
+
+From "Environment Variables" we can see that all variants can use `REDMINE_DB_POSTGRES` or `REDMINE_DB_MYSQL` environment variables to set up the database, or it will fallback to SQLite. So before moving forward, let's setup postgres.
 
 In <https://hub.docker.com/_/postgres> there's a sample compose file under "via Docker Stack deploy or Docker Compose" - Let's strip that down to
 
