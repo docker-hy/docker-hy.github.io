@@ -12,7 +12,7 @@ Even if your application is not completely containerized during development, con
 
 Let's containerize my node development environment. This will need some insider knowledge of node. But here is a simplified explanation if you're not familiar: libraries are defined in `package.json` and `package-lock.json` and installed with `npm install`. npm is node package manager and node is the runtime. To run application with the packages we have script defined in package.json that instructs node to run index.js, the main/entry file in this case the script is executed with `npm start`. The application already includes code to watch for changes in the filesystem and restart the application if any changes are detected.
 
-The project "node-dev-env" is here [https://github.com/docker-hy/material-applications/tree/main/node-dev-env](https://github.com/docker-hy/material-applications/tree/main/node-dev-env). I already included a development Dockerfile and a helpful docker-compose.
+The project "node-dev-env" is here [https://github.com/docker-hy/material-applications/tree/main/node-dev-env](https://github.com/docker-hy/material-applications/tree/main/node-dev-env). I already included a development Dockerfile and a helpful docker-compose.yml.
 
 **Dockerfile**
 ```Dockerfile
@@ -47,7 +47,7 @@ volumes: # This is required for the node_modules named volume
 And that's it. We'll use volume to copy all source code inside the volume so CMD will run the application we're developing. Let's try it!
 
 ```console
-$ docker-compose up
+$ docker compose up
 Creating network "node-dev-env_default" with the default driver
 Creating volume "node-dev-env_node_modules" with default driver
 Building node-dev-env
@@ -63,7 +63,7 @@ node-dev-env    | > nodemon index.js
 node-dev-env    | App listening in port 3000
 ```
 
-Great! The initial start up is a bit slow. It is a lot faster now that the image is already built. We can rebuild the whole environment whenever we want with `docker-compose up --build`.
+Great! The initial start up is a bit slow. It is a lot faster now that the image is already built. We can rebuild the whole environment whenever we want with `docker compose up --build`.
 
 Let's see if the application works. Use browser to access [http://localhost:3000](http://localhost:3000), it should do a simple plus calculation with the query params.
 
@@ -72,7 +72,7 @@ However, the calulation doesn't make sense! Let's fix the bug. I bet it's this l
 When I change the line, on my host machine the application instantly notices that files have changed:
 
 ```console
-▶ docker-compose up
+▶ docker compose up
 Starting node-dev-env ... done
 Attaching to node-dev-env
 node-dev-env    |

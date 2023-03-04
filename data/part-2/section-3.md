@@ -8,7 +8,7 @@ Next we're going to set up [Redmine](https://www.redmine.org/), a PostgreSQL dat
 
 In <https://hub.docker.com/_/redmine> there is a list of different variants in `Supported tags and respective Dockerfile links` - most likely for this testing we can use any of the images. From "Environment Variables" we can see that all variants can use `REDMINE_DB_POSTGRES` or `REDMINE_DB_MYSQL` environment variables to set up the database, or it will fallback to SQLite. So before moving forward, let's setup postgres.
 
-In <https://hub.docker.com/_/postgres> there's a sample compose file under "via docker stack deploy or docker-compose" - Let's strip that down to
+In <https://hub.docker.com/_/postgres> there's a sample compose file under "via Docker Stack deploy or Docker Compose" - Let's strip that down to
 
 ```yaml
 version: "3.8"
@@ -26,10 +26,10 @@ Note:
 
 - `restart: always` was changed to `unless-stopped` that will keep the container running unless it's stopped. With `always` the stopped container is started after reboot for example.
 
-Under "Caveats - Where to Store Data" we can see that the `/var/lib/postgresql/data` can be mounted separately to preserve data in an easy-to-locate directory or let Docker manage the storage. We could use a bind mount like previously, but let's first see what the "let Docker manage the storage" means. Let's run the docker-compose file without setting anything new:
+Under "Caveats - Where to Store Data" we can see that the `/var/lib/postgresql/data` can be mounted separately to preserve data in an easy-to-locate directory or let Docker manage the storage. We could use a bind mount like previously, but let's first see what the "let Docker manage the storage" means. Let's run the Docker Compose file without setting anything new:
 
 ```console
-$ docker-compose up
+$ docker compose up
 
   Creating network "redmine_default" with the default driver
   Creating db_redmine ... done
@@ -64,7 +64,7 @@ $ docker volume ls
   local               794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df
 ```
 
-There may be more volumes on your machine. If you want to get rid of them you can use `docker volume prune`. Let's put the whole "application" down now with `docker-compose down`. Then, this time let's create a separate volume for the data.
+There may be more volumes on your machine. If you want to get rid of them you can use `docker volume prune`. Let's put the whole "application" down now with `docker compose down`. Then, this time let's create a separate volume for the data.
 
 ```yaml
 version: "3.8"
@@ -113,7 +113,7 @@ redmine:
 
 Notice the `depends_on` declaration. This makes sure that the `db` service should be started first. `depends_on` does not guarantee that the database is up, just that the service is started first. The Postgres server is accessible with dns name "db" from the redmine service as discussed in the "docker networking" section
 
-Now when you run `docker-compose up` you will see a bunch of database migrations running first.
+Now when you run `docker compose up` you will see a bunch of database migrations running first.
 
 ```console
   redmine_1  | I, [2019-03-03T10:59:20.956936 #25]  INFO -- : Migrating to Setup (1)
@@ -157,7 +157,7 @@ volumes:
 Now we can use the application with our browser through <http://localhost:9999>. After some changes inside the application we can inspect the changes that happened in the image and check that no extra meaningful files got written to the container:
 
 ```console
-$ docker container diff $(docker-compose ps -q redmine)
+$ docker container diff $(docker compose ps -q redmine)
   C /usr/src/redmine/config/environment.rb
   ...
   C /usr/src/redmine/tmp/pdf
@@ -295,15 +295,15 @@ well.
 After you have configured the volume:
 
 - Save a few messages through the frontend
-- Run `docker-compose down`
-- Run `docker-compose up` and see that the messages are available after refreshing browser
-- Run `docker-compose down` and delete the volume folder manually
-- Run `docker-compose up` and the data should be gone
+- Run `docker compose down`
+- Run `docker compose up` and see that the messages are available after refreshing browser
+- Run `docker compose down` and delete the volume folder manually
+- Run `docker compose up` and the data should be gone
 
 Maybe it would be simpler to back them up now that you know where they are.
 
 > TIP: To save you the trouble of testing all of those steps, just look into the folder before trying the steps. If
-> it's empty after docker-compose up then something is wrong.
+> it's empty after docker compose up then something is wrong.
 
 > TIP: Since you may have broken the buttons in nginx exercise you should test with a version of docker-compose.yml that doesn't break the buttons
 
@@ -321,6 +321,6 @@ the first button behave differently but you want them to match.
 
 If you had to do any changes explain what you had to change.
 
-Submit the docker-compose yml and both dockerfiles.
+Submit the docker-compose.yml and both dockerfiles.
 
 </exercise>

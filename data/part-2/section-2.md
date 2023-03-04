@@ -4,11 +4,11 @@ title: "Docker networking"
 hidden: false
 ---
 
-Connecting two services such as a server and its database in docker can be achieved with docker-compose networks. In addition to starting services listed in docker-compose.yml the tool automatically creates and joins both containers into a network with a DNS. Each container service is named after their container name and as such containers can reference each other simply with their names.
+Connecting two services such as a server and its database in docker can be achieved with Docker Compose networks. In addition to starting services listed in docker-compose.yml the tool automatically creates and joins both containers into a network with a DNS. Each container service is named after their container name and as such containers can reference each other simply with their names.
 
 <img src="../img/2/docker-networks.png">
 
-Here are two services in a single network: webapp and webapp-helper. The webapp-helper has a server, listening for requests in port 3000, that webapp wants to access. Because they were defined in the same docker-compose.yml file the access is trivial. Docker-compose has already taken care of creating a network and webapp can simply send a request to webapp-helper:3000, the internal DNS will translate that to the correct access and ports do not have to be published outside of the network.
+Here are two services in a single network: webapp and webapp-helper. The webapp-helper has a server, listening for requests in port 3000, that webapp wants to access. Because they were defined in the same docker-compose.yml file the access is trivial. Docker Compose has already taken care of creating a network and webapp can simply send a request to webapp-helper:3000, the internal DNS will translate that to the correct access and ports do not have to be published outside of the network.
 
 <text-box name="Security reminder: Plan your infrastructure and keep to your plan" variant="hint">
 
@@ -41,7 +41,7 @@ The [restart: unless-stopped](https://docs.docker.com/compose/compose-file/compo
 
 </exercise>
 
-You can also manually define the network and its name. A major benefit of defining network is that it makes it easy to setup a configuration where other containers connect to an existing network as an external network. This is used when a container wishes to interact with a container defined in another docker-compose file.
+You can also manually define the network and its name. A major benefit of defining network is that it makes it easy to setup a configuration where other containers connect to an existing network as an external network. This is used when a container wishes to interact with a container defined in another Docker Compose file.
 
 Defining network in docker-compose.yml. Services can be added to networks by adding `networks` into the definition of the service:
 
@@ -52,16 +52,16 @@ services:
   db:
     image: postgres:13.2-alpine
     networks:
-      - database-network # Name in this docker-compose file
+      - database-network # Name in this Docker Compose file
 
 networks:
-  database-network: # Name in this docker-compose file
+  database-network: # Name in this Docker Compose file
     name: database-network # Name that will be the actual name of the network
 ```
 
-This defines a network called `database-network` which is created with `docker-compose up` and removed with `docker-compose down`.
+This defines a network called `database-network` which is created with `docker compose up` and removed with `docker compose down`.
 
-To connect to an external network (possibly defined another docker-compose.yml):
+To connect to an external network (possibly defined another Docker Compose.yml):
 
 ```yaml
 version: "3.8"
@@ -98,7 +98,7 @@ networks:
 Compose can also scale the service to run multiple instances:
 
 ```console
-$ docker-compose up --scale whoami=3
+$ docker compose up --scale whoami=3
 
   WARNING: The "whoami" service specifies a port on the host. If multiple containers for this service are created on a single host, the port will clash.
 
@@ -121,22 +121,22 @@ ports:
 Then run the command again:
 
 ```console
-$ docker-compose up --scale whoami=3
+$ docker compose up --scale whoami=3
   Starting whoami_whoami_1 ... done
   Creating whoami_whoami_2 ... done
   Creating whoami_whoami_3 ... done
 ```
 
-All three instances are now running and listening on random host ports. We can use `docker-compose port` to find out which ports the instances are bound to.
+All three instances are now running and listening on random host ports. We can use `docker compose port` to find out which ports the instances are bound to.
 
 ```console
-$ docker-compose port --index 1 whoami 8000
+$ docker compose port --index 1 whoami 8000
   0.0.0.0:32770
 
-$ docker-compose port --index 2 whoami 8000
+$ docker compose port --index 2 whoami 8000
   0.0.0.0:32769
 
-$ docker-compose port --index 3 whoami 8000
+$ docker compose port --index 3 whoami 8000
   0.0.0.0:32768
 ```
 
@@ -171,7 +171,7 @@ services:
 When we start this and test
 
 ```console
-$ docker-compose up -d --scale whoami=3
+$ docker compose up -d --scale whoami=3
 $ curl localhost:80
   <html>
   <head><title>503 Service Temporarily Unavailable</title></head>
@@ -209,7 +209,7 @@ services:
 Now the proxy works:
 
 ```console
-$ docker-compose up -d --scale whoami=3
+$ docker compose up -d --scale whoami=3
 $ curl whoami.colasloth.com
   I'm f6f85f4848a8
 $ curl whoami.colasloth.com
@@ -243,7 +243,7 @@ world:
 Now let's test:
 
 ```console
-$ docker-compose up -d --scale whoami=3
+$ docker compose up -d --scale whoami=3
 $ curl hello.colasloth.com
   hello
 
@@ -263,7 +263,7 @@ Test updating the `hello.html` without restarting the container, does it work?
 
 <exercise name="Exercise 2.5">
 
-A project over at [https://github.com/docker-hy/material-applications/tree/main/scaling-exercise](https://github.com/docker-hy/material-applications/tree/main/scaling-exercise) has a hardly working application. Go ahead and clone it for yourself. The project already includes docker-compose.yml so you can start it by running `docker-compose up`.
+A project over at [https://github.com/docker-hy/material-applications/tree/main/scaling-exercise](https://github.com/docker-hy/material-applications/tree/main/scaling-exercise) has a hardly working application. Go ahead and clone it for yourself. The project already includes docker-compose.yml so you can start it by running `docker compose up`.
 
 Application should be accessible through [http://localhost:3000](http://localhost:3000). However it doesn't work well enough and I've added a load balancer for scaling. Your task is to scale the `compute` containers so that the button in the application turns green.
 
