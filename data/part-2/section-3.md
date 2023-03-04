@@ -14,7 +14,7 @@ In <https://hub.docker.com/_/redmine> there is a list of different tagged versio
 
 We can most likely use any of the available images.
 
-From "Environment Variables" we can see that all variants can use `REDMINE_DB_POSTGRES` or `REDMINE_DB_MYSQL` environment variables to set up the database, or it will fallback to SQLite. So before moving forward, let's setup postgres.
+From section _Environment Variables_ we can see that all versions can use `REDMINE_DB_POSTGRES` environment variable to set up a Postgres database. So before moving forward, let's setup Postgres for us.
 
 In <https://hub.docker.com/_/postgres> there's a sample compose file under "via Docker Stack deploy or Docker Compose" - Let's strip that down to
 
@@ -32,9 +32,14 @@ services:
 
 Note:
 
-- `restart: always` was changed to `unless-stopped` that will keep the container running unless it's stopped. With `always` the stopped container is started after reboot for example.
+- `restart: always` was changed to `unless-stopped` that will keep the container running unless we explicitely stop it. With `always` the stopped container is started after reboot for example, see [here](https://docs.docker.com/config/containers/start-containers-automatically/) for more.
 
-Under "Caveats - Where to Store Data" we can see that the `/var/lib/postgresql/data` can be mounted separately to preserve data in an easy-to-locate directory or let Docker manage the storage. We could use a bind mount like previously, but let's first see what the "let Docker manage the storage" means. Let's run the Docker Compose file without setting anything new:
+Under the section [Where to store data](https://github.com/docker-library/docs/blob/master/postgres/README.md#where-to-store-data) we can see that the `/var/lib/postgresql/data` should be mounted separately to preserve the data.
+
+There are two options. We could use a bind mount like previously and mount a easy-to-locate directory for storing the data. Let us now use the other opiton, a [Docker managed volume](https://docs.docker.com/storage/volumes/).
+
+
+Let's run the Docker Compose file without setting anything new:
 
 ```console
 $ docker compose up
@@ -51,7 +56,7 @@ $ docker compose up
   db_redmine | 2019-03-03 10:27:23.002 UTC [1] LOG:  database system is ready to accept connections
 ```
 
-The image initializes the data files in the first start. Let's terminate the container with ^C. Compose uses the current directory as a prefix for container and volume names so that different projects don't clash. The prefix can be overridden with `COMPOSE_PROJECT_NAME` environment variable if needed.
+The image initializes the data files in the first start. Let's terminate the container with ^C. Compose uses the current directory as a prefix for container and volume names so that different projects don't clash (The prefix can be overridden with `COMPOSE_PROJECT_NAME` environment variable if needed).
 
 Let's **inspect** if there was a volume created with `docker container inspect db_redmine | grep -A 5 Mounts`
 
@@ -64,6 +69,8 @@ Let's **inspect** if there was a volume created with `docker container inspect d
         "Destination": "/var/lib/postgresql/data",
 ```
 
+An indeed there is one! So despite we did not configure anything the
+
 Now if we check out `docker volume ls` we can see that a volume with name "794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df" exists.
 
 ```console
@@ -72,7 +79,10 @@ $ docker volume ls
   local               794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df
 ```
 
-There may be more volumes on your machine. If you want to get rid of them you can use `docker volume prune`. Let's put the whole "application" down now with `docker compose down`. Then, this time let's create a separate volume for the data.
+There may be more volumes on your machine. If you want to get rid of them you can use `docker volume prune`. Let's put the whole "application" down now with `docker compose down`.
+
+Instead of the randomly named volume we better define one explicitly.
+Let us change the definition as follows:
 
 ```yaml
 version: "3.8"
@@ -91,6 +101,8 @@ volumes:
   database:
 ```
 
+Now let us check what it looks like:
+
 ```console
 $ docker volume ls
   DRIVER              VOLUME NAME
@@ -105,7 +117,9 @@ $ docker container inspect db_redmine | grep -A 5 Mounts
         "Destination": "/var/lib/postgresql/data",
 ```
 
-Ok, looks a bit more human readable even if it isn't more accessible than bind mounts. Now when the Postgres is running, let's add the [redmine](https://hub.docker.com/_/redmine). The container seems to require just two environment variables.
+Ok, looks a bit more human readable! Now when the Postgres is running, is is time to add [Redmine](https://hub.docker.com/_/redmine).
+
+The container seems to require just two environment variables.
 
 ```yaml
 redmine:
@@ -119,7 +133,7 @@ redmine:
     - db
 ```
 
-Notice the `depends_on` declaration. This makes sure that the `db` service should be started first. `depends_on` does not guarantee that the database is up, just that the service is started first. The Postgres server is accessible with dns name "db" from the redmine service as discussed in the "docker networking" section
+Notice the [depends_on](https://docs.docker.com/compose/compose-file/compose-file-v3/#depends_on) declaration. This makes sure that the `db` service is started first. `depends_on` does not guarantee that the database is up, just that it is started first. The Postgres server is accessible with DNS name "db" from the Redmine service as discussed in the section [Docker networking](/part-2/2-docker-networking).
 
 Now when you run `docker compose up` you will see a bunch of database migrations running first.
 
@@ -131,7 +145,9 @@ Now when you run `docker compose up` you will see a bunch of database migrations
   redmine_1  | [2019-03-03 11:01:10] INFO  WEBrick::HTTPServer#start: pid=1 port=3000
 ```
 
-We can see that image also creates files to `/usr/src/redmine/files` that also need to be persisted. The Dockerfile has this [line](https://github.com/docker-library/redmine/blob/cea16044e97567c28802fc8cc06f6cd036c49a5c/4.0/Dockerfile#L155) where it declares that a volume should be created. Again docker will create the volume, but it will be handled as an anonymous volume that is not managed by compose, so it's better to be explicit about the volume. With that in mind our final file should look like this:
+As the [documentation](https://hub.docker.com/_/redmine) mentions, the image creates files to `/usr/src/redmine/files` and those are better to be persisted. The Dockerfile has this [line](https://github.com/docker-library/redmine/blob/cea16044e97567c28802fc8cc06f6cd036c49a5c/4.0/Dockerfile#L155) where it declares that a volume should be created. Again Docker will create the volume, but it will be handled as an anonymous volume that is not managed by the Docker Compose, so it's better to create it explicitly.
+
+With that in mind, our configuration changes to this:
 
 ```yaml
 version: "3.8"
@@ -173,9 +189,12 @@ $ docker container diff $(docker compose ps -q redmine)
 
 Probably not.
 
-Next, we will add adminer to the application. We could also just use psql to interact with a postgres database with `docker container exec -it db_redmine psql -U postgres`. (The command **exec**utes psql -U postgres inside the container) The same method can be used to create backups with pg_dump: `docker container exec db_redmine pg_dump -U postgres > redmine.dump`.
+We could  use psql to interact with the Postgres database by running  `docker container exec -it db_redmine psql -U postgres`. (The command **exec**utes psql -U postgres inside the container) The same method can be used to create backups with pg_dump: `docker container exec db_redmine pg_dump -U postgres > redmine.dump`.
 
-This step is straightforward, we actually had the instructions open back before we set up postgres. But let's check the [documentation](https://hub.docker.com/_/adminer) and we see that the following will suffice:
+Rather than using the archaic command line interface to access Postgres, let us now set up the database adminer to the application.
+
+After a look at the [documentation](https://hub.docker.com/_/adminer),
+the setup is straightforward:
 
 ```yaml
 adminer:
@@ -187,16 +206,32 @@ adminer:
     - 8083:8080
 ```
 
-Now when we run the application we can access adminer from <http://localhost:8083>. Setting up adminer is straightforward since it will be able to access the database through docker network.
+Now when we run the application we can access adminer from <http://localhost:8083>:
+
+<img src="../img/2/adminer.png" />
+
+Setting up the adminer is straightforward since it will be able to access the database through Docker network. You may wonder how adminer finds the Postgres database container? We provide this information to Redmine using an environment variable:
+
+```yaml
+  redmine:
+    environment:
+      - REDMINE_DB_POSTGRES=db
+```
+
+Adminer actually assumes that the database has DN Sname  _db_ so with this name selection, we did not have to specify anything. If the database has some other name, we have to pass it to adminer using an environment variable:
+
+```yaml
+  adminer:
+    environment:
+      - ADMINER_DEFAULT_SERVER=database_server
+```
 
 <exercise name="Exercise 2.6">
 
 Add database to example backend.
 
 Lets use a postgres database to save messages. We won't need to configure a volume since the official postgres image
-sets a default volume for us. Lets use the postgres image documentation to our advantage when configuring:
-[https://hub.docker.com/\_/postgres/](https://hub.docker.com/_/postgres/). Especially part Environment Variables is of
-interest.
+sets a default volume for us. Lets use the postgres image documentation to our advantage when configuring: [https://hub.docker.com/\_/postgres/](https://hub.docker.com/_/postgres/). Especially part _Environment Variables_ is of interest.
 
 The backend [README](https://github.com/docker-hy/material-applications/tree/main/example-backend) should have all the information needed to
 connect.
