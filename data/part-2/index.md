@@ -5,7 +5,7 @@ overview: true
 hidden: false
 ---
 
-This part introduces container orchestration with docker-compose and relevant concepts such as *docker network*. By the end of this part you are able to:
+This part introduces container orchestration with Docker Compose and relevant concepts such as *docker network*. By the end of this part you are able to:
 
 * Run a group of containerized applications that interact with each other via HTTP
 

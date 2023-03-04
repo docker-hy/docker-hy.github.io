@@ -1,16 +1,16 @@
 ---
 path: '/part-2/1-migrating-to-docker-compose'
-title: 'Migrating to docker compose'
+title: 'Migrating to Docker Compose'
 hidden: false
 ---
 
 Even with a simple image, we've already been dealing with plenty of command line options in both building, pushing and running the image.
 
-Next we will switch to a tool called docker-compose to manage these.
+Next we will switch to a tool called [Docker Compose](https://docs.docker.com/compose/) to manage these. Docker Compose used to be a separate tool but now it is integrated to Docker and can be used like the rest of the Docker commands.
 
-docker-compose is designed to simplify running multi-container applications to using a single command.
+Docker Compose is designed to simplify running multi-container applications to using a single command.
 
-In the folder where we have our Dockerfile with the following content:
+Assume that we are in the folder where we have our Dockerfile with the following content:
 
 ```dockerfile
 FROM ubuntu:18.04
@@ -27,7 +27,7 @@ ENV LC_ALL=C.UTF-8
 ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 ```
 
-we create a file called `docker-compose.yml`:
+Let us now create a file called `docker-compose.yml`:
 
 ```yaml
 version: '3.8'
@@ -43,13 +43,13 @@ The version setting is not very strict, it just needs to be above 2 because othe
 Now we can build and push with just these commands:
 
 ```console
-$ docker-compose build
-$ docker-compose push
+$ docker compose build
+$ docker compose push
 ```
 
-## Volumes in docker-compose ##
+## Volumes in Docker Compose ##
 
-To run the image as we did previously, we will need to add the volume bind mounts. Volumes in docker-compose are defined with the following syntax `location-in-host:location-in-container`. Compose can work without an absolute path:
+To run the image as we did previously, we will need to add the volume bind mounts. Volumes in Docker Compose are defined with the following syntax `location-in-host:location-in-container`. Compose can work without an absolute path:
 
 ```yaml
 version: '3.8'
@@ -67,24 +67,24 @@ services:
 We can also give the container a name it will use when running with container_name. And the service name can be used to run it:
 
 ```console
-$ docker-compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr
+$ docker compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr
 ```
 
 <exercise name="Exercise 2.1">
 
-  *Exercises in part 2 should be done using docker-compose*
+  Let us now leverage the Docker Compose with the simple webservice that was we user eg in the [Exercise 1.3](/part-1/2-running-and-stopping#non-tmc-exercise-exercise-13-secret-message)
 
   Without a command `devopsdockeruh/simple-web-service` will create logs into its `/usr/src/app/text.log`.
 
   Create a docker-compose.yml file that starts `devopsdockeruh/simple-web-service` and saves the logs into your
   filesystem.
 
-  Submit the docker-compose.yml, make sure that it works simply by running `docker-compose up` if the log file exists.
+  Submit the docker-compose.yml, make sure that it works simply by running `docker compose up` if the log file exists.
 
 
 </exercise>
 
-## Web services in docker-compose ##
+## Web services in Docker Compose ##
 
 Compose is really meant for running web services, so let's move from simple binary wrappers to running a HTTP service.
 
@@ -104,7 +104,7 @@ $ docker container stop 736ab83847bb
 $ docker container rm 736ab83847bb
 ```
 
-Let's create a new folder and a docker-compose file `whoami/docker-compose.yml` from the command line options.
+Let's create a new folder and a Docker Compose file `whoami/docker-compose.yml` from the command line options.
 
 ```yaml
 version: '3.8'
@@ -119,11 +119,11 @@ services:
 Test it:
 
 ```console
-$ docker-compose up -d
+$ docker compose up -d
 $ curl localhost:8000
 ```
 
-Environment variables can also be given to the containers in docker-compose.
+Environment variables can also be given to the containers in Docker Compose.
 
 ```yaml
 version: '3.8'
@@ -144,7 +144,7 @@ services:
 
   Create a docker-compose.yml and use it to start the service so that you can use it with your browser.
 
-  Submit the docker-compose.yml, make sure that it works simply by running `docker-compose up`
+  Submit the docker-compose.yml, make sure that it works simply by running `docker compose up`
 
 </exercise>
 
@@ -154,10 +154,9 @@ services:
 
   As we saw previously, starting an application with two programs was not trivial and the commands got a bit long.
 
-  In the previous part we created Dockerfiles for both [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) and [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend).
-  Next, simplify the usage into one docker-compose.yml.
+  In the [previous part](/part-1/6-docker-hub) we created Dockerfiles for both [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) and [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) of the example application. Next, simplify the usage into one docker-compose.yml.
 
-  Configure the backend and frontend from part 1 to work in docker-compose.
+  Configure the backend and frontend from [part 1](/part-1/6-docker-hub) to work in Docker Compose.
 
   Submit the docker-compose.yml
 

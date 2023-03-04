@@ -87,12 +87,11 @@ The reason for the problem is that the file Gemfile.lock that defines the <i>exa
 
 <exercise name="Exercise 1.11: Spring">
 
-Create a Dockerfile for an old Java Spring project: [GitHub page](https://github.com/docker-hy/material-applications/tree/main/spring-example-project)
+Create a Dockerfile for an old Java Spring project that can be found from the [course repository](https://github.com/docker-hy/material-applications/tree/main/spring-example-project).
 
 The setup should be straightforward with the README instructions. Tips to get you started:
 
-Use [openjdk image](https://hub.docker.com/_/openjdk) `FROM openjdk:_tag_` to get Java instead of installing it
-manually. Pick the tag by using the README and Docker Hub page.
+Use [openjdk image](https://hub.docker.com/_/openjdk) `FROM openjdk:_tag_` to get Java instead of installing it manually. Pick the tag by using the README and Docker Hub page.
 
 You've completed the exercise when you see a 'Success' message in your browser.
 
@@ -111,9 +110,10 @@ A good developer creates well-written READMEs. Such that they can be used to cre
 Clone, fork or download the project from
 [https://github.com/docker-hy/material-applications/tree/main/example-frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend).
 
-Create a Dockerfile for the project (example-frontend) and give a command so that the project runs in a docker container with port 5000
+Create a Dockerfile for the project (example-frontend) and give a command so that the project runs in a Docker container with port 5000
 exposed and published so when you start the container and navigate to [http://localhost:5000](http://localhost:5000)
 you will see message if you're successful.
+* note that the port 5000 is reserved in the more recent OSX versions (Monterey, Big Sur), so you have to use some other host port
 
 Submit the Dockerfile.
 
@@ -150,7 +150,7 @@ _Do not alter the code of the project_
 
 Start both frontend-example and backend-example with correct ports exposed and add ENV to Dockerfile with necessary
 information from both READMEs
-([front](https://github.com/docker-hy/material-applications/tree/main/example-frontend),[back](https://github.com/docker-hy/material-applications/tree/main/example-backend)).
+([front](https://github.com/docker-hy/material-applications/tree/main/example-frontend), [back](https://github.com/docker-hy/material-applications/tree/main/example-backend)).
 
 Ignore the backend configurations until frontend sends requests to `_backend_url_/ping` when you press the button.
 
@@ -174,7 +174,7 @@ The frontend will first talk to your browser. Then the code will be executed fro
 
 # Publishing projects
 
-Go to <https://hub.docker.com/> to create an account. You can configure docker hub to build your images for you, but using `push` works as well.
+Go to <https://hub.docker.com/> to create an account. You can configure Docker hub to build your images for you, but using `push` works as well.
 
 Let's publish the youtube-dl image. Log in and navigate to your [dashboard](https://hub.docker.com/repositories) and press Create Repository. The namespace can be either your personal account or an organization account. For now, let's stick to personal accounts and write something descriptive such as youtube-dl to repository name. We will need to remember it in part 2.
 
@@ -204,20 +204,20 @@ For this exercise to be complete you have to provide the link to the project in 
 
 </exercise>
 
-<exercise name="Exercise 1.16: Heroku">
+<exercise name="Exercise 1.16: Cloud deployment">
 
-Pushing to Heroku happens in a similar way.
+It is time to wrap up this part and run a containerized app in the cloud.
 
-You can deploy an existing project this time. The course material should work, so let's pull that first from `devopsdockeruh/coursepage`
+You can take any web-app, eg. an example or exercise from this part, your own app, or even the course material (see [devopsdockeruh/coursepage](https://hub.docker.com/r/devopsdockeruh/coursepage)) and deploy it to some cloud provider.
 
-Go to [https://www.heroku.com/](https://www.heroku.com/) and create a new app there and install Heroku CLI. You can find additional instructions from `Deploy` tab under `Container Registry`. Tag the pulled image as `registry.heroku.com/_app_/_process-type_`, process-type can be `web` for this exercise. The app should be your project name in Heroku.
+There are plenty of alternatives, and most provide a free tier. Here are some alternatives that are quite simple to use:
 
-Then push the image to Heroku with `docker push registry.heroku.com/_app_/web` and release it using the Heroku CLI: `heroku container:release web --app _app_` (you might need to login first: `heroku container:login`)
+- [fly.io](https://fly.io) (easy to use but needs a credit card even in the free tier)
+- [render.com](https://render.com) (bad documentation, you most likely need google)
+- [heroku.com](https://heroku.com) (has a free student plan)
 
-Heroku might take some time to get the application up and running.
+If you know a good cloud service for the purposes of this exercise, please tell us (yes, we know about Amazon AWS, Google Cloud and Azure already... ).
 
-For this exercise return the url in which the released application is.
-
-You could also use the Heroku CLI to build and push, but since we didn't want to build anything this time it was easier to just tag the image.
+Submit the Dockerfile, a brief description of what you did, and a link to the running app.
 
 </exercise>
