@@ -133,7 +133,7 @@ services:
       image:
       environment:
         - VARIABLE=VALUE
-        - VARIABLE
+        - VARIABLE2=VAULE2
 ```
 
 <exercise name="Exercise 2.2">

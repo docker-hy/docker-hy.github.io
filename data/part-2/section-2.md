@@ -4,7 +4,7 @@ title: "Docker networking"
 hidden: false
 ---
 
-Connecting two services such as a server and its database in docker can be achieved with Docker Compose networks. In addition to starting services listed in docker-compose.yml the tool automatically creates and joins both containers into a network with a DNS. Each container service is named after their container name and as such containers can reference each other simply with their names.
+Connecting two services such as a server and its Database in docker can be achieved with a [Docker network](https://docs.docker.com/network/). In addition to starting services listed in docker-compose.yml Docker Compose automatically creates and joins both containers into a network with a DNS. Each container service is named after their container name and as such containers can reference each other simply with their names.
 
 <img src="../img/2/docker-networks.png">
 
@@ -14,22 +14,22 @@ Here are two services in a single network: webapp and webapp-helper. The webapp-
 
 In the next exercise, and in some later exercises, I will supply you with an illustration of the infrastructure. Do look at it and use it to write the configuration.
 
-For example, in 2.4 we don't want to open ports to Redis to the outside world. Do not add a `ports` configuration under redis. The backend will be able to access the application within the docker network.
+For example, in Exercise 2.4 we don't want to open ports to Redis to the outside world. Do not add a `ports` configuration under Redis! The backend will be able to access the application within the Docker network.
 
 </text-box>
 
 <exercise name="Exercise 2.4">
 
-Add redis to example backend.
+In this exercise you should expand the configuration done in [Exercise 2.3](/part-2/1-migrating-to-docker-composenon-tmc-exercise-exercise-23) and set up the example backend to use the key-value database [Redis](https://redis.com/).
 
-Redis is used to speed up some operations. Backend uses a slow api to get information. You can test the slow api by
-requesting `/ping?redis=true` with curl. The frontend program has a button to test this.
+Redis is quite often used as a [cache](https://en.wikipedia.org/wiki/Cache_(computing)) to store data so that future requests for data can be served faster.
 
-Configure a redis container to cache information for the backend. Use the documentation if needed when configuring:
-[https://hub.docker.com/\_/redis/](https://hub.docker.com/_/redis/)
+The backend uses a slow API to fetch some information. You can test the slow API by requesting `/ping?redis=true` with curl. The frontend app has a button to test this.
 
-The backend [README](https://github.com/docker-hy/material-applications/tree/main/example-backend) should have all the information needed to
-connect.
+So you should improve the performance of the app and configure a Redis container to cache information for the backend. The
+[documentation](https://hub.docker.com/_/redis/) of the Redis image might contain some useful info.
+
+The backend [README](https://github.com/docker-hy/material-applications/tree/main/example-backend) should have all the information that is needed for configuring the backend.
 
 When you've correctly configured the button will turn green.
 
@@ -37,13 +37,15 @@ Submit the docker-compose.yml
 
   <img src="../img/exercises/back-front-and-redis.png" />
 
-The [restart: unless-stopped](https://docs.docker.com/compose/compose-file/compose-file-v3/#restart) configuration can help if the redis takes a while to get ready.
+The [restart: unless-stopped](https://docs.docker.com/compose/compose-file/compose-file-v3/#restart) configuration can help if the Redis takes a while to get ready.
 
 </exercise>
 
-You can also manually define the network and its name. A major benefit of defining network is that it makes it easy to setup a configuration where other containers connect to an existing network as an external network. This is used when a container wishes to interact with a container defined in another Docker Compose file.
+## Manuan network definition
 
-Defining network in docker-compose.yml. Services can be added to networks by adding `networks` into the definition of the service:
+It is also possible to define the network manually in a Docker Compose file. A major benefit of a manual network definition is that it makes it easy to set up a configuration where containers defined in two different Docker Compose files share a network, and can easily interact with each other.
+
+Let us now have a look how a network is defined in docker-compose.yml:
 
 ```yaml
 version: "3.8"
@@ -61,7 +63,9 @@ networks:
 
 This defines a network called `database-network` which is created with `docker compose up` and removed with `docker compose down`.
 
-To connect to an external network (possibly defined another Docker Compose.yml):
+As can be seen, services are configured to use a network by adding `networks` into the definition of the service.
+
+Establishing a connection to an external network (that is, a network defined in another docker-compose.yml, or by some other means) is done as follows:
 
 ```yaml
 version: "3.8"
@@ -150,9 +154,9 @@ $ curl 0.0.0.0:32768
   I'm 1ae20cd990f7
 ```
 
-In a server environment you'd often have a load balancer in-front of the service. For local environment (or a single server) one good solution is to use <https://github.com/jwilder/nginx-proxy> that configures nginx from docker daemon as containers are started and stopped.
+In a server environment you'd often have a [load balancer](https://en.wikipedia.org/wiki/Load_balancing_(computing)) in front of the service. For containerized local environment (or a single server) one good solution is to use <https://github.com/jwilder/nginx-proxy>.
 
-Let's add the proxy to our compose file and remove the port bindings from the whoami service. We'll mount our `docker.sock` inside of the container in `:ro` read-only mode.
+Let's add the nginx-proxy to our compose file and remove the port bindings from the whoami service. We'll mount our [docker.sock](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock) (the socket that is used to communicate with the [Docker Dameon](https://docs.docker.com/engine/reference/commandline/dockerd/)) inside of the container in `:ro` read-only mode:
 
 ```yaml
 version: "3.8"
@@ -168,7 +172,7 @@ services:
       - 80:80
 ```
 
-When we start this and test
+Let test the configuration:
 
 ```console
 $ docker compose up -d --scale whoami=3
@@ -182,11 +186,9 @@ $ curl localhost:80
   </html>
 ```
 
-It's "working", but the nginx just doesn't know which service we want. The `nginx-proxy` works with two environment variables: `VIRTUAL_HOST` and `VIRTUAL_PORT`. `VIRTUAL_PORT` is not needed if the service has `EXPOSE` in it's docker image. We can see that `jwilder/whoami` sets it: <https://github.com/jwilder/whoami/blob/master/Dockerfile#L9>
+It's "working", but the Nginx just doesn't know which service we want. The `nginx-proxy` works with two environment variables: `VIRTUAL_HOST` and `VIRTUAL_PORT`. `VIRTUAL_PORT` is not needed if the service has `EXPOSE` in it's Docker image. We can see that `jwilder/whoami` sets it: <https://github.com/jwilder/whoami/blob/master/Dockerfile#L9>
 
-Note:
-
-- For Mac users with the M1 chip you may see the following error message: `runtime: failed to create new OS thread`. In this case you can use the docker image `ninanung/nginx-proxy` instead which offers a temporary fix until `jwilder/nginx-proxy` is updated to support M1 Macs.
+- Note: Mac users with the M1 processor you may see the following error message: `runtime: failed to create new OS thread`. In this case you can use the Docker Image `ninanung/nginx-proxy` instead which offers a temporary fix until `jwilder/nginx-proxy` is updated to support M1 Macs.
 
 The domain `colasloth.com` is configured so that all subdomains point to `127.0.0.1`. More information about how this works can be found at [colasloth.github.io](https://colasloth.github.io), but in brief it's a simple DNS "hack". Several other domains serving the same purpose exist, such as `localtest.me`, `lvh.me`, and `vcap.me`, to name a few. In any case, let's use `colasloth.com` here:
 
