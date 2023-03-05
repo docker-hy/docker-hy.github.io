@@ -228,27 +228,124 @@ Adminer actually assumes that the database has DN Sname  _db_ so with this name 
 
 <exercise name="Exercise 2.6">
 
-Add database to example backend.
+Let us continue with the example app that we worked with in [Exercise 2.4](/part-2/2-docker-networking#non-tmc-exercise-exercise-24).
 
-Lets use a postgres database to save messages. We won't need to configure a volume since the official postgres image
-sets a default volume for us. Lets use the postgres image documentation to our advantage when configuring: [https://hub.docker.com/\_/postgres/](https://hub.docker.com/_/postgres/). Especially part _Environment Variables_ is of interest.
+Now you should add database to example backend.
+
+Use a Postgres database to save messages. For now there is no need to configure a volume since the official postgres image sets a default volume for us. Use the Postgres image documentation to your advantage when configuring: [https://hub.docker.com/\_/postgres/](https://hub.docker.com/_/postgres/). Especially part _Environment Variables_ is a valuable one.
 
 The backend [README](https://github.com/docker-hy/material-applications/tree/main/example-backend) should have all the information needed to
 connect.
 
-The button won't turn green but you can send messages to yourself.
+There is again a button (and a form!) in the frontend that you can use to ensure your configuration is done right.
 
 Submit the docker-compose.yml
 
 *  TIP: When configuring the database, you might need to destroy the automatically created volumes. Use command `docker volume prune`, `docker volume ls` and `docker volume rm` to remove unused volumes when testing. Make sure to remove containers that depend on them beforehand.
 
-* `restart: unless-stopped` can help if the postgres takes a while to get ready
+* `restart: unless-stopped` can help if the Postgres takes a while to get ready
 
 <img src="../img/exercises/back-front-redis-and-database.png" />
 
 </exercise>
 
 <exercise name="Exercise 2.7">
+
+Postgres image uses a volume by default. Define manually a volume for the database in a convenient location such as in `./database` so tyo should use now a [bind mount](https://docs.docker.com/storage/bind-mounts/). The image [documentation](https://github.com/docker-library/docs/blob/master/postgres/README.md#where-to-store-data) may help you with the task.
+
+After you have configured the bind mount volume:
+
+- Save a few messages through the frontend
+- Run `docker compose down`
+- Run `docker compose up` and see that the messages are available after refreshing browser
+- Run `docker compose down` and delete the volume folder manually
+- Run `docker compose up` and the data should be gone
+
+> TIP: To save you the trouble of testing all of those steps, just look into the folder before trying the steps. If
+> it's empty after `docker compose up` then something is wrong.
+
+Submit the docker-compose.yml
+
+The benefit of a bind mount is that since you now exactly where the data is in your file system, it is easy to create backups. If Docker managed volumes are used, the location of the data in the file system can not be controlled and that makes backups a bit less trivial...
+
+</exercise>
+
+<exercise name="Exercise 2.8">
+
+Add [Nginx](https://hub.docker.com/_/nginx) to example to work as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) in front of the example app fronend and backend. According to Wikipedia
+
+_A reverse proxy is a type of proxy server that retrieves resources on behalf of a client from one or more servers. These resources are then returned to the client, appearing as if they originated from the reverse proxy server itself._
+
+<img src="../img/exercises/back-front-redis-database-and-nginx.png" />
+
+So in our case, the reverse proxy will be the single point of entry to our application, and the final goal will be to set both the React frontend and the Express backend behind the reverse proxy.
+
+The idea is that broser makes _all_ requests to _http://localhost_. If the request has a url prefix _http://localhost/api_, Nginx should forward the request to the backend container. All the other requests are directed the frontend container.
+
+So, at the end you should see that the frontend is accessible simply by going to http://localhost. Buttons may have stopped working, do not worry about them, we shall fix that later.
+
+The following file should be set to _/etc/nginx/nginx.conf_ inside the nginx container. You can use a file bind mount where the contents of the file is the following:
+
+```bash
+events { worker_connections 1024; }
+
+http {
+  server {
+    listen 80;
+
+    location / {
+      proxy_pass _frontend-connection-url_;
+    }
+
+    # configure here where requests to http://localhost/api/...
+    # are forwarded
+    location /api/ {
+      proxy_set_header Host $host;
+      proxy_pass _backend-connection-url_;
+    }
+  }
+}
+```
+
+Nginx, backend and frontend should be connected in the same network. See the image above for how the services are connected. You find [Nginx-documentation](https://www.nginx.com/resources/wiki/start/topics/examples/full/) helpful, but remember, the configuration you need is pretty straight forward, if you end up doing complex things, you are most likely doing something wrong.
+
+If and when your app "does not work", remember to have a look in log, it can be pretty helpful in pinpointing errors:
+
+```bash
+2_7-proxy-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+2_7-proxy-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+2_7-proxy-1  | 2023/03/05 09:24:51 [emerg] 1#1: invalid URL prefix in /etc/nginx/nginx.conf:8
+2_7-proxy-1 exited with code 1
+```
+
+Submit the docker-compose.yml
+
+<text-box name="Tips for making sure the backend connection works" variant="hint">
+
+Try using your browser to access http://localhost/api/ping and see if it answers pong
+
+It might be Nginx configuration problem: Add trailing `/` to the backend url in the nginx.conf could do the trick...
+
+</text-box>
+
+</exercise>
+
+
+<exercise name="Exercise 2.9">
+
+Some buttons may have stopped working in the frontend + backend project. Make sure that every button for exercises
+works.
+
+This may need a peek into the browsers developer consoles again like back part 1. The buttons of nginx exercise and
+the first button behave differently but you want them to match.
+
+If you had to do any changes explain what you had to change.
+
+Submit the docker-compose.yml and both dockerfiles.
+
+</exercise>
+
+<exercise name="Exercise 2.10">
 
 Configure a [machine learning](https://en.wikipedia.org/wiki/Machine_learning) project.
 
@@ -271,99 +368,5 @@ Submit the docker-compose.yml
 * It will take SEVERAL minutes to build the docker images, download training pictures and train the classifying model.
 
 This exercise was created by [Sasu Mäkinen](https://github.com/sasumaki)
-
-</exercise>
-
-<exercise name="Exercise 2.8">
-
-Add [nginx](https://hub.docker.com/_/nginx) to example frontend + backend.
-
-<img src="../img/exercises/back-front-redis-database-and-nginx.png" />
-
-Accessing your service from arbitrary port is counter intuitive since browsers use 80 (http) and 443 (https) by
-default. And having the service refer to two origins in a case where there's only one backend isn't desirable either. We will skip the SSL setup for https/443.
-
-Nginx will function as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) for us (see the image above).
-The requests arriving at anything other than /api will be redirected to frontend container and /api will get
-redirected to backend container.
-
-At the end you should see that the frontend is accessible simply by going to http://localhost and the button works.
-Other buttons may have stopped working, do not worry about them.
-
-As we will not start configuring reverse proxies on this course you can have a simple config file:
-
-The following file should be set to /etc/nginx/nginx.conf inside the nginx container. You can use a file volume where
-the contents of the file are the following:
-
-```
-events { worker_connections 1024; }
-
-http {
-  server {
-    listen 80;
-
-    location / {
-      proxy_pass _frontend-connection-url_;
-    }
-
-    location /api/ {
-      proxy_set_header Host $host;
-      proxy_pass _backend-connection-url_;
-    }
-  }
-}
-```
-
-Nginx, backend and frontend should be connected in the same network. See the image above for how the services are connected.
-
-Submit the docker-compose.yml
-
-
-<text-box name="Tips for making sure the backend connection works" variant="hint">
-
-Try using your browser to access http://localhost/api/ping and see if it answers pong
-
-It might be nginx configuration problem: Add trailing `/` to the backend url in the nginx.conf.
-
-</text-box>
-
-</exercise>
-
-<exercise name="Exercise 2.9">
-
-Postgres image uses a volume by default. Manually define volumes for the database in convenient location such as in
-`./database` . Use the image documentations (postgres) to help you with the task. You may do the same for redis as
-well.
-
-After you have configured the volume:
-
-- Save a few messages through the frontend
-- Run `docker compose down`
-- Run `docker compose up` and see that the messages are available after refreshing browser
-- Run `docker compose down` and delete the volume folder manually
-- Run `docker compose up` and the data should be gone
-
-Maybe it would be simpler to back them up now that you know where they are.
-
-> TIP: To save you the trouble of testing all of those steps, just look into the folder before trying the steps. If
-> it's empty after docker compose up then something is wrong.
-
-> TIP: Since you may have broken the buttons in nginx exercise you should test with a version of docker-compose.yml that doesn't break the buttons
-
-Submit the docker-compose.yml
-
-</exercise>
-
-<exercise name="Exercise 2.10">
-
-Some buttons may have stopped working in the frontend + backend project. Make sure that every button for exercises
-works.
-
-This may need a peek into the browsers developer consoles again like back part 1. The buttons of nginx exercise and
-the first button behave differently but you want them to match.
-
-If you had to do any changes explain what you had to change.
-
-Submit the docker-compose.yml and both dockerfiles.
 
 </exercise>
