@@ -282,7 +282,7 @@ So in our case, the reverse proxy will be the single point of entry to our appli
 
 The idea is that broser makes _all_ requests to _http://localhost_. If the request has a url prefix _http://localhost/api_, Nginx should forward the request to the backend container. All the other requests are directed the frontend container.
 
-So, at the end you should see that the frontend is accessible simply by going to http://localhost. Buttons may have stopped working, do not worry about them, we shall fix that later.
+So, at the end you should see that the frontend is accessible simply by going to http://localhost. All buttons, except the one labelled _Exercise 2.8_ may have stopped working, do not worry about them, we shall fix that later.
 
 The following file should be set to _/etc/nginx/nginx.conf_ inside the nginx container. You can use a file bind mount where the contents of the file is the following:
 
@@ -333,19 +333,82 @@ It might be Nginx configuration problem: Add trailing `/` to the backend url in 
 
 <exercise name="Exercise 2.9">
 
-Some buttons may have stopped working in the frontend + backend project. Make sure that every button for exercises
-works.
+Most of the buttons may have stopped working in the example application. Make sure that every button for exercises works.
 
-This may need a peek into the browsers developer consoles again like back part 1. The buttons of nginx exercise and
-the first button behave differently but you want them to match.
+Remember to take a peek into the browsers developer consoles again like we did back [part 1](/part-1/6-docker-hub), remember also [this](https://github.com/docker-hy/material-applications/tree/main/example-frontend#exercise-114---to-connect-to-backend) and [this](https://github.com/docker-hy/material-applications/tree/main/example-backend).
 
-If you had to do any changes explain what you had to change.
+The buttons of Nginx exercise and the first button behave differently but you want them to match.
 
-Submit the docker-compose.yml and both dockerfiles.
+If you had to do any changes explain what you did and where.
+
+Submit the docker-compose.yml and both Dockerfiles.
 
 </exercise>
 
 <exercise name="Exercise 2.10">
+
+Now we have the reverse proxy up and running! All the communication to our app should be done through the reverse proxy and direct access (eg. accessing the backend with a GET to http://localhost:8080/ping ) should be prevented.
+
+Use a port scanner, eg <https://hub.docker.com/r/networkstatic/nmap> to ensure that there are no extra ports open in the host.
+
+It might be enough to just run
+
+```
+$ docker run -it --rm --network host networkstatic/nmap localhost
+```
+
+If you have an M1/M2 Mac, you might need to build the image yourself.
+
+The result looks like the following (I used a self-built image):
+
+```bash
+$ docker run -it --rm --network host nmap localhost
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-05 12:28 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000040s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 996 closed tcp ports (reset)
+PORT     STATE    SERVICE
+80/tcp   filtered http
+111/tcp  open     rpcbind
+5000/tcp filtered commplex-link
+8080/tcp filtered http-proxy
+
+Nmap done: 1 IP address (1 host up) scanned in 1.28 seconds
+```
+
+As we see, there are two suspicious open ports: 5000 and 8080. So it is obvious that the frontend and backend are still directly accessible in the host network. This should be fixed!
+
+You are done when the port scan report looks something like this:
+
+```bash
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-05 12:39 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000040s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 998 closed tcp ports (reset)
+PORT    STATE    SERVICE
+80/tcp  filtered http
+111/tcp open     rpcbind
+
+Nmap done: 1 IP address (1 host up) scanned in 1.28 seconds
+```
+
+<text-box name="Publishing ports to host network" variant="hint">
+
+There is an important lesson about Docker networking and ports to be learned in this exercise.
+
+When we do a [port mapping](https://docs.docker.com/desktop/networking/#port-mapping), in `docker run -p 8001:80 ...` or in Docker Compose file, we are [publishing](https://docs.docker.com/config/containers/container-networking/#published-ports) a container port to the host network to be accessible in localhost.
+
+The container port is there within the Docker network accessible by the other containers who are in the same network even if we do not publish anything. So publishing the ports is only for exposing ports outside the Docker network. If no direct access outside the network is not needed, then we just do not publish anything.
+
+</text-box>
+
+</exercise>
+
+<exercise name="Exercise 2.11">
+
+We are finally done with the example app and it is time to move on!
 
 Configure a [machine learning](https://en.wikipedia.org/wiki/Machine_learning) project.
 
