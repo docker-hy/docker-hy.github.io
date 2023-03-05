@@ -324,7 +324,7 @@ Submit the docker-compose.yml
 
 Try using your browser to access http://localhost/api/ping and see if it answers pong
 
-It might be Nginx configuration problem: Add trailing `/` to the backend url in the nginx.conf could do the trick...
+It might be Nginx configuration problem. Ensure there is a trailing / on the backend url as specified under the location /api/ context in the nginx.conf.
 
 </text-box>
 
