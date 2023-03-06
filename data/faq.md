@@ -17,7 +17,7 @@ There's no requirement to sign up for the course until after you've completed th
 
 The course is 1-3 ECTS credits depending on the number of completed parts.
 
-The certificate will be available through the submission application. For exchange students and students with Finnish social security number the ECTS credits are available through open university
+The certificate will be available through the submission application. ECTS credits are available through open university for everybody with no cost!
 
 ## How do I submit the exercises?
 
