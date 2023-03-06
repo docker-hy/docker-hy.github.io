@@ -330,7 +330,6 @@ It might be Nginx configuration problem. Ensure there is a trailing / on the bac
 
 </exercise>
 
-
 <exercise name="Exercise 2.9">
 
 Most of the buttons may have stopped working in the example application. Make sure that every button for exercises works.
@@ -410,7 +409,7 @@ The container port is there within the Docker network accessible by the other co
 
 We are finally done with the example app and it is time to move on!
 
-Configure a [machine learning](https://en.wikipedia.org/wiki/Machine_learning) project.
+Configure a [machine learning](https://en.wikipedia.org/wiki/Machine_learning) project with Docker compose.
 
 Look into machine learning project created with Python and React and split into three parts:
 [frontend](https://github.com/docker-hy/ml-kurkkumopo-frontend),

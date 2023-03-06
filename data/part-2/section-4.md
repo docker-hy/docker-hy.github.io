@@ -4,13 +4,17 @@ title: 'Containers in development'
 hidden: false
 ---
 
-Containers are not only great in production. They can be used in development environments as well and offer a number of benefits. The same works-on-my-machine problem is faced often when a new developer joins the team. Not to mention the headache of switching runtime versions or a local database!
+Containers are not only great in production. They can be used in development environments as well and offer a number of benefits. The same _works-on-my-machine_ problem is faced often when a new developer joins the team. Not to mention the headache of switching runtime versions or a local database!
 
-In our team at the University of Helsinki, the target for all project development environments is to have the setup so that a new developer only needs to install docker to get started. Of course, the target is usually missed as you need things like your favorite text editor.
+For an example, a [software development team](https://toska.dev/) at the University of Helsinki has a fully [containerized development environment](https://ethesis.helsinki.fi/repository/handle/123456789/30995). The principle in all development projects is to have a setup so that a new developer only needs to install Docker and clone the project code from GitHub to get started. Not a single dependency is ever installed on to host machine, Git, Docker and the text editor of choice is only thing that is needed.
 
-Even if your application is not completely containerized during development, containers can be of use. For example, say you need mongodb version 4.0.22 installed in port 5656. It's now oneliner: "docker run -p 5656:27017 mongo:4.0.22" (mongodb uses 27017 as default port).
+Even if your application is not completely containerized during development, containers can very helpful. For example, say you need MongoDB version 4.0.22 installed in port 5656. It's now oneliner: "docker run -p 5656:27017 mongo:4.0.22" (MongoDB uses 27017 as default port).
 
-Let's containerize my node development environment. This will need some insider knowledge of node. But here is a simplified explanation if you're not familiar: libraries are defined in `package.json` and `package-lock.json` and installed with `npm install`. npm is node package manager and node is the runtime. To run application with the packages we have script defined in package.json that instructs node to run index.js, the main/entry file in this case the script is executed with `npm start`. The application already includes code to watch for changes in the filesystem and restart the application if any changes are detected.
+Let's containerize a NodeJS development environment. As you perhaps know [NodeJS](https://nodejs.org/en/) is a cross-platform JavaScript runtime that makes it possible to run JavaScript in your machine, servers and embedded devices, among many other platforms
+
+The setup requires some experteese on the way how NodeJS works. Here is a simplified explanation if you're not familiar: libraries are defined in `package.json` and `package-lock.json` and installed with `npm install`. [npm](https://www.npmjs.com/) is the Node package manager.
+
+To run application with the packages we have script defined in package.json that instructs Node to execute index.js, the main/entry file in this case the script is executed with `npm start`. The application already includes code to watch for changes in the filesystem and restart the application if any changes are detected.
 
 The project "node-dev-env" is here [https://github.com/docker-hy/material-applications/tree/main/node-dev-env](https://github.com/docker-hy/material-applications/tree/main/node-dev-env). I already included a development Dockerfile and a helpful docker-compose.yml.
 
@@ -96,8 +100,8 @@ The next exercise can be extremely easy or extremely hard. Feel free to have fun
 
 <exercise name="Exercise 2.11">
 
-  Select a project that you already have and start utilizing containers in the development environment.
+  Select some of your own development projects and start utilizing containers in the development environment.
 
-  Explain what you have done. It can be anything, ranging from having supporting docker-compose.yml to have services containerized to developing inside a container.
+  Explain what you have done. It can be anything, e.g., a support for docker-compose.yml to have services (such as databases) containerized or even a fully blown containerized development environment.
 
 </exercise>
