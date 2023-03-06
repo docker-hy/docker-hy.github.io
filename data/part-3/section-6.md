@@ -14,18 +14,7 @@ Enrolling after each part is required for the ECTS credits. Now that you have co
 
 NOTE!
 
-- Enrollment for the course through the Open University is possible until May 22, 2022.
+- Enrollment for the course through the Open University is possible until June 18, 2023.
 
 - Credits for the course are only available to those students who have successfully enrolled on the course through the Open University and have completed the course according to the instructions.
 
-**\*** Electronic enrollment is available if you meet one of the following criteria:
-
-- You have a Finnish personal identity number
-
-- you are a student at the University of Helsinki, or
-
-- you are a student at a HAKA member institution.
-
-### If you are not a student in Finland and want to enroll on the course and receive ECTS credits. ###
-
-Read the guide here under “Re­gis­tra­tion without a Finnish per­sonal identity code or on­line bank­ing ID at the Uni­versity’s Ad­mis­sions Services”: <https://www.helsinki.fi/en/open-university/studying/beginning-your-studies/registration-and-fees>

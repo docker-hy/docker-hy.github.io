@@ -6,23 +6,25 @@ hidden: false
 
 We've focused on using Docker as a tool to solve various types of problems. Meanwhile we have decided to push some of the issues until later and completely ignored others.
 
-The goal for this part is to look into the best practices and improve our processes.
+The goal for this part is to look into some of the best conainer practices and improve our processes.
 
-In part 1 we talked about how alpine can be a lot smaller than Ubuntu but didn't really care about why we'd choose one above the other.
-On top of that, we have been running the applications as root, which is potentially dangerous. In addition, we're still restricting ourselves to one physical computer. Unfortunately, the last problem is out of the scope of this course. But we will get to learn about different solutions.
+In [part 1](/part-1/3-in-depth-dive-to-images#non-tmc-exercise-exercise-15-sizes-of-images) we talked about how [Alpine Linux](https://www.alpinelinux.org/) image can be quite a bit than Ubuntu but didn't really care about why we'd choose one above the other. On top of that, we have been running the applications as [root](https://en.wikipedia.org/wiki/Superuser), i.e. the super user, which is potentially dangerous.
 
-## Look into the ubuntu image ##
+## Look into the Ubuntu image ##
 
-Let's look into the ubuntu image on [Docker Hub](https://hub.docker.com/r/library/ubuntu/)
+Let's look into the Ubuntu image on [Docker Hub](https://hub.docker.com/r/library/ubuntu/)
 
 The description/readme says:
 
     What's in this image?
 
-     This image is built from official rootfs tarballs provided by Canonical (specifically, https://partner-images.canonical.com/core/).
+     This image is built from official rootfs tarballs provided by
+     Canonical (specifically, https://partner-images.canonical.com/core/).
 
 
-From the links in the Docker Hub page we can guess (not truly know) that the image is built from <https://github.com/tianon/docker-brew-ubuntu-core> - So from a repository owned by a person named "Tianon Gravi".
+From the links in the Docker Hub page we can see that the image is built from <https://git.launchpad.net/cloud-images/+oci/ubuntu-base>.
+
+**STARTING FROM HERE ALL DEPRECATED**
 
 In that git repository's [README](https://github.com/tianon/docker-brew-ubuntu-core/tree/master#scripts-to-prepare-updates-to-the-ubuntu-official-docker-images) as step 7 it says:
 
