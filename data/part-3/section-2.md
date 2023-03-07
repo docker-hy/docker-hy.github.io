@@ -12,11 +12,11 @@ According to [Gitlab](https://about.gitlab.com/topics/ci-cd/):
 
 Let us now see how one can set up a deployment pipeline using [GitHub Actions](https://github.com/features/actions) and [Watchtower](https://containrrr.dev/watchtower/) that can be used to automatically deploy containerized software to _any_ machine. So every time you commit the code in your machine, the pipeline builds the image and starts it up in the server.
 
-Since we cannot assume that everyone has access to their own server, we will demonstrate the pipeline using _your local machine_ as the development target, but the exactly same steps can be used for Raspberry Pi or even a virtual machine in the cloud (such as one provided by [Hetzner](https://www.hetzner.com/cloud)).
+Since we cannot assume that everyone has access to their own server, we will demonstrate the pipeline using _a local machine_ as the development target, but the exactly same steps can be used for Raspberry Pi or even a virtual machine in the cloud (such as one provided by [Hetzner](https://www.hetzner.com/cloud)).
 
 We will use GitHub Actions to build an image, push the image to Docker Hub, and then use a project called "Watchtower" automatically pull the image from there.
 
-Let's work with the repository [https://github.com/docker-hy/docker-hy.github.io](https://github.com/docker-hy/docker-hy.github.io) as it already has a Dockerfile and the GitHub Actions config for our convenience.
+As example, we will look repository [https://github.com/docker-hy/docker-hy.github.io](https://github.com/docker-hy/docker-hy.github.io), that is, the material of this course.
 
 As was said [GitHub Actions](https://github.com/features/actions) is used to implement one part of the deployment pipeline. The [documentation](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) gives the following overview:
 
@@ -65,11 +65,11 @@ The [workflow](https://docs.github.com/en/actions/using-workflows) has one [job]
 
 The first action was one of the ready made actions that GitHub provides. The latter two are official actions offered by [Docker](https://github.com/docker). See [here](https://github.com/marketplace/actions/build-and-push-docker-images) for more info about the official Docker GitHub Actions.
 
-Before the workflow will work we will need to add two [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) to the repository: `DOCKERHUB_TOKEN` and `DOCKERHUB_USERNAME`. This is done by opening the repository in browser and first pressing *Settings* then *Secrets*. The `DOCKERHUB_TOKEN` can be created in Docker Hub, click your username and then *Account Settings* and *Security*.
+Before the workflow will work, two [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) should be added to the GitHub repository: `DOCKERHUB_TOKEN` and `DOCKERHUB_USERNAME`. This is done by opening the repository in browser and first pressing *Settings* then *Secrets*. The `DOCKERHUB_TOKEN` can be created in Docker Hub from the  *Account Settings / Security*.
 
-GitHub Actions are doing only the "first half" of the deployment pipeline: they are ensuring that every push to GitHub is built to an Docker image that is ushed to Docker Hub.
+GitHub Actions are doing only the "first half" of the deployment pipeline: they are ensuring that every push to GitHub is built to an Docker image that is pushed to Docker Hub.
 
-For the other half of of our deployment pipeline we will use a containerized service called [Watchtower](https://github.com/containrrr/watchtower) that is an open source project that automates the task of updating images. Watchtower will poll the source of the image (in this case Docker Hub) for changes in the containers that are running. The container that is running will be updated when a new version of the image is pushed to Docker Hub. Watchtower respects tags e.g. container using ubuntu:18.04 will not be updated unless a new version of ubuntu:18.04 is released.
+The other half of the deployment pipeline is implemented by a containerized service called [Watchtower](https://github.com/containrrr/watchtower) that is an open source project that automates the task of updating images. Watchtower will poll the source of the image (in this case Docker Hub) for changes in the containers that are running. The container that is running will be updated and automatically restarted when a new version of the image is pushed to Docker Hub. Watchtower respects tags e.g. container using ubuntu:18.04 will not be updated unless a new version of ubuntu:18.04 is released.
 
 <text-box name="Security reminder: Docker Hub accessing your computer" variant="hint">
 
@@ -77,17 +77,12 @@ Note that now anyone with access to your Docker Hub also has access to your PC t
 
 </text-box>
 
-Let us create a docker-compose.yml that can be used to run Watchtower:
+Watchtower can be run eg. using the following Docker Compose file:
 
 ```yaml
 version: "3.8"
 
 services:
-  coursematerial:
-    image: devopsdockeruh/coursepage
-    ports:
-      - 4000:80
-    container_name: coursematerial
   watchtower:
     image: containrrr/watchtower
     environment:
@@ -97,9 +92,9 @@ services:
     container_name: watchtower
 ```
 
-Beware that when starting Watchtower with _docker compose up_,  it will try to update **every** image running in case there is a new version. Check the [documentation](https://containrrr.github.io/watchtower/) if you want to prevent this.
+One needs to be careful when starting Watchtower with _docker compose up_,  since it will try to update **every** image running the machine. The [documentation](https://containrrr.github.io/watchtower/) describes how this can be prevented.
 
-<exercise name="Exercise 3.1: WORK IN PROGRESS...">
+<exercise name="Exercise 3.1: Your pipeline">
 
   Create now a similar deployment pipeline to a simple NodeJS/Express app found
 [here](https://github.com/docker-hy/material-applications/tree/main/express-app).
@@ -125,20 +120,37 @@ jobs:
 
 The earlier example still uses the old GitHub naming convention and calls the main branch _master_.
 
-Muuta ...
+Some of the action that the above example uses are a bit outdated, so go throug the documentation
 
-fakap:
+- [actions/checkout](https://github.com/actions/checkout)
+- [docker/login-action](https://github.com/docker/login-action)
+- [docker/build-push-action](https://github.com/docker/
+
+and use the most recent versions in your workflow. Keep on eye the GitHub Actions page to see that your actions are working:
 
 <img src="../img/3/gha.png">
 
-  Then Watchman....
+Ensure also from Docker Hub that your image gets pushed there.
 
+Next, run your image locally in detached mode, and ensure that you can acces it with browser.
+
+Now set up and run the [Watchtower](https://github.com/containrrr/watchtower) just as described above.
+
+You might do these two in a single step as it was done above so that they share the Docker Compose
+
+Now your deployment pipeline is set up! Ensure that it works:
+- make a change your code
+- commit and push the changes to GitHub
+- wait for some time (the time it takes for GitHub Action to build and push the image and the Watchtower poll interval)
+- reload the browser to ensure that Watchtower has started the new version (that is, your changes are visible)
 
   Submit a link to the repository with the config.
 
 </exercise>
 
 <exercise name="Exercise 3.2: A deployment pipeline to a cloud service">
+
+  TODO change to Fly/Render...
 
   Let's create our first deployment pipeline!
 
