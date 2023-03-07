@@ -99,9 +99,9 @@ One needs to be careful when starting Watchtower with _docker compose up_,  sinc
   Create now a similar deployment pipeline to a simple NodeJS/Express app found
 [here](https://github.com/docker-hy/material-applications/tree/main/express-app).
 
-  Either for the project or copy the files to your own repository. Set up simillar deployment pipeline (or the "first half") using GitHub Actions that was just described. Ensure that a new image gets pushed to Docker Hub every time you push the code to GitHub (you may eg. change the message the app shows).
+  Either for the project or copy the files to your own repository. Set up similar deployment pipeline (or the "first half") using GitHub Actions that was just described. Ensure that a new image gets pushed to Docker Hub every time you push the code to GitHub (you may eg. change the message the app shows).
 
-Note that there is a importat change that you should make to the above the workflow configuration, the branch should be named _main_:
+Note that there is importat change that you should make to the above workflow configuration, the branch should be named _main_:
 
 ```yaml
 name: Release NodeJS app
@@ -120,7 +120,7 @@ jobs:
 
 The earlier example still uses the old GitHub naming convention and calls the main branch _master_.
 
-Some of the action that the above example uses are a bit outdated, so go throug the documentation
+Some of the actions that the above example uses are a bit outdated, so go through the documentation
 
 - [actions/checkout](https://github.com/actions/checkout)
 - [docker/login-action](https://github.com/docker/login-action)
@@ -132,14 +132,14 @@ and use the most recent versions in your workflow. Keep on eye the GitHub Action
 
 Ensure also from Docker Hub that your image gets pushed there.
 
-Next, run your image locally in detached mode, and ensure that you can acces it with browser.
+Next, run your image locally in detached mode, and ensure that you can access it with the browser.
 
 Now set up and run the [Watchtower](https://github.com/containrrr/watchtower) just as described above.
 
 You might do these two in a single step as it was done above so that they share the Docker Compose
 
 Now your deployment pipeline is set up! Ensure that it works:
-- make a change your code
+- make a change to your code
 - commit and push the changes to GitHub
 - wait for some time (the time it takes for GitHub Action to build and push the image and the Watchtower poll interval)
 - reload the browser to ensure that Watchtower has started the new version (that is, your changes are visible)
@@ -150,13 +150,13 @@ Now your deployment pipeline is set up! Ensure that it works:
 
 <exercise name="Exercise 3.2: A deployment pipeline to a cloud service">
 
-  In [Exercise 1.16](/part-1/6-docker-hub#non-tmc-exercise-exercise-116-cloud-deployment) you deployed a containerized to cloud.
+  In [Exercise 1.16](/part-1/6-docker-hub#non-tmc-exercise-exercise-116-cloud-deployment) you deployed a containerized app to a cloud service.
 
-  Now it is time to improvement your solution by building it a deployment pipeline, so thate every push to GitHub results a new deployment to the cloud service.
+  Now it is time to improve your solution by building a deployment pipeline for it so that every push to GitHub results in a new deployment to the cloud service.
 
-  You will most likely find a ready made GitHub Action that does most of the heavy lifting your you...
+  You will most likely find a ready-made GitHub Action that does most of the heavy lifting your you... Google is your friend!
 
-  Submit a link to the repository with the config.
+  Submit a link to the repository with the config. The repository README should have a link to the deployed application.
 
 </exercise>
 
