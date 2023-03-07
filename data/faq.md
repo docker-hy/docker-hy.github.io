@@ -29,7 +29,7 @@ No. You can use one or more repositories, the most important part is to name eve
 
 ## Can I edit a submission?
 
-No. All exercises for a part must be submitted at the same time. If you marked exercises wrong by accident or wrote the repository name wrong, send an e-mail to jami.kousa@helsinki.fi.
+No. All exercises for a part must be submitted at the same time. If you marked exercises wrong by accident or wrote the repository name wrong, send an e-mail to matti.luukkainen@helsinki.fi.
 
 ## When and how can I get my credits?
 

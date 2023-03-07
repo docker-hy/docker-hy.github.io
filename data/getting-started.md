@@ -41,11 +41,11 @@ Knows why docker-compose is not an optimal production solution and what is.
 
 The DevOps with Docker course is split into 3 parts:
 
-- DevOps with Docker ([TKT21036](https://studies.helsinki.fi/opintotarjonta/cur/otm-43341e49-dfae-4899-95d6-a4da1c5ec47b))
-- DevOps with Docker: docker-compose ([TKT21037](https://studies.helsinki.fi/opintotarjonta/cur/otm-29ab3dee-9b30-4fbf-b7e7-dcbecd7218c5))
-- DevOps with Docker: security and optimization ([TKT21038](https://studies.helsinki.fi/opintotarjonta/cur/otm-3c890ee9-7598-4b5c-9922-2c26c0c3235b))
+- DevOps with Docker ([TKT21036](https://studies.helsinki.fi/opintotarjonta/cur/otm-a1a074e0-dc7f-4644-8796-04fab528ba36/TKT21036/DevOps_with_Docker))
+- DevOps with Docker: docker-compose ([TKT21037](https://studies.helsinki.fi/opintotarjonta/cur/otm-d37daa67-f5b1-4bdb-88a5-98107d2c63ea/TKT21037/DevOps_with_Docker_docker_compose))
+- DevOps with Docker: security and optimization ([TKT21038](https://studies.helsinki.fi/opintotarjonta/cur/otm-68b6e802-0b55-438c-85aa-1fd9d0ad80be/TKT21038/DevOps_with_Docker_security_and_optimization))
 
-You can click the links to visit each of the subcourse pages. However, all the details should be found on this page. If something is missing or unclear after reading this page, please contact jami.kousa@helsinki.fi or get in touch through Discord.
+You can click the links to visit each of the subcourse pages. However, all the details should be found on this page. If something is missing or unclear after reading this page, please contact matti.luukkainen@helsinki.fi or get in touch through Discord.
 
 ### Discord
 
