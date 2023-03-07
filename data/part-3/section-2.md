@@ -150,15 +150,11 @@ Now your deployment pipeline is set up! Ensure that it works:
 
 <exercise name="Exercise 3.2: A deployment pipeline to a cloud service">
 
-  TODO change to Fly/Render...
+  In [Exercise 1.16](/part-1/6-docker-hub#non-tmc-exercise-exercise-116-cloud-deployment) you deployed a containerized to cloud.
 
-  Let's create our first deployment pipeline!
+  Now it is time to improvement your solution by building it a deployment pipeline, so thate every push to GitHub results a new deployment to the cloud service.
 
-  For this exercise you can select which ever web application you already have containerized.
-
-  If you don't have any web applications available you can use any one from this course and modify it. (Such as the course material itself)
-
-  Use GitHub, Github Actions, and Heroku to deploy a container to heroku. You can also use other CI/CD tools instead of GitHub Actions.
+  You will most likely find a ready made GitHub Action that does most of the heavy lifting your you...
 
   Submit a link to the repository with the config.
 
