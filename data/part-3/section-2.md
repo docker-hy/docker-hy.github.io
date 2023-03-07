@@ -162,13 +162,38 @@ Now your deployment pipeline is set up! Ensure that it works:
 
 <exercise name="Exercise 3.3: Building images inside of a container">
 
-  Watchtower uses volume to docker.sock socket to access Docker daemon of the host from the container. By leveraging this ourselves we can create our own simple build service.
+  As seen from the Docker Compose file Watchtower uses a volume to [docker.sock](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock) socket to access the Docker daemon of the host from the container:
 
-  Create a project that downloads a repository from github, builds a Dockerfile located in the root and then publishes it into Docker Hub.
+  ```yaml
+services:
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    # ...
+```
 
-  You can use any programming language / technology for the project implementation. A simple bash script is viable.
+   In practice this means that Watchtower can run commands on Docker the same way we can "command" Docker from the cli with _docker ps_, _docker run_ etc.
 
-  Then create a Dockerfile for it so that it can be run inside a container.
+  We can easily use the same trick for ourselves! So if we mount the _docker.sock_ socket to a container, we can use the command _docker_ inside the container, just like we are using it in the host terminal!
+
+  Create a now script/program that downloads a repository from GitHub, builds a Dockerfile located in the root and then publishes it into the Docker Hub.
+
+  You can use any scripting or programming language to implement the script.
+
+  The script should be used so that as the first argument it gets the GitHub repositoy and as the second argument the Docker Hub repository. Eg. when run as follows
+
+  ```bash
+  ./builder.sh mluukkai/express_app mluukkai/testing
+  ```
+
+the script clones <https://github.com/mluukkai/express_app> builds the image and pushes it to Docker Hub repository mluukkai/testing
+
+
+Then create a Dockerfile for it so that it can be run inside a container. So you should be able to run it ...
+
+TODO example here pls
+
 
   Make sure that it can build at least some of the example projects.
 
