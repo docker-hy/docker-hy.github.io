@@ -209,4 +209,7 @@ Note that now the Docker Hub credentials are defined as environment variables si
 
 Submit the Dockerfile and the final version of your script.
 
+  Hint: you quite likely need to use [ENTRYPOINT]https://docs.docker.com/engine/reference/builder/#entrypoint() in this Exercise.
+  See [Part 1](/part-1/4-defining-start-conditions) for more.
+
 </exercise>
