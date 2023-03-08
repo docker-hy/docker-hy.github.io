@@ -14,7 +14,7 @@ Enrolling after each part is required for the ECTS credits. Now that you have co
 
 NOTE!
 
-- Enrollment for the course through the Open University is possible until June 30th, 2023.
+- Enrollment for the course through the Open University is possible until June 18th, 2023.
 
 - Credits for the course are only available to those students who have successfully enrolled on the course through the Open University and have completed the course according to the instructions.
 
