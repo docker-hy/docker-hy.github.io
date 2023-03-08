@@ -142,14 +142,12 @@ and this brings us to 36.9 megabytes in our `RUN` layer (from the original 76.7 
 <exercise name="Exercise 3.6">
 
   Return back to our [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) &
-  [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) Dockerfiles and you should see the some mistakes we now
+  [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) Dockerfiles and you should see some mistakes we now
   know to fix.
 
-  Document both image sizes at this point, as was done in the material. Optimize the Dockerfiles of both programs,
-  frontend and backend, by joining the RUN commands and removing useless parts.
+  Document both image sizes at this point, as was done in the material. Optimize the Dockerfiles of both programs, frontend and backend, by joining the RUN commands and removing useless parts.
 
-  After your improvements document the image sizes again. The size difference may not be very much yet. The frontend
-  should be around 432MB when using `FROM ubuntu:18.04`. The backend should be around 351MB. The sizes may vary.
+  After your improvements document the image sizes again. The size difference may not be very much yet. The frontend should be around 432MB when using `FROM ubuntu:18.04`. The backend should be around 351MB. The sizes may vary.
 
 
 </exercise>
@@ -281,7 +279,7 @@ As you can see, even though our jekyll image needed ruby during the build proces
 
 Often the best choice is to use a FROM **scratch** image as it doesn't have anything we don't explicitly add there, making it most secure option over time.
 
-<exercise name="Exercise 3.8 part 1: Multi-stage frontend">
+<exercise name="Exercise 3.8: Multi-stage frontend">
 
   Multi-stage builds. Lets do a multi-stage build for the
   [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) project since we've come so far with the application.
@@ -295,7 +293,7 @@ Often the best choice is to use a FROM **scratch** image as it doesn't have anyt
 
 </exercise>
 
-<exercise name="Exercise 3.8 part 2: Multi-stage backend">
+<exercise name="Exercise 3.9: Multi-stage backend">
 
   Lets do a multi-stage build for the [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) project since we've come so far with the application.
 
@@ -305,8 +303,10 @@ Often the best choice is to use a FROM **scratch** image as it doesn't have anyt
 
 </exercise>
 
-<exercise name="Exercise 3.9">
+<exercise name="Exercise 3.10">
+
   Do all or most of the optimizations from security to size for any other Dockerfile you have access to, in your own project or for example the ones used in previous "standalone" exercises.
 
   Please document Dockerfiles both before and after.
+
 </exercise>

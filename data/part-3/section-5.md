@@ -20,7 +20,7 @@ You can get to know Kubernetes with [k3s](https://k3s.io/) a lightweight Kuberne
 
 Rather than maintaining one yourself the most common way to use Kubernetes is by using a managed service by a cloud provider. Such as Google Kubernetes Engine (GKE) or Amazon Elastic Kubernetes Service (Amazon EKS) which are both offering some credits to get started.
 
-<exercise name="Exercise 3.10: Kubernetes">
+<exercise name="Exercise 3.11: Kubernetes">
 
   Familiarize yourself with Kubernetes terminology and draw a diagram.
 

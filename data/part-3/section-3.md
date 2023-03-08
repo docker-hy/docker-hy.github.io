@@ -93,6 +93,8 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 
   Make sure the containers start their processes as a non-root user.
 
-  > TIP `man chown` may help you if you have access errors
+  Backend image is based on [Alpine Linux](https://www.alpinelinux.org/), that does not support the command `useradd`. Google will surely help you a way to create user in an `alpine` based image.
+
+  Submit the Dockerfiles.
 
 </exercise>
