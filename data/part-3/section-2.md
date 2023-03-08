@@ -162,6 +162,22 @@ Now your deployment pipeline is set up! Ensure that it works:
 
 <exercise name="Exercise 3.3: Building images inside of a container">
 
+  Create a now script/program that downloads a repository from GitHub, builds a Dockerfile located in the root and then publishes it into the Docker Hub.
+
+  You can use any scripting or programming language to implement the script. Using [sh](https://www.shellscript.sh/) might make next exercise a bit easier... and do not worry if you have not used sh eariler, you do not need much for this exercise and Google helps.
+
+  The script should be used so that as the first argument it gets the GitHub repositoy and as the second argument the Docker Hub repository. Eg. when run as follows
+
+  ```bash
+  ./builder.sh mluukkai/express_app mluukkai/testing
+  ```
+
+  the script clones <https://github.com/mluukkai/express_app> builds the image and pushes it to Docker Hub repository mluukkai/testing
+
+</exercise>
+
+<exercise name="Exercise 3.4: Building images inside of a container">
+
   As seen from the Docker Compose file Watchtower uses a volume to [docker.sock](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock) socket to access the Docker daemon of the host from the container:
 
   ```yaml
@@ -177,22 +193,19 @@ services:
 
   We can easily use the same trick for ourselves! So if we mount the _docker.sock_ socket to a container, we can use the command _docker_ inside the container, just like we are using it in the host terminal!
 
-  Create a now script/program that downloads a repository from GitHub, builds a Dockerfile located in the root and then publishes it into the Docker Hub.
 
-  You can use any scripting or programming language to implement the script.
+Create a Dockerfile for it so that it can be run inside a container. So you should be able to run it ...
 
-  The script should be used so that as the first argument it gets the GitHub repositoy and as the second argument the Docker Hub repository. Eg. when run as follows
+You can run like this (split for better readability, pls note no can copypaste)
 
-  ```bash
-  ./builder.sh mluukkai/express_app mluukkai/testing
-  ```
+```
+docker run -e DOCKER_USER=mluukkai \
+  -e DOCKER_PWD=password_here \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  builder mluukkai/express_app mluukkai/testing2
+```
 
-the script clones <https://github.com/mluukkai/express_app> builds the image and pushes it to Docker Hub repository mluukkai/testing
 
-
-Then create a Dockerfile for it so that it can be run inside a container. So you should be able to run it ...
-
-TODO example here pls
 
 
   Make sure that it can build at least some of the example projects.

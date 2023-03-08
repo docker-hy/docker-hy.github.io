@@ -139,7 +139,7 @@ From the build output we can see that `ca-certificates` also adds `openssl`
 
 and this brings us to 36.9 megabytes in our `RUN` layer (from the original 76.7 megabytes).
 
-<exercise name="Exercise 3.4">
+<exercise name="Exercise 3.6">
 
   Return back to our [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) &
   [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) Dockerfiles and you should see the some mistakes we now
@@ -227,7 +227,7 @@ $ docker image push <username>/youtube-dl
 
 Also remember that unless specified the `:latest` tag will always just refer to the latest image build & pushed - that can basically contain anything.
 
-<exercise name="Exercise 3.5">
+<exercise name="Exercise 3.7">
 
   Document the image size before the changes.
 
@@ -281,7 +281,7 @@ As you can see, even though our jekyll image needed ruby during the build proces
 
 Often the best choice is to use a FROM **scratch** image as it doesn't have anything we don't explicitly add there, making it most secure option over time.
 
-<exercise name="Exercise 3.6 part 1: Multi-stage frontend">
+<exercise name="Exercise 3.8 part 1: Multi-stage frontend">
 
   Multi-stage builds. Lets do a multi-stage build for the
   [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) project since we've come so far with the application.
@@ -295,7 +295,7 @@ Often the best choice is to use a FROM **scratch** image as it doesn't have anyt
 
 </exercise>
 
-<exercise name="Exercise 3.6 part 2: Multi-stage backend">
+<exercise name="Exercise 3.8 part 2: Multi-stage backend">
 
   Lets do a multi-stage build for the [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) project since we've come so far with the application.
 
@@ -305,7 +305,7 @@ Often the best choice is to use a FROM **scratch** image as it doesn't have anyt
 
 </exercise>
 
-<exercise name="Exercise 3.7">
+<exercise name="Exercise 3.9">
   Do all or most of the optimizations from security to size for any other Dockerfile you have access to, in your own project or for example the ones used in previous "standalone" exercises.
 
   Please document Dockerfiles both before and after.
