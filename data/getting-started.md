@@ -6,46 +6,57 @@ information_page: true
 sidebar_priority: 4000
 ---
 
-The course material is meant to be read sequentially, part by part, from start to finish. To get a passing grade you have to complete each exercise. Except one exercise can be skipped for each part. Some of the exercises are marked as mandatory and the mandatory exercises can not be skipped. The exercises are placed in the material in such a way that you will have learned the necessary skills from the material prior to each given exercise. You can do the exercises as you're going through the material.
+Welcome to the DevOps with Docker course! This course is designed to be completed sequentially, from start to finish. Each part builds on the previous one, so it's important to read the material carefully and complete the exercises in order to develop the necessary skills.
 
-The course material does not consider all operating systems and as such some instructions may lack platform-specific details. But we've had students who've made it through the material with varying machines. Please make a [pull request](https://github.com/docker-hy/docker-hy.github.io#user-content-contributing-to-the-content) to the course material if you find any mistakes or wish to add something. You can also [contribute](https://github.com/docker-hy/docker-hy.github.io#user-content-contributing-to-the-content) through GitHub.
+To pass the course, you will need to complete all of the exercises. However, one exercise can be skipped per part, except for the exercises marked as mandatory. The mandatory exercises cannot be skipped.
 
-### Completing course
+The exercises are designed to reinforce the material covered in each part, and are placed at strategic points in the course to ensure that you have learned the necessary skills prior to attempting each exercise. You can complete the exercises at your own pace, and there is no deadline for submission outside of the last date, when the entire course ends.
 
-The course is composed of 3 parts. You should read through this page before starting with part 1. This part includes installation instructions and a serious warning. The parts should take 5-25 hours each to complete.
+When submitting your exercises, please follow the instructions provided in the course material. Exercises should be submitted in a specific format, which will be outlined in the instructions for each exercise.
 
-Here are additional instructions for completion after each part and at the end of this page.
+We hope that you enjoy the course and find it informative and engaging. Good luck!
+
+### About different architectures and contributing
+
+Please note that while Docker runs on all major operating systems and even on ARM architecture, this course material may not cover platform-specific details for all operating systems. However, we've had students successfully complete the course using a variety of machines and operating systems.
+
+If you encounter any issues while working through the course material on your particular system, we recommend consulting the Docker documentation or seeking help on the course forums. Our community is here to support you and help you succeed in the course!
+
+We welcome contributions to the course material from students and other members of the DevOps community! If you notice any mistakes, typos, or errors in the material, please consider submitting a pull request to the course repository on GitHub.
+
+Thank you in advance for your contributions to this open source project! Here you can find the [basic instructions for doing so](https://github.com/docker-hy/docker-hy.github.io#user-content-contributing-to-the-content).
 
 ### Grading
 
-Passing this course requires you to do the exercises for each part. This means generally every exercise, but you are allowed to skip one non-mandatory exercise in each part. Some of the exercises are mandatory and can not be skipped. This course is worth 1-3 credits depending on the completed parts.
-Completing part 1 gives you 1 credit. Completing parts 1 and 2 is worth 2 credits. Completing all of the parts will grant you 3 credits.
+Passing this course requires you to do the exercises for each part. This means generally every exercise, but you are allowed to skip one non-mandatory exercise in each part. Some of the exercises are mandatory and can not be skipped.
+
+This course is worth 1-3 credits depending on the completed parts. Completing part 1 gives you 1 credit. Completing parts 1 and 2 is worth 2 credits. Completing all of the parts will grant you 3 credits.
+
+There are additional instructions for completion after each part and at the end of this page.
 
 ### Learning objectives
 
-Part 1
+Part 1: DevOps with Docker ([TKT21036](https://studies.helsinki.fi/opintotarjonta/cur/otm-a1a074e0-dc7f-4644-8796-04fab528ba36/TKT21036/DevOps_with_Docker))
 
-Can explain what images and containers are and how they're related.
-Can build images with Docker for existing projects and run them.
+- Understand the fundamental concepts of Docker, including images and containers.
+- Learn how to build Docker images for existing projects and run them.
+- Understand how Docker can simplify the development process.
 
-Part 2
+Part 2: DevOps with Docker: docker-compose ([TKT21037](https://studies.helsinki.fi/opintotarjonta/cur/otm-d37daa67-f5b1-4bdb-88a5-98107d2c63ea/TKT21037/DevOps_with_Docker_docker_compose))
 
-Can manage complex multi-container applications with docker-compose.
+- Learn how to manage complex multi-container applications with Docker Compose.
+- Understand the role of Docker Compose in container orchestration
+- Practice deploying and managing real-world applications using Docker Compose.
 
-Part 3
+Part 3: DevOps with Docker: security and optimization ([TKT21038](https://studies.helsinki.fi/opintotarjonta/cur/otm-68b6e802-0b55-438c-85aa-1fd9d0ad80be/TKT21038/DevOps_with_Docker_security_and_optimization))
 
-Can optimize images sizes and security for production.
-Knows why docker-compose is not an optimal production solution and what is.
+- Learn how to optimize Docker images for production, including reducing image size and improving security.
+- Understand the limitations of using Docker Compose in production environments and the need for more advanced orchestration tools.
+- Explore alternative container orchestration solutions, including Kubernetes.
 
-### Course has multiple pages
+### Where to find information about the course?
 
-The DevOps with Docker course is split into 3 parts:
-
-- DevOps with Docker ([TKT21036](https://studies.helsinki.fi/opintotarjonta/cur/otm-a1a074e0-dc7f-4644-8796-04fab528ba36/TKT21036/DevOps_with_Docker))
-- DevOps with Docker: docker-compose ([TKT21037](https://studies.helsinki.fi/opintotarjonta/cur/otm-d37daa67-f5b1-4bdb-88a5-98107d2c63ea/TKT21037/DevOps_with_Docker_docker_compose))
-- DevOps with Docker: security and optimization ([TKT21038](https://studies.helsinki.fi/opintotarjonta/cur/otm-68b6e802-0b55-438c-85aa-1fd9d0ad80be/TKT21038/DevOps_with_Docker_security_and_optimization))
-
-You can click the links to visit each of the subcourse pages. However, all the details should be found on this page. If something is missing or unclear after reading this page, please contact matti.luukkainen@helsinki.fi or get in touch through Discord.
+All of the details you need to complete the course should be found on this page. If something is missing or unclear after reading this page, please contact matti.luukkainen@helsinki.fi or get in touch through Discord.
 
 ### Discord
 
@@ -61,7 +72,7 @@ Containers leverage the power of your own operating system. As such **by default
 
 I will try my best to alert you of potential risks as we encounter them, but due to the structure of the course we will focus on security in part 3.
 
-Please keep this in mind as you move through the installation and exercises. If you ever feel unsure about what you're doing, come to the channel and have a chat with us.
+Please keep this in mind as you move through the installation and exercises. If you ever feel unsure about what you're doing, come to the Discord channel and have a chat with us.
 
 ## Installing Docker
 
@@ -91,15 +102,17 @@ The sign up for ECTS credits and the course ends 18.6.2023! After that course is
 
 _Do not alter the code of the projects, unless by pull-requests to the original projects_
 
-You do not need to touch ruby, java, js or python code during this course. You may have to read their error messages.
+You do not need to touch Ruby, Java, Javascript or Python code during this course. You may have to read their error messages.
 
 Visit the Discord channel if you are stuck!
 
-## How to return exercises
+## How to submit the exercises
 
-Make a repository to GitHub and publish your solutions in clearly ordered files / folders. If you need help publishing using Git you should refer to their [guide](https://guides.github.com/activities/hello-world/). Make sure that the repository is available to me, either by using a public repository or a private repository and adding Jakousa as a collaborator.
+Make a repository to GitHub and publish your solutions in clearly ordered files / folders. If you need help publishing using Git you should refer to their [guide](https://guides.github.com/activities/hello-world/). Make sure that the repository is available to us, either by using a public repository or a private repository and adding Jakousa and mluukkai as collaborators.
 
-Most of the exercises will be focused on a Dockerfile and/or docker-compose.yml. In those cases, submitting the file is enough. In other cases, a picture or copy-paste from your command line or a link to Docker Hub and/or project inside the repository is enough. For the command line exercises at start the command `script` ([https://linux.die.net/man/1/script](https://linux.die.net/man/1/script)) may be helpful.
+Most of the exercises will be focused on a Dockerfile and/or docker-compose.yml. In those cases, submitting the file is enough. In other cases, a picture or copy-paste from your command line or a link to Docker Hub and/or project inside the repository is enough. For the command line exercises at start the command [script](https://linux.die.net/man/1/script) may be helpful.
+
+Because the course exercises are designed to build upon each other, it's more important that you document the exercises for yourself. We will be looking at the submissions of the later exercises as they are more demanding.
 
 When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/stats/courses/docker2023) to mark your exercises. You can **not** edit a submission, so make sure you have completed enough exercises for a part before submitting.
 
@@ -111,6 +124,6 @@ After you have returned all of the required exercises and wish to end your cours
 
 <img src="./img/incomplete_course.png">
 
-After that, ensure that the application has the message "Course marked as completed" and the date.
+After that, double-check that the application has the message "Course marked as completed" and the date. If the date is not visible, we have not been notified.
 
 <img src="./img/completed_course.png">
