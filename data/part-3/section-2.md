@@ -178,7 +178,7 @@ Now your deployment pipeline is set up! Ensure that it works:
 
 <exercise name="Exercise 3.4: Building images inside of a container">
 
-  As seen from the Docker Compose file Watchtower uses a volume to [docker.sock](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock) socket to access the Docker daemon of the host from the container:
+As seen from the Docker Compose file Watchtower uses a volume to [docker.sock](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock) socket to access the Docker daemon of the host from the container:
 
   ```yaml
 services:
@@ -193,10 +193,9 @@ services:
 
   We can easily use the same trick for ourselves! So if we mount the _docker.sock_ socket to a container, we can use the command _docker_ inside the container, just like we are using it in the host terminal!
 
+Dockerize now the script you did for the last exercise. You can use [this image](https://hub.docker.com/_/docker) to run Docker inside Docker!
 
-Create a Dockerfile for it so that it can be run inside a container. So you should be able to run it ...
-
-You can run like this (split for better readability, pls note no can copypaste)
+Your Dockerized could should be run like this (the command is divided to many lines for better readability, note that copy pasting a multiline command does not work):
 
 ```
 docker run -e DOCKER_USER=mluukkai \
@@ -205,9 +204,8 @@ docker run -e DOCKER_USER=mluukkai \
   builder mluukkai/express_app mluukkai/testing2
 ```
 
+Note that now the Docker Hub credentials are defined as environment variables since the script needs to login to Docker Hub for the push.
 
-
-
-  Make sure that it can build at least some of the example projects.
+Submit the Dockerfile and the final version of your script.
 
 </exercise>
