@@ -16,12 +16,12 @@ Are we ready for production yet? Short answer: no. Long answer: depends on the s
 
 Enrolling after each part is required for the ECTS credits. Now that you have completed part 2 use the following link to enroll in this course:
 
-- DevOps with Docker: Docker Compose, https://www.avoin.helsinki.fi/palvelut/esittely.aspx?s=otm-29ab3dee-9b30-4fbf-b7e7-dcbecd7218c5
+- DevOps with Docker: Docker Compose, https://www.avoin.helsinki.fi/palvelut/esittely.aspx?s=otm-d37daa67-f5b1-4bdb-88a5-98107d2c63ea
 
 If you wish to end in this part and not do the following parts, follow the instructions [at the bottom of getting started page](/getting-started)
 
 NOTE!
 
-- Enrollment for the course through the Open University is possible until June 18, 2023.
+- Enrollment for the course through the Open University is possible until June 30th, 2023.
 
 - Credits for the course are only available to those students who have successfully enrolled on the course through the Open University and have completed the course according to the instructions.

@@ -20,13 +20,13 @@ The starting and stopping of containers is a bit annoying, not to mention runnin
 
 Enrolling after each part is required for the ECTS credits. Now that you have completed part 1 use the following link to enroll in this course:
 
-- DevOps with Docker, https://www.avoin.helsinki.fi/palvelut/esittely.aspx?s=otm-43341e49-dfae-4899-95d6-a4da1c5ec47b
+- DevOps with Docker, https://www.avoin.helsinki.fi/palvelut/esittely.aspx?s=otm-a1a074e0-dc7f-4644-8796-04fab528ba36
 
 If you wish to end in this part and not do the following parts, follow the instructions [at the bottom of getting started page](/getting-started)
 
 NOTE!
 
-- Enrollment for the course through the Open University is possible until June 18, 2023.
+- Enrollment for the course through the Open University is possible until June 30th, 2023.
 
 - Credits for the course are only available to those students who have successfully enrolled on the course through the Open University and have completed the course according to the instructions.
 
