@@ -178,7 +178,7 @@ CMD <command that is executed on `docker container run`>
 
 and is the instruction set for building an image. We will look into Dockerfiles later when we get to build our own image.
 
-If we go back to the cooking metaphor, Dockerfile is the recipe.
+If we go back to the cooking metaphor, as Dockerfile provides the instructions needed to build an image you can think of that as the recipe for images. We're now 2 recipes deep, as Dockerfile is the recipe for an image and an image is the recipe for a container. The only difference is that Dockerfile is written by us, whereas image is written by our machine based on the Dockerfile!
 
 ## Container ##
 
