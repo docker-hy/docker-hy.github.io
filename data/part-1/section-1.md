@@ -142,10 +142,12 @@ So that's an image?
 Since we already know what containers are it's easier to explain images through them: Containers are instances of images. A basic mistake is to confuse images and containers.
 
 Cooking metaphor:
-* Image is pre-cooked, frozen treat.
-* Container is the delicious treat.
 
-With the cooking metaphor, the difficult task is creating the frozen treat while warming it up is relatively easy. Images require some work and knowledge to be created, but when you know how to create images you can leverage the power of containers in your own projects.
+Think of a container as a ready-to-eat meal that you can simply heat up and consume. An image, on the other hand, is the recipe or ingredients for that meal.
+
+So just like how you need a recipe and ingredients to make a meal, you need an image and a container runtime (Docker engine) to create a container. The image provides all the necessary instructions and dependencies for the container to run, just like a recipe provides the steps and ingredients to make a meal.
+
+In short, an image is like a blueprint or template, while a container is an instance of that blueprint or template.
 
 ## Image ##
 
