@@ -1,7 +1,5 @@
 ---
-path: '/part-2/4-containers-in-development'
 title: 'Containers in development'
-hidden: false
 ---
 
 Containers are not only great in production. They can be used in development environments as well and offer a number of benefits. The same _works-on-my-machine_ problem is faced often when a new developer joins the team. Not to mention the headache of switching runtime versions or a local database!
@@ -98,10 +96,13 @@ And now a page refresh shows that our code change fixed the issue. The developme
 
 The next exercise can be extremely easy or extremely hard. Feel free to have fun with it.
 
-<exercise name="Exercise 2.11">
+## Exercise 2.11
+
+
+:::info Exercise 2.11
 
   Select some of your own development projects and start utilizing containers in the development environment.
 
   Explain what you have done. It can be anything, e.g., a support for docker-compose.yml to have services (such as databases) containerized or even a fully blown containerized development environment.
 
-</exercise>
+:::

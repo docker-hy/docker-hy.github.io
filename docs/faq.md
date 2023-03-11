@@ -1,13 +1,7 @@
 ---
-path: "/faq"
-title: "Frequently asked questions"
-hidden: false
-information_page: true
-sidebar_priority: 3000
-separator_after: "DevOps with Docker"
+sidebar_position: 3
+title: "Frequently Asked Questions"
 ---
-
-<table-of-contents></table-of-contents>
 
 ## How do I sign up for the course?
 

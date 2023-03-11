@@ -1,7 +1,5 @@
 ---
-path: '/part-3/4-optimizing-the-image-size'
 title: 'Optimizing the image size'
-hidden: false
 ---
 
 A small image size has many advantages, firstly, it takes much less time to pull a small image from the registry. Another thing is the security: the bigger your image is the larger the surface area for an attack it has.
@@ -95,8 +93,9 @@ rm -rf /var/lib/apt/lists/*
 
 ... which brings us down to 94 MB.
 
+## Exercise 3.6
 
-<exercise name="Exercise 3.6">
+:::info Exercise 3.6
 
   Return now back to our [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) and
   [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) Dockerfile.
@@ -105,8 +104,7 @@ rm -rf /var/lib/apt/lists/*
 
   After your improvements document the image sizes again. The size difference may not be very much yet.
 
-
-</exercise>
+:::
 
 ## Alpine Linux variant ##
 
@@ -184,7 +182,9 @@ $ docker image push <username>/youtube-dl
 
 Also remember that unless specified the `:latest` tag will always just refer to the latest image build & pushed - that can basically contain anything.
 
-<exercise name="Exercise 3.7">
+## Exercise 3.7
+
+:::info Exercise 3.7
 
   As you may have guessed, you shall now return back to the example frontend and backend.
 
@@ -192,7 +192,7 @@ Also remember that unless specified the `:latest` tag will always just refer to 
 
   Document the size before and after your changes.
 
-</exercise>
+:::
 
 ## Multi-stage builds ##
 
@@ -249,7 +249,10 @@ As you can see, even though our Jekyll image needed Ruby during the build stage,
 
 Often the best choice is to use a FROM **scratch** image as it doesn't have anything we don't explicitly add there, making it most secure option over time.
 
-<exercise name="Exercise 3.8: Multi-stage frontend">
+## Exercises 3.8 - 3.10
+
+
+:::info Exercise 3.8: Multi-stage frontend
 
   Do now a multi-stage build for the example
   [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend).
@@ -259,9 +262,9 @@ Often the best choice is to use a FROM **scratch** image as it doesn't have anyt
 
   You can still use the `serve` to serve the static files or try out something else.
 
-</exercise>
+:::
 
-<exercise name="Exercise 3.9: Multi-stage backend">
+:::info Exercise 3.9: Multi-stage backend
 
   Lets do a multi-stage build for the [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) project since we've come so far with the application.
 
@@ -269,12 +272,12 @@ Often the best choice is to use a FROM **scratch** image as it doesn't have anyt
 
   To pass the exercise the image must be smaller than <b>25MB</b>.
 
-</exercise>
+:::
 
-<exercise name="Exercise 3.10">
+:::info Exercise 3.10
 
   Do all or most of the optimizations from security to size for **one** other Dockerfile you have access to, in your own project or for example the ones used in previous "standalone" exercises.
 
   Please document Dockerfiles both before and after.
 
-</exercise>
+:::

@@ -1,7 +1,5 @@
 ---
-path: '/part-3/5-multi-host-environments'
 title: 'Multi-host environments'
-hidden: false
 ---
 
 Now that we've mastered containers in small systems with Docker Compose it's time to look beyond what the tools we practiced are capable of. In situations where we have more than a single host machine we cannot rely solely on Docker. However, Docker does contain other tools to help us with automatic deployment, scaling and management of dockerized applications.
@@ -18,7 +16,9 @@ You can get to know Kubernetes with [k3s](https://k3s.io/) a lightweight Kuberne
 
 Rather than maintaining one yourself the most common way to use Kubernetes is by using a managed service by a cloud provider. Such as Google Kubernetes Engine (GKE) or Amazon Elastic Kubernetes Service (Amazon EKS) which are both offering some credits to get started.
 
-<exercise name="Exercise 3.11: Kubernetes">
+## Exercise 3.11
+
+:::info Exercise 3.11: Kubernetes
 
   Familiarize yourself with Kubernetes terminology and draw a diagram describing what "parts" the Kubernetes contains and how those are related to each other.
 
@@ -34,4 +34,4 @@ Rather than maintaining one yourself the most common way to use Kubernetes is by
 
   I prefer to use [draw.io](https://draw.io) but you can use whichever tool you want.
 
-</exercise>
+:::

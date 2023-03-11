@@ -1,7 +1,5 @@
 ---
-path: "/part-1/2-running-and-stopping"
 title: "Running and stopping containers"
-hidden: false
 ---
 
 Next we will start using a more useful image than hello-world. We can run Ubuntu just with `docker run ubuntu`.
@@ -40,11 +38,11 @@ Let's throw in a few more and run a container in the background:
 $ docker run -d -it --name looper ubuntu sh -c 'while true; do date; sleep 1; done'
 ```
 
-<text-box name="Quotes" variant="hint">
+:::tip Quotes
 
 If you are command prompt (Windows) user you must use double quotes around the script i.e. `docker run -d -it --name looper ubuntu sh -c "while true; do date; sleep 1; done"`. The quote or double-quote may haunt you later during the course.
 
-</text-box>
+:::
 
 - The first part, `docker run -d`. Should be familiar by now, run container detached.
 
@@ -139,7 +137,9 @@ $ docker attach looper-it
 
 Instead, if we had used ctrl+c, it would have sent a kill signal followed by removing the container as we specified `--rm` in `docker run` command.
 
-<exercise name="Exercise 1.3: Secret message">
+### Exercise 1.3
+
+:::info Exercise 1.3: Secret message
 
 Now that we've warmed up it's time to get inside a container while it's running!
 
@@ -149,9 +149,9 @@ Every 10 seconds the clock will send you a "secret message".
 
 Submit the secret message and command(s) given as your answer.
 
-</exercise>
+:::
 
-### Ubuntu in a container is just... Ubuntu
+## Ubuntu in a container is just... Ubuntu
 
 A container that is running a Ubuntu image works quite like a normal Ubuntu:
 
@@ -181,7 +181,9 @@ root@881a1d4ecff2:/tmp# nano temp_file.txt
 
 As can be seen, installing a program or library to a container happens just like the installation is done in "normal" Ubuntu. The remarkable difference is that the installation of Nano is not permanent, that is, if we remove our container, all is gone. We shall soon see how to get a more permanent solution for building images that are perfect to our purposes.
 
-<exercise name="Exercise 1.4: Missing dependencies">
+## Exercise 1.4
+
+:::info Exercise 1.4: Missing dependencies
 
 Start a Ubuntu image with the process `sh -c 'while true; do echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website; done'`
 
@@ -210,4 +212,4 @@ This time return the command you used to start process and the command(s) you us
 
 * This exercise has multiple solutions, if the curl for helsinki.fi works then it's done. Can you figure out other (smart) solutions?
 
-</exercise>
+:::

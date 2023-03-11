@@ -1,10 +1,8 @@
 ---
-path: "/getting-started"
-title: "Getting started"
-hidden: false
-information_page: true
-sidebar_priority: 4000
+sidebar_position: 2
 ---
+
+# Getting Started
 
 Welcome to the DevOps with Docker course! This course is designed to be completed sequentially, from start to finish. Each part builds on the previous one, so it's important to read the material carefully and complete the exercises in order to develop the necessary skills.
 
@@ -24,7 +22,7 @@ If you encounter any issues while working through the course material on your pa
 
 We welcome contributions to the course material from students and other members of the DevOps community! If you notice any mistakes, typos, or errors in the material, please consider submitting a pull request to the course repository on GitHub.
 
-Thank you in advance for your contributions to this open source project! Here you can find the [basic instructions for doing so](https://github.com/docker-hy/docker-hy.github.io#user-content-contributing-to-the-content).
+Thank you in advance for your contributions to this open source project!
 
 ### Grading
 
@@ -86,13 +84,13 @@ Use the official documentation to find download instructions for docker-ce for t
 
 Confirm that Docker installed correctly by opening a terminal and running `docker -v` to see the installed version.
 
-<text-box name="Docker Group" variant="hint">
+:::tip Docker group
 
 To avoid writing sudos you may consider [adding yourself to docker group](https://docs.docker.com/install/linux/linux-postinstall/)
 
 Keep in mind that if you do so, you can now run containers without sudo and containers give you super user access to the computer.
 
-</text-box>
+:::
 
 ## Deadline
 
@@ -122,8 +120,8 @@ The certificate is available from the small icon beneath your submissions!
 
 After you have returned all of the required exercises and wish to end your course completion and want the ECTS credits press the following button in the submission application (ignore the message about an "exam" as there is no exam in this course):
 
-<img src="./img/incomplete_course.png">
+![Incomplete course](/img/incomplete_course.png)
 
 After that, double-check that the application has the message "Course marked as completed" and the date. If the date is not visible, we have not been notified.
 
-<img src="./img/completed_course.png">
+![Completed course](/img/completed_course.png)

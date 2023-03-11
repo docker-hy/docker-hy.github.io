@@ -1,14 +1,12 @@
 ---
-path: '/part-3/3-using-non-root-user'
 title: 'Using a non-root user'
-hidden: false
 ---
 
 Let's get back to the youtube-dl application, that we for last time worked with it [Part 2](http://localhost:8000/part-2/1-migrating-to-docker-compose#volumes-in-docker-compose).
 
 The application could, in theory, escape the container due to a bug in Docker or Linux kernel. To mitigate this security issue we will add a non-root user to our container and run our process with that user. Another option would be to map the root user to a high, non-existing user id on the host with https://docs.docker.com/engine/security/userns-remap/, and can be used in case you must use root within the container.
 
-The Dockerfile that we did in [Part 1](/part-1/4-defining-start-conditions) was this:
+The Dockerfile that we did in [Part 1](/part-1/section-4) was this:
 
 ```dockerfile
 FROM ubuntu:18.04
@@ -83,11 +81,11 @@ USER appuser
 ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 ```
 
-<exercise name="Exercise 3.5">
+## Exercise 3.5
 
-  <b style="color:firebrick;">This exercise is mandatory</b>
+:::caution Mandatory Exercise 3.5
 
-  In exercises [1.12](/part-1/6-docker-hub#non-tmc-exercise-exercise-112-hello-frontend) and [1.13](/part-1/6-docker-hub#non-tmc-exercise-exercise-113-hello-backend) we created Dockerfiles for both example [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) and [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend).
+  In exercises [1.12](/part-1/section-6#exercises-111-114) and [1.13](/part-1/section-6#exercises-111-114) we created Dockerfiles for both example [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) and [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend).
 
   Security issues with the user being a root are serious for the example frontend and backend as the containers for web services are supposed to be accessible through the Internet.
 
@@ -97,4 +95,4 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 
   Submit the Dockerfiles.
 
-</exercise>
+:::

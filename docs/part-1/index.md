@@ -1,8 +1,5 @@
 ---
-path: '/part-1'
-title: 'Part 1'
-overview: true
-hidden: false
+title: 'Introduction to Part 1'
 ---
 
 This part introduces containerization with Docker and relevant concepts such as *image* and *volume*. By the end of this part you are able to:
@@ -16,5 +13,3 @@ This part introduces containerization with Docker and relevant concepts such as 
 * Use port mapping to enable access via TCP to containerized applications
 
 * Share your own containers publicly
-
-<pages-in-this-section></pages-in-this-section>

@@ -1,7 +1,5 @@
 ---
-path: "/part-2/3-volumes-in-action"
 title: "Volumes in action"
-hidden: false
 ---
 
 Next we're going to set up the project management application [Redmine](https://www.redmine.org/), a PostgreSQL database and [Adminer](https://www.adminer.org/), a graphical interface for database administration.
@@ -10,7 +8,7 @@ All of above have official Docker images available as we can see from [Redmine](
 
 In <https://hub.docker.com/_/redmine> there is a list of different tagged versions:
 
-<img src="../img/2/redmine.png">
+![Redmine](/img/2/redmine.png)
 
 We can most likely use any of the available images.
 
@@ -208,7 +206,7 @@ adminer:
 
 Now when we run the application we can access adminer from <http://localhost:8083>:
 
-<img src="../img/2/adminer.png" />
+![Adminer view](/img/2/adminer.png)
 
 Setting up the adminer is straightforward since it will be able to access the database through Docker network. You may wonder how adminer finds the Postgres database container? We provide this information to Redmine using an environment variable:
 
@@ -226,7 +224,9 @@ Adminer actually assumes that the database has DN Sname  _db_ so with this name 
       - ADMINER_DEFAULT_SERVER=database_server
 ```
 
-<exercise name="Exercise 2.6">
+## Exercises 2.6 - 2.10
+
+:::info Exercise 2.6
 
 Let us continue with the example app that we worked with in [Exercise 2.4](/part-2/2-docker-networking#non-tmc-exercise-exercise-24).
 
@@ -245,11 +245,11 @@ Submit the docker-compose.yml
 
 * `restart: unless-stopped` can help if the Postgres takes a while to get ready
 
-<img src="../img/exercises/back-front-redis-and-database.png" />
+![Backend, frontend, redis and a database](/img/exercises/back-front-redis-and-database.png)
 
-</exercise>
+:::
 
-<exercise name="Exercise 2.7">
+:::info Exercise 2.7
 
 Postgres image uses a volume by default. Define manually a volume for the database in a convenient location such as in `./database` so tyo should use now a [bind mount](https://docs.docker.com/storage/bind-mounts/). The image [documentation](https://github.com/docker-library/docs/blob/master/postgres/README.md#where-to-store-data) may help you with the task.
 
@@ -268,15 +268,23 @@ Submit the docker-compose.yml
 
 The benefit of a bind mount is that since you now exactly where the data is in your file system, it is easy to create backups. If Docker managed volumes are used, the location of the data in the file system can not be controlled and that makes backups a bit less trivial...
 
-</exercise>
+:::
 
-<exercise name="Exercise 2.8">
+:::tip Tips for making sure the backend connection works
+
+In the next exercise try using your browser to access http://localhost/api/ping and see if it answers pong
+
+It might be Nginx configuration problem. Ensure there is a trailing / on the backend url as specified under the location /api/ context in the nginx.conf.
+
+:::
+
+:::info Exercise 2.8
 
 Add [Nginx](https://hub.docker.com/_/nginx) to example to work as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) in front of the example app fronend and backend. According to Wikipedia
 
 _A reverse proxy is a type of proxy server that retrieves resources on behalf of a client from one or more servers. These resources are then returned to the client, appearing as if they originated from the reverse proxy server itself._
 
-<img src="../img/exercises/back-front-redis-database-and-nginx.png" />
+![Backend, frontend, redis, a database and nginx](/img/exercises/back-front-redis-database-and-nginx.png)
 
 So in our case, the reverse proxy will be the single point of entry to our application, and the final goal will be to set both the React frontend and the Express backend behind the reverse proxy.
 
@@ -320,17 +328,9 @@ If and when your app "does not work", remember to have a look in log, it can be 
 
 Submit the docker-compose.yml
 
-<text-box name="Tips for making sure the backend connection works" variant="hint">
+:::
 
-Try using your browser to access http://localhost/api/ping and see if it answers pong
-
-It might be Nginx configuration problem. Ensure there is a trailing / on the backend url as specified under the location /api/ context in the nginx.conf.
-
-</text-box>
-
-</exercise>
-
-<exercise name="Exercise 2.9">
+:::info Exercise 2.9
 
 Most of the buttons may have stopped working in the example application. Make sure that every button for exercises works.
 
@@ -342,9 +342,18 @@ If you had to do any changes explain what you did and where.
 
 Submit the docker-compose.yml and both Dockerfiles.
 
-</exercise>
+:::
 
-<exercise name="Exercise 2.10">
+:::tip Publishing ports to host network
+
+There is an important lesson about Docker networking and ports to be learned in the next exercise.
+
+When we do a [port mapping](https://docs.docker.com/desktop/networking/#port-mapping), in `docker run -p 8001:80 ...` or in Docker Compose file, we are [publishing](https://docs.docker.com/config/containers/container-networking/#published-ports) a container port to the host network to be accessible in localhost.
+
+The container port is there within the Docker network accessible by the other containers who are in the same network even if we do not publish anything. So publishing the ports is only for exposing ports outside the Docker network. If no direct access outside the network is not needed, then we just do not publish anything.
+:::
+
+:::info Exercise 2.10
 
 Now we have the reverse proxy up and running! All the communication to our app should be done through the reverse proxy and direct access (eg. accessing the backend with a GET to http://localhost:8080/ping ) should be prevented.
 
@@ -393,14 +402,4 @@ PORT    STATE    SERVICE
 Nmap done: 1 IP address (1 host up) scanned in 1.28 seconds
 ```
 
-<text-box name="Publishing ports to host network" variant="hint">
-
-There is an important lesson about Docker networking and ports to be learned in this exercise.
-
-When we do a [port mapping](https://docs.docker.com/desktop/networking/#port-mapping), in `docker run -p 8001:80 ...` or in Docker Compose file, we are [publishing](https://docs.docker.com/config/containers/container-networking/#published-ports) a container port to the host network to be accessible in localhost.
-
-The container port is there within the Docker network accessible by the other containers who are in the same network even if we do not publish anything. So publishing the ports is only for exposing ports outside the Docker network. If no direct access outside the network is not needed, then we just do not publish anything.
-
-</text-box>
-
-</exercise>
+:::

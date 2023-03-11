@@ -1,8 +1,5 @@
 ---
-path: '/part-2'
-title: 'Part 2'
-overview: true
-hidden: false
+title: 'Introcution to Part 2'
 ---
 
 This part introduces container orchestration with Docker Compose and relevant concepts such as *docker network*. By the end of this part you are able to:
@@ -14,5 +11,3 @@ This part introduces container orchestration with Docker Compose and relevant co
 * Manually scale applications
 
 * Use 3rd party services, such as databases, inside containers as part of your project
-
-<pages-in-this-section></pages-in-this-section>

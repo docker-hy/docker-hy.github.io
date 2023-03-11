@@ -1,7 +1,5 @@
 ---
-path: "/part-1/3-in-depth-dive-to-images"
 title: "In-depth dive to images"
-hidden: false
 ---
 
 Images are the basic building blocks for containers and other images. When you "containerize" an application you work towards creating the image.
@@ -84,7 +82,9 @@ Tagging is also a way to "rename" images. Run `docker tag ubuntu:18.04 fav_distr
 
 To summarize, an image name may consist of 3 parts plus a tag. Usually like the following: `registry/organisation/image:tag`. But may be as short as `ubuntu`, then the registry will default to Docker hub, organisation to _library_ and tag to _latest_. The organisation may also be a user, but calling it an organisation may be more clear.
 
-<exercise name="Exercise 1.5: Sizes of images">
+## Exercises 1.5 - 1.6
+
+:::info Exercise 1.5: Sizes of images
 
 In the [Exercise 1.3](/part-1/2-running-and-stopping#non-tmc-exercise-exercise-13-secret-message) we used `devopsdockeruh/simple-web-service:ubuntu`.
 
@@ -93,9 +93,9 @@ Here is the same application but instead of Ubuntu is using [Alpine Linux](https
 Pull both images and compare the image sizes.
 Go inside the alpine container and make sure the secret message functionality is the same. Alpine version doesn't have bash but it has sh.
 
-</exercise>
+:::
 
-<exercise name="Exercise 1.6: Hello Docker Hub">
+:::info Exercise 1.6: Hello Docker Hub
 
 Run `docker run -it devopsdockeruh/pull_exercise`.
 
@@ -106,9 +106,9 @@ Read the Dockerfile and/or docs to learn what input will get the application to 
 
 Submit the secret message and command(s) given to get it as your answer.
 
-</exercise>
+:::
 
-# Building images
+## Building images
 
 Finally, we get to build our own images and get to talk about [`Dockerfile`](https://docs.docker.com/engine/reference/builder/) and why it's so great.
 
@@ -189,17 +189,17 @@ $ docker images
   hello-docker          latest       444f21cf7bd5   2 minutes ago   5.57MB
 ```
 
-<text-box name="Permission denied" variant="hint">
+:::tip Permission denied
 
 If you're now getting "/bin/sh: ./hello.sh: Permission denied" it's because the `chmod +x hello.sh` was skipped earlier. You can simply uncomment the RUN instruction between COPY and CMD instructions
 
-</text-box>
+:::
 
-<text-box name="not found" variant="hint">
+:::tip not found
 
 If you're now getting "/bin/sh: ./hello.sh: not found" and you're using Windows it might be because by default Windows uses [CRLF](https://www.cs.toronto.edu/~krueger/csc209h/tut/line-endings.html) as line ending. Unix, in our case Alpine, uses just LF which makes the copying of our `hello.sh` invalid bash script in the build phase. To overcome this error change the line endings to LF before running `docker build`
 
-</text-box>
+:::
 
 Now executing the application is as simple as running `docker run hello-docker`. Try it!
 
@@ -296,7 +296,9 @@ $ docker run hello-docker:v2 ls
 
 Now we know that all instructions in a Dockerfile **except** CMD (and one other that we will learn about soon) are executed during build time. **CMD** is executed when we call docker run, unless we overwrite it.
 
-<exercise name="Exercise 1.7: Image for script">
+## Exercises 1.7 - 1.8
+
+:::info Exercise 1.7: Image for script
 
 We can improve our previous solutions now that we know how to create and build a Dockerfile.
 
@@ -340,10 +342,10 @@ Remember that [RUN](https://docs.docker.com/engine/reference/builder/#run) can b
 
 Submit the Dockerfile.
 
-</exercise>
+:::
 
 
-<exercise name="Exercise 1.8: Two line Dockerfile">
+:::info Exercise 1.8: Two line Dockerfile
 
 By default our `devopsdockeruh/simple-web-service:alpine` doesn't have a CMD. It instead uses _ENTRYPOINT_ to declare which application is run.
 
@@ -379,4 +381,4 @@ $ docker run web-server
 
 * The exercise title may be a useful hint here.
 
-</exercise>
+:::

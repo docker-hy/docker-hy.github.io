@@ -1,7 +1,5 @@
 ---
-path: "/part-1/5-volumes-and-ports"
 title: "Interacting with the container via volumes and ports"
-hidden: false
 ---
 
 Let us get back to youtube downloader. It works yes, but it is quite laborous to get the download videos to the host machine.
@@ -18,7 +16,9 @@ So a volume is simply a folder (or a file) that is shared between the host machi
 
 In our youtube-dl we wanted to mount the whole directory since the files are fairly randomly named. If we wish to create a volume with only a single file we could also do that by pointing to it. For example `-v "$(pwd)/material.md:/mydir/material.md"` this way we could edit the material.md locally and have it change in the container (and vice versa). Note also that `-v` creates a directory if the file does not exist.
 
-<exercise name="Exercise 1.9: Volumes">
+## Exercise 1.9
+
+:::info Exercise 1.9: Volumes
 
 In this exercise we won't create a new Dockerfile.
 
@@ -29,9 +29,9 @@ Submit the command you used to complete the exercise.
 
 **Hint:** read the note that was made just before this exercise!
 
-</exercise>
+:::
 
-# Allowing external connections into containers
+## Allowing external connections into containers
 
 The details on how programs communicate are not detailed in this course. Courses on Operating Systems and the Networking courses explain subjects in detail. In this course you only need to know the following simplified basics:
 
@@ -65,7 +65,7 @@ $ docker run -p 4567 app-in-port
 
 We could also limit connections to certain protocol only, e.g. udp by adding the protocol at the end: `EXPOSE <port>/udp` and `-p <host-port>:<container-port>/udp`.
 
-<text-box name="Security reminder: Opening a door to the internet" variant="hint">
+:::tip Security reminder: Opening a door to the internet
 
 Since we are opening a port to the application, anyone from the internet could come in and access what you're running.
 
@@ -75,17 +75,19 @@ The short syntax, `-p 3456:3000`, will result in the same as `-p 0.0.0.0:3456:30
 
 Usually, this isn't risky. But depending on the application, it is something you should consider!
 
-</text-box>
+:::
 
-<exercise name="Exercise 1.10: Ports open">
+## Exercise 1.10
+
+:::info Exercise 1.10: Ports open
 
 In this exercise, we won't create a new Dockerfile.
 
-The image `devopsdockeruh/simple-web-service` will start a web service in port `8080` when given the argument "server". In [Exercise 1.8](/part-1/3-in-depth-dive-to-images#non-tmc-exercise-exercise-18-two-line-dockerfile) you already did a image that can be used to run the web service without any argument.
+The image `devopsdockeruh/simple-web-service` will start a web service in port `8080` when given the argument "server". In [Exercise 1.8](/part-1/section-3#exercises-17---18) you already did a image that can be used to run the web service without any argument.
 
 Use now the -p flag to access the contents with your browser. The output to your browser should be something like:
 `{ message: "You connected to the following path: ...`
 
 Submit your used commands for this exercise.
 
-</exercise>
+:::

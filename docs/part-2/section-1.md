@@ -1,7 +1,5 @@
 ---
-path: '/part-2/1-migrating-to-docker-compose'
 title: 'Migrating to Docker Compose'
-hidden: false
 ---
 
 Even with a simple image, we've already been dealing with plenty of command line options in both building, pushing and running the image.
@@ -47,7 +45,7 @@ $ docker compose build
 $ docker compose push
 ```
 
-## Volumes in Docker Compose ##
+## Volumes in Docker Compose
 
 To run the image as we did previously, we will need to add the volume bind mounts. Volumes in Docker Compose are defined with the following syntax `location-in-host:location-in-container`. Compose can work without an absolute path:
 
@@ -70,7 +68,9 @@ We can also give the container a name it will use when running with container_na
 $ docker compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr
 ```
 
-<exercise name="Exercise 2.1">
+## Exercise 2.1
+
+:::info Exercise 2.1
 
   Let us now leverage the Docker Compose with the simple webservice that was we user eg in the [Exercise 1.3](/part-1/2-running-and-stopping#non-tmc-exercise-exercise-13-secret-message)
 
@@ -82,9 +82,9 @@ $ docker compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr
   Submit the docker-compose.yml, make sure that it works simply by running `docker compose up` if the log file exists.
 
 
-</exercise>
+:::
 
-## Web services in Docker Compose ##
+## Web services in Docker Compose
 
 Compose is really meant for running web services, so let's move from simple binary wrappers to running a HTTP service.
 
@@ -136,7 +136,9 @@ services:
         - VARIABLE2=VAULE2
 ```
 
-<exercise name="Exercise 2.2">
+## Exercises 2.2 - 2.3
+
+:::info Exercise 2.2
 
   Read about how to add command to docker-compose.yml from the [documentation](https://docs.docker.com/compose/compose-file/compose-file-v3/#command).
 
@@ -146,18 +148,16 @@ services:
 
   Submit the docker-compose.yml, make sure that it works simply by running `docker compose up`
 
-</exercise>
+:::
 
-<exercise name="Exercise 2.3">
-
-  <b style="color:firebrick;">This exercise is mandatory</b>
+:::caution Mandatory Exercise 2.3
 
   As we saw previously, starting an application with two programs was not trivial and the commands got a bit long.
 
-  In the [previous part](/part-1/6-docker-hub) we created Dockerfiles for both [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) and [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) of the example application. Next, simplify the usage into one docker-compose.yml.
+  In the [previous part](/part-1/section-6) we created Dockerfiles for both [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) and [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) of the example application. Next, simplify the usage into one docker-compose.yml.
 
-  Configure the backend and frontend from [part 1](/part-1/6-docker-hub) to work in Docker Compose.
+  Configure the backend and frontend from [part 1](/part-1/section-6#exercises-111-114) to work in Docker Compose.
 
   Submit the docker-compose.yml
 
-</exercise>
+:::

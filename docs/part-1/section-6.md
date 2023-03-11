@@ -1,7 +1,5 @@
 ---
-path: "/part-1/6-docker-hub"
 title: "Utilizing tools from the Registry"
-hidden: false
 ---
 
 As we've already seen it should be possible to containerize almost any project. As we are in between Dev and Ops let's pretend again that some developer teammates of ours did an application with a README that instructs what to install and how to run the application. Now we as the container experts can containerize it in seconds. Open this <https://github.com/docker-hy/material-applications/tree/main/rails-example-project> project and read through the README and think about how to transform it into a Dockerfile. Thanks to the README we should be able to decipher what we will need to do even if we have no clue about the language or technology!
@@ -55,7 +53,7 @@ CMD ["rails", "s", "-e", "production"]
 
 Ok. Let's see how well monkeying the README worked for us: `docker build . -t rails-project && docker run -p 3000:3000 rails-project`. After a while of waiting, the application starts in port 3000 in production mode... unless you have a Mac with M1 or M2 processor.
 
-<text-box name="Building the image with a more recent Mac" variant="hint">
+:::tip Building the image with a more recent Mac
 
 If you have a more recent Mac that has the [M1 or M2](https://support.apple.com/en-us/HT211814) processor, building the image fails:
 
@@ -83,9 +81,11 @@ nokogiri (1.14.2-arm64-darwin)
 The reason for the problem is that the file Gemfile.lock that defines the <i>exact</i> versions of the installed libraries (or Gems in Ruby lingo) is generated with a Linux that has an Intel processor. The Gem
 [Nokogiri](https://nokogiri.org/) has different versions for Intel and Apple M1/M2 processors and to get the right version of the Gem to a more recent Mac, it is now just easiest to make a change in the file Gemfile.lock.
 
-</text-box>
+:::
 
-<exercise name="Exercise 1.11: Spring">
+## Exercises 1.11-1.14
+
+:::info Exercise 1.11: Spring
 
 Create a Dockerfile for an old Java Spring project that can be found from the [course repository](https://github.com/docker-hy/material-applications/tree/main/spring-example-project).
 
@@ -97,13 +97,15 @@ You've completed the exercise when you see a 'Success' message in your browser.
 
 Submit the Dockerfile you used to run the container.
 
-</exercise>
+:::
 
 The following three exercises will start a larger project that we will configure in parts 2 and 3. They will require you to use everything you've learned up until now. If you need to modify a Dockerfile in some later exercises, feel free to do it on top of the Dockerfiles you create here.
 
-<exercise name="Exercise 1.12: Hello, frontend!">
+:::warning Mandatory exercises
+  The next exercises are the first mandatory ones. Mandatory exercises can not be skipped.
+:::
 
-<b style="color:firebrick;">This exercise is mandatory</b>
+:::caution Mandatory Exercise 1.12: Hello, frontend!
 
 A good developer creates well-written READMEs. Such that they can be used to create Dockerfiles with ease.
 
@@ -125,11 +127,9 @@ _As in other exercises, do not alter the code of the project_
 
 * TIP: You do not have to install anything new outside containers.
 
-</exercise>
+:::
 
-<exercise name="Exercise 1.13: Hello, backend!">
-
-<b style="color:firebrick;">This exercise is mandatory</b>
+:::caution Mandatory Exercise 1.13: Hello, backend!
 
 Clone, fork or download a project from
 [https://github.com/docker-hy/material-applications/tree/main/example-backend](https://github.com/docker-hy/material-applications/tree/main/example-backend).
@@ -142,11 +142,9 @@ Submit the Dockerfile and the command used.
 
 _Do not alter the code of the project_
 
-</exercise>
+:::
 
-<exercise name="Exercise 1.14: Environment">
-
-<b style="color:firebrick;">This exercise is mandatory</b>
+:::caution Mandatory Exercise 1.14: Environment
 
 Start both frontend-example and backend-example with correct ports exposed and add ENV to Dockerfile with necessary
 information from both READMEs
@@ -160,19 +158,19 @@ _Do not alter the code of either project_
 
 Submit the edited Dockerfiles and commands used to run.
 
-<img src="../img/exercises/back-and-front.png" />
+![Backend and Frontend](/img/exercises/back-and-front.png)
 
 The frontend will first talk to your browser. Then the code will be executed from your browser and that will send a message to backend.
 
-<img src="../img/exercises/about-connection-front-back.png" />
+![More information about connection between frontend and backend](/img/exercises/about-connection-front-back.png)
 
 * TIP: When configuring web applications keep browser developer console ALWAYS open, F12 or cmd+shift+I when the browser window is open. Information about configuring cross origin requests is in README of the backend project.
 
 * TIP: Developer console has multiple views, most important ones are Console and Network. Exploring the Network tab can give you a lot of information on where messages are being sent and what is received as response!
 
-</exercise>
+:::
 
-# Publishing projects
+## Publishing projects
 
 Go to <https://hub.docker.com/> to create an account. You can configure Docker hub to build your images for you, but using `push` works as well.
 
@@ -196,15 +194,17 @@ $ docker push <username>/<repository>
   ...
 ```
 
-<exercise name="Exercise 1.15: Homework">
+## Exercises 1.15-1.16
+
+:::info Exercise 1.15: Homework
 
 Create Dockerfile for an application or any other dockerised project in any of your own repositories and publish it to Docker Hub. This can be any project, except the clones or forks of backend-example or frontend-example.
 
 For this exercise to be complete you have to provide the link to the project in Docker Hub, make sure you at least have a basic description and instructions for how to run the application in a [README](https://help.github.com/en/articles/about-readmes) that's available through your submission.
 
-</exercise>
+:::
 
-<exercise name="Exercise 1.16: Cloud deployment">
+:::info Exercise 1.16: Cloud deployment
 
 It is time to wrap up this part and run a containerized app in the cloud.
 
@@ -220,4 +220,4 @@ If you know a good cloud service for the purposes of this exercise, please tell 
 
 Submit the Dockerfile, a brief description of what you did, and a link to the running app.
 
-</exercise>
+:::

@@ -1,7 +1,5 @@
 ---
-path: '/part-3/2-deployment-pipelines'
 title: 'Deployment pipelines'
-hidden: false
 ---
 
 [CI/CD](https://en.wikipedia.org/wiki/CI/CD) pipeline (sometimes called deployment pipeline) is a corner stone of DevOps.
@@ -70,11 +68,11 @@ GitHub Actions are doing only the "first half" of the deployment pipeline: they 
 
 The other half of the deployment pipeline is implemented by a containerized service called [Watchtower](https://github.com/containrrr/watchtower) that is an open source project that automates the task of updating images. Watchtower will poll the source of the image (in this case Docker Hub) for changes in the containers that are running. The container that is running will be updated and automatically restarted when a new version of the image is pushed to Docker Hub. Watchtower respects tags e.g. container using ubuntu:18.04 will not be updated unless a new version of ubuntu:18.04 is released.
 
-<text-box name="Security reminder: Docker Hub accessing your computer" variant="hint">
+:::tip Security reminder: Docker Hub accessing your computer
 
 Note that now anyone with access to your Docker Hub also has access to your PC through this. If they push a malicious update to your application, Watchtower will happily download and start the updated version.
 
-</text-box>
+:::
 
 Watchtower can be run eg. using the following Docker Compose file:
 
@@ -93,7 +91,9 @@ services:
 
 One needs to be careful when starting Watchtower with _docker compose up_,  since it will try to update **every** image running the machine. The [documentation](https://containrrr.github.io/watchtower/) describes how this can be prevented.
 
-<exercise name="Exercise 3.1: Your pipeline">
+## Exercises 3.1-3.4
+
+:::info Exercise 3.1: Your pipeline
 
   Create now a similar deployment pipeline for a simple NodeJS/Express app found
 [here](https://github.com/docker-hy/material-applications/tree/main/express-app).
@@ -127,9 +127,9 @@ Some of the actions that the above example uses are a bit outdated, so go throug
 
 and use the most recent versions in your workflow.
 
-Keep on eye the GitHub Actions page to see that your workflow is working:
+Keep an eye on the GitHub Actions page to see that your workflow is working:
 
-<img src="../img/3/gha.png">
+![Github Actions page](/img/3/gha.png)
 
 Ensure also from Docker Hub that your image gets pushed there.
 
@@ -147,9 +147,9 @@ Now your deployment pipeline is set up! Ensure that it works:
 
   Submit a link to the repository with the config.
 
-</exercise>
+:::
 
-<exercise name="Exercise 3.2: A deployment pipeline to a cloud service">
+:::info Exercise 3.2: A deployment pipeline to a cloud service
 
   In [Exercise 1.16](/part-1/6-docker-hub#non-tmc-exercise-exercise-116-cloud-deployment) you deployed a containerized app to a cloud service.
 
@@ -159,9 +159,9 @@ Now your deployment pipeline is set up! Ensure that it works:
 
   Submit a link to the repository with the config. The repository README should have a link to the deployed application.
 
-</exercise>
+:::
 
-<exercise name="Exercise 3.3: Building images inside of a container">
+:::info Exercise 3.3: Building images inside of a container
 
   Create a now script/program that downloads a repository from GitHub, builds a Dockerfile located in the root and then publishes it into the Docker Hub.
 
@@ -175,9 +175,9 @@ Now your deployment pipeline is set up! Ensure that it works:
 
   the script clones <https://github.com/mluukkai/express_app>, builds the image, and pushes it to Docker Hub repository mluukkai/testing
 
-</exercise>
+:::
 
-<exercise name="Exercise 3.4: Building images inside of a container">
+:::info Exercise 3.4: Building images inside of a container
 
 As seen from the Docker Compose file, the Watchtower uses a volume to [docker.sock](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock) socket to access the Docker daemon of the host from the container:
 
@@ -210,6 +210,6 @@ Note that now the Docker Hub credentials are defined as environment variables si
 Submit the Dockerfile and the final version of your script.
 
   Hint: you quite likely need to use [ENTRYPOINT]https://docs.docker.com/engine/reference/builder/#entrypoint() in this Exercise.
-  See [Part 1](/part-1/4-defining-start-conditions) for more.
+  See [Part 1](/part-1/section-4) for more.
 
-</exercise>
+:::

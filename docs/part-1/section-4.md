@@ -1,7 +1,5 @@
 ---
-path: "/part-1/4-defining-start-conditions"
 title: "Defining start conditions for the container"
-hidden: false
 ---
 
 Next, we will start moving towards a more meaningful image. _youtube-dl_ is a program that downloads youtube videos <https://rg3.github.io/youtube-dl/download.html>. Let's add it to an image - but this time, we will change our process. Instead of our current process where we add things to the Dockerfile hope it works, let's try another approach. This time we will open up an interactive session and test stuff before "storing" it in our Dockerfile. By following the youtube-dl install instructions we will see that:
@@ -204,10 +202,10 @@ In the shell form the command is provided as a string without brackets. In the e
 
 | Dockerfile                                               | Resulting command                                |
 | -------------------------------------------------------- | ------------------------------------------------ |
-| ENTRYPOINT /bin/ping -c 3 <br> CMD localhost             | /bin/sh -c '/bin/ping -c 3' /bin/sh -c localhost |
-| ENTRYPOINT ["/bin/ping","-c","3"] <br> CMD localhost     | /bin/ping -c 3 /bin/sh -c localhost              |
-| ENTRYPOINT /bin/ping -c 3 <br> CMD ["localhost"]         | /bin/sh -c '/bin/ping -c 3' localhost            |
-| ENTRYPOINT ["/bin/ping","-c","3"] <br> CMD ["localhost"] | /bin/ping -c 3 localhost                         |
+| ENTRYPOINT /bin/ping -c 3 <br \> CMD localhost             | /bin/sh -c '/bin/ping -c 3' /bin/sh -c localhost |
+| ENTRYPOINT ["/bin/ping","-c","3"] <br \> CMD localhost     | /bin/ping -c 3 /bin/sh -c localhost              |
+| ENTRYPOINT /bin/ping -c 3 <br \> CMD ["localhost"]         | /bin/sh -c '/bin/ping -c 3' localhost            |
+| ENTRYPOINT ["/bin/ping","-c","3"] <br \> CMD ["localhost"] | /bin/ping -c 3 localhost                         |
 
 As the command at the end of Docker run will be the CMD we want to use ENTRYPOINT to specify what to run, and CMD to specify which command (in our case url) to run.
 

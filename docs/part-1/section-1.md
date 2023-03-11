@@ -1,16 +1,14 @@
 ---
-path: '/part-1/1-getting-started'
 title: 'Definitions and basic concepts'
-hidden: false
 ---
 
-# What is DevOps? #
+## What is DevOps?
 
 Before we get started with Docker let's lay the groundwork for learning the right mindset. Defining DevOps is not a trivial task but the term itself consists of two parts, *Dev* and *Ops*. *Dev* refers to the development of software and *Ops* to operations. Simple definition for DevOps would be that it means the release, configuring, and monitoring of software is in the hands of the very people who develop it.
 
 A more formal definition is offered by [Jabbari et al.](https://dl.acm.org/citation.cfm?id=2962707): "DevOps is a development methodology aimed at bridging the gap between Development and Operations, emphasizing communication and collaboration, continuous integration, quality assurance and delivery with automated deployment utilizing a set of development practices".
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Devops-toolchain.svg">
+![Picture for DevOps from Wikipedia](https://upload.wikimedia.org/wikipedia/commons/0/05/Devops-toolchain.svg)
 
 Image of DevOps toolchain by Kharnagy from [wikipedia](https://commons.wikimedia.org/wiki/File:Devops-toolchain.svg)
 
@@ -18,7 +16,7 @@ Image of DevOps toolchain by Kharnagy from [wikipedia](https://commons.wikimedia
 
 During this course we will focus mainly on the packaging, releasing and configuring of the applications. You will not be asked to plan or create new software. We will go over Docker and a few technologies that you may see in your daily life, these include e.g. Redis and Postgres. See [StackOverflow survey](https://insights.stackoverflow.com/survey/2020#technology-how-technologies-are-connected) on how closely they correlate these technologies.
 
-# What is Docker? #
+## What is Docker?
 
 "Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called containers." - [from Wikipedia](https://en.wikipedia.org/wiki/Docker_(software)).
 
@@ -26,7 +24,7 @@ So stripping the jargon we get two definitions:
   1. Docker is a set of tools to deliver software in containers.
   2. Containers are packages of software.
 
-<img src="../img/1/container.png">
+![Illustration of a container](/img/1/container.png)
 
 The above image illustrates how containers include the application and its dependencies. These containers are isolated so that they don't interfere with each other or the software running outside of the containers. In case you need to interact with them or enable interactions between them, Docker offers tools to do so.
 
@@ -74,7 +72,7 @@ Container orchestration will be discussed in parts 2 and 3. But the simplest exa
 
 Isn't there already a solution for this? Virtual Machines are not the same as Containers - they solve different problems. We will not be looking into Virtual Machines in this course. However, here's a diagram to give you a rough idea of the difference.
 
-<img src="../img/1/docker-explained-3.png">
+![Containers vs virtual machines](/img/1/docker-explained-3.png)
 
 The difference between a virtual machine and Docker solutions arises after moving Application A to an incompatible system "Operating System B". Running software on top of containers is almost as efficient as running it "natively" outside containers, at least when compared to virtual machines.
 
@@ -129,15 +127,15 @@ $ docker container run hello-world
 
 It found the **image** locally so it skipped right to running the hello-world.
 
-<text-box name="Security reminder: Downloading from the internet" variant="hint">
+:::tip Security reminder: Downloading from the internet
 
 Keep in mind that we are downloading stuff from the internet. Double checking what you're running is always a good idea.
 
-</text-box>
+:::
 
 So that's an image?
 
-# Image and containers #
+## Image and containers
 
 Since we already know what containers are it's easier to explain images through them: Containers are instances of images. A basic mistake is to confuse images and containers.
 
@@ -149,7 +147,7 @@ So just like how you need a recipe and ingredients to make a meal, you need an i
 
 In short, an image is like a blueprint or template, while a container is an instance of that blueprint or template.
 
-## Image ##
+### Image
 
 A Docker image is a file. An image never changes; you can not edit an existing file. Creating a new image happens by starting from a base image and adding new **layers** to it. We will talk about layers later, but you should think of images as *immutable*, they can not be changed after they are created.
 
@@ -180,7 +178,7 @@ and is the instruction set for building an image. We will look into Dockerfiles 
 
 If we go back to the cooking metaphor, as Dockerfile provides the instructions needed to build an image you can think of that as the recipe for images. We're now 2 recipes deep, as Dockerfile is the recipe for an image and an image is the recipe for a container. The only difference is that Dockerfile is written by us, whereas image is written by our machine based on the Dockerfile!
 
-## Container ##
+### Container
 
 Containers only contain that which is required to execute an application; and you can start, stop and interact with them. They are **isolated** environments in the host machine with the ability to interact with each other and the host machine itself via defined methods (TCP/UDP).
 
@@ -202,7 +200,7 @@ $ docker container ls -a
 
 The command `docker container ls` has also a shorter form `docker ps` that is preferred by many since it requires much less typing...
 
-## Docker CLI basics ##
+## Docker CLI basics
 
 We are using the command line to interact with the "Docker Engine" that is made up of 3 parts: CLI, a REST API and Docker daemon. When you run a command, e.g. `docker container run`, behind the scenes the client sends a request through the REST API to the **Docker daemon** which takes care of images, containers and other resources.
 
@@ -280,7 +278,7 @@ Forcing is also a possibility and we can use `docker container rm --force blissf
 
 It's common for the Docker daemon to become clogged over time with old images and containers.
 
-## Most used commands ##
+### Most used commands
 
 | command | explain | shorthand  |
 |---|---|---|
@@ -297,7 +295,9 @@ For all of them container can be either the container id or the container name. 
 
 Some of the shorthands are legacy version of doing the same thing. You can use either.
 
-<exercise name="Exercise 1.1: Getting started">
+## Exercises 1.1-1.2
+
+:::info Exercise 1.1: Getting started
 
   Since we already did "Hello, World!" in the material let's do something else.
 
@@ -307,9 +307,9 @@ Some of the shorthands are legacy version of doing the same thing. You can use e
 
   Submit the output for `docker ps -a` which shows 2 stopped containers and one running.
 
-</exercise>
+:::
 
-<exercise name="Exercise 1.2: Cleanup">
+:::info Exercise 1.2: Cleanup
 
   We've left containers and a image that won't be used anymore and are taking space, as `docker ps -as` and `docker images` will reveal.
 
@@ -317,4 +317,4 @@ Some of the shorthands are legacy version of doing the same thing. You can use e
 
   Submit the output for `docker ps -a` and `docker images`
 
-</exercise>
+:::

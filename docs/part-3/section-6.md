@@ -1,7 +1,5 @@
 ---
-path: '/part-3/6-end'
 title: 'End'
-hidden: false
 ---
 
 **Remember to mark your exercises into the [submission application](https://studies.cs.helsinki.fi/stats/courses/docker2022)! Instructions on how and what to submit are on the getting started page.**

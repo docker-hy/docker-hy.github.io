@@ -1,26 +1,26 @@
 ---
-path: "/part-2/2-docker-networking"
 title: "Docker networking"
-hidden: false
 ---
 
 Connecting two services such as a server and its Database in docker can be achieved with a [Docker network](https://docs.docker.com/network/). In addition to starting services listed in docker-compose.yml Docker Compose automatically creates and joins both containers into a network with a DNS. Each container service is named after their container name and as such containers can reference each other simply with their names.
 
-<img src="../img/2/docker-networks.png">
+![Docker networks](/img/2/docker-networks.png)
 
 Here are two services in a single network: webapp and webapp-helper. The webapp-helper has a server, listening for requests in port 3000, that webapp wants to access. Because they were defined in the same docker-compose.yml file the access is trivial. Docker Compose has already taken care of creating a network and webapp can simply send a request to webapp-helper:3000, the internal DNS will translate that to the correct access and ports do not have to be published outside of the network.
 
-<text-box name="Security reminder: Plan your infrastructure and keep to your plan" variant="hint">
+:::tip Security reminder: Plan your infrastructure and keep to your plan
 
 In the next exercise, and in some later exercises, I will supply you with an illustration of the infrastructure. Do look at it and use it to write the configuration.
 
 For example, in Exercise 2.4 we don't want to open ports to Redis to the outside world. Do not add a `ports` configuration under Redis! The backend will be able to access the application within the Docker network.
 
-</text-box>
+:::
 
-<exercise name="Exercise 2.4">
+## Exercise 2.4
 
-In this exercise you should expand the configuration done in [Exercise 2.3](/part-2/1-migrating-to-docker-composenon-tmc-exercise-exercise-23) and set up the example backend to use the key-value database [Redis](https://redis.com/).
+:::info Exercise 2.4
+
+In this exercise you should expand the configuration done in [Exercise 2.3](/part-2/section-1#exercises-22---23) and set up the example backend to use the key-value database [Redis](https://redis.com/).
 
 Redis is quite often used as a [cache](https://en.wikipedia.org/wiki/Cache_(computing)) to store data so that future requests for data can be served faster.
 
@@ -35,13 +35,13 @@ When you've correctly configured the button will turn green.
 
 Submit the docker-compose.yml
 
-  <img src="../img/exercises/back-front-and-redis.png" />
+  ![Backend, frontend and redis](/img/exercises/back-front-and-redis.png)
 
 The [restart: unless-stopped](https://docs.docker.com/compose/compose-file/compose-file-v3/#restart) configuration can help if the Redis takes a while to get ready.
 
-</exercise>
+:::
 
-## Manuan network definition
+## Manual network definition
 
 It is also possible to define the network manually in a Docker Compose file. A major benefit of a manual network definition is that it makes it easy to set up a configuration where containers defined in two different Docker Compose files share a network, and can easily interact with each other.
 
@@ -113,7 +113,7 @@ $ docker compose up --scale whoami=3
 
 The command fails due to a port clash, as each instance will attempt to bind to the same host port (8000).
 
-We can get around this by only specifying the container port. As mentioned in [part 1](/part1/#allowing-external-connections-into-containers), when leaving the host port unspecified, Docker will automatically choose a free port.
+We can get around this by only specifying the container port. As mentioned in [part 1](/part-1/section-5#allowing-external-connections-into-containers), when leaving the host port unspecified, Docker will automatically choose a free port.
 
 Update the ports definition in `docker-compose.yml`:
 
@@ -263,7 +263,9 @@ Now we have a basic single machine hosting setup up and running.
 
 Test updating the `hello.html` without restarting the container, does it work?
 
-<exercise name="Exercise 2.5">
+## Exercises 2.5
+
+:::info Exercise 2.5
 
 The project [https://github.com/docker-hy/material-applications/tree/main/scaling-exercise](https://github.com/docker-hy/material-applications/tree/main/scaling-exercise) is a bearly working application. Go ahead and clone it for yourself. The project already includes docker-compose.yml so you can start it by running `docker compose up`.
 
@@ -273,4 +275,4 @@ This exercise was created with [Sasu Mäkinen](https://github.com/sasumaki)
 
 Please return the used commands for this exercise.
 
-</exercise>
+:::
