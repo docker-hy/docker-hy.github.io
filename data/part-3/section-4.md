@@ -95,61 +95,6 @@ rm -rf /var/lib/apt/lists/*
 
 ... which brings us down to 94 MB.
 
-**TODO** below error does not happen, remove the section?
-
-Now our slimmed down container should work, but:
-
-```console
-$ docker container run -v "$(pwd):/usr/videos" youtube-dl https://imgur.com/JY5tHqr
-
-  [Imgur] JY5tHqr: Downloading webpage
-
-  ERROR: Unable to download webpage: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:590)> (caused by URLError(SSLError(1, u'[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:590)'),))
-```
-
-Because `--auto-remove` also removed dependencies, like:
-
-```console
-  Removing ca-certificates (20170717~18.04.1) ...
-```
-
-We can now see that our `youtube-dl` worked previously because of our `curl` dependencies. If `youtube-dl` would have been installed as a package, it would have declared `ca-certificates` as its dependency.
-
-Now what we could do is to first `purge --auto-remove` and then add `ca-certificates` back with `apt-get install` or just install `ca-certificates` along with other packages before removing `curl`:
-
-```dockerfile
-FROM ubuntu:18.04
-
-WORKDIR /usr/videos
-
-ENV LC_ALL=C.UTF-8
-
-RUN apt-get update && apt-get install -y \
-    curl python ca-certificates && \
-    curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && \
-    chmod a+x /usr/local/bin/youtube-dl && \
-    apt-get purge -y --auto-remove curl && \
-    rm -rf /var/lib/apt/lists/* && \
-    useradd -m appuser
-
-USER appuser
-
-ENTRYPOINT ["/usr/local/bin/youtube-dl"]
-```
-
-**168MB**
-
-From the build output we can see that `ca-certificates` also adds `openssl`
-
-```console
-  The following additional packages will be installed:
-  openssl
-
-  The following NEW packages will be installed:
-  ca-certificates openssl
-```
-
-and this brings us to 36.9 megabytes in our `RUN` layer (from the original 76.7 megabytes).
 
 <exercise name="Exercise 3.6">
 
