@@ -86,7 +86,7 @@ To summarize, an image name may consist of 3 parts plus a tag. Usually like the 
 
 :::info Exercise 1.5: Sizes of images
 
-In the [Exercise 1.3](/part-1/2-running-and-stopping#non-tmc-exercise-exercise-13-secret-message) we used `devopsdockeruh/simple-web-service:ubuntu`.
+In the [Exercise 1.3](/part-1/section-2#exercise-13) we used `devopsdockeruh/simple-web-service:ubuntu`.
 
 Here is the same application but instead of Ubuntu is using [Alpine Linux](https://www.alpinelinux.org/): `devopsdockeruh/simple-web-service:alpine`.
 
@@ -302,7 +302,7 @@ Now we know that all instructions in a Dockerfile **except** CMD (and one other 
 
 We can improve our previous solutions now that we know how to create and build a Dockerfile.
 
-Let us now get back to [Exercise 1.4](/part-1/2-running-and-stopping#non-tmc-exercise-exercise-14-missing-dependencies).
+Let us now get back to [Exercise 1.4](/part-1/section-2#exercise-14).
 
 Create a new file on your local machine with and append the script we used previously into that file:
 

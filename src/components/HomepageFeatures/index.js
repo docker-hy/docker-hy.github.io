@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-export default function HomepageFeatures() {
+export default function HomePageFeatures() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={styles.banner}>

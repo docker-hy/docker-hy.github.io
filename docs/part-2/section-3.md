@@ -131,7 +131,7 @@ redmine:
     - db
 ```
 
-Notice the [depends_on](https://docs.docker.com/compose/compose-file/compose-file-v3/#depends_on) declaration. This makes sure that the `db` service is started first. `depends_on` does not guarantee that the database is up, just that it is started first. The Postgres server is accessible with DNS name "db" from the Redmine service as discussed in the section [Docker networking](/part-2/2-docker-networking).
+Notice the [depends_on](https://docs.docker.com/compose/compose-file/compose-file-v3/#depends_on) declaration. This makes sure that the `db` service is started first. `depends_on` does not guarantee that the database is up, just that it is started first. The Postgres server is accessible with DNS name "db" from the Redmine service as discussed in the section [Docker networking](/part-2/section-2).
 
 Now when you run `docker compose up` you will see a bunch of database migrations running first.
 
@@ -228,7 +228,7 @@ Adminer actually assumes that the database has DN Sname  _db_ so with this name 
 
 :::info Exercise 2.6
 
-Let us continue with the example app that we worked with in [Exercise 2.4](/part-2/2-docker-networking#non-tmc-exercise-exercise-24).
+Let us continue with the example app that we worked with in [Exercise 2.4](/part-2/section-2#exercise-24).
 
 Now you should add database to example backend.
 
@@ -334,7 +334,7 @@ Submit the docker-compose.yml
 
 Most of the buttons may have stopped working in the example application. Make sure that every button for exercises works.
 
-Remember to take a peek into the browsers developer consoles again like we did back [part 1](/part-1/6-docker-hub), remember also [this](https://github.com/docker-hy/material-applications/tree/main/example-frontend#exercise-114---to-connect-to-backend) and [this](https://github.com/docker-hy/material-applications/tree/main/example-backend).
+Remember to take a peek into the browsers developer consoles again like we did back [part 1](/part-1/section-6), remember also [this](https://github.com/docker-hy/material-applications/tree/main/example-frontend#exercise-114---to-connect-to-backend) and [this](https://github.com/docker-hy/material-applications/tree/main/example-backend).
 
 The buttons of Nginx exercise and the first button behave differently but you want them to match.
 

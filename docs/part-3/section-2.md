@@ -151,7 +151,7 @@ Now your deployment pipeline is set up! Ensure that it works:
 
 :::info Exercise 3.2: A deployment pipeline to a cloud service
 
-  In [Exercise 1.16](/part-1/6-docker-hub#non-tmc-exercise-exercise-116-cloud-deployment) you deployed a containerized app to a cloud service.
+  In [Exercise 1.16](/part-1/section-6#exercises-115-116) you deployed a containerized app to a cloud service.
 
   Now it is time to improve your solution by setting up a deployment pipeline for it so that every push to GitHub results in a new deployment to the cloud service.
 
