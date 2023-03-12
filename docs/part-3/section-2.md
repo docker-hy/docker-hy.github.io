@@ -21,7 +21,7 @@ _GitHub Actions is a continuous integration and continuous delivery (CI/CD) plat
 
 The project defines a _workflow_ with GitHub Actions that builds a Docker image and pushes it to Docker Hub every time the code is pushed to the GitHub repository.
 
-Let us now see how the workflow definition looks. It is stored in the file _build.yml_ inside the _.github/workflows_ directory:
+Let us now see how the workflow definition looks. It is stored in the file _deploy.yml_ inside the _.github/workflows_ directory:
 
 ```yaml
 name: Release DevOps with Docker # Name of the workflow
@@ -34,7 +34,12 @@ on:
 
 # Job called build runs-on ubuntu-latest
 jobs:
-  build:
+  deploy:
+    name: Deploy to GitHub Pages
+    # we are not interested in this job
+
+  publish-docker-hub:
+    name: Publish image to Docker Hub
     runs-on: ubuntu-latest
     steps:
     # Checkout to the repository
@@ -54,7 +59,9 @@ jobs:
         tags: devopsdockeruh/coursepage:latest
 ```
 
-The [workflow](https://docs.github.com/en/actions/using-workflows) has one [job](https://docs.github.com/en/actions/using-jobs/using-jobs-in-a-workflow) that consists of series of [steps](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps). Each step is a small operation or _action_ that does its part of the whole. The steps are the following
+The [workflow](https://docs.github.com/en/actions/using-workflows) has two  [jobs](https://docs.github.com/en/actions/using-jobs/using-jobs-in-a-workflow), we are now interested in the one that is called _publish-docker-hub_. The other job, called _deploy_ takes care of deploying the page as a GitHub page.
+
+A job consists of series of [steps](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps). Each step is a small operation or _action_ that does its part of the whole. The steps are the following
 
 - [actions/checkout@v2](https://github.com/actions/checkout) is used to check out the code from the repository
 - [docker/login-action@v1](https://github.com/docker/login-action) is used to log in to Docker Hub
@@ -209,7 +216,7 @@ Note that now the Docker Hub credentials are defined as environment variables si
 
 Submit the Dockerfile and the final version of your script.
 
-  Hint: you quite likely need to use [ENTRYPOINT]https://docs.docker.com/engine/reference/builder/#entrypoint() in this Exercise.
+  Hint: you quite likely need to use [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint) in this Exercise.
   See [Part 1](/part-1/section-4) for more.
 
 :::
