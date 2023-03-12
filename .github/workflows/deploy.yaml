@@ -33,6 +33,7 @@ jobs:
           cname: devopswithdocker.com
 
   publish-docker-hub:
+    name: Publish image to Docker Hub
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
