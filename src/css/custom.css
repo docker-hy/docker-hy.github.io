@@ -1,0 +1,60 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #2e8585;
+  --ifm-color-primary-dark: #297885;
+  --ifm-color-primary-darker: #277185;
+  --ifm-color-primary-darkest: #205d85;
+  --ifm-color-primary-light: #339285;
+  --ifm-color-primary-lighter: #359985;
+  --ifm-color-primary-lightest: #3cad85;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme="dark"] {
+  --ifm-color-primary: #25c285;
+  --ifm-color-primary-dark: #21af85;
+  --ifm-color-primary-darker: #1fa585;
+  --ifm-color-primary-darkest: #1a8885;
+  --ifm-color-primary-light: #29d585;
+  --ifm-color-primary-lighter: #32d885;
+  --ifm-color-primary-lightest: #4fdd85;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.heart-container {
+  display: inline-flex;
+  font-family: "Zapf Dingbats";
+  height: 100%;
+  width: 8em;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes pulse {
+  0% {
+    font-size: 4em;
+    color: firebrick;
+  }
+
+  100% {
+    font-size: 5em;
+  }
+}
+
+.heart-pulse {
+  font-size: 5em;
+  color: red;
+  animation: pulse 2s ease-in infinite alternate;
+}

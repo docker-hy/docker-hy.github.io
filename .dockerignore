@@ -1,5 +1,6 @@
-_site
+.docusaurus
 .dockerignore
 Dockerfile
 node_modules
-.cache
+.github
+build

@@ -1,12 +1,14 @@
-FROM node:16 as build-stage
+FROM node:18 as build-stage
 
 WORKDIR /usr/src/app
 
-COPY package* /
+COPY package* ./
 
-RUN npm ci --legacy-peer-deps
+RUN npm ci
 
 COPY . .
+
+RUN npm run swizzle docusaurus-lunr-search SearchBar -- --eject --danger
 
 RUN npm run build
 
@@ -16,6 +18,6 @@ ENV PORT 80
 
 RUN npm install -g serve
 
-COPY --from=build-stage /usr/src/app/public /usr/src/html
+COPY --from=build-stage /usr/src/app/build /usr/src/html
 
 CMD serve -l $PORT /usr/src/html
