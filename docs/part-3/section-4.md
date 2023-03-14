@@ -270,7 +270,7 @@ Often the best choice is to use a FROM **scratch** image as it doesn't have anyt
 
   The project is in golang and building a binary that runs in a container, while straightforward, isn't exactly trivial. Use resources that you have available (Google, example projects) to build the binary and run it inside a container that uses `FROM scratch`.
 
-  To pass the exercise the image must be smaller than <b>25MB</b>.
+  To successfully complete the exercise the image must be smaller than <b>25MB</b>.
 
 :::
 

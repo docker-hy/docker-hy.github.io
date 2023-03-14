@@ -27,7 +27,7 @@ No. All exercises for a part must be submitted at the same time. If you marked e
 
 ## When and how can I get my credits?
 
-You can get your credits after submitting enough exercises. First, complete the exercises as instructed in part 0. Then let us know through the exercise submission system that you are ready with the course.
+You can get your credits after submitting enough exercises. First, complete the exercises as instructed in [getting started](/getting-started). Then let us know through the exercise submission system that you are ready with the course.
 
 ## Do I get a certificate after completing the course?
 

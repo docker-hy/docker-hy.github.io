@@ -18,7 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-      - name: Swiffle search
+      - name: Swizzle search
         run: npm run swizzle docusaurus-lunr-search SearchBar -- --eject --danger
       - name: Build website
         run: npm run build
