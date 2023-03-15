@@ -196,7 +196,7 @@ $ docker run youtube-dl https://imgur.com/gallery/iT3U4K4
 
 Note that despite the name, _youtube-dl_ works currently only with [imgurl.com](https://imgur.com/).
 
-In addition to all seen, there are two ways to set the ENTRYPOINT and COM: **exec** form and **shell** form. We've been using the exec form where the command itself is executed. In shell form the command that is executed is wrapped with `/bin/sh -c` - it's useful when you need to evaluate environment variables in the command like `$MYSQL_PASSWORD` or similar.
+In addition to all seen, there are two ways to set the ENTRYPOINT and CMD: **exec** form and **shell** form. We've been using the exec form where the command itself is executed. In shell form the command that is executed is wrapped with `/bin/sh -c` - it's useful when you need to evaluate environment variables in the command like `$MYSQL_PASSWORD` or similar.
 
 In the shell form the command is provided as a string without brackets. In the exec form the command and it's arguments are provided as a list (with brackets), see the table below:
 
