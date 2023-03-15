@@ -202,10 +202,10 @@ In the shell form the command is provided as a string without brackets. In the e
 
 | Dockerfile                                               | Resulting command                                |
 | -------------------------------------------------------- | ------------------------------------------------ |
-| ENTRYPOINT /bin/ping -c 3 <br \> CMD localhost             | /bin/sh -c '/bin/ping -c 3' /bin/sh -c localhost |
-| ENTRYPOINT ["/bin/ping","-c","3"] <br \> CMD localhost     | /bin/ping -c 3 /bin/sh -c localhost              |
-| ENTRYPOINT /bin/ping -c 3 <br \> CMD ["localhost"]         | /bin/sh -c '/bin/ping -c 3' localhost            |
-| ENTRYPOINT ["/bin/ping","-c","3"] <br \> CMD ["localhost"] | /bin/ping -c 3 localhost                         |
+| ENTRYPOINT /bin/ping -c 3 <br /> CMD localhost             | /bin/sh -c '/bin/ping -c 3' /bin/sh -c localhost |
+| ENTRYPOINT ["/bin/ping","-c","3"] <br /> CMD localhost     | /bin/ping -c 3 /bin/sh -c localhost              |
+| ENTRYPOINT /bin/ping -c 3 <br /> CMD ["localhost"]         | /bin/sh -c '/bin/ping -c 3' localhost            |
+| ENTRYPOINT ["/bin/ping","-c","3"] <br /> CMD ["localhost"] | /bin/ping -c 3 localhost                         |
 
 As the command at the end of Docker run will be the CMD we want to use ENTRYPOINT to specify what to run, and CMD to specify which command (in our case url) to run.
 
