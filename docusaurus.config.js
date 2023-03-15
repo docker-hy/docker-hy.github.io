@@ -41,7 +41,7 @@ const config = {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/docker-hy/docker-hy.github.io/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/docker-hy/docker-hy.github.io/blob/master/',
         },
         blog: false,
         theme: {
