@@ -251,7 +251,7 @@ Submit the docker-compose.yml
 
 :::info Exercise 2.7
 
-Postgres image uses a volume by default. Define manually a volume for the database in a convenient location such as in `./database` so tyo should use now a [bind mount](https://docs.docker.com/storage/bind-mounts/). The image [documentation](https://github.com/docker-library/docs/blob/master/postgres/README.md#where-to-store-data) may help you with the task.
+Postgres image uses a volume by default. Define manually a volume for the database in a convenient location such as in `./database` so you should use now a [bind mount](https://docs.docker.com/storage/bind-mounts/). The image [documentation](https://github.com/docker-library/docs/blob/master/postgres/README.md#where-to-store-data) may help you with the task.
 
 After you have configured the bind mount volume:
 
