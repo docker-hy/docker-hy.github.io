@@ -187,6 +187,8 @@ As can be seen, installing a program or library to a container happens just like
 
 Start a Ubuntu image with the process `sh -c 'while true; do echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website; done'`
 
+If you're on Windows, you'll want to switch the `'` and `"` around: `sh -c "while true; do echo 'Input website:'; read website; echo 'Searching..'; sleep 1; curl http://$website; done"`.
+
 You will notice that a few things required for proper execution are missing. Be sure to remind yourself which flags to use so that the container actually waits for input.
 
 > Note also that curl is NOT installed in the container yet. You will have to install it from inside of the container.
