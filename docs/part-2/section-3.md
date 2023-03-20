@@ -288,7 +288,7 @@ _A reverse proxy is a type of proxy server that retrieves resources on behalf of
 
 So in our case, the reverse proxy will be the single point of entry to our application, and the final goal will be to set both the React frontend and the Express backend behind the reverse proxy.
 
-The idea is that broser makes _all_ requests to _http://localhost_. If the request has a url prefix _http://localhost/api_, Nginx should forward the request to the backend container. All the other requests are directed the frontend container.
+The idea is that browser makes _all_ requests to _http://localhost_. If the request has a url prefix _http://localhost/api_, Nginx should forward the request to the backend container. All the other requests are directed the frontend container.
 
 So, at the end you should see that the frontend is accessible simply by going to http://localhost. All buttons, except the one labelled _Exercise 2.8_ may have stopped working, do not worry about them, we shall fix that later.
 
