@@ -216,7 +216,7 @@ Setting up the adminer is straightforward since it will be able to access the da
       - REDMINE_DB_POSTGRES=db
 ```
 
-Adminer actually assumes that the database has DN Sname  _db_ so with this name selection, we did not have to specify anything. If the database has some other name, we have to pass it to adminer using an environment variable:
+Adminer actually assumes that the database has DNS name  _db_ so with this name selection, we did not have to specify anything. If the database has some other name, we have to pass it to adminer using an environment variable:
 
 ```yaml
   adminer:
