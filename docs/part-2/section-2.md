@@ -2,7 +2,7 @@
 title: "Docker networking"
 ---
 
-Connecting two services such as a server and its Database in docker can be achieved with a [Docker network](https://docs.docker.com/network/). In addition to starting services listed in docker-compose.yml Docker Compose automatically creates and joins both containers into a network with a DNS. Each container service is named after their container name and as such containers can reference each other simply with their names.
+Connecting two services such as a server and its Database in docker can be achieved with a [Docker network](https://docs.docker.com/network/). In addition to starting services listed in docker-compose.yml Docker Compose automatically creates and joins both containers into a network with a DNS. Each service is named after the name given in the docker-compose.yml file. As such, containers can reference each other simply with their service names, which is different from the container name.
 
 ![Docker networks](/img/2/docker-networks.png)
 
