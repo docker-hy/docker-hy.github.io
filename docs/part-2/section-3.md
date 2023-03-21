@@ -34,7 +34,7 @@ Note:
 
 Under the section [Where to store data](https://github.com/docker-library/docs/blob/master/postgres/README.md#where-to-store-data) we can see that the `/var/lib/postgresql/data` should be mounted separately to preserve the data.
 
-There are two options. We could use a bind mount like previously and mount a easy-to-locate directory for storing the data. Let us now use the other opiton, a [Docker managed volume](https://docs.docker.com/storage/volumes/).
+There are two options. We could use a bind mount like previously and mount a easy-to-locate directory for storing the data. Let us now use the other option, a [Docker managed volume](https://docs.docker.com/storage/volumes/).
 
 
 Let's run the Docker Compose file without setting anything new:
