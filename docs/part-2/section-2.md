@@ -156,7 +156,7 @@ $ curl 0.0.0.0:32768
 
 In a server environment you'd often have a [load balancer](https://en.wikipedia.org/wiki/Load_balancing_(computing)) in front of the service. For containerized local environment (or a single server) one good solution is to use <https://github.com/jwilder/nginx-proxy>.
 
-Let's add the nginx-proxy to our compose file and remove the port bindings from the whoami service. We'll mount our [docker.sock](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock) (the socket that is used to communicate with the [Docker Dameon](https://docs.docker.com/engine/reference/commandline/dockerd/)) inside of the container in `:ro` read-only mode:
+Let's add the nginx-proxy to our compose file and remove the port bindings from the whoami service. We'll mount our [docker.sock](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock) (the socket that is used to communicate with the [Docker Daemon](https://docs.docker.com/engine/reference/commandline/dockerd/)) inside of the container in `:ro` read-only mode:
 
 ```yaml
 version: "3.8"
