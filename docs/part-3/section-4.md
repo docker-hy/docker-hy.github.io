@@ -38,7 +38,7 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 
 **133MB**
 
-As was said each command that is executed to the base image, forms an layer. Command here refers to one Dockerfile directice such as `RUN`. We could now glue all `RUN` commands together to reduce the number of layers that are created when building the image:
+As was said each command that is executed to the base image, forms an layer. Command here refers to one Dockerfile directive such as `RUN`. We could now glue all `RUN` commands together to reduce the number of layers that are created when building the image:
 
 ```dockerfile
 FROM ubuntu:18.04
