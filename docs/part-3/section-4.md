@@ -14,7 +14,7 @@ Before going on to the tricks that were shown on the video, let us start start b
 
 _To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image. When you change the Dockerfile and rebuild the image, only those layers which have changed are rebuilt. This is part of what makes images so lightweight, small, and fast, when compared to other virtualization._
 
-So each command that is executed to the base image, forms an layer. The resulting image is the final layer, that combines the changes that all the intrmediate layers contains. Each layer potentially adds something extra to the resulting image so it might be a good idea to minimize the number of layers.
+So each command that is executed to the base image, forms an layer. The resulting image is the final layer, that combines the changes that all the intermediate layers contains. Each layer potentially adds something extra to the resulting image so it might be a good idea to minimize the number of layers.
 
 To keep track of the improvements, we keep on note of the image size after each new Dockerfile.
 
