@@ -72,7 +72,7 @@ $ docker compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr
 
 :::info Exercise 2.1
 
-  Let us now leverage the Docker Compose with the simple webservice that was we user eg in the [Exercise 1.3](/part-1/section-2#exercise-13)
+  Let us now leverage the Docker Compose with the simple webservice that we used in the [Exercise 1.3](/part-1/section-2#exercise-13)
 
   Without a command `devopsdockeruh/simple-web-service` will create logs into its `/usr/src/app/text.log`.
 
