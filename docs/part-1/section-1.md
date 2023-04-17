@@ -301,9 +301,9 @@ Some of the shorthands are legacy version of doing the same thing. You can use e
 
   Since we already did "Hello, World!" in the material let's do something else.
 
-  Start 3 containers from image that does not automatically exit, such as nginx, detached.
+  Start 3 containers from an image that does not automatically exit (such as nginx) in detached mode.
 
-  Stop 2 of the containers leaving 1 up.
+  Stop two of the containers and leave one container running.
 
   Submit the output for `docker ps -a` which shows 2 stopped containers and one running.
 
@@ -311,9 +311,9 @@ Some of the shorthands are legacy version of doing the same thing. You can use e
 
 :::info Exercise 1.2: Cleanup
 
-  We've left containers and a image that won't be used anymore and are taking space, as `docker ps -as` and `docker images` will reveal.
+  We have containers and an image that are no longer in use and are taking up space. Running `docker ps -as` and `docker images` will confirm this.
 
-  Clean the Docker daemon from all images and containers.
+  Clean the Docker daemon by removing all images and containers.
 
   Submit the output for `docker ps -a` and `docker images`
 
