@@ -317,6 +317,8 @@ http {
 
 Nginx, backend and frontend should be connected in the same network. See the image above for how the services are connected. You find [Nginx-documentation](https://www.nginx.com/resources/wiki/start/topics/examples/full/) helpful, but remember, the configuration you need is pretty straight forward, if you end up doing complex things, you are most likely doing something wrong.
 
+Remeber to remove ENV REACT_APP_BACKEND_URL "http://localhost:8080" from your front-end Dockerfile otherwise it will not use the /api/ route!
+
 If and when your app "does not work", remember to have a look in log, it can be pretty helpful in pinpointing errors:
 
 ```bash
