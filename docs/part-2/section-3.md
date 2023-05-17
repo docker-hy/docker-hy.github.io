@@ -115,7 +115,7 @@ $ docker container inspect db_redmine | grep -A 5 Mounts
         "Destination": "/var/lib/postgresql/data",
 ```
 
-Ok, looks a bit more human readable! Now when the Postgres is running, is is time to add [Redmine](https://hub.docker.com/_/redmine).
+Ok, looks a bit more human readable! Now when the Postgres is running, it is time to add [Redmine](https://hub.docker.com/_/redmine).
 
 The container seems to require just two environment variables.
 
