@@ -290,7 +290,7 @@ So in our case, the reverse proxy will be the single point of entry to our appli
 
 The idea is that browser makes _all_ requests to _http://localhost_. If the request has a url prefix _http://localhost/api_, Nginx should forward the request to the backend container. All the other requests are directed the frontend container.
 
-So, at the end you should see that the frontend is accessible simply by going to http://localhost. All buttons, except the one labelled _Exercise 2.8_ may have stopped working, do not worry about them, we shall fix that later.
+So, at the end you should see that the frontend is accessible simply by going to <http://localhost>. All buttons, except the one labelled _Exercise 2.8_ may have stopped working, do not worry about them, we shall fix that later.
 
 The following file should be set to _/etc/nginx/nginx.conf_ inside the nginx container. You can use a file bind mount where the contents of the file is the following:
 
