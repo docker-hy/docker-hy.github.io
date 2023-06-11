@@ -280,7 +280,7 @@ It might be Nginx configuration problem. Ensure there is a trailing / on the bac
 
 :::info Exercise 2.8
 
-Add [Nginx](https://hub.docker.com/_/nginx) to example to work as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) in front of the example app fronend and backend. According to Wikipedia
+Add [Nginx](https://hub.docker.com/_/nginx) to example to work as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) in front of the example app frontend and backend. According to Wikipedia
 
 _A reverse proxy is a type of proxy server that retrieves resources on behalf of a client from one or more servers. These resources are then returned to the client, appearing as if they originated from the reverse proxy server itself._
 
