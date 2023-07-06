@@ -212,7 +212,7 @@ You can take any web-app, eg. an example or exercise from this part, your own ap
 
 There are plenty of alternatives, and most provide a free tier. Here are some alternatives that are quite simple to use:
 
-- [fly.io](https://fly.io) (easy to use but needs a credit card even in the free tier)
+- [fly.io](https://fly.io) (easy to use, setting up an app seems to put you a free trial plan)
 - [render.com](https://render.com) (bad documentation, you most likely need google)
 - [heroku.com](https://heroku.com) (has a free student plan)
 
