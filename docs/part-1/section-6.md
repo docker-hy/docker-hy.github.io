@@ -214,7 +214,7 @@ There are plenty of alternatives, and most provide a free tier. Here are some al
 
 - [fly.io](https://fly.io) (easy to use but needs a credit card even in the free tier)
 - [render.com](https://render.com) (bad documentation, you most likely need google)
-- [heroku.com](https://heroku.com) (has a free student plan)
+- [heroku.com](https://heroku.com) (has a free student plan through [GitHub Student Developer Pack](https://www.heroku.com/github-students))
 
 If you know a good cloud service for the purposes of this exercise, please tell us (yes, we know about Amazon AWS, Google Cloud and Azure already... ).
 
