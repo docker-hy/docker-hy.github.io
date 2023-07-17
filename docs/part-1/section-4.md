@@ -29,7 +29,7 @@ $ youtube-dl
 
 Okay - On the top of the `youtube-dl` download page we notice this message:
 
-   Remember youtube-dl requires Python version 2.6, 2.7, or 3.2+ to work except for Windows exe.
+Remember youtube-dl requires Python version 2.6, 2.7, or 3.2+ to work except for Windows exe.
 
 So we will add python
 
@@ -200,8 +200,8 @@ In addition to all seen, there are two ways to set the ENTRYPOINT and CMD: **exe
 
 In the shell form the command is provided as a string without brackets. In the exec form the command and it's arguments are provided as a list (with brackets), see the table below:
 
-| Dockerfile                                               | Resulting command                                |
-| -------------------------------------------------------- | ------------------------------------------------ |
+| Dockerfile                                                 | Resulting command                                |
+| ---------------------------------------------------------- | ------------------------------------------------ |
 | ENTRYPOINT /bin/ping -c 3 <br /> CMD localhost             | /bin/sh -c '/bin/ping -c 3' /bin/sh -c localhost |
 | ENTRYPOINT ["/bin/ping","-c","3"] <br /> CMD localhost     | /bin/ping -c 3 /bin/sh -c localhost              |
 | ENTRYPOINT /bin/ping -c 3 <br /> CMD ["localhost"]         | /bin/sh -c '/bin/ping -c 3' localhost            |
@@ -292,7 +292,7 @@ sleep 1;
 curl http://$1;
 ```
 
-And change the CMD to ENTRYPOINT with the format `[ "./script.sh" ]`. Now we can run
+And change the CMD to ENTRYPOINT with the format `["./script.sh"]`. Now we can run
 
 ```bash
 $ docker build . -t curler-v2
@@ -310,4 +310,3 @@ $ docker run curler-v2 helsinki.fi
   <p>The document has moved <a href="https://www.helsinki.fi/">here</a>.</p>
   </body></html>
 ```
-
