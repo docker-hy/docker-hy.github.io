@@ -6,7 +6,10 @@ Next, we will start moving towards a more meaningful image. _youtube-dl_ is a pr
 
 ```console
 $ docker run -it ubuntu:18.04
-  root@8c587232a608:/# curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+
+
+
+  root@8c587232a608:/# curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl
   bash: curl: command not found
 ```
 
@@ -14,7 +17,7 @@ $ docker run -it ubuntu:18.04
 
 ```console
 $ apt-get update && apt-get install -y curl
-$ curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+$ curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl
 ```
 
 At some point, you may have noticed that _sudo_ is not installed either, but since we are _root_ we don't need it.
@@ -70,7 +73,7 @@ FROM ubuntu:18.04
 WORKDIR /mydir
 
 RUN apt-get update && apt-get install -y curl python
-RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+RUN curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl
 RUN chmod a+x /usr/local/bin/youtube-dl
 
 ENV LC_ALL=C.UTF-8
@@ -127,7 +130,7 @@ FROM ubuntu:18.04
 WORKDIR /mydir
 
 RUN apt-get update && apt-get install -y curl python
-RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+RUN curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl
 RUN chmod a+x /usr/local/bin/youtube-dl
 
 ENV LC_ALL=C.UTF-8
@@ -159,7 +162,7 @@ FROM ubuntu:18.04
 WORKDIR /mydir
 
 RUN apt-get update && apt-get install -y curl python
-RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+RUN curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl
 RUN chmod a+x /usr/local/bin/youtube-dl
 
 ENV LC_ALL=C.UTF-8
