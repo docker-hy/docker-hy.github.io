@@ -27,7 +27,7 @@ ENV LC_ALL=C.UTF-8
 
 RUN apt-get update
 RUN apt-get install -y curl python
-RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+RUN curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl
 RUN chmod a+x /usr/local/bin/youtube-dl
 RUN useradd -m appuser
 
@@ -49,7 +49,7 @@ ENV LC_ALL=C.UTF-8
 
 RUN apt-get update && apt-get install -y \
     curl python && \
-    curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && \
+    curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl && \
     chmod a+x /usr/local/bin/youtube-dl && \
     useradd -m appuser
 
@@ -118,7 +118,7 @@ WORKDIR /usr/videos
 ENV LC_ALL=C.UTF-8
 
 RUN apk add --no-cache curl python3 ca-certificates && \
-    curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && \
+    curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl && \
     chmod a+x /usr/local/bin/youtube-dl && \
     apk del curl && \
     adduser -D userapp && \
