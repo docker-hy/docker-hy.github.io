@@ -88,9 +88,17 @@ Confirm that Docker installed correctly by opening a terminal and running `docke
 
 To avoid writing sudos you may consider [adding yourself to docker group](https://docs.docker.com/install/linux/linux-postinstall/)
 
-Keep in mind that if you do so, you can now run containers without sudo and containers give you super user access to the computer.
+Keep in mind that if you do so, you can now run containers without sudo and containers give you or anyone who gains access to your account super user access to the computer.
 
 :::
+
+### Rootless Docker
+
+Instead of above installation, on Linux you can run Docker as a non-root user. This requires that your system has [certain programs and configurations set up in advance](https://docs.docker.com/engine/security/rootless/#prerequisites) by the system administrator.
+
+If your system is set up correctly, you can possibly run locally available installation script dockerd-rootless-setuptool.sh or download it from [https://get.docker.com/rootless](https://get.docker.com/rootless). Script will inform you of any missing requirements if there are any.
+
+Do note that while running Docker rootless does limit some security risks to your system, it just adds one hurdle for potential malicious attacker (and in any case, system staying secure might not sound so great if you end up "only" losing your user data).
 
 ## Deadline
 
