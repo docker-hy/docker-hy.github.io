@@ -96,7 +96,7 @@ Keep in mind that if you do so, you can now run containers without sudo and cont
 
 Instead of above installation, on Linux you can run Docker as a non-root user. This requires that your system has [certain programs and configurations set up in advance](https://docs.docker.com/engine/security/rootless/#prerequisites) by the system administrator.
 
-If your system is set up correctly, you can possibly run locally available installation script dockerd-rootless-setuptool.sh or download it from [https://get.docker.com/rootless](https://get.docker.com/rootless). Script will inform you of any missing requirements if there are any.
+If your system is set up correctly, you can possibly run locally available installation script dockerd-rootless-setuptool.sh or download it from [https://get.docker.com/rootless](https://get.docker.com/rootless). The script will inform you of any missing requirements if there are any.
 
 Do note that while running Docker rootless does limit some security risks to your system, it just adds one hurdle for potential malicious attacker (and in any case, system staying secure might not sound so great if you end up "only" losing your user data).
 
