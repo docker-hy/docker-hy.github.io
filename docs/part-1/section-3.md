@@ -363,7 +363,7 @@ Try `docker run devopsdockeruh/simple-web-service:alpine hello`. The application
 
 In this exercise create a Dockerfile and use FROM and CMD to create a brand new image that automatically runs `server`.
 
-The Docker documentation [CMD](https://docs.docker.com/engine/reference/builder/#cmd) says a bit indirectly that if a image has ENTRYPOINT defined, CMD is used to define it the default arguments.
+The Docker documentation [CMD](https://docs.docker.com/engine/reference/builder/#cmd) says a bit indirectly that if an image has ENTRYPOINT defined, CMD is used to define the default arguments for it.
 
 Tag the new image as "web-server"
 
