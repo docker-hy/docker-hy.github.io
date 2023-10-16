@@ -201,6 +201,12 @@ If you're now getting "/bin/sh: ./hello.sh: not found" and you're using Windows 
 
 :::
 
+:::can't stat
+
+If you are running rootless docker and build process gives can't stat error, you may try removing old images. [This issue](https://github.com/docker/for-linux/issues/380) may be relevant.
+
+:::
+
 Now executing the application is as simple as running `docker run hello-docker`. Try it!
 
 During the build we see that there are multiple steps with hashes and intermediate containers. The steps here represent the layers so that each step is a new layer to the image.
