@@ -201,9 +201,9 @@ If you're now getting "/bin/sh: ./hello.sh: not found" and you're using Windows 
 
 :::
 
-:::can't stat
+:::tip can't stat
 
-If you are running rootless docker and build process gives can't stat error, you may try removing old images. [This issue](https://github.com/docker/for-linux/issues/380) may be relevant.
+If you are running rootless docker and build process gives can't stat error, you may try removing old images. For more information, reading [this issue](https://github.com/docker/for-linux/issues/380) may be relevant.
 
 :::
 
