@@ -11,7 +11,7 @@ Let us now see how one can set up a deployment pipeline that can be used to auto
 
 Since we cannot assume that everyone has access to their own server, we will demonstrate the pipeline using _a local machine_ as the development target, but the exactly same steps can be used for a virtual machine in the cloud (such as one provided by [Hetzner](https://www.hetzner.com/cloud)) or even Raspberry Pi.
 
-We will use [GitHub Actions](https://github.com/features/actions) to build an image and push the image to Docker Hub, and then use a project called [Watchtower](https://containrrr.dev/watchtower/) to automatically pull the and restart the new image in the target machine.
+We will use [GitHub Actions](https://github.com/features/actions) to build an image and push the image to Docker Hub, and then use a project called [Watchtower](https://containrrr.dev/watchtower/) to automatically pull and restart the new image in the target machine.
 
 As example, we will look repository [https://github.com/docker-hy/docker-hy.github.io](https://github.com/docker-hy/docker-hy.github.io), that is, the material of this course.
 
