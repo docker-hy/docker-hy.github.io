@@ -73,7 +73,7 @@ Before the workflow will work, two [secrets](https://docs.github.com/en/actions/
 
 GitHub Actions are doing only the "first half" of the deployment pipeline: they are ensuring that every push to GitHub is built to an Docker image which is then pushed to Docker Hub.
 
-The other half of the deployment pipeline is implemented by a containerized service called [Watchtower](https://github.com/containrrr/watchtower) that is an open source project that automates the task of updating images. Watchtower will poll the source of the image (in this case Docker Hub) for changes in the containers that are running. The container that is running will be updated and automatically restarted when a new version of the image is pushed to Docker Hub. Watchtower respects tags e.g. container using ubuntu:18.04 will not be updated unless a new version of ubuntu:18.04 is released.
+The other half of the deployment pipeline is implemented by a containerized service called [Watchtower](https://github.com/containrrr/watchtower) that is an open source project that automates the task of updating images. Watchtower will pull the source of the image (in this case Docker Hub) for changes in the containers that are running. The container that is running will be updated and automatically restarted when a new version of the image is pushed to Docker Hub. Watchtower respects tags e.g. container using ubuntu:18.04 will not be updated unless a new version of ubuntu:18.04 is released.
 
 :::tip Security reminder: Docker Hub accessing your computer
 
