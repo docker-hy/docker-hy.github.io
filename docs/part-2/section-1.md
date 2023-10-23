@@ -6,6 +6,12 @@ Even with a simple image, we've already been dealing with plenty of command line
 
 Next we will switch to a tool called [Docker Compose](https://docs.docker.com/compose/) to manage these. Docker Compose used to be a separate tool but now it is integrated to Docker and can be used like the rest of the Docker commands.
 
+:::tip Rootless Docker
+
+If you are using Docker without root privileges, your system might not have Docker Compose installed. If this is the case, you can [install it manually yourself](https://docs.docker.com/compose/install/linux/#install-the-plugin-manually).
+
+:::
+
 Docker Compose is designed to simplify running multi-container applications to using a single command.
 
 Assume that we are in the folder where we have our Dockerfile with the following content:
