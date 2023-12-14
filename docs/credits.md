@@ -10,4 +10,4 @@ As of 2022 the course was handed off to Matti Luukkainen the legendary creator o
 
 This material is following the [official Docker guidelines presented on the official website](https://www.docker.com/legal/trademark-guideline). If you find anything conflicting or otherwise prohibited use, please inform us and we'll make the required changes.
 
-This material is licenced under [Creative Commons BY-NC-SA 3.0 -licence](http://creativecommons.org/licenses/by-nc-sa/3.0/), so you can freely use and distribute the material, as long as original creators are credited. If you make changes to material and you want to distribute altered version it must be licenced under the same licence. Usage of material for commercial use is prohibited without permission.
+This material is licenced under [Creative Commons BY-NC-SA 3.0 -licence](http://creativecommons.org/licenses/by-nc-sa/3.0/), so you can freely use and distribute the material, as long as original creators are credited. If you make changes to material and you want to distribute altered version it must be licenced under the same licence. Usage of material for commercial use is prohibited without permission access.
