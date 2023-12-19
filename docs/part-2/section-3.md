@@ -30,7 +30,7 @@ services:
 
 Note:
 
-- `restart: always` was changed to `unless-stopped` that will keep the container running unless we explicitely stop it. With `always` the stopped container is started after reboot for example, see [here](https://docs.docker.com/config/containers/start-containers-automatically/) for more.
+- `restart: always` was changed to `unless-stopped` that will keep the container running unless we explicitly stop it. With `always` the stopped container is started after reboot for example, see [here](https://docs.docker.com/config/containers/start-containers-automatically/) for more.
 
 Under the section [Where to store data](https://github.com/docker-library/docs/blob/master/postgres/README.md#where-to-store-data) we can see that the `/var/lib/postgresql/data` should be mounted separately to preserve the data.
 
