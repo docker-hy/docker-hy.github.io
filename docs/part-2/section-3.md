@@ -230,7 +230,7 @@ Adminer actually assumes that the database has DNS name  _db_ so with this name 
 
 Let us continue with the example app that we worked with in [Exercise 2.4](/part-2/section-2#exercise-24).
 
-Now you should add database to example backend.
+Now you should add a database to the example backend.
 
 Use a Postgres database to save messages. For now there is no need to configure a volume since the official postgres image sets a default volume for us. Use the Postgres image documentation to your advantage when configuring: [https://hub.docker.com/\_/postgres/](https://hub.docker.com/_/postgres/). Especially part _Environment Variables_ is a valuable one.
 
