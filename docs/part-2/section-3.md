@@ -99,7 +99,7 @@ volumes:
   database:
 ```
 
-Now let us check what it looks like:
+Now, after running `docker compose up` again, let us check what it looks like:
 
 ```console
 $ docker volume ls
