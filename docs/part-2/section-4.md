@@ -6,7 +6,7 @@ Containers are not only great in production. They can be used in development env
 
 For an example, a [software development team](https://toska.dev/) at the University of Helsinki has a fully [containerized development environment](https://ethesis.helsinki.fi/repository/handle/123456789/30995). The principle in all development projects is to have a setup so that a new developer only needs to install Docker and clone the project code from GitHub to get started. Not a single dependency is ever installed on to host machine, Git, Docker and the text editor of choice is only thing that is needed.
 
-Even if your application is not completely containerized during development, containers can very helpful. For example, say you need MongoDB version 4.0.22 installed in port 5656. It's now oneliner: "docker run -p 5656:27017 mongo:4.0.22" (MongoDB uses 27017 as default port).
+Even if your application is not completely containerized during development, containers can very helpful. For example, say you need MongoDB version 4.0.22 installed in port 5656. It's now a oneliner: "docker run -p 5656:27017 mongo:4.0.22" (MongoDB uses 27017 as default port).
 
 Let's containerize a NodeJS development environment. As you perhaps know [NodeJS](https://nodejs.org/en/) is a cross-platform JavaScript runtime that makes it possible to run JavaScript in your machine, servers and embedded devices, among many other platforms
 
