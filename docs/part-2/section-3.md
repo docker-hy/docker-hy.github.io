@@ -67,7 +67,7 @@ Let's **inspect** if there was a volume created with `docker container inspect d
         "Destination": "/var/lib/postgresql/data",
 ```
 
-An indeed there is one! So despite us not configuring it explicitly, a volume was automatically created for us.
+An indeed there is one! So despite us not configuring one explicitly, an anonymous volume was automatically created for us.
 
 Now if we check out `docker volume ls` we can see that a volume with name "794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df" exists.
 
