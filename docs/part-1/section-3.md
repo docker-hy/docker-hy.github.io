@@ -310,7 +310,7 @@ We can improve our previous solutions now that we know how to create and build a
 
 Let us now get back to [Exercise 1.4](/part-1/section-2#exercise-14).
 
-Create a new file on your local machine with and append the script we used previously into that file:
+Create a new file on your local machine and append the script we used previously into that file:
 
 ```bash
 while true
@@ -323,7 +323,7 @@ done
 
 Create a Dockerfile for a new image that starts from ubuntu:20.04 and add instructions to install curl into that image. Then add instructions to copy the script file into that image and finally set it to run on container start using CMD.
 
-After you have filled the Dockerfile, build the image with the tag "curler".
+After you have filled the Dockerfile, build the image with the name "curler".
 
 * If you are getting permission denied, use `chmod` to give permission to run the script.
 

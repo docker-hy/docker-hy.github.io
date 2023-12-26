@@ -30,7 +30,7 @@ services:
 
 Note:
 
-- `restart: always` was changed to `unless-stopped` that will keep the container running unless we explicitely stop it. With `always` the stopped container is started after reboot for example, see [here](https://docs.docker.com/config/containers/start-containers-automatically/) for more.
+- `restart: always` was changed to `unless-stopped` that will keep the container running unless we explicitly stop it. With `always` the stopped container is started after reboot for example, see [here](https://docs.docker.com/config/containers/start-containers-automatically/) for more.
 
 Under the section [Where to store data](https://github.com/docker-library/docs/blob/master/postgres/README.md#where-to-store-data) we can see that the `/var/lib/postgresql/data` should be mounted separately to preserve the data.
 
@@ -67,7 +67,7 @@ Let's **inspect** if there was a volume created with `docker container inspect d
         "Destination": "/var/lib/postgresql/data",
 ```
 
-An indeed there is one! So despite we did not configure anything the
+An indeed there is one! So despite us not configuring one explicitly, an anonymous volume was automatically created for us.
 
 Now if we check out `docker volume ls` we can see that a volume with name "794c9d8db6b5e643865c8364bf3b807b4165291f02508404ff3309b8ffde01df" exists.
 
@@ -99,7 +99,7 @@ volumes:
   database:
 ```
 
-Now let us check what it looks like:
+Now, after running `docker compose up` again, let us check what it looks like:
 
 ```console
 $ docker volume ls
@@ -230,7 +230,7 @@ Adminer actually assumes that the database has DNS name  _db_ so with this name 
 
 Let us continue with the example app that we worked with in [Exercise 2.4](/part-2/section-2#exercise-24).
 
-Now you should add database to example backend.
+Now you should add a database to the example backend.
 
 Use a Postgres database to save messages. For now there is no need to configure a volume since the official postgres image sets a default volume for us. Use the Postgres image documentation to your advantage when configuring: [https://hub.docker.com/\_/postgres/](https://hub.docker.com/_/postgres/). Especially part _Environment Variables_ is a valuable one.
 
