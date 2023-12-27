@@ -144,13 +144,13 @@ $ docker compose port --index 3 whoami 8000
   0.0.0.0:32768
 ```
 
-We can now curl from these ports:
+We can now curl from these ports on localhost (127.0.0.1):
 
 ```console
-$ curl 0.0.0.0:32769
+$ curl 127.0.0.1:32769
   I'm 536e11304357
 
-$ curl 0.0.0.0:32768
+$ curl 127.0.0.1:32768
   I'm 1ae20cd990f7
 ```
 
