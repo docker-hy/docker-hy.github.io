@@ -58,7 +58,7 @@ USER appuser
 ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 ```
 
-**133MB**
+**131MB**
 
 There is not that much difference, the image with less layers is 2 MB smaller.
 
@@ -129,7 +129,7 @@ USER userapp
 ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 ```
 
-**51.7B**
+**51.7MB**
 
 Notes:
  - The package manager is `apk` and it can work without downloading sources (caches) first with `--no-cache`.
