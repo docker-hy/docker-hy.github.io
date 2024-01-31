@@ -133,7 +133,7 @@ services:
       image:
       environment:
         - VARIABLE=VALUE
-        - VARIABLE2=VAULE2
+        - VARIABLE2=VALUE2
 ```
 
 ## Exercises 2.2 - 2.3
