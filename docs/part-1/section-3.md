@@ -246,7 +246,7 @@ Great! Now we've made a change to the container. We can use `diff` to check what
 
 The character in front of the file name indicates the type of the change in the container's filesystem: A = added, D = deleted, C = changed. The additional.txt was created and our `ls` created .ash_history.
 
-Next we will save the changes as a new image with the command [docker commit](https://docs.docker.com/engine/reference/commandline/commit/https://docs.docker.com/engine/reference/commandline/commit/):
+Next we will save the changes as a new image with the command [docker commit](https://docs.docker.com/engine/reference/commandline/container_commit/):
 
 ```console
 2 $ docker commit zen_rosalind hello-docker-additional
