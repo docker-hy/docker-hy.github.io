@@ -94,7 +94,7 @@ Keep in mind that if you do so, you can now run containers without sudo and cont
 
 ## Deadline
 
-The sign up for ECTS credits and the course ends 18.6.2023! After that course is locked and submissions can no longer be made or credits earned. As the certificate is received through submissions, you have to submit everything before the course ends. More details under completion and after each part.
+The sign up for ECTS credits and the course ends 16.6.2024! After that course is locked and submissions can no longer be made or credits earned. As the certificate is received through submissions, you have to submit everything before the course ends. More details under completion and after each part.
 
 ## General guidance
 
