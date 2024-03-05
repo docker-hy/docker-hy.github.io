@@ -34,19 +34,19 @@ There are additional instructions for completion after each part and at the end 
 
 ### Learning objectives
 
-Part 1: DevOps with Docker ([TKT21036](https://studies.helsinki.fi/opintotarjonta/cur/otm-a1a074e0-dc7f-4644-8796-04fab528ba36/TKT21036/DevOps_with_Docker))
+Part 1: DevOps with Docker ([TKT21036](https://studies.helsinki.fi/kurssit/toteutus/otm-4bd45ab8-8b23-4973-a918-a6b6f7bbb347/TKT21036))
 
 - Understand the fundamental concepts of Docker, including images and containers.
 - Learn how to build Docker images for existing projects and run them.
 - Understand how Docker can simplify the development process.
 
-Part 2: DevOps with Docker: docker-compose ([TKT21037](https://studies.helsinki.fi/opintotarjonta/cur/otm-d37daa67-f5b1-4bdb-88a5-98107d2c63ea/TKT21037/DevOps_with_Docker_docker_compose))
+Part 2: DevOps with Docker: docker-compose ([TKT21037](https://studies.helsinki.fi/kurssit/toteutus/otm-c73ef1c6-8fb0-42e8-9052-ef59b01cb409/TKT21037))
 
 - Learn how to manage complex multi-container applications with Docker Compose.
 - Understand the role of Docker Compose in container orchestration
 - Practice deploying and managing real-world applications using Docker Compose.
 
-Part 3: DevOps with Docker: security and optimization ([TKT21038](https://studies.helsinki.fi/opintotarjonta/cur/otm-68b6e802-0b55-438c-85aa-1fd9d0ad80be/TKT21038/DevOps_with_Docker_security_and_optimization))
+Part 3: DevOps with Docker: security and optimization ([TKT21038](https://studies.helsinki.fi/kurssit/opintojakso/hy-CU-142971306-2020-08-01/TKT21038))
 
 - Learn how to optimize Docker images for production, including reducing image size and improving security.
 - Understand the limitations of using Docker Compose in production environments and the need for more advanced orchestration tools.
@@ -94,7 +94,7 @@ Keep in mind that if you do so, you can now run containers without sudo and cont
 
 ## Deadline
 
-The sign up for ECTS credits and the course ends 18.6.2023! After that course is locked and submissions can no longer be made or credits earned. As the certificate is received through submissions, you have to submit everything before the course ends. More details under completion and after each part.
+The sign up for ECTS credits and the course ends 16.6.2024! After that course is locked and submissions can no longer be made or credits earned. As the certificate is received through submissions, you have to submit everything before the course ends. More details under completion and after each part.
 
 ## General guidance
 
@@ -112,7 +112,7 @@ Most of the exercises will be focused on a Dockerfile and/or docker-compose.yml.
 
 Because the course exercises are designed to build upon each other, it's more important that you document the exercises for yourself. We will be looking at the submissions of the later exercises as they are more demanding.
 
-When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/stats/courses/docker2023) to mark your exercises. You can **not** edit a submission, so make sure you have completed enough exercises for a part before submitting.
+When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/stats/courses/docker2024) to mark your exercises. You can **not** edit a submission, so make sure you have completed enough exercises for a part before submitting.
 
 ## Completing
 
