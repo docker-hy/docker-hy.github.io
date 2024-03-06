@@ -2,7 +2,7 @@
 title: "Defining start conditions for the container"
 ---
 
-Next, we will start moving towards a more meaningful image. _youtube-dl_ is a program that downloads youtube videos <https://rg3.github.io/youtube-dl/download.html>. Let's add it to an image - but this time, we will change our process. Instead of our current process where we add things to the Dockerfile hope it works, let's try another approach. This time we will open up an interactive session and test stuff before "storing" it in our Dockerfile. By following the youtube-dl install instructions we will see that:
+Next, we will start moving towards a more meaningful image. _youtube-dl_ is a program that downloads Youtube videos <https://rg3.github.io/youtube-dl/download.html>. Let's add it to an image - but this time, we will change our process. Instead of our current process where we add things to the Dockerfile hope it works, let's try another approach. This time we will open up an interactive session and test stuff before "storing" it in our Dockerfile. By following the youtube-dl install instructions we will see that:
 
 ```console
 $ docker run -it ubuntu:18.04

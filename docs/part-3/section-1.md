@@ -25,7 +25,7 @@ The description/readme says:
 
 We can see that the image is built from <https://git.launchpad.net/cloud-images/+oci/ubuntu-base>.
 
-Let's take a closer look at Ubuntu to verify where it comes from. If you click the Dockerfile link of <https://hub.docker.com/r/_/ubuntu/> you'll be given a json file instead of the Dockerfile contents. The digest seems to contain the valid digest for a single architecture version listed on Docker Hub (amd64). But after downloading it and checking the digest `docker pull ubuntu:22.04 && docker images --digests` the result does not match up.
+Let's take a closer look at Ubuntu to verify where it comes from. If you click the Dockerfile link of <https://hub.docker.com/r/_/ubuntu/> you'll be given a json file instead of the Dockerfile contents. The digest seems to contain the valid digest for a single architecture version listed on Docker Hub (amd64). But after downloading it and checking the digest `docker pull ubuntu:22.04 && docker image ls --digests` the result does not match up.
 
 We find a Dockerfile from the repository [here](https://git.launchpad.net/cloud-images/+oci/ubuntu-base/tree/Dockerfile?h=jammy-22.04). We can increase trust that it's the same as the image we downloaded with `image history`:
 
