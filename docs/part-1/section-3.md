@@ -1,5 +1,5 @@
 ---
-title: "In-depth dive to images"
+title: "In-depth dive into images"
 ---
 
 Images are the basic building blocks for containers and other images. When you "containerize" an application you work towards creating the image.
@@ -325,7 +325,7 @@ We can improve our previous solutions now that we know how to create and build a
 
 Let us now get back to [Exercise 1.4](/part-1/section-2#exercise-14).
 
-Create a new file on your local machine and append the script we used previously into that file:
+Create a new file `script.sh` on your local machine with the following contents:
 
 ```bash
 while true
@@ -336,7 +336,7 @@ do
 done
 ```
 
-Create a Dockerfile for a new image that starts from ubuntu:20.04 and add instructions to install curl into that image. Then add instructions to copy the script file into that image and finally set it to run on container start using CMD.
+Create a Dockerfile for a new image that starts from _ubuntu:22.04_ and add instructions to install `curl` into that image. Then add instructions to copy the script file into that image and finally set it to run on container start using CMD.
 
 After you have filled the Dockerfile, build the image with the name "curler".
 
@@ -368,7 +368,7 @@ Submit the Dockerfile.
 
 :::info Exercise 1.8: Two line Dockerfile
 
-By default our `devopsdockeruh/simple-web-service:alpine` doesn't have a CMD. It instead uses _ENTRYPOINT_ to declare which application is run.
+By default our `devopsdockeruh/simple-web-service:alpine` doesn't have a CMD. Instead, it uses _ENTRYPOINT_ to declare which application is run.
 
 We'll talk more about _ENTRYPOINT_ in the next section, but you already know that the last argument in `docker run` can be used to give a command or an argument.
 

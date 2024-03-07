@@ -14,6 +14,14 @@ When submitting your exercises, please follow the instructions provided in the c
 
 We hope that you enjoy the course and find it informative and engaging. Good luck!
 
+### Updating of the material for 2024 edition
+
+The 2024 edition of the course starts officially on 11th March. The material is currently being updated. At the time of writing (7th March) the following parts are already updated
+
+- Part 1, up to section _In-depth dive into images_
+
+You may continue already beyond the updated material but beware, there might be some outdated content!
+
 ### About different architectures and contributing
 
 Please note that while Docker runs on all major operating systems and even on ARM architecture, this course material may not cover platform-specific details for all operating systems. However, we've had students successfully complete the course using a variety of machines and operating systems.
