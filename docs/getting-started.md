@@ -14,11 +14,11 @@ When submitting your exercises, please follow the instructions provided in the c
 
 We hope that you enjoy the course and find it informative and engaging. Good luck!
 
-### Updating of the material for 2024 edition
+### Updating of the material for the 2024 edition
 
 The 2024 edition of the course starts officially on 11th March. The material is currently being updated. At the time of writing (7th March) the following parts are already updated
 
-- Part 1, up to section _In-depth dive into images_
+- Part 1, up to and including section _Defining start conditions for the container_
 
 You may continue already beyond the updated material but beware, there might be some outdated content!
 

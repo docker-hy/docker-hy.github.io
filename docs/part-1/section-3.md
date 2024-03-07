@@ -66,7 +66,7 @@ Ubuntu's [Docker Hub page](https://hub.docker.com/r/library/ubuntu/tags/) reveal
 ```console
 $ docker pull ubuntu:22.04
 
-  18.04: Pulling from library/ubuntu
+  22.04: Pulling from library/ubuntu
   c2ca09a1934b: Downloading [============================================>      ]  34.25MB/38.64MB
   d6c3619d2153: Download complete
   0efe07335a04: Download complete
