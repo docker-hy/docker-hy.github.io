@@ -16,9 +16,9 @@ We hope that you enjoy the course and find it informative and engaging. Good luc
 
 ### Updating of the material for the 2024 edition
 
-The 2024 edition of the course starts officially on 11th March. The material is currently being updated. At the time of writing (7th March) the following parts are already updated
+The 2024 edition of the course starts officially on 11th March. The material is currently being updated. At the time of writing (9th March) the following parts have already been updated
 
-- Part 1, up to and including section _Defining start conditions for the container_
+- Part 1, up to and including section _Interacting with the container via volumes and ports_
 
 You may continue already beyond the updated material but beware, there might be some outdated content!
 

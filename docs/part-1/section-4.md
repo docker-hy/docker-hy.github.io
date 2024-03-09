@@ -2,7 +2,7 @@
 title: "Defining start conditions for the container"
 ---
 
-Next, we will start moving towards a more meaningful image. [yt-dlp](https://github.com/yt-dlp/yt-dlp) is a program that downloads YouTube videos. Let's add it to an image - but this time, we will change our process. Instead of our current process where we add things to the Dockerfile and hope it works, let's try another approach. This time we will open up an interactive session and test stuff before "storing" it in our Dockerfile.
+Next, we will start moving towards a more meaningful image. [yt-dlp](https://github.com/yt-dlp/yt-dlp) is a program that downloads YouTube and [Imgur](https://imgur.com/) videos. Let's add it to an image - but this time, we will change our process. Instead of our current process where we add things to the Dockerfile and hope it works, let's try another approach. This time we will open up an interactive session and test stuff before "storing" it in our Dockerfile.
 
 By following the [yt-dlp installation instructions](https://github.com/yt-dlp/yt-dlp/wiki/Installation) we will start as follows:
 
@@ -79,7 +79,7 @@ $ docker run yt-dlp
   Type yt-dlp --help to see a list of all options.
 ```
 
-So far so good. The natural way to use this image would be to give the URL as an argument but unfortunately it does not work:
+So far so good. The natural way to use this image would be to give the URL as an argument but unfortunately, it does not work:
 
 ```console
 $ docker run yt-dlp https://www.youtube.com/watch?v=uTZSILGTskA
@@ -119,18 +119,18 @@ And now it works like it should:
 
 ```console
 $ docker build -t yt-dlp .
-$ docker run yt-dlp https://www.youtube.com/watch?v=uTZSILGTskA
-[youtube] Extracting URL: https://www.youtube.com/watch?v=uTZSILGTskA
+$ docker run yt-dlp https://www.youtube.com/watch?v=XsqlHHTGQrw
+[youtube] Extracting URL:https://www.youtube.com/watch?v=XsqlHHTGQrw
 [youtube] uTZSILGTskA: Downloading webpage
 [youtube] uTZSILGTskA: Downloading ios player API JSON
 [youtube] uTZSILGTskA: Downloading android player API JSON
 [youtube] uTZSILGTskA: Downloading m3u8 information
 [info] uTZSILGTskA: Downloading 1 format(s): 22
-[download] Destination: Burden Of Dreams V17 Nalle Hukkataival [uTZSILGTskA].mp4
+[download] Destination: Master’s Programme in Computer Science ｜ University of Helsinki [XsqlHHTGQrw].mp4
 [download] 100% of    6.29MiB in 00:00:00 at 9.95MiB/s
 ```
 
-With _ENTRYPOINT_ `docker run` now executed the combined combined `/usr/local/bin/yt-dlp https://www.youtube.com/watch?v=uTZSILGTskA` inside the container!
+With _ENTRYPOINT_ `docker run` now executed the combined `/usr/local/bin/yt-dlp https://www.youtube.com/watch?v=uTZSILGTskA` inside the container!
 
 `ENTRYPOINT` vs `CMD` can be confusing - in a properly set up image, such as our yt-dlp, the command represents an argument list for the entrypoint. By default, the entrypoint in Docker is set as `/bin/sh -c` and this is passed if no entrypoint is set. This is why giving the path to a script file as CMD works: you're giving the file as a parameter to `/bin/sh -c`.
 
