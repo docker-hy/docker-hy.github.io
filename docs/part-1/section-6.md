@@ -2,9 +2,11 @@
 title: "Utilizing tools from the Registry"
 ---
 
-As we've already seen it should be possible to containerize almost any project. As we are in between Dev and Ops let's pretend again that some developer teammates of ours did an application with a README that instructs what to install and how to run the application. Now we as the container experts can containerize it in seconds. Open this <https://github.com/docker-hy/material-applications/tree/main/rails-example-project> project and read through the README and think about how to transform it into a Dockerfile. Thanks to the README we should be able to decipher what we will need to do even if we have no clue about the language or technology!
+As we've already seen it should be possible to containerize almost any project. Since we are in between Dev and Ops let's pretend that some developer teammates of ours did an application with a README that instructs what to install and how to run the application. Now we as the container experts can containerize it in seconds.
 
-We will need to clone the [repository](https://github.com/docker-hy/material-applications), which you may have already done. After the project is done, let's start with a Dockerfile. We know that we need to install Ruby and whatever dependencies it had. Let's place the Dockerfile in the project root.
+Open this <https://github.com/docker-hy/material-applications/tree/main/rails-example-project> project, and read through the README and think about how to transform it into a Dockerfile. Thanks to the README we should be able to decipher what we will need to do even if we have no clue about the language or technology!
+
+We will need to clone the [repository](https://github.com/docker-hy/material-applications), which you may have already done. After that is done, let's start with a Dockerfile. We know that we need to install Ruby and whatever dependencies it has. Let's place the Dockerfile in the project root.
 
 **Dockerfile**
 
@@ -32,7 +34,7 @@ COPY Gemfile* ./
 RUN bundle install
 ```
 
-Here I do a quick trick to separate installing dependencies from the part where we copy the source code in. The COPY will copy both Gemfile and Gemfile.lock to the current directory. This will help us by caching the dependency layers if we ever need to make changes to the source code. The same kind of caching trick works in many other languages or frameworks, such as Node.js.
+Here we did a quick trick to separate installing dependencies from the part where we copy the source code in. The COPY will copy both files Gemfile and Gemfile.lock to the current directory. This will help us by caching the dependency layers if we ever need to make changes to the source code. The same kind of caching trick works in many other languages or frameworks, such as Node.js.
 
 And finally, we copy the project and follow the instructions in the README:
 
@@ -51,7 +53,13 @@ RUN rake assets:precompile
 CMD ["rails", "s", "-e", "production"]
 ```
 
-Ok. Let's see how well monkeying the README worked for us: `docker build . -t rails-project && docker run -p 3000:3000 rails-project`. After a while of waiting, the application starts in port 3000 in production mode... unless you have a Mac with M1 or M2 processor.
+Ok. Let's see how well monkeying the README worked for us and run the following oneliner that builds the image and then runs it with the port 3000 published:
+
+```console
+docker build . -t rails-project && docker run -p 3000:3000 rails-project
+```
+
+After a while of waiting, the application starts in port 3000 in production mode... unless you have a Mac with M1 or M2 processor.
 
 :::tip Building the image with a more recent Mac
 
@@ -91,7 +99,7 @@ Create a Dockerfile for an old Java Spring project that can be found from the [c
 
 The setup should be straightforward with the README instructions. Tips to get you started:
 
-Use [openjdk image](https://hub.docker.com/_/openjdk) `FROM openjdk:_tag_` to get Java instead of installing it manually. Pick the tag by using the README and Docker Hub page.
+There are many options for running Java, you may use eg. [amazoncorretto](https://hub.docker.com/_/amazoncorretto) `FROM amazoncorretto:_tag_` to get Java instead of installing it manually. Pick the tag by using the README and Docker Hub page.
 
 You've completed the exercise when you see a 'Success' message in your browser.
 
@@ -121,11 +129,11 @@ Submit the Dockerfile.
 
 _As in other exercises, do not alter the code of the project_
 
-* TIP: The project has install instructions in README.
-
-* TIP: Note that the app starts to accept connections when "Accepting connections at http://localhost:5000" has been printed to the screen, this takes a few seconds
-
-* TIP: You do not have to install anything new outside containers.
+TIPS: 
+- The project has install instructions in README.
+- Note that the app starts to accept connections when "Accepting connections at http://localhost:5000" has been printed to the screen, this takes a few seconds
+- You do not have to install anything new outside containers.
+- The project might not work with too new Node.js versions
 
 :::
 
@@ -136,7 +144,7 @@ Clone, fork or download a project from
 
 Create a Dockerfile for the project (example-backend). Start the container with port 8080 published.
 
-When you start the container and navigate to [http://localhost:8080/ping](http://localhost:8080/ping) you should get a "pong" as response.
+When you start the container and navigate to [http://localhost:8080/ping](http://localhost:8080/ping) you should get a "pong" as a response.
 
 Submit the Dockerfile and the command used.
 

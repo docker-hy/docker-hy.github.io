@@ -8,7 +8,7 @@ Welcome to the DevOps with Docker course! This course is designed to be complete
 
 To pass the course, you will need to complete all of the exercises. However, one exercise can be skipped per part, except for the exercises marked as mandatory. The mandatory exercises cannot be skipped.
 
-The exercises are designed to reinforce the material covered in each part, and are placed at strategic points in the course to ensure that you have learned the necessary skills prior to attempting each exercise. You can complete the exercises at your own pace, and there is no deadline for submission outside of the last date, when the entire course ends.
+The exercises are designed to reinforce the material covered in each part, and are placed at strategic points in the course to ensure that you have learned the necessary skills prior to attempting each exercise. You can complete the exercises at your own pace, and there is no deadline for submission outside of the last date when the entire course ends.
 
 When submitting your exercises, please follow the instructions provided in the course material. Exercises should be submitted in a specific format, which will be outlined in the instructions for each exercise.
 
@@ -18,7 +18,7 @@ We hope that you enjoy the course and find it informative and engaging. Good luc
 
 The 2024 edition of the course starts officially on 11th March. The material is currently being updated. At the time of writing (9th March) the following parts have already been updated
 
-- Part 1, up to and including section _Interacting with the container via volumes and ports_
+- Part 1, up to and including exercise 1.12
 
 You may continue already beyond the updated material but beware, there might be some outdated content!
 
