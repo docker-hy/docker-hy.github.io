@@ -150,17 +150,20 @@ Submit the Dockerfile and the command used.
 
 _Do not alter the code of the project_
 
+TIPS:
+- you might need [this](https://docs.docker.com/reference/dockerfile/#env)
+- If you have M1/M2 Mac, you might need to build the image with an extra option `docker build --platform linux/amd64 -t imagename .`
+
 :::
 
 :::caution Mandatory Exercise 1.14: Environment
 
-Start both frontend-example and backend-example with correct ports exposed and add ENV to Dockerfile with necessary
-information from both READMEs
+Start both the frontend and the backend with the correct ports exposed and add [ENV](https://docs.docker.com/reference/dockerfile/#env) to Dockerfile with the necessary information from both READMEs
 ([front](https://github.com/docker-hy/material-applications/tree/main/example-frontend), [back](https://github.com/docker-hy/material-applications/tree/main/example-backend)).
 
-Ignore the backend configurations until frontend sends requests to `_backend_url_/ping` when you press the button.
+Ignore the backend configurations until the frontend sends requests to `_backend_url_/ping` when you press the button.
 
-You know that the configuration is ready when the button for 1.14 of frontend-example responds and turns green.
+You know that the configuration is ready when the button for 1.14 of frontend responds and turns green.
 
 _Do not alter the code of either project_
 
@@ -168,13 +171,13 @@ Submit the edited Dockerfiles and commands used to run.
 
 ![Backend and Frontend](/img/exercises/back-and-front.png)
 
-The frontend will first talk to your browser. Then the code will be executed from your browser and that will send a message to backend.
+The frontend will first talk to your browser. Then the code will be executed from your browser and that will send a message to the backend.
 
 ![More information about connection between frontend and backend](/img/exercises/about-connection-front-back.png)
 
-* TIP: When configuring web applications keep browser developer console ALWAYS open, F12 or cmd+shift+I when the browser window is open. Information about configuring cross origin requests is in README of the backend project.
-
-* TIP: Developer console has multiple views, most important ones are Console and Network. Exploring the Network tab can give you a lot of information on where messages are being sent and what is received as response!
+TIPS:
+* When configuring web applications keep the browser developer console ALWAYS open, F12 or cmd+shift+I when the browser window is open. Information about configuring cross-origin requests is in the README of the backend project.
+* The developer console has multiple views, the most important ones are Console and Network. Exploring the Network tab can give you a lot of information on where messages are being sent and what is received as a response!
 
 :::
 

@@ -3,6 +3,10 @@ sidebar_position: 3
 title: "Frequently Asked Questions"
 ---
 
+## Prerequisites
+
+The course is suitable for anyone interested in Docker or containerization and has at least some experience with the Linux command line. It also helps if you have some experience in web development.
+
 ## How do I sign up for the course?
 
 There's no requirement to sign up for the course until after you've completed the exercises and wish to end your course.

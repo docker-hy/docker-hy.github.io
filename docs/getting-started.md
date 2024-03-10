@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Getting Started
 
-Welcome to the DevOps with Docker course! This course is designed to be completed sequentially, from start to finish. Each part builds on the previous one, so it's important to read the material carefully and complete the exercises in order to develop the necessary skills.
+Welcome to the DevOps with Docker course! This course is designed to be completed sequentially, from start to finish. Each part builds on the previous one, so it's important to read the material carefully and complete the exercises to develop the necessary skills.
 
 To pass the course, you will need to complete all of the exercises. However, one exercise can be skipped per part, except for the exercises marked as mandatory. The mandatory exercises cannot be skipped.
 
@@ -14,11 +14,15 @@ When submitting your exercises, please follow the instructions provided in the c
 
 We hope that you enjoy the course and find it informative and engaging. Good luck!
 
+### Prerequisites
+
+The course is suitable for anyone interested in Docker or containerization and has at least some experience with the Linux command line. It also helps if you have some experience in web development.
+
 ### Updating of the material for the 2024 edition
 
-The 2024 edition of the course starts officially on 11th March. The material is currently being updated. At the time of writing (9th March) the following parts have already been updated
+The 2024 edition of the course starts officially on 11th March. The material is currently being updated. At the time of writing (10th March) the following parts have already been updated
 
-- Part 1, up to and including exercise 1.12
+- Part 1
 
 You may continue already beyond the updated material but beware, there might be some outdated content!
 
