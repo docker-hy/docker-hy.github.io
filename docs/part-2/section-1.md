@@ -4,25 +4,22 @@ title: 'Migrating to Docker Compose'
 
 Even with a simple image, we've already been dealing with plenty of command line options in both building, pushing and running the image.
 
-Next we will switch to a tool called [Docker Compose](https://docs.docker.com/compose/) to manage these. Docker Compose used to be a separate tool but now it is integrated to Docker and can be used like the rest of the Docker commands.
+Next we will switch to a tool called [Docker Compose](https://docs.docker.com/compose/) to manage these. Docker Compose used to be a separate tool but now it is integrated into Docker and can be used like the rest of the Docker commands.
 
-Docker Compose is designed to simplify running multi-container applications to using a single command.
+Docker Compose is designed to simplify running multi-container applications using a single command.
 
 Assume that we are in the folder where we have our Dockerfile with the following content:
 
 ```dockerfile
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 WORKDIR /mydir
 
-RUN apt-get update
-RUN apt-get install -y curl python
-RUN curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl
-RUN chmod a+x /usr/local/bin/youtube-dl
+RUN apt-get update && apt-get install -y curl python3
+RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+RUN chmod a+x /usr/local/bin/yt-dlp
 
-ENV LC_ALL=C.UTF-8
-
-ENTRYPOINT ["/usr/local/bin/youtube-dl"]
+ENTRYPOINT ["/usr/local/bin/yt-dlp"]
 ```
 
 Let us now create a file called `docker-compose.yml`:
@@ -31,12 +28,14 @@ Let us now create a file called `docker-compose.yml`:
 version: '3.8'
 
 services:
-    youtube-dl-ubuntu:
-      image: <username>/<repositoryname>
-      build: .
+  yt-dlp-ubuntu:
+    image: <username>/<repositoryname>
+    build: .
 ```
 
-The version setting is not very strict, it just needs to be above 2 because otherwise the syntax is significantly different. See <https://docs.docker.com/compose/compose-file/> for more info. The key `build:` value can be set to a path (ubuntu), have an object with `context` and `dockerfile` keys or reference a `url of a git repository`.
+The version setting is not very strict, it just needs to be above 2 because otherwise the syntax is significantly different. See <https://docs.docker.com/compose/compose-file/> for more info.
+
+The value of the key `build` can be a file system path (in the example it is the current directory `.`) or an object with keys `context` and `dockerfile`, see the [documentation](https://docs.docker.com/compose/compose-file/build/) for more
 
 Now we can build and push with just these commands:
 
@@ -54,18 +53,18 @@ version: '3.8'
 
 services:
 
-    youtube-dl-ubuntu:
-      image: <username>/<repositoryname>
-      build: .
-      volumes:
-        - .:/mydir
-      container_name: youtube-dl
+  yt-dlp-ubuntu:
+    image: <username>/<repositoryname>
+    build: .
+    volumes:
+      - .:/mydir
+    container_name: yt-dlp
 ```
 
-We can also give the container a name it will use when running with container_name. And the service name can be used to run it:
+We can also give the container a name it will use when running with container_name. The service name can be used to run it:
 
 ```console
-$ docker compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr
+$ docker compose run yt-dlp-ubuntu https://imgur.com/JY5tHqr
 ```
 
 ## Exercise 2.1
@@ -79,7 +78,7 @@ $ docker compose run youtube-dl-ubuntu https://imgur.com/JY5tHqr
   Create a docker-compose.yml file that starts `devopsdockeruh/simple-web-service` and saves the logs into your
   filesystem.
 
-  Submit the docker-compose.yml, make sure that it works simply by running `docker compose up` if the log file exists.
+  Submit the docker-compose.yml, and make sure that it works simply by running `docker compose up` if the log file exists.
 
 
 :::
@@ -110,10 +109,10 @@ Let's create a new folder and a Docker Compose file `whoami/docker-compose.yml` 
 version: '3.8'
 
 services:
-    whoami:
-      image: jwilder/whoami
-      ports:
-        - 8000:8000
+  whoami:
+    image: jwilder/whoami
+    ports:
+      - 8000:8000
 ```
 
 Test it:
@@ -123,30 +122,32 @@ $ docker compose up -d
 $ curl localhost:8000
 ```
 
-Environment variables can also be given to the containers in Docker Compose.
+Environment variables can also be given to the containers in Docker Compose as follows:
 
 ```yaml
 version: '3.8'
 
 services:
   backend:
-      image:
-      environment:
-        - VARIABLE=VALUE
-        - VARIABLE2=VALUE2
+    image:
+    environment:
+      - VARIABLE=VALUE
+      - VARIABLE2=VALUE2
 ```
+
+Note that there are also [other](https://docs.docker.com/compose/environment-variables/set-environment-variables/), perhaps more elegant ways to define the environment variables in Docker compose.
 
 ## Exercises 2.2 - 2.3
 
 :::info Exercise 2.2
 
-  Read about how to add command to docker-compose.yml from the [documentation](https://docs.docker.com/compose/compose-file/compose-file-v3/#command).
+  Read about how to add the command to docker-compose.yml from the [documentation](https://docs.docker.com/compose/compose-file/compose-file-v3/#command).
 
-  The familiar image `devopsdockeruh/simple-web-service` can be used to start a web service.
+  The familiar image `devopsdockeruh/simple-web-service` can be used to start a web service, see the [exercise 1.10](/part-1/section-5#exercise-110).
 
-  Create a docker-compose.yml and use it to start the service so that you can use it with your browser.
+  Create a docker-compose.yml, and use it to start the service so that you can use it with your browser.
 
-  Submit the docker-compose.yml, make sure that it works simply by running `docker compose up`
+  Submit the docker-compose.yml, and make sure that it works simply by running `docker compose up`
 
 :::
 
