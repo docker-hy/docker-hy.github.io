@@ -23,7 +23,7 @@ The course is suitable for anyone interested in Docker or containerization and h
 The 2024 edition of the course starts officially on 11th March. The material is currently being updated. At the time of writing (11th March) the following parts have already been updated
 
 - Part 1
-- Part 2 up to and including chapter _Migrating to Docker Compose_
+- Part 2 up to and including chapter _Docker networking_
 
 You may continue already beyond the updated material but beware, there might be some outdated content!
 

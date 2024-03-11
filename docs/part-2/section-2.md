@@ -2,7 +2,7 @@
 title: "Docker networking"
 ---
 
-Connecting two services such as a server and its Database in docker can be achieved with a [Docker network](https://docs.docker.com/network/). In addition to starting services listed in docker-compose.yml Docker Compose automatically creates and joins both containers into a network with a DNS. Each service is named after the name given in the docker-compose.yml file. As such, containers can reference each other simply with their service names, which is different from the container name.
+Connecting two services such as a server and its database in docker can be achieved with a [Docker network](https://docs.docker.com/network/). In addition to starting services listed in docker-compose.yml Docker Compose automatically creates and joins both containers into a network with a [DNS](https://docs.docker.com/network/#dns-services). Each service is named after the name given in the docker-compose.yml file. As such, containers can reference each other simply with their service names, which is different from the container name.
 
 ![Docker networks](/img/2/docker-networks.png)
 
@@ -10,7 +10,7 @@ Here are two services in a single network: webapp and webapp-helper. The webapp-
 
 :::tip Security reminder: Plan your infrastructure and keep to your plan
 
-In the next exercise, and in some later exercises, I will supply you with an illustration of the infrastructure. Do look at it and use it to write the configuration.
+In the next exercise, and in some later exercises, there is an illustration of the infrastructure. Have a look at it and use it to write the configuration.
 
 For example, in Exercise 2.4 we don't want to open ports to Redis to the outside world. Do not add a `ports` configuration under Redis! The backend will be able to access the application within the Docker network.
 
@@ -97,7 +97,7 @@ networks:
       name: database-network # Must match the actual name of the network
 ```
 
-# Scaling
+## Scaling
 
 Compose can also scale the service to run multiple instances:
 
@@ -259,7 +259,7 @@ $ curl whoami.colasloth.com
   I'm 740dc0de1954
 ```
 
-Now we have a basic single machine hosting setup up and running.
+Now we have a basic single-machine hosting setup up and running.
 
 Test updating the `hello.html` without restarting the container, does it work?
 
@@ -269,7 +269,7 @@ Test updating the `hello.html` without restarting the container, does it work?
 
 The project [https://github.com/docker-hy/material-applications/tree/main/scaling-exercise](https://github.com/docker-hy/material-applications/tree/main/scaling-exercise) is a barely working application. Go ahead and clone it for yourself. The project already includes docker-compose.yml so you can start it by running `docker compose up`.
 
-Application should be accessible through [http://localhost:3000](http://localhost:3000). However it doesn't work well enough and I've added a load balancer for scaling. Your task is to scale the `compute` containers so that the button in the application turns green.
+The application should be accessible through [http://localhost:3000](http://localhost:3000). However it doesn't work well enough and we've added a load balancer for scaling. Your task is to scale the `compute` containers so that the button in the application turns green.
 
 This exercise was created with [Sasu Mäkinen](https://github.com/sasumaki)
 
