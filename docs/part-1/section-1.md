@@ -324,7 +324,7 @@ Some of the shorthands are legacy version of doing the same thing. You can use e
 
 :::info Exercise 1.2: Cleanup
 
-  We have containers and an image that are no longer in use and are taking up space. Running `docker ps -as` and `docker image ls` will confirm this.
+  We have containers and an image that are no longer in use and are taking up space. Running `docker ps -a` and `docker image ls` will confirm this.
 
   Clean the Docker daemon by removing all images and containers.
 
