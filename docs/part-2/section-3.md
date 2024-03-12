@@ -252,8 +252,8 @@ There is again a button (and a form!) in the frontend that you can use to ensure
 
 Submit the docker-compose.yml
 
-*  TIP: When configuring the database, you might need to destroy the automatically created volumes. Use commands `docker volume prune`, `docker volume ls` and `docker volume rm` to remove unused volumes when testing. Make sure to remove containers that depend on them beforehand.
-
+TIPS:
+* When configuring the database, you might need to destroy the automatically created volumes. Use commands `docker volume prune`, `docker volume ls` and `docker volume rm` to remove unused volumes when testing. Make sure to remove containers that depend on them beforehand.
 * `restart: unless-stopped` can help if the Postgres takes a while to get ready
 
 ![Backend, frontend, redis and a database](/img/exercises/back-front-redis-and-database.png)
@@ -291,9 +291,9 @@ It might be Nginx configuration problem. Ensure there is a trailing / on the bac
 
 :::info Exercise 2.8
 
-Add [Nginx](https://hub.docker.com/_/nginx) to the example to work as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) in front of the example app frontend and backend. According to Wikipedia
+In this exercise, you shall add [Nginx](https://hub.docker.com/_/nginx) to work as a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) in front of the example app frontend and backend.
 
-_A reverse proxy is a type of proxy server that retrieves resources on behalf of a client from one or more servers. These resources are then returned to the client, appearing as if they originated from the reverse proxy server itself._
+According to Wikipedia _a reverse proxy is a type of proxy server that retrieves resources on behalf of a client from one or more servers. These resources are then returned to the client, appearing as if they originated from the reverse proxy server itself._
 
 ![Backend, frontend, redis, a database and nginx](/img/exercises/back-front-redis-database-and-nginx.png)
 
@@ -303,7 +303,7 @@ The idea is that a browser makes _all_ requests to _http://localhost_. If the re
 
 So, at the end, you should see that the frontend is accessible simply by going to <http://localhost>. All buttons, except the one labeled _Exercise 2.8_ may have stopped working, do not worry about them, we shall fix that later.
 
-The following file should be set to _/etc/nginx/nginx.conf_ inside the nginx container. You can use a file bind mount where the contents of the file is the following:
+The following file should be set to _/etc/nginx/nginx.conf_ inside the Nginx container. You can use a file bind mount where the contents of the file is the following:
 
 ```bash
 events { worker_connections 1024; }
