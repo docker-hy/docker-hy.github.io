@@ -227,7 +227,7 @@ $ docker run -it hello-docker sh
 
 Now we're inside of the container. We replaced the CMD we defined earlier with `sh` and used -i and -t to start the container so that we can interact with it.
 
-In the second terminal we will copy the file inside the contained:
+In the second terminal we will copy the file inside the container:
 
 ```console
 # do this in terminal 2
