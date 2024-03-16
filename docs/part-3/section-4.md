@@ -4,17 +4,17 @@ title: 'Optimizing the image size'
 
 A small image size has many advantages, firstly, it takes much less time to pull a small image from the registry. Another thing is the security: the bigger your image is the larger the surface area for an attack it has.
 
-The following tutorial to "Building Small Containers" from Google is an excellent video to showcase the importance of optimizing your Dockerfiles:
+The following tutorial on "Building Small Containers" from Google is an excellent video to showcase the importance of optimizing your Dockerfiles:
 
 <p>
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/wGz_cbtCiEA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
-Before going on to the tricks that were shown on the video, let us start start by reducing the number of layers. What actually is a layer? According to the [documentation](https://docs.docker.com/get-started/overview/#how-does-a-docker-image-work):
+Before going on to the tricks that were shown in the video, let us start by reducing the number of layers. What actually is a layer? According to the [documentation](https://docs.docker.com/get-started/overview/#how-does-a-docker-image-work):
 
 _To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image. When you change the Dockerfile and rebuild the image, only those layers which have changed are rebuilt. This is part of what makes images so lightweight, small, and fast, when compared to other virtualization._
 
-So each command that is executed to the base image, forms an layer. The resulting image is the final layer, that combines the changes that all the intermediate layers contains. Each layer potentially adds something extra to the resulting image so it might be a good idea to minimize the number of layers.
+So each command that is executed to the base image, forms a layer. The resulting image is the final layer, which combines the changes that all the intermediate layers contain. Each layer potentially adds something extra to the resulting image so it might be a good idea to minimize the number of layers.
 
 To keep track of the improvements, we keep on note of the image size after each new Dockerfile.
 
@@ -38,7 +38,7 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 
 **133MB**
 
-As was said each command that is executed to the base image, forms an layer. Command here refers to one Dockerfile directive such as `RUN`. We could now glue all `RUN` commands together to reduce the number of layers that are created when building the image:
+As was said each command that is executed to the base image, forms a layer. The command here refers to one Dockerfile directive such as `RUN`. We could now glue all `RUN` commands together to reduce the number of layers that are created when building the image:
 
 ```dockerfile
 FROM ubuntu:18.04
@@ -60,9 +60,9 @@ ENTRYPOINT ["/usr/local/bin/youtube-dl"]
 
 **131MB**
 
-There is not that much difference, the image with less layers is 2 MB smaller.
+There is not that much difference, the image with fewer layers is 2 MB smaller.
 
-As a sidenote not directly related to Docker: remember that if needed, it is possible to bind packages to versions with `curl=1.2.3` - this will ensure that if the image is built at the later date the image is more likely to work as the versions are exact. On the other hand, the packages will be old and have security issues.
+As a sidenote not directly related to Docker: remember that if needed, it is possible to bind packages to versions with `curl=1.2.3` - this will ensure that if the image is built at a later date the image is more likely to work as the versions are exact. On the other hand, the packages will be old and have security issues.
 
 With `docker image history` we can see that our single `RUN` layer adds 76.7 megabytes to the image:
 
@@ -108,7 +108,7 @@ rm -rf /var/lib/apt/lists/*
 
 ## Alpine Linux variant ##
 
-Our Ubuntu base image adds the most megabytes to our image. [Alpine Linux](https://www.alpinelinux.org/) provides a popular alternative base in https://hub.docker.com/_/alpine/ that is around 4 megabytes. It's based on altenative glibc implementation musl and busybox binaries, so not all software run well (or at all) with it, but our container should run just fine. We'll create the following `Dockerfile.alpine` file:
+Our Ubuntu base image adds the most megabytes to our image. [Alpine Linux](https://www.alpinelinux.org/) provides a popular alternative base in https://hub.docker.com/_/alpine/ that is around 4 megabytes. It's based on alternative glibc implementation musl and busybox binaries, so not all software run well (or at all) with it, but our container should run just fine. We'll create the following `Dockerfile.alpine` file:
 
 ```dockerfile
 FROM alpine:3.13
@@ -135,7 +135,7 @@ Notes:
  - The package manager is `apk` and it can work without downloading sources (caches) first with `--no-cache`.
  - `useradd` is missing, but `adduser` exists.
  - Most of the package names are the same - there's a good package browser at https://pkgs.alpinelinux.org/packages.
- - The youtube-dl assumes that Python executable is called `python`. When we installed the version 3 of Python, the executable is called `python3` and that is why the last line of the RUN directive makes a [symbolic link](https://linuxize.com/post/how-to-create-symbolic-links-in-linux-using-the-ln-command/) so that both names can be user to run Python
+ - The youtube-dl assumes that Python executable is called `python`. When we installed the version 3 of Python, the executable is called `python3` and that is why the last line of the RUN directive makes a [symbolic link](https://linuxize.com/post/how-to-create-symbolic-links-in-linux-using-the-ln-command/) so that both names can be used to run Python
 
 Now when we build this file with `:alpine-3.13` as the tag:
 
@@ -149,7 +149,7 @@ It seems to run fine:
 $ docker container run -v "$(pwd):/usr/videos" youtube-dl:alpine-3.13 https://imgur.com/JY5tHqr
 ```
 
-From the history we can see that the our single `RUN` layer size is 46.3MB
+From the history, we can see that our single `RUN` layer size is 46.3MB
 
 ```console
 $ docker image history youtube-dl:alpine-3.13
@@ -162,9 +162,9 @@ $ docker image history youtube-dl:alpine-3.13
   <missing>           3 weeks ago         /bin/sh -c #(nop) ADD file:093f0723fa46f6cdb…   5.61MB
 ```
 
-So in total our Alpine variant is about 52 megabytes, significantly less than our Ubuntu based image.
+So in total, our Alpine variant is about 52 megabytes, significantly less than our Ubuntu-based image.
 
-Back in part 1 we published the Ubuntu version of youtube-dl with tag latest.
+Back in part 1, we published the Ubuntu version of yl-dlp with the tag latest.
 
 We can publish both variants without overriding the other by publishing them with a describing tag:
 
@@ -216,7 +216,7 @@ This creates a new Jekyll application and builds it. We are going to use Nginx t
 CMD bundle exec jekyll serve --host 0.0.0.0
 ```
 
-We could start thinking about optimizations at this point but instead we're going add a new FROM for Nginx, this is what resulting image will be. Then we will copy the built static files from the Ruby image to our Nginx image:
+We could start thinking about optimizations at this point but instead, we're going to add a new FROM for Nginx, this is what the resulting image will be. Then we will copy the built static files from the Ruby image to our Nginx image:
 
 ```dockerfile
 # the  first stage needs to be given a name
@@ -233,7 +233,7 @@ FROM nginx:1.19-alpine
 COPY --from=build-stage /usr/app/_site/ /usr/share/nginx/html
 ```
 
-Now Docker copies contents from the first image `/usr/app/_site/` to `/usr/share/nginx/html` Note the naming from Ruby to _build-stage_. We could also use external image as a stage, `--from=python:3.7` for example.
+Now Docker copies contents from the first image `/usr/app/_site/` to `/usr/share/nginx/html` Note the naming from Ruby to _build-stage_. We could also use an external image as a stage, `--from=python:3.7` for example.
 
 Let's build and check the size difference:
 
@@ -245,9 +245,9 @@ $ docker image ls
   ruby                latest              616c3cf5968b        28 hours ago        870MB
 ```
 
-As you can see, even though our Jekyll image needed Ruby during the build stage, its considerably smaller since it only has Nginx and the static files. `docker container run -it -p 8080:80 jekyll` also works as expected.
+As you can see, even though our Jekyll image needed Ruby during the build stage, it is considerably smaller since it only has Nginx and the static files. `docker container run -it -p 8080:80 jekyll` also works as expected.
 
-Often the best choice is to use a FROM **scratch** image as it doesn't have anything we don't explicitly add there, making it most secure option over time.
+Often the best choice is to use a FROM **scratch** image as it doesn't have anything we don't explicitly add there, making it the most secure option over time.
 
 ## Exercises 3.8 - 3.10
 
@@ -266,7 +266,7 @@ Often the best choice is to use a FROM **scratch** image as it doesn't have anyt
 
 :::info Exercise 3.9: Multi-stage backend
 
-  Lets do a multi-stage build for the [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) project since we've come so far with the application.
+  Let us do a multi-stage build for the [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) project since we've come so far with the application.
 
   The project is in golang and building a binary that runs in a container, while straightforward, isn't exactly trivial. Use resources that you have available (Google, example projects) to build the binary and run it inside a container that uses `FROM scratch`.
 
