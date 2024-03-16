@@ -10,69 +10,67 @@ The following tutorial on "Building Small Containers" from Google is an excellen
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/wGz_cbtCiEA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
-Before going on to the tricks that were shown in the video, let us start by reducing the number of layers. What actually is a layer? According to the [documentation](https://docs.docker.com/get-started/overview/#how-does-a-docker-image-work):
+Before going on to the tricks that were shown in the video, let us start by reducing the number of layers of a image. What actually is a layer? According to the [documentation](https://docs.docker.com/get-started/overview/#how-does-a-docker-image-work):
 
 _To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image. When you change the Dockerfile and rebuild the image, only those layers which have changed are rebuilt. This is part of what makes images so lightweight, small, and fast, when compared to other virtualization._
 
 So each command that is executed to the base image, forms a layer. The resulting image is the final layer, which combines the changes that all the intermediate layers contain. Each layer potentially adds something extra to the resulting image so it might be a good idea to minimize the number of layers.
 
-To keep track of the improvements, we keep on note of the image size after each new Dockerfile.
+To keep track of the improvements, we keep on note of the image size after each new Dockerfile. The starting point is
 
 ```dockerfile
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
-WORKDIR /usr/videos
+WORKDIR /mydir
 
-ENV LC_ALL=C.UTF-8
+RUN apt-get update && apt-get install -y curl python3
+RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+RUN chmod a+x /usr/local/bin/yt-dlp
 
-RUN apt-get update
-RUN apt-get install -y curl python
-RUN curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl
-RUN chmod a+x /usr/local/bin/youtube-dl
 RUN useradd -m appuser
+
+RUN chown appuser .
 
 USER appuser
 
-ENTRYPOINT ["/usr/local/bin/youtube-dl"]
+ENTRYPOINT ["/usr/local/bin/yt-dlp"]
 ```
 
-**133MB**
+The built image has size **155MB**
 
 As was said each command that is executed to the base image, forms a layer. The command here refers to one Dockerfile directive such as `RUN`. We could now glue all `RUN` commands together to reduce the number of layers that are created when building the image:
 
 ```dockerfile
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
-WORKDIR /usr/videos
+WORKDIR /mydir
 
-ENV LC_ALL=C.UTF-8
-
-RUN apt-get update && apt-get install -y \
-    curl python && \
-    curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl && \
-    chmod a+x /usr/local/bin/youtube-dl && \
-    useradd -m appuser
+RUN apt-get update && apt-get install -y curl python3 && \
+    curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && \
+    chmod a+x /usr/local/bin/yt-dlp && \
+    useradd -m appuser && \
+    chown appuser .
 
 USER appuser
 
-ENTRYPOINT ["/usr/local/bin/youtube-dl"]
+ENTRYPOINT ["/usr/local/bin/yt-dlp"]
 ```
 
-**131MB**
+Image size is **153MB**.
 
-There is not that much difference, the image with fewer layers is 2 MB smaller.
+There is not that much difference, the image with fewer layers is only 2 MB smaller.
 
 As a sidenote not directly related to Docker: remember that if needed, it is possible to bind packages to versions with `curl=1.2.3` - this will ensure that if the image is built at a later date the image is more likely to work as the versions are exact. On the other hand, the packages will be old and have security issues.
 
-With `docker image history` we can see that our single `RUN` layer adds 76.7 megabytes to the image:
+With `docker image history` we can see that our single `RUN` layer adds 83.8 megabytes to the image:
 
 ```console
-$ docker image history youtube-dl
+$ docker image history yt-dlp
 
-  IMAGE          CREATED              CREATED BY                                      SIZE      COMMENT
-  f221975422c3   About a minute ago   /bin/sh -c #(nop)  ENTRYPOINT ["/usr/local/b…   0B
-  940a7510dc5d   About a minute ago   /bin/sh -c #(nop)  USER appuser                 0B
-  31062eddb851   About a minute ago   /bin/sh -c apt-get update && apt-get install…   76.7MB
+IMAGE          CREATED         CREATED BY                                      SIZE      COMMENT
+a3f296f27a17   3 minutes ago   ENTRYPOINT ["/usr/local/bin/yt-dlp"]            0B        buildkit.dockerfile.v0
+<missing>      3 minutes ago   USER appuser                                    0B        buildkit.dockerfile.v0
+<missing>      3 minutes ago   RUN /bin/sh -c apt-get update && apt-get ins…   83.8MB    buildkit.dockerfile.v0
   ...
 ```
 
@@ -83,7 +81,7 @@ The next step is to remove everything that is not needed in the final image. We 
 rm -rf /var/lib/apt/lists/*
 ````
 
-Now, after we build, the size of the layer is 100 megabytes. We can optimize even further by removing the `curl`. We can remove `curl` and all the dependencies it installed with
+Now, after we build, the size of the layer is **108 megabytes**. We can optimize even further by removing the `curl` all the dependencies it installed. This is done by extending the command as follows:
 
 ```console
 .. && \
@@ -91,7 +89,7 @@ apt-get purge -y --auto-remove curl && \
 rm -rf /var/lib/apt/lists/*
 ````
 
-... which brings us down to 94 MB.
+This brings us down to **104 MB**.
 
 ## Exercise 3.6
 
@@ -100,93 +98,88 @@ rm -rf /var/lib/apt/lists/*
   Return now back to our [frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend) and
   [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) Dockerfile.
 
-  Document both image sizes at this point, as was done in the material. Optimize the Dockerfiles of both app, frontend and backend, by joining the RUN commands and removing useless parts.
+  Document both image sizes at this point, as was done in the material. Optimize the Dockerfiles of both app frontend and backend, by joining the RUN commands and removing useless parts.
 
-  After your improvements document the image sizes again. The size difference may not be very much yet.
+  After your improvements document the image sizes again.
 
 :::
 
 ## Alpine Linux variant ##
 
-Our Ubuntu base image adds the most megabytes to our image. [Alpine Linux](https://www.alpinelinux.org/) provides a popular alternative base in https://hub.docker.com/_/alpine/ that is around 4 megabytes. It's based on alternative glibc implementation musl and busybox binaries, so not all software run well (or at all) with it, but our container should run just fine. We'll create the following `Dockerfile.alpine` file:
+Our Ubuntu base image adds the most megabytes to our image. [Alpine Linux](https://www.alpinelinux.org/) provides a popular alternative base in https://hub.docker.com/_/alpine/ that is around 8 megabytes. It's based on alternative glibc implementation [musl](https://musl.libc.org/) and [busybox](https://www.busybox.net/) binaries, so not all software runs well (or at all) with it, but our container should run just fine. We'll create the following `Dockerfile.alpine` file:
 
 ```dockerfile
-FROM alpine:3.13
+FROM alpine:3.19
 
-WORKDIR /usr/videos
-
-ENV LC_ALL=C.UTF-8
+WORKDIR /mydir
 
 RUN apk add --no-cache curl python3 ca-certificates && \
-    curl -L https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl -o /usr/local/bin/youtube-dl && \
-    chmod a+x /usr/local/bin/youtube-dl && \
-    apk del curl && \
-    adduser -D userapp && \
-    ln -s /usr/bin/python3 /usr/bin/python
+    curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && \
+    chmod a+x /usr/local/bin/yt-dlp && \
+    adduser -D appuser && \
+    chown appuser . && \
+    apk del curl 
 
-USER userapp
+USER appuser
 
-ENTRYPOINT ["/usr/local/bin/youtube-dl"]
+ENTRYPOINT ["/usr/local/bin/yt-dlp"]
 ```
 
-**51.7MB**
+Size of the resulting image is **57.6MB**
 
 Notes:
  - The package manager is `apk` and it can work without downloading sources (caches) first with `--no-cache`.
- - `useradd` is missing, but `adduser` exists.
+ - For creating user the command `useradd` is missing, but `adduser` can be used instead.
  - Most of the package names are the same - there's a good package browser at https://pkgs.alpinelinux.org/packages.
- - The youtube-dl assumes that Python executable is called `python`. When we installed the version 3 of Python, the executable is called `python3` and that is why the last line of the RUN directive makes a [symbolic link](https://linuxize.com/post/how-to-create-symbolic-links-in-linux-using-the-ln-command/) so that both names can be used to run Python
 
-Now when we build this file with `:alpine-3.13` as the tag:
+We build this file with `:alpine-3.19` as the tag:
 
 ```console
-$ docker build -t youtube-dl:alpine-3.13 -f Dockerfile.alpine .
+$ docker build -t yt-dlp:alpine-3.19 -f Dockerfile.alpine .
 ```
 
 It seems to run fine:
 
 ```console
-$ docker container run -v "$(pwd):/usr/videos" youtube-dl:alpine-3.13 https://imgur.com/JY5tHqr
+$ ocker run -v "$(pwd):/mydir" yt-dlp:alpine-3.19 https://www.youtube.com/watch\?v\=bNw2i-mRT4I
 ```
 
-From the history, we can see that our single `RUN` layer size is 46.3MB
+From the history, we can see that our single `RUN` layer size is 49.8MB
 
 ```console
-$ docker image history youtube-dl:alpine-3.13
+$ docker image history yt-dlp:alpine-3.19
 
-  IMAGE...
   ...
-  14cfb0b531fb        20 seconds ago         /bin/sh -c apk add --no-cache curl python ca…   46.3MB
+<missing>      6 minutes ago   RUN /bin/sh -c apk add --no-cache curl pytho…   49.8MB    buildkit.dockerfile.v0
   ...
-
-  <missing>           3 weeks ago         /bin/sh -c #(nop) ADD file:093f0723fa46f6cdb…   5.61MB
+<missing>      7 weeks ago     /bin/sh -c #(nop) ADD file:d0764a717d1e9d0af…   7.73MB
 ```
 
-So in total, our Alpine variant is about 52 megabytes, significantly less than our Ubuntu-based image.
+So in total, our Alpine variant is about 57.6 megabytes, significantly less than our Ubuntu-based image.
 
 Back in part 1, we published the Ubuntu version of yl-dlp with the tag latest.
 
 We can publish both variants without overriding the other by publishing them with a describing tag:
 
 ```console
-$ docker image tag youtube-dl:alpine-3.13 <username>/youtube-dl:alpine-3.13
-$ docker image push <username>/youtube-dl:alpine-3.13
+$ docker image tag yt-dlp:alpine-3.19 <username>/yt-dlp:alpine-3.19
+$ docker image push <username>/yt-dlp:alpine-3.19
 ```
 
 OR, if we don't want to upkeep the Ubuntu version anymore we can replace our Ubuntu image by pushing this as the latest. Someone might depend on the image being Ubuntu though.
 
 ```console
-$ docker image tag youtube-dl:alpine-3.13 <username>/youtube-dl
-$ docker image push <username>/youtube-dl
+$ docker image tag yt-dlp:alpine-3.19 <username>/yt-dlp
+$ docker image push <username>/yt-dlp
 ```
 
-Also remember that unless specified the `:latest` tag will always just refer to the latest image build & pushed - that can basically contain anything.
+It's important to keep in mind that if not specified, the tag `:latest` simply refers to the most recent image that has been built and pushed, which can potentially contain any updates or changes.
 
 ## Exercise 3.7
 
 :::info Exercise 3.7
 
-  As you may have guessed, you shall now return back to the example frontend and backend.
+  As you may have guessed, you shall now return to the frontend and backend from the previous exercise.
 
    Change the base image in FROM to something more suitable. Both should have at least Alpine variants ready in DockerHub. Make sure the application still works after the changes.
 
