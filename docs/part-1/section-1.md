@@ -193,7 +193,7 @@ If we go back to the cooking metaphor, as Dockerfile provides the instructions n
 
 ### Container
 
-Containers only contain that which is required to execute an application; and you can start, stop and interact with them. They are **isolated** environments in the host machine with the ability to interact with each other and the host machine itself via defined methods (TCP/UDP).
+Containers only contain what is required to execute an application; and you can start, stop and interact with them. They are **isolated** environments in the host machine with the ability to interact with each other and the host machine itself via defined methods (TCP/UDP).
 
 List all your containers with `docker container ls`
 
