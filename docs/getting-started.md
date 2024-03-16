@@ -18,16 +18,6 @@ We hope that you enjoy the course and find it informative and engaging. Good luc
 
 The course is suitable for anyone interested in Docker or containerization and has at least some experience with the Linux command line. It also helps if you have some experience in web development.
 
-### Updating of the material for the 2024 edition
-
-The 2024 edition of the course started on 11th March. The material is currently being updated. At the time of writing (16th March) the following parts have already been updated
-
-- Part 1
-- Part 2
-- Part 3 up to and including exercise 3.7
-
-You may continue already beyond the updated material but beware, there might be some outdated content!
-
 ### About different architectures and contributing
 
 Please note that while Docker runs on all major operating systems and even on ARM architecture, this course material may not cover platform-specific details for all operating systems. However, we've had students successfully complete the course using a variety of machines and operating systems.
@@ -36,7 +26,7 @@ If you encounter any issues while working through the course material on your pa
 
 We welcome contributions to the course material from students and other members of the DevOps community! If you notice any mistakes, typos, or errors in the material, please consider submitting a pull request to the course repository on GitHub.
 
-Thank you in advance for your contributions to this open source project!
+Thank you in advance for your contributions to this open-source project!
 
 ### Grading
 

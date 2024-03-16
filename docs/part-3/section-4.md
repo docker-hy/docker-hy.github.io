@@ -264,19 +264,19 @@ FROM nginx:1.19-alpine
 COPY --from=build-stage /usr/app/_site/ /usr/share/nginx/html
 ```
 
-Now Docker copies contents from the first image `/usr/app/_site/` to `/usr/share/nginx/html` Note the naming from Ruby to _build-stage_. We could also use an external image as a stage, `--from=python:3.7` for example.
+Now Docker copies contents from the first image `/usr/app/_site/` to `/usr/share/nginx/html` Note the naming from Ruby to _build-stage_. We could also use an external image as a stage, `--from=python:3.12` for example.
 
 Let's build and check the size difference:
 
 ```console
 $ docker build . -t jekyll
 $ docker image ls
-  REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-  jekyll              latest              5f8839505f37        37 seconds ago      109MB
-  ruby                latest              616c3cf5968b        28 hours ago        870MB
+  REPOSITORY    TAG     IMAGE ID         CREATED           SIZE
+  jekyll        nginx   9e2f597ad99e     8 seconds ago     21.3MB
+  jekyll        ruby    5dae3d9f8dfb     26 minutes ago    1.05GB
 ```
 
-As you can see, even though our Jekyll image needed Ruby during the build stage, it is considerably smaller since it only has Nginx and the static files. `docker container run -it -p 8080:80 jekyll` also works as expected.
+As you can see, even though our Jekyll image needed Ruby during the build stage, it is considerably smaller since it only has Nginx and the static files in the resulting image. `docker run -it -p 8080:80 jekyll:nginx` also works as expected.
 
 Often the best choice is to use a FROM **scratch** image as it doesn't have anything we don't explicitly add there, making it the most secure option over time.
 
@@ -299,7 +299,7 @@ Often the best choice is to use a FROM **scratch** image as it doesn't have anyt
 
   Let us do a multi-stage build for the [backend](https://github.com/docker-hy/material-applications/tree/main/example-backend) project since we've come so far with the application.
 
-  The project is in golang and building a binary that runs in a container, while straightforward, isn't exactly trivial. Use resources that you have available (Google, example projects) to build the binary and run it inside a container that uses `FROM scratch`.
+  The project is in Golang and building a binary that runs in a container, while straightforward, isn't exactly trivial. Use resources that you have available (Google, example projects) to build the binary and run it inside a container that uses `FROM scratch`.
 
   To successfully complete the exercise the image must be smaller than <b>25MB</b>.
 
