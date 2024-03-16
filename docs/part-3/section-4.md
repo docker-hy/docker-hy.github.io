@@ -141,7 +141,7 @@ $ docker build -t yt-dlp:alpine-3.19 -f Dockerfile.alpine .
 It seems to run fine:
 
 ```console
-$ ocker run -v "$(pwd):/mydir" yt-dlp:alpine-3.19 https://www.youtube.com/watch\?v\=bNw2i-mRT4I
+$ docker run -v "$(pwd):/mydir" yt-dlp:alpine-3.19 https://www.youtube.com/watch\?v\=bNw2i-mRT4I
 ```
 
 From the history, we can see that our single `RUN` layer size is 49.8MB
@@ -157,19 +157,53 @@ $ docker image history yt-dlp:alpine-3.19
 
 So in total, our Alpine variant is about 57.6 megabytes, significantly less than our Ubuntu-based image.
 
-Back in part 1, we published the Ubuntu version of yl-dlp with the tag latest.
+## Image with preinstalled environment
 
-We can publish both variants without overriding the other by publishing them with a describing tag:
+As seen, yt-dlp requires Python to function. Installing Python to Ubuntu- or Alpine-based image is very easy, it can be done with a single command. In general, installing the environment that is required to build and run a program inside a container can be quite a burden. 
+
+Luckily, there are preinstalled images for many programming languages readily available on DockerHub, and instead of relying upon "manual" installation steps in a Dockerfile, it's quite often a good idea to use a pre-installed image.
+
+
+Let us use the one made for [Python](https://hub.docker.com/_/python) to run the yt-dpl:
+
+```dockerfile
+# we are using a new base image
+FROM python:3.12-alpine
+
+WORKDIR /mydir
+
+# no need to install python3 anymore
+RUN apk add --no-cache curl ca-certificates && \
+    curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && \
+    chmod a+x /usr/local/bin/yt-dlp && \
+    adduser -D appuser && \
+    chown appuser . && \
+    apk del curl 
+
+USER appuser
+
+ENTRYPOINT ["/usr/local/bin/yt-dlp"]
+```
+
+There are many variants for the Python images, we have selected _python:3.12-alpine_ which has Python version 3.12 and is based on Alpine Linux.
+
+The resulting image size is **59.5MB** so it is slightly larger than the previous one where we installed Python by ourselves.
+
+Back in part 1, we published the Ubuntu version of yl-dlp with the tag _latest_.
+
+We can publish whatever variants we want without overriding the others by publishing them with a describing tag:
 
 ```console
 $ docker image tag yt-dlp:alpine-3.19 <username>/yt-dlp:alpine-3.19
 $ docker image push <username>/yt-dlp:alpine-3.19
+$ docker image tag yt-dlp:python-alpine <username>/yt-dlp:python-alpine
+$ docker image push <username>/yt-dlp:python-alpine
 ```
 
-OR, if we don't want to upkeep the Ubuntu version anymore we can replace our Ubuntu image by pushing this as the latest. Someone might depend on the image being Ubuntu though.
+Or if we don't want to keep the Ubuntu version anymore we can replace that pushing an Alpine-based image as the latest. Someone might depend on the image being Ubuntu though.
 
 ```console
-$ docker image tag yt-dlp:alpine-3.19 <username>/yt-dlp
+$ docker image tag yt-dlp:python-alpine <username>/yt-dlp
 $ docker image push <username>/yt-dlp
 ```
 
@@ -181,7 +215,11 @@ It's important to keep in mind that if not specified, the tag `:latest` simply r
 
   As you may have guessed, you shall now return to the frontend and backend from the previous exercise.
 
-   Change the base image in FROM to something more suitable. Both should have at least Alpine variants ready in DockerHub. Make sure the application still works after the changes.
+  Change the base image in FROM to something more suitable. To avoid the extra hassle, it is a good idea to use a pre-installed image for both [Node.js](https://hub.docker.com/_/node) and [Goland](https://hub.docker.com/_/golang). Both should have at least Alpine variants ready in DockerHub. 
+   
+  Note that the frontend requires Node.js version 16 to work, so you must search for a bit older image.
+
+  Make sure the application still works after the changes.
 
   Document the size before and after your changes.
 
