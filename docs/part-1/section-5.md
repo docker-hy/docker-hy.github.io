@@ -41,7 +41,7 @@ This course does not provide an in-depth exploration of inter-program communicat
 
 The address _127.0.0.1_ and hostname _localhost_ are special ones, they refer to the machine or container itself, so if you are on a container and send a message to _localhost_, the target is the same container. Similarly, if you are sending the request from outside of a container to _localhost_, the target is your machine.
 
-It is possible to **map your host machine port to a container port**. For example, if you map port 1000 on your host machine to port 2000 in the container, and then you send a message to http://localhost:2000 on your computer, the container will get that message if it's listening to its port 2000.
+It is possible to **map your host machine port to a container port**. For example, if you map port 1000 on your host machine to port 2000 in the container, and then you send a message to http://localhost:1000 on your computer, the container will get that message if it's listening to its port 2000.
 
 Opening a connection from the outside world to a Docker container happens in two steps:
 
