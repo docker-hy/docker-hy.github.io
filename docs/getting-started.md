@@ -82,9 +82,14 @@ Use the official documentation to find download instructions for docker-ce for t
 
 [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
+- If you have _fuksiläppäri_, that is, a freshman laptop of University of Helsinki, do the installation as described
+[here](https://version.helsinki.fi/cubbli/cubbli-help/-/wikis/Docker)
+
 [MacOS](https://docs.docker.com/docker-for-mac/install/)
 
 [Windows](https://docs.docker.com/docker-for-windows/install/)
+
+
 
 Confirm that Docker installed correctly by opening a terminal and running `docker -v` to see the installed version.
 
