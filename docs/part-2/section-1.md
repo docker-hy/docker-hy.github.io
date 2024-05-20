@@ -141,7 +141,7 @@ Note that there are also [other](https://docs.docker.com/compose/environment-var
 
 :::info Exercise 2.2
 
-  Read about how to add the command to docker-compose.yml from the [documentation](https://docs.docker.com/compose/compose-file/compose-file-v3/#command).
+  Read about how to add the command to docker-compose.yml from the [documentation](https://docs.docker.com/compose/compose-file/05-services/#command).
 
   The familiar image `devopsdockeruh/simple-web-service` can be used to start a web service, see the [exercise 1.10](/part-1/section-5#exercise-110).
 
