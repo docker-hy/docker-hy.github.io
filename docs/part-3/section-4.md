@@ -164,7 +164,7 @@ As seen, yt-dlp requires Python to function. Installing Python to Ubuntu- or Alp
 Luckily, there are preinstalled images for many programming languages readily available on DockerHub, and instead of relying upon "manual" installation steps in a Dockerfile, it's quite often a good idea to use a pre-installed image.
 
 
-Let us use the one made for [Python](https://hub.docker.com/_/python) to run the yt-dpl:
+Let us use the one made for [Python](https://hub.docker.com/_/python) to run the yt-dlp:
 
 ```dockerfile
 # we are using a new base image
@@ -189,7 +189,7 @@ There are many variants for the Python images, we have selected _python:3.12-alp
 
 The resulting image size is **59.5MB** so it is slightly larger than the previous one where we installed Python by ourselves.
 
-Back in part 1, we published the Ubuntu version of yl-dlp with the tag _latest_.
+Back in part 1, we published the Ubuntu version of yt-dlp with the tag _latest_.
 
 We can publish whatever variants we want without overriding the others by publishing them with a describing tag:
 
