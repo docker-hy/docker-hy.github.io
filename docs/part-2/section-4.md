@@ -4,7 +4,7 @@ title: 'Containers in development'
 
 Containers are not only great in production. They can be used in development environments as well and offer several benefits. The same _works-on-my-machine_ problem is faced often when a new developer joins the team. Not to mention the headache of switching runtime versions or a local database!
 
-For example, a [software development team](https://toska.dev/) at the University of Helsinki has a fully [containerized development environment](https://ethesis.helsinki.fi/repository/handle/123456789/30995). The principle in all development projects is to have a setup so that a new developer only needs to install Docker and clone the project code from GitHub to get started. Not a single dependency is ever installed on to host machine, Git, Docker and the text editor of choice are the only things that are needed.
+For example, a [software development team](https://toska.dev/) at the University of Helsinki has a fully [containerized development environment](https://helda.helsinki.fi/items/9f681533-f488-406d-b2d8-a2f8b225f283). The principle in all development projects is to have a setup so that a new developer only needs to install Docker and clone the project code from GitHub to get started. Not a single dependency is ever installed on to host machine, Git, Docker and the text editor of choice are the only things that are needed.
 
 Even if your application is not completely containerized during development, containers can be very helpful. For example, say you need MongoDB version 4.0.22 installed in port 5656. It's now an oneliner: "docker run -p 5656:27017 mongo:4.0.22" (MongoDB uses 27017 as the default port).
 
