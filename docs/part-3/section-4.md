@@ -215,7 +215,7 @@ It's important to keep in mind that if not specified, the tag `:latest` simply r
 
   As you may have guessed, you shall now return to the frontend and backend from the previous exercise.
 
-  Change the base image in FROM to something more suitable. To avoid the extra hassle, it is a good idea to use a pre-installed image for both [Node.js](https://hub.docker.com/_/node) and [Goland](https://hub.docker.com/_/golang). Both should have at least Alpine variants ready in DockerHub. 
+  Change the base image in FROM to something more suitable. To avoid the extra hassle, it is a good idea to use a pre-installed image for both [Node.js](https://hub.docker.com/_/node) and [Golang](https://hub.docker.com/_/golang). Both should have at least Alpine variants ready in DockerHub. 
    
   Note that the frontend requires Node.js version 16 to work, so you must search for a bit older image.
 
