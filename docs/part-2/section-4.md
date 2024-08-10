@@ -29,7 +29,7 @@ RUN npm install
 
 **docker-compose.yml**
 ```yaml
-version: '3.8'
+name: node-app
 
 services:
   node-dev-env:
