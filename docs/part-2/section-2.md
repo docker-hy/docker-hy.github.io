@@ -48,7 +48,7 @@ It is also possible to define the network manually in a Docker Compose file. A m
 Let us now have a look how a network is defined in docker-compose.yml:
 
 ```yaml
-version: "3.8"
+name: database-network-app
 
 services:
   db:
@@ -68,7 +68,7 @@ As can be seen, services are configured to use a network by adding `networks` in
 Establishing a connection to an external network (that is, a network defined in another docker-compose.yml, or by some other means) is done as follows:
 
 ```yaml
-version: "3.8"
+name: database-network-app
 
 services:
   db:
@@ -85,7 +85,7 @@ networks:
 By default all services are added to a network called `default`. The default network can be configured and this makes it possible to connect to an external network by default as well:
 
 ```yaml
-version: "3.8"
+name: database-network-app
 
 services:
   db:
@@ -159,7 +159,7 @@ In a server environment you'd often have a [load balancer](https://en.wikipedia.
 Let's add the nginx-proxy to our compose file and remove the port bindings from the whoami service. We'll mount our [docker.sock](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock) (the socket that is used to communicate with the [Docker Daemon](https://docs.docker.com/engine/reference/commandline/dockerd/)) inside of the container in `:ro` read-only mode:
 
 ```yaml
-version: "3.8"
+name: whoami-app
 
 services:
   whoami:
@@ -193,7 +193,7 @@ It's "working", but the Nginx just doesn't know which service we want. The `ngin
 The domain `colasloth.com` is configured so that all subdomains point to `127.0.0.1`. More information about how this works can be found at [colasloth.github.io](https://colasloth.github.io), but in brief it's a simple DNS "hack". Several other domains serving the same purpose exist, such as `localtest.me`, `lvh.me`, and `vcap.me`, to name a few. In any case, let's use `colasloth.com` here:
 
 ```yaml
-version: "3.8"
+name: whoami-app
 
 services:
   whoami:

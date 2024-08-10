@@ -84,7 +84,7 @@ Note that now anyone with access to your Docker Hub also has access to your PC t
 Watchtower can be run eg. using the following Docker Compose file:
 
 ```yaml
-version: "3.8"
+name: watchtower-app
 
 services:
   watchtower:
