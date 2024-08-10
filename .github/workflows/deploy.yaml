@@ -30,7 +30,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          cname: warlock-games.link
+          cname: devopswithdocker.com
 
   publish-docker-hub:
     name: Publish image to Docker Hub
@@ -48,4 +48,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: tuckerwarlock/devopswithdocker:latest
+          tags: devopsdockeruh/coursepage:latest
