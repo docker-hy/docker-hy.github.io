@@ -14,15 +14,14 @@ This means that we can pull and run any public image from Docker's servers. For 
 
 We can search for images in the Docker Hub with `docker search`. Try running `docker search hello-world`.
 
-The search finds plenty of results, and prints each image's name, short description, amount of stars, and "official" and "automated" statuses.
+The search finds plenty of results, and prints each image's name, short description, amount of stars, and "official" status.
 
 ```console
 $ docker search hello-world
 
-  NAME                         DESCRIPTION    STARS   OFFICIAL   AUTOMATED
+  NAME                         DESCRIPTION    STARS   OFFICIAL
   hello-world                  Hello World!…  1988     [OK]
   kitematic/hello-world-nginx  A light-weig…  153
-  tutum/hello-world            Image to tes…  90                 [OK]
   ...
 ```
 
@@ -32,9 +31,7 @@ The first result, `hello-world`, is an official image. [Official images](https:/
 
 When browsing the CLI's search results, you can recognize an official image from the "[OK]" in the "OFFICIAL" column and also from the fact that the image's name has no prefix (aka organization/user). When browsing Docker Hub, the page will show "Docker Official Images" as the repository, instead of a user or organization. For example, see the [Docker Hub page](https://hub.docker.com/_/hello-world/) of the `hello-world` image.
 
-The third result, `tutum/hello-world`, is marked as "automated". This means that the image is [automatically built](https://docs.docker.com/docker-hub/builds/) from the source repository. Its [Docker Hub page](https://hub.docker.com/r/tutum/hello-world/) shows its previous "Builds" and a link to the image's "Source Repository" (in this case, to GitHub) from which Docker Hub builds the image.
-
-The second result, `kitematic/hello-world-nginx`, is neither an official nor an automated image. We can't know what the image is built from, since its [Docker Hub page](https://hub.docker.com/r/kitematic/hello-world-nginx/) has no links to any repositories. The only thing its Docker Hub page reveals is that the image is 9 years old. Even if the image's "Overview" section had links to a repository, we would have no guarantees that the published image was built from that source.
+The second result, `kitematic/hello-world-nginx`, is not an official image. We can't know what the image is built from, since its [Docker Hub page](https://hub.docker.com/r/kitematic/hello-world-nginx/) has no links to any repositories. The only thing its Docker Hub page reveals is that the image is 9 years old. Even if the image's "Overview" section had links to a repository, we would have no guarantees that the published image was built from that source.
 
 There are also other Docker registries competing with Docker Hub, such as [Quay](https://quay.io/). By default, `docker search` will only search from Docker Hub, but to search a different registry, you can add the registry address before the search term, for example, `docker search quay.io/hello`. Alternatively, you can use the registry's web pages to search for images. Take a look at the page of [the `nordstrom/hello-world` image on Quay](https://quay.io/repository/nordstrom/hello-world). The page shows the command to use to pull the image, which reveals that we can also pull images from hosts other than Docker Hub:
 
