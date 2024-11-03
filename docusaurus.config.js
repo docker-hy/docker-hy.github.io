@@ -124,6 +124,7 @@ const config = {
       {
         apiKey: "phc_b1Vwdj977Eg3n1KKP69WoUpx1frnW3bhycCJ5ftjkDI",
         appUrl: "https://eu.i.posthog.com",
+        persistence: "memory",
       },
     ],
   ],
