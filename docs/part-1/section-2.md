@@ -246,10 +246,12 @@ Test inputting `helsinki.fi` into the application. It should respond with someth
   <head>
     <title>301 Moved Permanently</title>
   </head>
-
   <body>
-    <h1>Moved Permanently</h1>
-    <p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+    <center>
+      <h1>301 Moved Permanently</h1>
+    </center>
+    <hr>
+    <center>nginx/1.22.1</center>
   </body>
 </html>
 ```
