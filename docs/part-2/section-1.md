@@ -6,7 +6,7 @@ Even with a simple image, we've already been dealing with plenty of command line
 
 Next we will switch to a tool called [Docker Compose](https://docs.docker.com/compose/) to manage these. Docker Compose used to be a separate tool but now it is integrated into Docker and can be used like the rest of the Docker commands.
 
-Docker Compose is designed to simplify running multi-container applications using a single command.
+Docker Compose is designed to simplify running multi-container applications using a single command `docker compose [-f <arg>...] [options] [COMMAND] [ARGS...]`.
 
 Assume that we are in the folder where we have our Dockerfile with the following content:
 
@@ -25,15 +25,13 @@ ENTRYPOINT ["/usr/local/bin/yt-dlp"]
 Let us now create a file called `docker-compose.yml`:
 
 ```yaml
-version: '3.8'
+name: yt-dlp-app
 
 services:
   yt-dlp-ubuntu:
     image: <username>/<repositoryname>
     build: .
 ```
-
-The version setting is not very strict, it just needs to be above 2 because otherwise the syntax is significantly different. See <https://docs.docker.com/compose/compose-file/> for more info.
 
 The value of the key `build` can be a file system path (in the example it is the current directory `.`) or an object with keys `context` and `dockerfile`, see the [documentation](https://docs.docker.com/compose/compose-file/build/) for more
 
@@ -49,7 +47,7 @@ $ docker compose push
 To run the image as we did previously, we will need to add the volume bind mounts. Volumes in Docker Compose are defined with the following syntax `location-in-host:location-in-container`. Compose can work without an absolute path:
 
 ```yaml
-version: '3.8'
+name: yt-dlp-app
 
 services:
 
@@ -67,6 +65,27 @@ We can also give the container a name it will use when running with container_na
 $ docker compose run yt-dlp-ubuntu https://imgur.com/JY5tHqr
 ```
 
+## Key Commands in Docker Compose
+
+To start all the services defined in the `docker-compose.yaml` file:
+```console
+$ docker compose up
+```
+To stop and remove the running services:
+```console
+$ docker compose down
+```
+If you want to monitor the output of the running containers and debug issues, we can view the logs with:
+```console
+$ docker compose logs
+```
+To lists all the services along with their current status:
+```console
+$ docker compose ps
+```
+
+Full list of Compose CLI Commands can be found [here](https://docs.docker.com/reference/cli/docker/compose/).
+
 ## Exercise 2.1
 
 :::info Exercise 2.1
@@ -78,7 +97,7 @@ $ docker compose run yt-dlp-ubuntu https://imgur.com/JY5tHqr
   Create a docker-compose.yml file that starts `devopsdockeruh/simple-web-service` and saves the logs into your
   filesystem.
 
-  Submit the docker-compose.yml, and make sure that it works simply by running `docker compose up` if the log file exists.
+  Submit the docker-compose.yml, and make sure that it works simply by running `docker compose up -d` if the log file exists.
 
 
 :::
@@ -106,7 +125,7 @@ $ docker container rm 736ab83847bb
 Let's create a new folder and a Docker Compose file `whoami/docker-compose.yml` from the command line options.
 
 ```yaml
-version: '3.8'
+name: whoami-app
 
 services:
   whoami:
@@ -125,7 +144,7 @@ $ curl localhost:8000
 Environment variables can also be given to the containers in Docker Compose as follows:
 
 ```yaml
-version: '3.8'
+name: myapp
 
 services:
   backend:
@@ -147,7 +166,7 @@ Note that there are also [other](https://docs.docker.com/compose/environment-var
 
   Create a docker-compose.yml, and use it to start the service so that you can use it with your browser.
 
-  Submit the docker-compose.yml, and make sure that it works simply by running `docker compose up`
+  Submit the docker-compose.yml, and make sure that it works simply by running `docker compose up -d`
 
 :::
 
