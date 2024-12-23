@@ -251,7 +251,7 @@ We could start thinking about optimizations at this point but instead, we're goi
 
 ```dockerfile
 # the  first stage needs to be given a name
-FROM ruby:3 as build-stage
+FROM ruby:3 AS build-stage
 WORKDIR /usr/app
 
 RUN gem install jekyll
