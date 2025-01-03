@@ -20,7 +20,7 @@ RUN chmod a+x /usr/local/bin/yt-dlp
 ENTRYPOINT ["/usr/local/bin/yt-dlp"]
 ```
 
-We will add an user called _appuser_ with the following command
+We will add a user called _appuser_ with the following command
 
 ```dockerfile
 RUN useradd -m appuser
