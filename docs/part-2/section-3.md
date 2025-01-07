@@ -17,7 +17,7 @@ From the section _Environment Variables_ we can see that all versions can use `R
 In <https://hub.docker.com/_/postgres> there's a sample compose file under the section "via docker-compose or docker stack deploy". Let's strip that down as follows
 
 ```yaml
-version: "3.8"
+name: postgres-app
 
 services:
   db:
@@ -85,7 +85,7 @@ Instead of the randomly named volume we better define one explicitly.
 Let us change the definition as follows:
 
 ```yaml
-version: "3.8"
+name: postgres-app
 
 services:
   db:
@@ -150,7 +150,7 @@ As the [documentation](https://hub.docker.com/_/redmine) mentions, the image cre
 With that in mind, our configuration changes to this:
 
 ```yaml
-version: "3.8"
+name: postgres-app
 
 services:
   db:
