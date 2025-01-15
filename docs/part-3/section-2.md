@@ -107,7 +107,7 @@ One needs to be careful when starting Watchtower with _docker compose up_,  sinc
 
   Either clone the project or copy the files to your own repository. Set up a similar deployment pipeline (or the "first half") using GitHub Actions that was just described. Ensure that a new image gets pushed to Docker Hub every time you push the code to GitHub (you may eg. change the message the app shows).
 
-Note that there is important change that you should make to the above workflow configuration, the branch should be named _main_:
+Note that there is an important change that you should make to the above workflow configuration, the branch should be named _main_:
 
 ```yaml
 name: Release Node.js app
