@@ -6,13 +6,16 @@ We've focused on using Docker as a tool to solve various types of problems. Mean
 
 The goal for this part is to look into some of the best container practices and improve our processes.
 
-In [part 1](/part-1/section-3#exercises-15---16) we talked about how [Alpine Linux](https://www.alpinelinux.org/) image can be quite a bit than Ubuntu but didn't really care about why we'd choose one above the other. On top of that, we have been running the applications as [root](https://en.wikipedia.org/wiki/Superuser), i.e. the super user, which is potentially dangerous.
+In [part 1](/part-1/section-3#exercises-15---16), we mentioned how the [Alpine Linux](https://www.alpinelinux.org/) image is much smaller than Ubuntu, but we didn't dive any reasoning why we might pick one over the other.
+
+On top of that, we have been running the applications as [root](https://en.wikipedia.org/wiki/Superuser), i.e. the super user, which is potentially dangerous.
 
 ## Look into official images
 
-Which version is considered to be the "official" version is up to the maintainers of [Docker Official Images](https://github.com/docker-library/official-images) to decide. The official images [repository](https://github.com/docker-library/official-images) contains a library of images considered official. They are introduced into the library by regular pull request processes. The extended process for verifying an image is described in the repository README.
+Which version is considered to be the "official" version is up to the maintainers of [Docker Official Images](https://github.com/docker-library/official-images) to decide. The [official images repository](https://github.com/docker-library/official-images) contains a library of images considered official. They are introduced into the library by regular pull request processes. The extended process for verifying an image is described in the repository README.
 
-Many of the most well known projects are maintained under the [docker-library](https://github.com/docker-library) organization. Those include images such as Postgres and Python. But many of them are added to the library, but are maintained in a separate organization, such as Ubuntu and [Nodejs](https://github.com/nodejs/docker-node).
+Many of the most well-known projects are maintained under the [docker-library](https://github.com/docker-library) organization. Those include images such as Postgres and Python. 
+However, many of them are included in the library but are managed by a separate organization, like Ubuntu and [Node.js](https://github.com/nodejs/docker-node)
 
 Let's look into the Ubuntu image on [Docker Hub](https://hub.docker.com/r/library/ubuntu/) and trace the process.
 
@@ -25,7 +28,7 @@ The description/readme says:
 
 We can see that the image is built from <https://git.launchpad.net/cloud-images/+oci/ubuntu-base>.
 
-Let's take a closer look at Ubuntu to verify where it comes from. If you click the Dockerfile link of <https://hub.docker.com/r/_/ubuntu/> you'll be given a json file instead of the Dockerfile contents. The digest seems to contain the valid digest for a single architecture version listed on Docker Hub (amd64). But after downloading it and checking the digest `docker pull ubuntu:22.04 && docker images --digests` the result does not match up.
+Let's take a closer look at Ubuntu to verify where it comes from. If you click the Dockerfile link of <https://hub.docker.com/r/_/ubuntu/> you'll be given a json file instead of the Dockerfile contents. The digest seems to contain the valid digest for a single architecture version listed on Docker Hub (amd64). But after downloading it and checking the digest `docker pull ubuntu:22.04 && docker image ls --digests` the result does not match up.
 
 We find a Dockerfile from the repository [here](https://git.launchpad.net/cloud-images/+oci/ubuntu-base/tree/Dockerfile?h=jammy-22.04). We can increase trust that it's the same as the image we downloaded with `image history`:
 
@@ -41,7 +44,7 @@ Notice how the file is not extracted at any point. The `ADD` instruction [docume
 
 We could verify the checksums of the file if we were interested. For the Ubuntu image automation from the launchpad takes care of creating the PRs to docker-library and the maintainers of the official images repository verify the PRs.
 
-You can also visit the Docker Hub page for the image tag itself, which shows the layers and warns about potential security issues. Note how many different problems it finds [here](https://hub.docker.com/layers/library/ubuntu/22.04/images/sha256-b2175cd4cfdd5cdb1740b0e6ec6bbb4ea4892801c0ad5101a81f694152b6c559?context=explore).
+You can also visit the Docker Hub page for the image tag itself, which shows the layers and warns about potential security issues. You can see how many different problems it finds [here](https://hub.docker.com/layers/library/ubuntu/22.04/images/sha256-b2175cd4cfdd5cdb1740b0e6ec6bbb4ea4892801c0ad5101a81f694152b6c559?context=explore).
 
 Now we have learned that the build processes are open and we can verify it if we have the need. In addition, we learned that there's nothing that makes the "official" images special.
 

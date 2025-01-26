@@ -116,10 +116,23 @@ $ docker container run hello-world
    https://docs.docker.com/get-started/
 ```
 
-If you already ran hello-world previously it will skip the first 5 lines. The first 5 lines tell that an **image** "hello-world:latest" wasn't found and it was downloaded. Try it again:
+The command `docker container run` has a shorthand form `docker run`, so instead of 
 
 ```console
 $ docker container run hello-world
+```
+
+we could do the same with less typing and use just
+
+```console
+$ docker run hello-world
+```
+
+
+If you already ran hello-world previously it will skip the first 5 lines. The first 5 lines tell that an **image** "hello-world:latest" wasn't found and it was downloaded. Try it again:
+
+```console
+$ docker run hello-world
 
   Hello from Docker!
   ...
@@ -163,7 +176,7 @@ Containers are created from images, so when we ran hello-world twice we download
 
 Well then, if images are used to create containers, where do images come from? This image file is built from an instructional file named **Dockerfile** that is parsed when you run `docker image build`.
 
-Dockerfile is a file named Dockerfile, that looks something like this
+Dockerfile is a file that is by default called _Dockerfile_, that looks something like this
 
 **Dockerfile**
 ```Dockerfile
@@ -180,7 +193,7 @@ If we go back to the cooking metaphor, as Dockerfile provides the instructions n
 
 ### Container
 
-Containers only contain that which is required to execute an application; and you can start, stop and interact with them. They are **isolated** environments in the host machine with the ability to interact with each other and the host machine itself via defined methods (TCP/UDP).
+Containers only contain what is required to execute an application; and you can start, stop and interact with them. They are **isolated** environments in the host machine with the ability to interact with each other and the host machine itself via defined methods (TCP/UDP).
 
 List all your containers with `docker container ls`
 
@@ -247,13 +260,13 @@ You can also use the `image pull` command to download images without running the
 Let's try starting a new container:
 
 ```console
-$ docker container run nginx
+$ docker run nginx
 ```
 
 With some containers the command line appears to freeze after pulling and starting the container. This might be because that particular container is now running in the current terminal, blocking the input. You can observe this with `docker container ls` from another terminal. In this situation one can exit by pressing `control + c` and try again with the `-d` flag.
 
 ```console
-$ docker container run -d nginx
+$ docker run -d nginx
   c7749cf989f61353c1d433466d9ed6c45458291106e8131391af972c287fb0e5
 ```
 
@@ -311,10 +324,10 @@ Some of the shorthands are legacy version of doing the same thing. You can use e
 
 :::info Exercise 1.2: Cleanup
 
-  We have containers and an image that are no longer in use and are taking up space. Running `docker ps -as` and `docker images` will confirm this.
+  We have containers and an image that are no longer in use and are taking up space. Running `docker ps -a` and `docker image ls` will confirm this.
 
   Clean the Docker daemon by removing all images and containers.
 
-  Submit the output for `docker ps -a` and `docker images`
+  Submit the output for `docker ps -a` and `docker image ls`
 
 :::

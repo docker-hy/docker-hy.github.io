@@ -117,7 +117,17 @@ const config = {
       },
     }),
 
-  plugins: [require.resolve('docusaurus-lunr-search')],
+  plugins: [
+    require.resolve('docusaurus-lunr-search'),
+    [
+      "posthog-docusaurus",
+      {
+        apiKey: "phc_b1Vwdj977Eg3n1KKP69WoUpx1frnW3bhycCJ5ftjkDI",
+        appUrl: "https://eu.i.posthog.com",
+        persistence: "memory",
+      },
+    ],
+  ],
 };
 
 module.exports = config;

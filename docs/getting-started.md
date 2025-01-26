@@ -4,15 +4,19 @@ sidebar_position: 2
 
 # Getting Started
 
-Welcome to the DevOps with Docker course! This course is designed to be completed sequentially, from start to finish. Each part builds on the previous one, so it's important to read the material carefully and complete the exercises in order to develop the necessary skills.
+Welcome to the DevOps with Docker course! This course is designed to be completed sequentially, from start to finish. Each part builds on the previous one, so it's important to read the material carefully and complete the exercises to develop the necessary skills.
 
 To pass the course, you will need to complete all of the exercises. However, one exercise can be skipped per part, except for the exercises marked as mandatory. The mandatory exercises cannot be skipped.
 
-The exercises are designed to reinforce the material covered in each part, and are placed at strategic points in the course to ensure that you have learned the necessary skills prior to attempting each exercise. You can complete the exercises at your own pace, and there is no deadline for submission outside of the last date, when the entire course ends.
+The exercises are designed to reinforce the material covered in each part and are placed at strategic points in the course to ensure that you have learned the necessary skills before attempting each exercise. You can complete the exercises at your own pace, and there is no deadline for submission outside of the last date when the entire course ends.
 
 When submitting your exercises, please follow the instructions provided in the course material. Exercises should be submitted in a specific format, which will be outlined in the instructions for each exercise.
 
 We hope that you enjoy the course and find it informative and engaging. Good luck!
+
+### Prerequisites
+
+The course is suitable for anyone interested in Docker or containerization and has at least some experience with the Linux command line. It also helps if you have some experience in web development.
 
 ### About different architectures and contributing
 
@@ -22,7 +26,7 @@ If you encounter any issues while working through the course material on your pa
 
 We welcome contributions to the course material from students and other members of the DevOps community! If you notice any mistakes, typos, or errors in the material, please consider submitting a pull request to the course repository on GitHub.
 
-Thank you in advance for your contributions to this open source project!
+Thank you in advance for your contributions to this open-source project!
 
 ### Grading
 
@@ -34,19 +38,19 @@ There are additional instructions for completion after each part and at the end 
 
 ### Learning objectives
 
-Part 1: DevOps with Docker ([TKT21036](https://studies.helsinki.fi/opintotarjonta/cur/otm-a1a074e0-dc7f-4644-8796-04fab528ba36/TKT21036/DevOps_with_Docker))
+Part 1: DevOps with Docker ([TKT21036](https://studies.helsinki.fi/kurssit/toteutus/otm-4bd45ab8-8b23-4973-a918-a6b6f7bbb347/TKT21036))
 
 - Understand the fundamental concepts of Docker, including images and containers.
 - Learn how to build Docker images for existing projects and run them.
 - Understand how Docker can simplify the development process.
 
-Part 2: DevOps with Docker: docker-compose ([TKT21037](https://studies.helsinki.fi/opintotarjonta/cur/otm-d37daa67-f5b1-4bdb-88a5-98107d2c63ea/TKT21037/DevOps_with_Docker_docker_compose))
+Part 2: DevOps with Docker: docker-compose ([TKT21037](https://studies.helsinki.fi/kurssit/toteutus/otm-c73ef1c6-8fb0-42e8-9052-ef59b01cb409/TKT21037))
 
 - Learn how to manage complex multi-container applications with Docker Compose.
 - Understand the role of Docker Compose in container orchestration
 - Practice deploying and managing real-world applications using Docker Compose.
 
-Part 3: DevOps with Docker: security and optimization ([TKT21038](https://studies.helsinki.fi/opintotarjonta/cur/otm-68b6e802-0b55-438c-85aa-1fd9d0ad80be/TKT21038/DevOps_with_Docker_security_and_optimization))
+Part 3: DevOps with Docker: security and optimization ([TKT21038](https://studies.helsinki.fi/kurssit/opintojakso/hy-CU-142971306-2020-08-01/TKT21038))
 
 - Learn how to optimize Docker images for production, including reducing image size and improving security.
 - Understand the limitations of using Docker Compose in production environments and the need for more advanced orchestration tools.
@@ -78,9 +82,14 @@ Use the official documentation to find download instructions for docker-ce for t
 
 [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
+- If you have _fuksiläppäri_, that is, a freshman laptop of University of Helsinki, do the installation as described
+[here](https://version.helsinki.fi/cubbli/cubbli-help/-/wikis/Docker)
+
 [MacOS](https://docs.docker.com/docker-for-mac/install/)
 
 [Windows](https://docs.docker.com/docker-for-windows/install/)
+
+
 
 Confirm that Docker installed correctly by opening a terminal and running `docker -v` to see the installed version.
 
@@ -102,7 +111,7 @@ Do note that while running Docker rootless does limit some security risks to you
 
 ## Deadline
 
-The sign up for ECTS credits and the course ends 18.6.2023! After that course is locked and submissions can no longer be made or credits earned. As the certificate is received through submissions, you have to submit everything before the course ends. More details under completion and after each part.
+The sign up for ECTS credits and the course ends 16.6.2024! After that course is locked and submissions can no longer be made or credits earned. As the certificate is received through submissions, you have to submit everything before the course ends. More details under completion and after each part.
 
 ## General guidance
 
@@ -120,7 +129,7 @@ Most of the exercises will be focused on a Dockerfile and/or docker-compose.yml.
 
 Because the course exercises are designed to build upon each other, it's more important that you document the exercises for yourself. We will be looking at the submissions of the later exercises as they are more demanding.
 
-When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/stats/courses/docker2023) to mark your exercises. You can **not** edit a submission, so make sure you have completed enough exercises for a part before submitting.
+When you have completed a part, use the [submission application](https://studies.cs.helsinki.fi/stats/courses/docker2024) to mark your exercises. You can **not** edit a submission, so make sure you have completed enough exercises for a part before submitting.
 
 ## Completing
 

@@ -3,6 +3,10 @@ sidebar_position: 3
 title: "Frequently Asked Questions"
 ---
 
+## Prerequisites
+
+The course is suitable for anyone interested in Docker or containerization and has at least some experience with the Linux command line. It also helps if you have some experience in web development.
+
 ## How do I sign up for the course?
 
 There's no requirement to sign up for the course until after you've completed the exercises and wish to end your course.
@@ -33,8 +37,8 @@ You can get your credits after submitting enough exercises. First, complete the 
 
 Yes, the certificate is available to all who pass the course before the deadline. You can download the certificate after completing the course from the exercise submission system.
 
-## How do I extend my 2021 or 2022 progress?
+## How do I extend my 2021, 2022 or 2023 progress?
 
 You can simply submit the completed parts again.
 
-If you left 1 exercise not completed, mark one exercise not completed in the 2023 version. If you did all of the exercises mark all as done in the 2023 course.
+If you left 1 exercise not completed, mark one exercise not completed in the 2024 version. If you did all of the exercises mark all as done in the 2024 course.

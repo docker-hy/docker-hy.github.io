@@ -92,7 +92,39 @@ $ docker attach --no-stdin looper
 
 The container will continue running. Control+c now only disconnects you from the STDOUT.
 
-To enter a container, we can start a new process in it.
+### Running processes inside a container with docker exec ###
+
+We often encounter situations where we need to execute commands within a running container. This can be achieved using the `docker exec` command.
+
+We could e.g. list all the files inside the container default directory (which is the root) as follows:
+
+```console
+$ docker exec looper ls -la
+total 56
+drwxr-xr-x   1 root root 4096 Mar  6 10:24 .
+drwxr-xr-x   1 root root 4096 Mar  6 10:24 ..
+-rwxr-xr-x   1 root root    0 Mar  6 10:24 .dockerenv
+lrwxrwxrwx   1 root root    7 Feb 27 16:01 bin -> usr/bin
+drwxr-xr-x   2 root root 4096 Apr 18  2022 boot
+drwxr-xr-x   5 root root  360 Mar  6 10:24 dev
+drwxr-xr-x   1 root root 4096 Mar  6 10:24 etc
+drwxr-xr-x   2 root root 4096 Apr 18  2022 home
+lrwxrwxrwx   1 root root    7 Feb 27 16:01 lib -> usr/lib
+drwxr-xr-x   2 root root 4096 Feb 27 16:01 media
+drwxr-xr-x   2 root root 4096 Feb 27 16:01 mnt
+drwxr-xr-x   2 root root 4096 Feb 27 16:01 opt
+dr-xr-xr-x 293 root root    0 Mar  6 10:24 proc
+drwx------   2 root root 4096 Feb 27 16:08 root
+drwxr-xr-x   5 root root 4096 Feb 27 16:08 run
+lrwxrwxrwx   1 root root    8 Feb 27 16:01 sbin -> usr/sbin
+drwxr-xr-x   2 root root 4096 Feb 27 16:01 srv
+dr-xr-xr-x  13 root root    0 Mar  6 10:24 sys
+drwxrwxrwt   2 root root 4096 Feb 27 16:08 tmp
+drwxr-xr-x  11 root root 4096 Feb 27 16:01 usr
+drwxr-xr-x  11 root root 4096 Feb 27 16:08 var
+```
+
+We can execute the Bash shell in the container in interactive mode and then run any commands within that Bash session:
 
 ```console
 $ docker exec -it looper bash
@@ -143,13 +175,27 @@ Instead, if we had used ctrl+c, it would have sent a kill signal followed by rem
 
 Now that we've warmed up it's time to get inside a container while it's running!
 
-Image `devopsdockeruh/simple-web-service:ubuntu` will start a container that outputs logs into a file.
-Go inside the container and use `tail -f ./text.log` to follow the logs.
-Every 10 seconds the clock will send you a "secret message".
+Image `devopsdockeruh/simple-web-service:ubuntu` will start a container that outputs logs into a file. Go inside the running container and use `tail -f ./text.log` to follow the logs. Every 10 seconds the clock will send you a "secret message".
 
 Submit the secret message and command(s) given as your answer.
 
 :::
+
+## Nonmatching host platform
+
+If you are working with M1/M2 Mac, you quite likely end up with the following warning when running the image _devopsdockeruh/simple-web-service:ubuntu_:
+
+```console
+WARNING: The requested image's platform (linux/amd64) does not match the detected 
+host platform (linux/arm64/v8) and no specific platform was requested
+```
+
+Despite this warning, you can run the container. The warning basically says what's wrong, the image uses a different processor architecture than your machine.
+
+The image can be used because Docker Desktop for Mac employs an emulator by default when the image's processor architecture does not match the host's. However, it's important to note that emulated execution may be less efficient in terms of performance than running the image on a compatible native processor architecture.
+
+When you run `docker run ubuntu` for example, you don't get a warning, why is that? Quite a few popular images are so-called [multi platform images](https://docs.docker.com/build/building/multi-platform/), which means that one image contains variations for different architectures. When you are about to pull or run such an image, Docker will detect the host architecture and give you the correct type of image.
+
 
 ## Ubuntu in a container is just... Ubuntu
 

@@ -2,19 +2,19 @@
 title: "Interacting with the container via volumes and ports"
 ---
 
-Let us get back to youtube downloader. It works yes, but it is quite laborous to get the download videos to the host machine.
+Let us get back to yt-dlp. It works yes, but it is quite laborious to get the downloaded videos to the host machine.
 
-We can use Docker [volumes](https://docs.docker.com/storage/volumes/) to make it easier to store the downloads outside the containers ephemeral storage. With [bind mount](https://docs.docker.com/storage/bind-mounts/) we can mount a file or directory from our own machine (the host machine) into the container.
+We can use Docker [volumes](https://docs.docker.com/storage/volumes/) to make it easier to store the downloads outside the container's ephemeral storage. With [bind mount](https://docs.docker.com/storage/bind-mounts/) we can mount a file or directory from our own machine (the host machine) into the container.
 
 Let's start a container with `-v` option, that requires an absolute path. We mount our current folder as `/mydir` in our container, overwriting everything that we have put in that folder in our Dockerfile.
 
 ```console
-$ docker run -v "$(pwd):/mydir" youtube-dl https://imgur.com/JY5tHqr
+$ docker run -v "$(pwd):/mydir" yt-dlp https://www.youtube.com/watch?v=DptFY_MszQs
 ```
 
 So a volume is simply a folder (or a file) that is shared between the host machine and the container. If a file in volume is modified by a program that's running inside the container the changes are also saved from destruction when the container is shut down as the file exists on the host machine. This is the main use for volumes as otherwise all of the files wouldn't be accessible when restarting the container. Volumes also can be used to share files between containers and run programs that are able to load changed files.
 
-In our youtube-dl we wanted to mount the whole directory since the files are fairly randomly named. If we wish to create a volume with only a single file we could also do that by pointing to it. For example `-v "$(pwd)/material.md:/mydir/material.md"` this way we could edit the material.md locally and have it change in the container (and vice versa). Note also that `-v` creates a directory if the file does not exist.
+In our yt-dlp we wanted to mount the whole directory since the files are fairly randomly named. If we wish to create a volume with only a single file we could also do that by pointing to it. For example `-v "$(pwd)/material.md:/mydir/material.md"` this way we could edit the material.md locally and have it change in the container (and vice versa). Note also that `-v` creates a directory if the file does not exist.
 
 ## Exercise 1.9
 
@@ -23,7 +23,7 @@ In our youtube-dl we wanted to mount the whole directory since the files are fai
 In this exercise we won't create a new Dockerfile.
 
 Image `devopsdockeruh/simple-web-service` creates a timestamp every two seconds to `/usr/src/app/text.log` when it's not given a command. Start the
-container with bind mount so that the logs are created into your filesystem.
+container with a bind mount so that the logs are created into your filesystem.
 
 Submit the command you used to complete the exercise.
 
@@ -33,17 +33,17 @@ Submit the command you used to complete the exercise.
 
 ## Allowing external connections into containers
 
-The details on how programs communicate are not detailed in this course. Courses on Operating Systems and the Networking courses explain subjects in detail. In this course you only need to know the following simplified basics:
+This course does not provide an in-depth exploration of inter-program communication mechanisms. If you want to learn that in-depth, you should look at classes about Operating Systems or Networking. Here, you just need to know a few simple things:
 
-- Sending messages: Programs can send messages to [URL](https://en.wikipedia.org/wiki/URL) addresses such as this: http://127.0.0.1:3000 where http is the [_protocol_](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol), 127.0.0.1 is a ip address, and 3000 is a [_port_](<https://en.wikipedia.org/wiki/Port_(computer_networking)>). Note the ip part could also be a [_hostname_](https://en.wikipedia.org/wiki/Hostname): 127.0.0.1 is also called [_localhost_](https://en.wikipedia.org/wiki/Localhost) so instead you could use http://localhost:3000.
+- Sending messages: Programs can send messages to [URL](https://en.wikipedia.org/wiki/URL) addresses such as this: http://127.0.0.1:3000 where HTTP is the [_protocol_](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol), 127.0.0.1 is an IP address, and 3000 is a [_port_](<https://en.wikipedia.org/wiki/Port_(computer_networking)>). Note the IP part could also be a [_hostname_](https://en.wikipedia.org/wiki/Hostname): 127.0.0.1 is also called [_localhost_](https://en.wikipedia.org/wiki/Localhost) so instead you could use http://localhost:3000.
 
-- Receiving messages: Programs can be assigned to listen to any available port. If a program is listening for traffic on port 3000, and a message is sent to that port, it will receive it (and possibly process it). Port numbers below 1024 may be unavailable for users with normal privileges.
+- Receiving messages: Programs can be assigned to listen to any available port. If a program is listening for traffic on port 3000, and a message is sent to that port, the program will receive and possibly process it. Port numbers below 1024 may be unavailable for users with normal privileges.
 
-The address _127.0.0.1_ and hostname _localhost_ are special ones, they refer to the machine or container itself, so if you are on a container and send message to _localhost_, the target is the same container. Similarly, if you are sending the request from outside of a container to _localhost_, the target is your machine.
+The address _127.0.0.1_ and hostname _localhost_ are special ones, they refer to the machine or container itself, so if you are on a container and send a message to _localhost_, the target is the same container. Similarly, if you are sending the request from outside of a container to _localhost_, the target is your machine.
 
-You can map your host machine port to a container port.
+It is possible to **map your host machine port to a container port**. For example, if you map port 1000 on your host machine to port 2000 in the container, and then you send a message to http://localhost:1000 on your computer, the container will get that message if it's listening to its port 2000.
 
-Opening a connection from outside world to a Docker container happens in two steps:
+Opening a connection from the outside world to a Docker container happens in two steps:
 
 - Exposing port
 
@@ -63,7 +63,7 @@ If you leave out the host port and only specify the container port, Docker will 
 $ docker run -p 4567 app-in-port
 ```
 
-We could also limit connections to certain protocol only, e.g. udp by adding the protocol at the end: `EXPOSE <port>/udp` and `-p <host-port>:<container-port>/udp`.
+We could also limit connections to a certain protocol only, e.g. UDP by adding the protocol at the end: `EXPOSE <port>/udp` and `-p <host-port>:<container-port>/udp`.
 
 :::tip Security reminder: Opening a door to the internet
 
@@ -83,7 +83,7 @@ Usually, this isn't risky. But depending on the application, it is something you
 
 In this exercise, we won't create a new Dockerfile.
 
-The image `devopsdockeruh/simple-web-service` will start a web service in port `8080` when given the argument "server". In [Exercise 1.8](/part-1/section-3#exercises-17---18) you already did a image that can be used to run the web service without any argument.
+The image `devopsdockeruh/simple-web-service` will start a web service in port `8080` when given the argument "server". In [Exercise 1.8](/part-1/section-3#exercises-17---18) you already did an image that can be used to run the web service without any argument.
 
 Use now the -p flag to access the contents with your browser. The output to your browser should be something like:
 `{ message: "You connected to the following path: ...`

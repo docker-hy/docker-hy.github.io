@@ -1,5 +1,5 @@
 ---
-title: "In-depth dive to images"
+title: "In-depth dive into images"
 ---
 
 Images are the basic building blocks for containers and other images. When you "containerize" an application you work towards creating the image.
@@ -34,15 +34,15 @@ When browsing the CLI's search results, you can recognize an official image from
 
 The third result, `tutum/hello-world`, is marked as "automated". This means that the image is [automatically built](https://docs.docker.com/docker-hub/builds/) from the source repository. Its [Docker Hub page](https://hub.docker.com/r/tutum/hello-world/) shows its previous "Builds" and a link to the image's "Source Repository" (in this case, to GitHub) from which Docker Hub builds the image.
 
-The second result, `kitematic/hello-world-nginx`, is neither an official nor an automated image. We can't know what the image is built from, since its [Docker Hub page](https://hub.docker.com/r/kitematic/hello-world-nginx/) has no links to any repositories. The only thing its Docker Hub page reveals is that the image is 8 years old. Even if the image's "Overview" section had links to a repository, we would have no guarantees that the published image was built from that source.
+The second result, `kitematic/hello-world-nginx`, is neither an official nor an automated image. We can't know what the image is built from, since its [Docker Hub page](https://hub.docker.com/r/kitematic/hello-world-nginx/) has no links to any repositories. The only thing its Docker Hub page reveals is that the image is 9 years old. Even if the image's "Overview" section had links to a repository, we would have no guarantees that the published image was built from that source.
 
-There are also other Docker registries competing with Docker Hub, such as [quay](https://quay.io/). By default `docker search` will only search from Docker Hub, but to search different registry you can add registry address before search term, for example `docker search quay.io/hello`. Alternatively you can use the registry's web pages to search for images. Take a look at the page of [the `nordstrom/hello-world` image on quay](https://quay.io/repository/nordstrom/hello-world). The page shows the command to use to pull the image, which reveals that we can also pull images from hosts other than Docker Hub:
+There are also other Docker registries competing with Docker Hub, such as [Quay](https://quay.io/). By default, `docker search` will only search from Docker Hub, but to search a different registry, you can add the registry address before the search term, for example, `docker search quay.io/hello`. Alternatively, you can use the registry's web pages to search for images. Take a look at the page of [the `nordstrom/hello-world` image on Quay](https://quay.io/repository/nordstrom/hello-world). The page shows the command to use to pull the image, which reveals that we can also pull images from hosts other than Docker Hub:
 
 `docker pull quay.io/nordstrom/hello-world`
 
 So, if the host's name (here: `quay.io`) is omitted, it will pull from Docker Hub by default.
 
-NOTE: Trying above command may fail giving manifest errors as default tag latest is not present in quay.io/nordstrom/hello-world image. Specifying correct tag for image will pull image without any errors, for ex.
+NOTE: Trying the above command may fail giving manifest errors as the default tag latest is not present in quay.io/nordstrom/hello-world image. Specifying a correct tag for a image will pull the image without any errors, for ex.
 `docker pull quay.io/nordstrom/hello-world:2.0`
 
 ## A detailed look into an image
@@ -57,16 +57,16 @@ $ docker pull ubuntu
   latest: Pulling from library/ubuntu
 ```
 
-Since we didn't specify a tag, Docker defaulted to `latest`, which is usually the latest image built and pushed to the registry. **However**, in this case, the repository's README says that the `ubuntu:latest` tag points to the "latest LTS" instead since that's the version recommended for general use.
+Since we didn't specify a tag, Docker defaulted to `latest`, which is usually the latest image built and pushed to the registry. **However**, in this case, the repository's [README](https://hub.docker.com/_/ubuntu) says that the `ubuntu:latest` tag points to the "latest LTS" instead since that's the version recommended for general use.
 
 Images can be tagged to save different versions of the same image. You define an image's tag by adding `:<tag>` after the image's name.
 
-Ubuntu's [Docker Hub page](https://hub.docker.com/r/library/ubuntu/tags/) reveals that there's a tag named 18.04 which promises us that the image is based on Ubuntu 18.04. Let's pull that as well:
+Ubuntu's [Docker Hub page](https://hub.docker.com/r/library/ubuntu/tags/) reveals that there's a tag named 22.04 which promises us that the image is based on Ubuntu 22.04. Let's pull that as well:
 
 ```console
-$ docker pull ubuntu:18.04
+$ docker pull ubuntu:22.04
 
-  18.04: Pulling from library/ubuntu
+  22.04: Pulling from library/ubuntu
   c2ca09a1934b: Downloading [============================================>      ]  34.25MB/38.64MB
   d6c3619d2153: Download complete
   0efe07335a04: Download complete
@@ -76,9 +76,9 @@ $ docker pull ubuntu:18.04
 
 Images are composed of different layers that are downloaded in parallel to speed up the download. Images being made of layers also have other aspects and we will talk about them in part 3.
 
-We can also tag images locally for convenience, for example, `docker tag ubuntu:18.04 ubuntu:bionic` creates the tag `ubuntu:bionic` which refers to `ubuntu:18.04`.
+We can also tag images locally for convenience, for example, `docker tag ubuntu:22.04 ubuntu:jammy_jellyfish` creates the tag `ubuntu:jammy_jellyfish` which refers to `ubuntu:22.04`.
 
-Tagging is also a way to "rename" images. Run `docker tag ubuntu:18.04 fav_distro:bionic` and check `docker images` to see what effects the command had.
+Tagging is also a way to "rename" images. Run `docker tag ubuntu:22.04 fav_distro:jammy_jellyfish` and check `docker image ls` to see what effects the command had.
 
 To summarize, an image name may consist of 3 parts plus a tag. Usually like the following: `registry/organisation/image:tag`. But may be as short as `ubuntu`, then the registry will default to Docker hub, organisation to _library_ and tag to _latest_. The organisation may also be a user, but calling it an organisation may be more clear.
 
@@ -91,7 +91,7 @@ In the [Exercise 1.3](/part-1/section-2#exercise-13) we used `devopsdockeruh/sim
 Here is the same application but instead of Ubuntu is using [Alpine Linux](https://www.alpinelinux.org/): `devopsdockeruh/simple-web-service:alpine`.
 
 Pull both images and compare the image sizes.
-Go inside the alpine container and make sure the secret message functionality is the same. Alpine version doesn't have bash but it has sh.
+Go inside the Alpine container and make sure the secret message functionality is the same. Alpine version doesn't have `bash` but it has `sh`, a more bare-bones shell.
 
 :::
 
@@ -99,8 +99,9 @@ Go inside the alpine container and make sure the secret message functionality is
 
 Run `docker run -it devopsdockeruh/pull_exercise`.
 
-It will wait for your input. Navigate through Docker hub to find the docs and Dockerfile that was used to create the
-image.
+The command will wait for your input.
+
+Navigate through the [Docker hub](https://hub.docker.com/) to find the docs and Dockerfile that was used to create the image.
 
 Read the Dockerfile and/or docs to learn what input will get the application to answer a "secret message".
 
@@ -135,24 +136,24 @@ $ ./hello.sh
 
 * If you're using Windows you can skip these two and add chmod +x hello.sh to the Dockerfile.
 
-And now to create an image from it. We'll have to create the `Dockerfile` that declares all of the required dependencies. At least it depends on something that can run shell scripts. So I will choose Alpine, it is a small Linux distribution and often used to create small images.
+And now to create an image from it. We'll have to create the `Dockerfile` that declares all of the required dependencies. At least it depends on something that can run shell scripts. We will choose [Alpine](https://www.alpinelinux.org/), a small Linux distribution that is often used to create small images.
 
 Even though we're using Alpine here, you can use Ubuntu during exercises. Ubuntu images by default contain more tools to debug what is wrong when something doesn't work. In part 3 we will talk more about why small images are important.
 
 We will choose exactly which version of a given image we want to use. This guarantees that we don't accidentally update through a breaking change, and we know which images need updating when there are known security vulnerabilities in old images.
 
-Now create a file and name it "Dockerfile" and lets put the following instructions inside it:
+Now create a file and name it "Dockerfile" and put the following instructions inside it:
 
 **Dockerfile**
 
 ```Dockerfile
 # Start from the alpine image that is smaller but no fancy tools
-FROM alpine:3.13
+FROM alpine:3.19
 
 # Use /usr/src/app as our workdir. The following instructions will be executed in this location.
 WORKDIR /usr/src/app
 
-# Copy the hello.sh file from this location to /usr/src/app/ creating /usr/src/app/hello.sh
+# Copy the hello.sh file from this directory to /usr/src/app/ creating /usr/src/app/hello.sh
 COPY hello.sh .
 
 # Alternatively, if we skipped chmod earlier, we can add execution permissions during the build.
@@ -168,25 +169,29 @@ By default `docker build` will look for a file named Dockerfile. Now we can run 
 
 ```console
 $ docker build . -t hello-docker
-  Sending build context to Docker daemon  54.78kB
-  Step 1/4 : FROM alpine:3.13
-   ---> d6e46aa2470d
-  Step 2/4 : WORKDIR /usr/src/app
-   ---> Running in bd0b4e349cb4
-  Removing intermediate container bd0b4e349cb4
-   ---> b382ca27c182
-  Step 3/4 : COPY hello.sh .
-   ---> 7fbc1b6e45ab
-  Step 4/4 : CMD ./hello.sh
-   ---> Running in 24f28f026b3f
-  Removing intermediate container 24f28f026b3f
-   ---> 444f21cf7bd5
-  Successfully built 444f21cf7bd5
-  Successfully tagged hello-docker:latest
+ => [internal] load build definition from Dockerfile                                                                                                                                              0.0s
+ => => transferring dockerfile: 478B                                                                                                                                                              0.0s
+ => [internal] load metadata for docker.io/library/alpine:3.19                                                                                                                                    2.1s
+ => [auth] library/alpine:pull token for registry-1.docker.io                                                                                                                                     0.0s
+ => [internal] load .dockerignore                                                                                                                                                                 0.0s
+ => => transferring context: 2B                                                                                                                                                                   0.0s
+ => [1/3] FROM docker.io/library/alpine:3.19@sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b                                                                              0.0s
+ => [internal] load build context                                                                                                                                                                 0.0s
+ => => transferring context: 68B                                                                                                                                                                  0.0s
+ => [2/3] WORKDIR /usr/src/app                                                                                                                                                                    0.0s
+ => [3/3] COPY hello.sh .                                                                                                                                                                         0.0s
+ => exporting to image                                                                                                                                                                            0.0s
+ => => exporting layers                                                                                                                                                                           0.0s
+ => => writing image sha256:5f8f5d7445f34b0bcfaaa4d685a068cdccc1ed79e65068337a3a228c79ea69c8                                                                                                      0.0s
+ => => naming to docker.io/library/hello-docker
+```
 
-$ docker images
+Let us ensure that the image exists:
+
+```console
+$ docker image ls
   REPOSITORY            TAG          IMAGE ID       CREATED         SIZE
-  hello-docker          latest       444f21cf7bd5   2 minutes ago   5.57MB
+  hello-docker          latest       5f8f5d7445f3   4 minutes ago   7.73MB
 ```
 
 :::tip Permission denied
@@ -209,61 +214,77 @@ If you are running rootless docker and build process gives can't stat error, you
 
 Now executing the application is as simple as running `docker run hello-docker`. Try it!
 
-During the build we see that there are multiple steps with hashes and intermediate containers. The steps here represent the layers so that each step is a new layer to the image.
+During the build we see from the output that there are three steps: [1/3], [2/3] and [3/3]. The steps here represent [layers](https://docs.docker.com/build/guide/layers/) of the image so that each step is a new layer on top of the base image (alpine:3.19 in our case).
 
-The **layers** have multiple functions. We often try to limit the number of layers to save on storage space but layers can work as a cache during build time. If we just edit the last lines of Dockerfile the build command can start from the previous layer and skip straight to the section that has changed. COPY automatically detects changes in the files, so if we change the hello.sh it'll run from step 3/4, skipping 1 and 2. This can be used to create faster build pipelines. We'll talk more about optimization in part 3.
+Layers have multiple functions. We often try to limit the number of layers to save on storage space but layers can work as a cache during build time. If we just edit the last lines of Dockerfile the build command can start from the previous layer and skip straight to the section that has changed. COPY automatically detects changes in the files, so if we change the hello.sh it'll run from step 3/3, skipping 1 and 2. This can be used to create faster build pipelines. We'll talk more about optimization in part 3.
 
-The intermediate containers are containers created from the image in which the command is executed. Then the changed state is stored into an image. We can do similiar task and a new layer manually. Create a new file called `additional.txt` and let's copy it inside the container and learn new trick while we're at it! We'll need two terminals so I will label the lines with 1 and 2 representing the two.
+
+
+
+It is also possible to manually create new layers on top of a image. Let us now create a new file called `additional.txt` and copy it inside a container.
+
+We'll need two terminals, that shall be called 1 and 2 in the following listings. Let us start by running the image: 
 
 ```console
-1 $ docker run -it hello-docker sh
-1 /usr/src/app #
+# do this in terminal 1
+$ docker run -it hello-docker sh
+/usr/src/app #
 ```
 
-Now we're inside of the container. We replaced the CMD we defined earlier with `sh` and used -i and -t to start the container so that we can interact with it. In the second terminal we will copy the file here.
+Now we're inside of the container. We replaced the CMD we defined earlier with `sh` and used -i and -t to start the container so that we can interact with it.
+
+In the second terminal we will copy the file inside the container:
 
 ```console
-2 $ docker ps
-2   CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS         PORTS     NAMES
-    9c06b95e3e85   hello-docker   "sh"      4 minutes ago   Up 4 minutes             zen_rosalind
+# do this in terminal 2
+$ docker ps
+  CONTAINER ID   IMAGE          COMMAND   CREATED         STATUS         PORTS     NAMES
+  9c06b95e3e85   hello-docker   "sh"      4 minutes ago   Up 4 minutes             zen_rosalind
 
-2 $ touch additional.txt
-2 $ docker cp ./additional.txt zen_rosalind:/usr/src/app/
+$ touch additional.txt
+$ docker cp ./additional.txt zen_rosalind:/usr/src/app/
 ```
 
-I created the file with touch right before copying it in. Now it's there and we can confirm that with ls:
+The file is created with command `touch` right before copying it in.
+
+Let us ensure that the file is copied inside the container:
 
 ```console
-1 /usr/src/app # ls
-1 additional.txt  hello.sh
+# do this in terminal 1
+/usr/src/app # ls
+additional.txt  hello.sh
 ```
 
-Great! Now we've made a change to the container. We can use `diff` to check what has changed
+Great! Now we've made a change to the container. We can use command [docker diff](https://docs.docker.com/reference/cli/docker/container/diff/) to check what has changed
 
 ```console
-2 $ docker diff zen_rosalind
-    C /usr
-    C /usr/src
-    C /usr/src/app
-    A /usr/src/app/additional.txt
-    C /root
-    A /root/.ash_history
+# do this in terminal 2
+$ docker diff zen_rosalind
+  C /usr
+  C /usr/src
+  C /usr/src/app
+  A /usr/src/app/additional.txt
+  C /root
+  A /root/.ash_history
 ```
 
 The character in front of the file name indicates the type of the change in the container's filesystem: A = added, D = deleted, C = changed. The additional.txt was created and our `ls` created .ash_history.
 
-Next we will save the changes as a new image with the command [docker commit](https://docs.docker.com/engine/reference/commandline/commit/https://docs.docker.com/engine/reference/commandline/commit/):
+Next we will save the changes as _a new image_ with the command [docker commit](https://docs.docker.com/engine/reference/commandline/container_commit/):
 
 ```console
-2 $ docker commit zen_rosalind hello-docker-additional
-    sha256:2f63baa355ce5976bf89fe6000b92717f25dd91172aed716208e784315bfc4fd
-2 $ docker images
-    REPOSITORY                   TAG          IMAGE ID       CREATED          SIZE
-    hello-docker-additional      latest       2f63baa355ce   3 seconds ago    5.57MB
-    hello-docker                 latest       444f21cf7bd5   31 minutes ago   5.57MB
+# do this in terminal 2
+$ docker commit zen_rosalind hello-docker-additional
+  sha256:2f63baa355ce5976bf89fe6000b92717f25dd91172aed716208e784315bfc4fd
+$ docker image ls
+  REPOSITORY                   TAG          IMAGE ID       CREATED          SIZE
+  hello-docker-additional      latest       2f63baa355ce   3 seconds ago    7.73MB
+  hello-docker                 latest       444f21cf7bd5   31 minutes ago   7.73MB
 ```
 
-We will actually never use Docker commit again during this course. This is because defining the changes to the Dockerfile is much more sustainable method of managing changes. No magic actions or scripts, just a Dockerfile that can be version controlled.
+Technically the command `docker commit` added a new layer on top of the image `hello-docker`, and the resulting image was given the name `hello-docker-additional`.
+
+We will actually not use the command `docker commit` again during this course. This is because defining the changes to the Dockerfile is much more sustainable method of managing changes. No magic actions or scripts, just a Dockerfile that can be version controlled.
 
 Let's do just that and create hello-docker with v2 tag that includes the file additional.txt. The new file can be added with a [RUN](https://docs.docker.com/engine/reference/builder/#run) instruction:
 
@@ -271,7 +292,7 @@ Let's do just that and create hello-docker with v2 tag that includes the file ad
 
 ```Dockerfile
 # Start from the alpine image
-FROM alpine:3.13
+FROM alpine:3.19
 
 # Use /usr/src/app as our workdir. The following instructions will be executed in this location.
 WORKDIR /usr/src/app
@@ -310,7 +331,7 @@ We can improve our previous solutions now that we know how to create and build a
 
 Let us now get back to [Exercise 1.4](/part-1/section-2#exercise-14).
 
-Create a new file on your local machine and append the script we used previously into that file:
+Create a new file `script.sh` on your local machine with the following contents:
 
 ```bash
 while true
@@ -321,7 +342,7 @@ do
 done
 ```
 
-Create a Dockerfile for a new image that starts from ubuntu:20.04 and add instructions to install curl into that image. Then add instructions to copy the script file into that image and finally set it to run on container start using CMD.
+Create a Dockerfile for a new image that starts from _ubuntu:22.04_ and add instructions to install `curl` into that image. Then add instructions to copy the script file into that image and finally set it to run on container start using CMD.
 
 After you have filled the Dockerfile, build the image with the name "curler".
 
@@ -353,7 +374,7 @@ Submit the Dockerfile.
 
 :::info Exercise 1.8: Two line Dockerfile
 
-By default our `devopsdockeruh/simple-web-service:alpine` doesn't have a CMD. It instead uses _ENTRYPOINT_ to declare which application is run.
+By default our `devopsdockeruh/simple-web-service:alpine` doesn't have a CMD. Instead, it uses _ENTRYPOINT_ to declare which application is run.
 
 We'll talk more about _ENTRYPOINT_ in the next section, but you already know that the last argument in `docker run` can be used to give a command or an argument.
 
