@@ -16,8 +16,8 @@ $ docker run -it ubuntu:22.04
 ..and, as we already know, curl is not installed - let's add `curl` with `apt-get` again.
 
 ```console
-$ apt-get update && apt-get install -y curl
-$ curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+# apt-get update && apt-get install -y curl
+# curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
 ```
 
 At some point, you may have noticed that _sudo_ is not installed either, but since we are _root_ we don't need it.
@@ -25,21 +25,21 @@ At some point, you may have noticed that _sudo_ is not installed either, but sin
 Next, we will add permissions and run the downloaded binary:
 
 ```console
-$ chmod a+rx /usr/local/bin/yt-dlp
-$ yt-dlp
+# chmod a+rx /usr/local/bin/yt-dlp
+# yt-dlp
 /usr/bin/env: 'python3': No such file or directory
 ```
 
 Okay, [documentation](https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#dependencies) mentions that Python 3.8 or later is needed to run yt-dlp. So let us install that:
 
 ```console
-$ apt-get install -y python3
+# apt-get install -y python3
 ```
 
 We can now try to run the app again:
 
 ```console
-$ yt-dlp
+# yt-dlp
 
   Usage: yt-dlp [OPTIONS] URL [URL...]
 
