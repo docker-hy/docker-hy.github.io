@@ -26,6 +26,12 @@ $ docker search hello-world
   ...
 ```
 
+:::tip Podman
+
+If you are using Podman, use --compatible to see stars, official and automated columns. For explanation, see `man podman-search`.
+
+:::
+
 Let's examine the list.
 
 The first result, `hello-world`, is an official image. [Official images](https://docs.docker.com/docker-hub/official_images/) are curated and reviewed by Docker, Inc. and are usually actively maintained by the authors. They are built from repositories in the [docker-library](https://github.com/docker-library).
@@ -40,7 +46,7 @@ There are also other Docker registries competing with Docker Hub, such as [Quay]
 
 `docker pull quay.io/nordstrom/hello-world`
 
-So, if the host's name (here: `quay.io`) is omitted, it will pull from Docker Hub by default.
+So, if the alternative registry's name (here: `quay.io`) is omitted, it will pull from Docker Hub by default.
 
 NOTE: Trying the above command may fail giving manifest errors as the default tag latest is not present in quay.io/nordstrom/hello-world image. Specifying a correct tag for a image will pull the image without any errors, for ex.
 `docker pull quay.io/nordstrom/hello-world:2.0`
@@ -208,7 +214,9 @@ If you're now getting "/bin/sh: ./hello.sh: not found" and you're using Windows 
 
 :::tip can't stat
 
-If you are running rootless docker and build process gives can't stat error, you may try removing old images. For more information, reading [this issue](https://github.com/docker/for-linux/issues/380) may be relevant.
+If you are running rootless docker and build process gives error saying "can't stat...", you may try removing old images.
+
+If you do get this error, this will be a significant problem with some later exercises. It may be worthwhile to check if you could do the course with standard Docker or with Podman instead of rootless Docker.
 
 :::
 

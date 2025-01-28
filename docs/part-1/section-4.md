@@ -259,10 +259,16 @@ $ docker diff determined_elion
 Let's try `docker cp` command to copy the file from the container to the host machine. We should use quotes now since the filename has spaces.
 
 ```console
-$ docker cp "determined_elion://mydir/Welcome to Kumpula campus! ｜ University of Helsinki [DptFY_MszQs].mp4" .
+$ docker cp "determined_elion:/mydir/Welcome to Kumpula campus! ｜ University of Helsinki [DptFY_MszQs].mp4" .
 ```
 
 And now we have our file locally and we can watch it if the machine has a suitable player installed. Sadly, the use of `docker cp` is not proper to fix our issue. In the next section, we will improve this.
+
+:::tip Podman
+
+If you are using Podman, you may also need to escape `[` in file name. (ie `podman cp "determined_elion:/mydir/Welcome to Kumpula campus! ｜ University of Helsinki \[DptFY_MszQs].mp4" .`)
+
+:::
 
 ## Improved curler
 

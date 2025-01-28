@@ -77,6 +77,12 @@ $ docker attach looper
 
 Now you have process logs (STDOUT) running in two terminals. Now press control+c in the attached window. The container is stopped because the process is no longer running.
 
+:::tip Podman
+
+If you are using Podman, depending on your version, control+c with --no-stdin mentioned below might not work.
+
+:::
+
 If we want to attach to a container while making sure we don't close it from the other terminal we can specify to not attach STDIN with `--no-stdin` option. Let's start the stopped container with `docker start looper` and attach to it with `--no-stdin`.
 
 Then try control+c.
@@ -140,7 +146,7 @@ $ docker exec -it looper bash
 
 From the `ps aux` listing we can see that our `bash` process got PID (process ID) of 64.
 
-Now that we're inside the container it behaves as you'd expect from Ubuntu, and we can exit the container with `exit` and then either kill or stop the container.
+Now that we're inside the container it behaves as you'd expect from Ubuntu, and we can exit the container with `exit` or control+d and then either kill or stop the container.
 
 Our looper won't stop for a SIGTERM signal sent by a stop command. To terminate the process, stop follows the SIGTERM with a SIGKILL after a grace period. In this case, it's simply faster to use kill.
 

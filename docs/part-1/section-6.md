@@ -156,6 +156,17 @@ TIPS:
 
 :::
 
+:::tip can't stat
+
+If you are running rootless docker and have been struggling this far with build process giving error "can't stat...", following exercise 1.14 will present a major challenge.
+
+If this error is still a problem, possible workarounds:
+ - Jump to next section ("Publishing projects"), and upload your images to registry. Pulling one image and building another may work.
+ - Part 2 of this course, using docker-compose, may allow building several images at the same time.
+
+:::
+
+
 :::caution Mandatory Exercise 1.14: Environment
 
 Start both the frontend and the backend with the correct ports exposed and add [ENV](https://docs.docker.com/reference/dockerfile/#env) to Dockerfile with the necessary information from both READMEs
