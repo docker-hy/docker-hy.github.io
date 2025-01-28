@@ -12,6 +12,14 @@ If you are using Docker without root privileges, your system might not have Dock
 
 :::
 
+:::tip Podman
+
+Podman has native alternative for Docker Compose, Podman Compose, which you may or may not already have installed. Podman can also work with Docker Compose (which you may or may not already have installed), and should do so by default if both Podman Compose and Docker Compose are available.
+
+For purposes of this course, it is better to use Docker Compose. If you do not already have it installed, you can install it [manually yourself](https://docs.docker.com/compose/install/linux/#install-the-plugin-manually) (or possibly from your operating system packages).
+
+:::
+
 Docker Compose is designed to simplify running multi-container applications using a single command.
 
 Assume that we are in the folder where we have our Dockerfile with the following content:
