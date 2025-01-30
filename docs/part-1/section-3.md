@@ -26,6 +26,12 @@ $ docker search hello-world
   ...
 ```
 
+:::tip Podman
+
+If you are using Podman, use --compatible to see stars, official and automated columns. For explanation, see `man podman-search`.
+
+:::
+
 Let's examine the list.
 
 The first result, `hello-world`, is an official image. [Official images](https://docs.docker.com/docker-hub/official_images/) are curated and reviewed by Docker, Inc. and are usually actively maintained by the authors. They are built from repositories in the [docker-library](https://github.com/docker-library).
@@ -40,7 +46,7 @@ There are also other Docker registries competing with Docker Hub, such as [Quay]
 
 `docker pull quay.io/nordstrom/hello-world`
 
-So, if the host's name (here: `quay.io`) is omitted, it will pull from Docker Hub by default.
+So, if the alternative registry's name (here: `quay.io`) is omitted, it will pull from Docker Hub by default.
 
 NOTE: Trying the above command may fail giving manifest errors as the default tag latest is not present in quay.io/nordstrom/hello-world image. Specifying a correct tag for a image will pull the image without any errors, for ex.
 `docker pull quay.io/nordstrom/hello-world:2.0`
@@ -203,6 +209,14 @@ If you're now getting "/bin/sh: ./hello.sh: Permission denied" it's because the 
 :::tip not found
 
 If you're now getting "/bin/sh: ./hello.sh: not found" and you're using Windows it might be because by default Windows uses [CRLF](https://www.cs.toronto.edu/~krueger/csc209h/tut/line-endings.html) as line ending. Unix, in our case Alpine, uses just LF which makes the copying of our `hello.sh` invalid bash script in the build phase. To overcome this error change the line endings to LF before running `docker build`
+
+:::
+
+:::tip can't stat
+
+If you are running rootless docker and build process gives error saying "can't stat...", you may try removing old images.
+
+If you keep getting this error with future exercises, this may be a significant problem with some later exercises. It may be worthwhile to check if you could do the course with standard Docker or with Podman instead of rootless Docker.
 
 :::
 
@@ -378,7 +392,7 @@ Try `docker run devopsdockeruh/simple-web-service:alpine hello`. The application
 
 In this exercise create a Dockerfile and use FROM and CMD to create a brand new image that automatically runs `server`.
 
-The Docker documentation [CMD](https://docs.docker.com/engine/reference/builder/#cmd) says a bit indirectly that if a image has ENTRYPOINT defined, CMD is used to define it the default arguments.
+The Docker documentation [CMD](https://docs.docker.com/engine/reference/builder/#cmd) says a bit indirectly that if an image has ENTRYPOINT defined, CMD is used to define the default arguments for it.
 
 Tag the new image as "web-server"
 
