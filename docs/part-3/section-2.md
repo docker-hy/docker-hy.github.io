@@ -220,3 +220,9 @@ Submit the Dockerfile and the final version of your script.
   See [Part 1](/part-1/section-4) for more.
 
 :::
+
+:::tip Rootless Docker and Podman
+
+If you are using Podman or rootless Docker, remember your socket path from earlier parts of this material.
+
+:::
