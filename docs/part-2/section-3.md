@@ -162,7 +162,7 @@ services:
     volumes:
       - database:/var/lib/postgresql/data
   redmine:
-    image: redmine:4.1-alpine
+    image: redmine:5.1-alpine
     environment:
       - REDMINE_DB_POSTGRES=db
       - REDMINE_DB_PASSWORD=example
