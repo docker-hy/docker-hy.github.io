@@ -160,9 +160,9 @@ TIPS:
 
 If you are running rootless docker and have been struggling this far with build process giving error "can't stat...", following exercise 1.14 will present a major challenge.
 
-If this error is still a problem, possible workarounds:
+If this error is still a problem for you, possible workarounds:
  - Jump to next section ("Publishing projects"), and upload your images to registry. Pulling one image and building another may work.
- - Part 2 of this course, using docker-compose, may allow building several images at the same time.
+ - Part 2 of this course, using docker-compose, may allow building several images at the same time, see exercise 2.3.
 
 :::
 
