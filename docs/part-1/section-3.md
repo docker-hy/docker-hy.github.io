@@ -216,7 +216,7 @@ If you're now getting "/bin/sh: ./hello.sh: not found" and you're using Windows 
 
 If you are running rootless docker and build process gives error saying "can't stat...", you may try removing old images.
 
-If you do get this error, this may be a significant problem with some later exercises. It may be worthwhile to check if you could do the course with standard Docker or with Podman instead of rootless Docker.
+If you keep getting this error with future exercises, this may be a significant problem with some later exercises. It may be worthwhile to check if you could do the course with standard Docker or with Podman instead of rootless Docker.
 
 :::
 

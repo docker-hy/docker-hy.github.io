@@ -113,15 +113,13 @@ Do note that while running Docker rootless does limit some security risks to you
 
 ### Podman
 
-Alternatively, your system may already have [Podman](https://podman.io/) installed (or you can [install it yourself](https://podman.io/docs/installation)). Podman is another containerization framework, functioning as a drop-in replacement for Docker to a high degree - generally you can just replace command docker with command podman. If you intend to work later with Kubernetes, Podman also offers some extra conveniences, but on the other hand Podman does not support Docker Swarm.
+Alternatively, your system may already have [Podman](https://podman.io/) installed (or you can [install it yourself](https://podman.io/docs/installation)). Podman is another containerization framework, functioning as a drop-in replacement for Docker to a high degree - often you can just replace command docker with command podman. If you intend to work later with Kubernetes, Podman also offers some extra conveniences, but on the other hand Podman does not support Docker Swarm.
 
 This course should be doable with `alias docker=podman`. Easiest way to make this permanent is `echo "alias docker=podman" >> .bashrc`. Podman does not use default registry, while Docker uses docker.io by default. You will need to remember define registry with your commands (eg, `docker run docker.io/nginx`) or you need to configure your default registry (`mkdir $HOME/.config/containers && echo "unqualified-search-registries = ['docker.io']" >> $HOME/.config/containers/registries.conf`)
 
 If `podman info | grep graphDriverName` tells you are using vfs as your storage driver, prepare for _very_ slow and large builds. Requesting (or installing yourself) and then using fuse-overlayfs or native overlay (in recent Ubuntu and Debian package containers-storage) would be a good idea. (Or possibly changing default configuration with $HOME/.config/containers/storage.conf might be enough. [source](https://blog.abysm.org/2023/06/switching-system-wide-default-storage-driver-from-vfs-to-overlayfs-for-podman-on-debian-bookworm/))
 
 Some of the Podman output may slightly differ from example Docker output in the material.
-
-***TODO***
 
 ## Deadline
 
