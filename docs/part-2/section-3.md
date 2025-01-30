@@ -260,6 +260,14 @@ TIPS:
 
 :::
 
+:::tip Rootless Docker and Podman
+
+In case you do not have root permissions (ie, are using rootless Docker and possibly Podman), following exercise 2.7 is very likely to create a directory which (including contents) you can not remove yourself, due to ownership and permissions. As such, convenient location mentioned in the exercise is *not* `./database` (at least initially), instead you might consider `/tmp/database` (which might get emptied automatically by your operating system, either periodically or during system boot). Note there is no `.` in front of `/tmp/database`.
+
+Read carefully "Arbitrary --user Notes" from Postgres image documentation for hints how to actually solve this problem. This may require building your own image based on Postgres image.
+
+:::
+
 :::info Exercise 2.7
 
 Postgres image uses a volume by default. Define manually a volume for the database in a convenient location such as in `./database` so you should use now a [bind mount](https://docs.docker.com/storage/bind-mounts/). The image [documentation](https://github.com/docker-library/docs/blob/master/postgres/README.md#where-to-store-data) may help you with the task.
@@ -412,5 +420,11 @@ PORT    STATE    SERVICE
 
 Nmap done: 1 IP address (1 host up) scanned in 1.28 seconds
 ```
+
+:::
+
+:::tip Rootless Docker and Podman
+
+If nmap gives an error about not being permitted to open raw socket, you may want to check in what context [nmap documentation](https://nmap.org/book/man-misc-options.html) mentions raw socket privileges.
 
 :::
