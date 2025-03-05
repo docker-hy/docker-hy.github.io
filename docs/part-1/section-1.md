@@ -74,9 +74,13 @@ Isn't there already a solution for this? Virtual Machines are not the same as Co
 
 ![Containers vs virtual machines](/img/1/docker-explained-3.png)
 
-The difference between a virtual machine and Docker solutions arises after moving Application A to an incompatible system "Operating System B". Running software on top of containers is almost as efficient as running it "natively" outside containers, at least when compared to virtual machines.
 
-So containers have a direct access to your own Operating Systems kernel and resources. The resource usage overhead of using containers is minimized, as the applications behave as if there were no extra layers. As Docker is using Linux kernels, Mac and Windows can't run it without a few hoops and each have their own solutions on how to run Docker.
+Virtual Machines (VMs) run on a [hypervisor](https://en.wikipedia.org/wiki/Hypervisor), which virtualizes the physical hardware. Each VM includes a full operating system (OS) along with the necessary binaries and libraries, making them heavier and more resource-intensive.
+Containers, on the other hand, share the host OS kernel and only package the application and its dependencies, resulting in a more lightweight and efficient solution.
+
+VMs provide strong isolation and are suited for running multiple OS environments, but they have a performance overhead and longer startup times. Containers offer faster startup, better resource utilization, and high portability across different environments, though their isolation is at the process level, which may not be as robust as that of VMs. Overall, VMs could be used for scenarios needing complete OS environments, while containers excel in lightweight, efficient, and consistent application deployment.
+
+Docker relies on Linux kernels, which means that macOS and Windows cannot run Docker natively without some additional steps. Each operating system has its own solution for running Docker. For example, Docker for Mac uses under the hood actually a virtual machine that runs a Linux instance, within which Docker operates.
 
 ## Running containers ##
 
@@ -146,7 +150,7 @@ Keep in mind that we are downloading stuff from the internet. Double checking wh
 
 :::
 
-So that's an image?
+So what's an image?
 
 ## Image and containers
 
@@ -154,11 +158,11 @@ Since we already know what containers are it's easier to explain images through 
 
 Cooking metaphor:
 
-Think of a container as a ready-to-eat meal that you can simply heat up and consume. An image, on the other hand, is the recipe or ingredients for that meal.
+Think of a container as a ready-to-eat meal that you can simply heat up and consume. An image, on the other hand, is the recipe *and* the ingredients for that meal.
 
 So just like how you need a recipe and ingredients to make a meal, you need an image and a container runtime (Docker engine) to create a container. The image provides all the necessary instructions and dependencies for the container to run, just like a recipe provides the steps and ingredients to make a meal.
 
-In short, an image is like a blueprint or template, while a container is an instance of that blueprint or template.
+In short, an image is like a blueprint or template and the building material, while a container is an instance of that blueprint or template.
 
 ### Image
 
@@ -187,7 +191,7 @@ RUN <install some dependencies>
 CMD <command that is executed on `docker container run`>
 ```
 
-and is the instruction set for building an image. We will look into Dockerfiles later when we get to build our own image.
+and is the instruction set for building an image. We will look into Dockerfiles later when we get to build our own images.
 
 If we go back to the cooking metaphor, as Dockerfile provides the instructions needed to build an image you can think of that as the recipe for images. We're now 2 recipes deep, as Dockerfile is the recipe for an image and an image is the recipe for a container. The only difference is that Dockerfile is written by us, whereas image is written by our machine based on the Dockerfile!
 
