@@ -6,6 +6,26 @@ Even with a simple image, we've already been dealing with plenty of command line
 
 Next we will switch to a tool called [Docker Compose](https://docs.docker.com/compose/) to manage these. Docker Compose used to be a separate tool but now it is integrated into Docker and can be used like the rest of the Docker commands.
 
+:::tip Rootless Docker
+
+If you are using Docker without root privileges, your system might not have Docker Compose installed. If this is the case, you can [install it manually yourself](https://docs.docker.com/compose/install/linux/#install-the-plugin-manually).
+
+:::
+
+:::tip Podman
+
+For small scale orchestration Podman supports Podman Compose and Docker Compose, which you may or may not already have installed. Since Docker Compose is reference for everyone else, latest versions of Podman should use it by default if both Podman Compose and Docker Compose are available. You can read more about relationships between these projects [here](https://www.redhat.com/en/blog/podman-compose-docker-compose).
+
+For purposes of this course, it is better to use Docker Compose. If you do not already have it installed, you can install it manually yourself as a [standalone version](https://docs.docker.com/compose/install/standalone/) (or possibly from your operating system packages, for example `apt install --no-install-recommends docker-compose podman-docker`). Depending on your software versions and how you installed it, you may have to call `docker-compose` instead of `docker compose` (or `podman compose`).
+
+For docker-compose to work with Podman, you need a socket: `systemctl --user enable --now podman.socket`, check path with `podman info | grep -i remotesocket -A2` and then export required environment variable: for example `export DOCKER_HOST=unix:///run/user/$UID/podman/podman.sock`. If you want to make Compose always available, add these to your .bashrc. 
+
+If necessary, Podman Compose can be found [here](https://github.com/containers/podman-compose). Read README.md for installation instructions. It is more lightweight and does not require socket, but has not been tested with this course. Do note that even if you install both, you should only use one of them, they are not interchangeable.
+
+If you are not forced to use Compose, check also [pods](https://developers.redhat.com/blog/2019/01/15/podman-managing-containers-pods) (see also man podman-pod), [quadlets](https://www.redhat.com/en/blog/quadlet-podman) (Podman 4.4+) or Kubernetes. (This is not relevant for this course.)
+
+:::
+
 Docker Compose is designed to simplify running multi-container applications using a single command.
 
 Assume that we are in the folder where we have our Dockerfile with the following content:

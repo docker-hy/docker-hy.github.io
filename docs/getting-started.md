@@ -97,9 +97,29 @@ Confirm that Docker installed correctly by opening a terminal and running `docke
 
 To avoid writing sudos you may consider [adding yourself to docker group](https://docs.docker.com/install/linux/linux-postinstall/)
 
-Keep in mind that if you do so, you can now run containers without sudo and containers give you super user access to the computer.
+Keep in mind that if you do so, you can now run containers without sudo and containers give you or anyone who gains access to your account super user access to the computer.
 
 :::
+
+### Rootless Docker
+
+Instead of above installation, on Linux you can run Docker as a non-root user. This requires that your system has [certain programs and configurations set up in advance](https://docs.docker.com/engine/security/rootless/#prerequisites) by the system administrator. Since running Docker in rootless mode limits risks for system security, convincing your IT admin to cooperate to the extent required for rootless Docker may be viable alternative if you do not have administrative privileges yourself.
+
+If your system is set up correctly, you can possibly run locally available installation script dockerd-rootless-setuptool.sh or download it from [https://get.docker.com/rootless](https://get.docker.com/rootless). The script will inform you of any missing requirements, if there are any. The script will also tell you how to control docker service, and what settings to set or change in your environment (PATH, DOCKER_HOST).
+
+See also [known limitations](https://docs.docker.com/engine/security/rootless/#known-limitations).
+
+Do note that while running Docker rootless does limit some security risks to your system, it just adds one hurdle for potential malicious attacker (and in any case, system staying secure might not sound so great if you end up "only" losing your user data).
+
+### Podman
+
+Alternatively, your system may already have [Podman](https://podman.io/) installed (or you can [install it yourself](https://podman.io/docs/installation)). Podman is another containerization framework, functioning as a drop-in replacement for Docker to a high degree - often you can just replace command docker with command podman. If you intend to work later with Kubernetes, Podman also offers some extra conveniences, but on the other hand Podman does not support Docker Swarm.
+
+This course should be doable with `alias docker=podman`. Easiest way to make this permanent is `echo "alias docker=podman" >> .bashrc`. Podman does not use default registry, while Docker uses docker.io by default. You will need to remember define registry with your commands (eg, `docker run docker.io/nginx`) or you need to configure your default registry (`mkdir $HOME/.config/containers && echo "unqualified-search-registries = ['docker.io']" >> $HOME/.config/containers/registries.conf`)
+
+If `podman info | grep graphDriverName` tells you are using vfs as your storage driver, prepare for _very_ slow and large builds. Requesting (or installing yourself) and then using fuse-overlayfs or native overlay (in recent Ubuntu and Debian package containers-storage) would be a good idea. (Or possibly changing default configuration with $HOME/.config/containers/storage.conf might be enough. [source](https://blog.abysm.org/2023/06/switching-system-wide-default-storage-driver-from-vfs-to-overlayfs-for-podman-on-debian-bookworm/))
+
+Some of the Podman output may slightly differ from example Docker output in the material.
 
 ## Deadline
 

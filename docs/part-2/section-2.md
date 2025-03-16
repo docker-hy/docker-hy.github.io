@@ -144,6 +144,12 @@ $ docker compose port --index 3 whoami 8000
   0.0.0.0:32768
 ```
 
+:::tip Podman
+
+If you are using Podman, `podman ps` will list also ports.
+
+:::
+
 We can now curl from these ports:
 
 ```console
@@ -185,6 +191,14 @@ $ curl localhost:80
   </body>
   </html>
 ```
+
+:::tip Rootless Docker and Podman
+
+If you are using rootless Docker, or Podman (Podman runs by default also rootless), you may be unable to use port numbers below 1024. If this is the case, you could for example use 8888:80 for port in your docker-compose.yml and then `curl localhost:8888`.
+
+Note also that for both rootless Docker and for Podman, socket path and possibly name is different. You can see your socket information with `echo $DOCKER_HOST`.
+
+:::
 
 It's "working", but the Nginx just doesn't know which service we want. The `nginx-proxy` works with two environment variables: `VIRTUAL_HOST` and `VIRTUAL_PORT`. `VIRTUAL_PORT` is not needed if the service has `EXPOSE` in it's Docker image. We can see that `jwilder/whoami` sets it: <https://github.com/jwilder/whoami/blob/master/Dockerfile#L9>
 
@@ -276,3 +290,14 @@ This exercise was created with [Sasu Mäkinen](https://github.com/sasumaki)
 Please return the used commands for this exercise.
 
 :::
+
+:::tip Rootless Docker and Podman
+
+If you are using rootless Docker, or Podman (Podman runs by default also rootless), you may be unable to use port numbers below 1024. If this is the case, above exercise may require extra effort.
+
+Like earlier, you could for example use 8888:80 for port in your docker-compose.yml. However, calculator/src/commons.js has hardcoded address (with default port, ie 80) which will be a problem. You will have to edit address to include suitable port, and then build calculator image yourself, instead of using provided one.
+
+Note again that for both rootless Docker and for Podman, socket path and possibly name is different. You can see your socket information with `echo $DOCKER_HOST`.
+
+:::
+

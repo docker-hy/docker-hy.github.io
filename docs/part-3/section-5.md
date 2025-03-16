@@ -8,7 +8,7 @@ In the scope of this course, we cannot go into how to use the tools in this sect
 
 **Docker swarm mode** is built into Docker. It turns a pool of Docker hosts into a single virtual host. You can read the feature highlights [here](https://docs.docker.com/engine/swarm/). You can run right away with `docker swarm`. Docker swarm mode is the lightest way of utilizing multiple hosts.
 
-**Kubernetes** is the de facto way of orchestrating your containers in large multi-host environments. The reason being it's customizability, large community and robust features. However, the drawback is the higher learning curve compared to Docker swarm mode. You can read their introduction [here](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/).
+**Kubernetes** is a commonly default way of orchestrating your containers in large multi-host environments. The reason being it's customizability, large community and robust features. However, the drawback is the higher learning curve compared to Docker swarm mode. You can read their introduction [here](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/). Other similar technologies are Apache Mesos and HashiCorp Nomad.
 
 It is always good to remember that a single tool is rarely an optimal solution for all possible scenarios. In a 2-3 host environment for a hobby project, the gains from Kubernetes might not be as large compared to an environment where you need to orchestrate hundreds of hosts with multiple containers each.
 
